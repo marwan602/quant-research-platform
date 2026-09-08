@@ -33,11 +33,24 @@ def split_tabular_data(df: pd.DataFrame, config: dict | None = None):
         config = load_config()
 
     split_cfg = config["split"]
+    train_start = pd.to_datetime(split_cfg["train_start"])
+    train_end = pd.to_datetime(split_cfg["train_end"])
+    val_start = pd.to_datetime(split_cfg["val_start"])
+    val_end = pd.to_datetime(split_cfg["val_end"])
+    test_start = pd.to_datetime(split_cfg["test_start"])
+    test_end = pd.to_datetime(split_cfg["test_end"])
+
+    if not (train_start <= train_end < val_start <= val_end < test_start <= test_end):
+        raise ValueError(
+            "Split ranges must be strictly chronological and non-overlapping: "
+            "train_end < val_start and val_end < test_start"
+        )
+
     feature_cols = get_feature_columns(df)
 
-    train_mask = (df["Date"] >= split_cfg["train_start"]) & (df["Date"] <= split_cfg["train_end"])
-    val_mask = (df["Date"] >= split_cfg["val_start"]) & (df["Date"] <= split_cfg["val_end"])
-    test_mask = (df["Date"] >= split_cfg["test_start"]) & (df["Date"] <= split_cfg["test_end"])
+    train_mask = (df["Date"] >= train_start) & (df["Date"] <= train_end)
+    val_mask = (df["Date"] >= val_start) & (df["Date"] <= val_end)
+    test_mask = (df["Date"] >= test_start) & (df["Date"] <= test_end)
 
     train_df = df[train_mask].reset_index(drop=True)
     val_df = df[val_mask].reset_index(drop=True)
@@ -72,10 +85,12 @@ class StockSequenceDataset(Dataset):
         tickers: np.ndarray,
         lookback: int = 60,
     ):
+        if lookback <= 0:
+            raise ValueError("lookback must be a positive integer >= 1")
+
         self.lookback = lookback
         self.samples = []
 
-        # Group indices by ticker to build sequence lookbacks
         ticker_series = pd.Series(tickers)
         for ticker, idxs in ticker_series.groupby(ticker_series).groups.items():
             idx_list = idxs.values

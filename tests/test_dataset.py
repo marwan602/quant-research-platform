@@ -1,3 +1,4 @@
+import pytest
 import numpy as np
 import pandas as pd
 import torch
@@ -78,3 +79,33 @@ def test_sequence_dataset():
     assert x_seq.shape == (lookback, 158)
     assert isinstance(x_seq, torch.Tensor)
     assert np.isclose(y_val.item(), targets[lookback - 1])
+
+
+def test_split_tabular_data_overlapping_dates():
+    df = make_sample_processed_df(50, 1)
+    config = {
+        "split": {
+            "train_start": "2021-01-01",
+            "train_end": "2021-03-01",
+            "val_start": "2021-02-15",
+            "val_end": "2021-04-01",
+            "test_start": "2021-04-02",
+            "test_end": "2021-05-01",
+        }
+    }
+    with pytest.raises(ValueError, match="Split ranges must be strictly chronological"):
+        split_tabular_data(df, config=config)
+
+
+def test_sequence_dataset_invalid_lookback():
+    features = np.ones((10, 158), dtype=np.float32)
+    targets = np.ones(10, dtype=np.float32)
+    dates = pd.date_range("2021-01-01", periods=10, freq="B").values
+    tickers = np.array(["TEST"] * 10)
+
+    with pytest.raises(ValueError, match="lookback must be a positive integer"):
+        StockSequenceDataset(features, targets, dates, tickers, lookback=0)
+
+    with pytest.raises(ValueError, match="lookback must be a positive integer"):
+        StockSequenceDataset(features, targets, dates, tickers, lookback=-5)
+
