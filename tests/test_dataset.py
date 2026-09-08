@@ -2,7 +2,12 @@ import pytest
 import numpy as np
 import pandas as pd
 import torch
-from src.dataset import split_tabular_data, get_feature_columns, StockSequenceDataset
+from src.dataset import (
+    split_tabular_data,
+    get_feature_columns,
+    StockSequenceDataset,
+    load_processed_data,
+)
 
 
 def make_sample_processed_df(n_days=100, n_tickers=2):
@@ -108,4 +113,18 @@ def test_sequence_dataset_invalid_lookback():
 
     with pytest.raises(ValueError, match="lookback must be a positive integer"):
         StockSequenceDataset(features, targets, dates, tickers, lookback=-5)
+
+
+def test_load_processed_data_drops_incomplete_rows(tmp_path):
+    df = make_sample_processed_df(10, 1)
+    df.loc[0, "FEAT_0"] = np.nan
+    df.loc[1, "target"] = np.nan
+    p = tmp_path / "test.parquet"
+    df.to_parquet(p, index=False)
+
+    loaded = load_processed_data(str(p))
+    assert len(loaded) == 8
+    assert not loaded["FEAT_0"].isna().any()
+    assert not loaded["target"].isna().any()
+
 
