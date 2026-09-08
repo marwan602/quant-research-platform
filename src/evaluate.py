@@ -87,11 +87,11 @@ def compute_regression_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict[s
     yt = y_true[mask]
     yp = y_pred[mask]
     if len(yt) == 0:
-        return {"rmse": 0.0, "mae": 0.0, "r2": 0.0}
+        return {"rmse": np.nan, "mae": np.nan, "r2": np.nan}
 
     rmse = float(np.sqrt(mean_squared_error(yt, yp)))
     mae = float(mean_absolute_error(yt, yp))
-    r2 = float(r2_score(yt, yp))
+    r2 = float(r2_score(yt, yp, force_finite=False))
     return {"rmse": rmse, "mae": mae, "r2": r2}
 
 
@@ -145,8 +145,9 @@ def compute_portfolio_backtest(
         n_top = max(1, int(np.floor(n_stocks * top_quantile)))
         n_bottom = max(1, int(np.floor(n_stocks * bottom_quantile)))
         if n_top + n_bottom > n_stocks:
-            n_top = max(1, n_stocks // 2)
-            n_bottom = max(1, n_stocks - n_top)
+            raise ValueError(
+                f"Not enough stocks ({n_stocks}) to form non-overlapping top ({n_top}) and bottom ({n_bottom}) portfolios"
+            )
 
         sorted_slice = day_slice.sort_values("pred", ascending=False)
         top_slice = sorted_slice.iloc[:n_top]
@@ -160,8 +161,6 @@ def compute_portfolio_backtest(
             abs(curr_lo_weights.get(t, 0.0) - prev_lo_weights.get(t, 0.0))
             for t in all_lo_tickers
         )
-        if not prev_lo_weights:
-            lo_turnover = 1.0
 
         r_long = float(top_slice["target"].mean())
         lo_cost = lo_turnover * cost_rate
@@ -182,8 +181,6 @@ def compute_portfolio_backtest(
             abs(curr_ls_weights.get(t, 0.0) - prev_ls_weights.get(t, 0.0))
             for t in all_ls_tickers
         )
-        if not prev_ls_weights:
-            ls_turnover = 1.0
 
         r_short = float(bottom_slice["target"].mean())
         r_ls_gross = 0.5 * r_long - 0.5 * r_short
@@ -221,7 +218,8 @@ def compute_portfolio_backtest(
     return {
         "long_only_annualized_return_gross": lo_g_ret,
         "long_only_annualized_return_net": lo_n_ret,
-        "long_only_annualized_vol": lo_g_vol,
+        "long_only_annualized_vol_gross": lo_g_vol,
+        "long_only_annualized_vol_net": lo_n_vol,
         "long_only_sharpe_gross": lo_g_sharpe,
         "long_only_sharpe_net": lo_n_sharpe,
         "long_only_max_drawdown_gross": lo_g_mdd,
@@ -231,7 +229,8 @@ def compute_portfolio_backtest(
         "long_only_excess_return_net": lo_n_ret - b_ret,
         "long_short_annualized_return_gross": ls_g_ret,
         "long_short_annualized_return_net": ls_n_ret,
-        "long_short_annualized_vol": ls_g_vol,
+        "long_short_annualized_vol_gross": ls_g_vol,
+        "long_short_annualized_vol_net": ls_n_vol,
         "long_short_sharpe_gross": ls_g_sharpe,
         "long_short_sharpe_net": ls_n_sharpe,
         "long_short_max_drawdown_gross": ls_g_mdd,

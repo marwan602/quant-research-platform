@@ -105,11 +105,12 @@ def test_turnover_and_cost_deduction():
         rows.append({"Date": rebalance_dates[1], "Ticker": t, "target": 0.02, "pred": 0.1})
 
     df = pd.DataFrame(rows)
-    bt = compute_portfolio_backtest(df, holding_period=5, cost_bps=10.0, top_quantile=0.5, bottom_quantile=0.5)
+    bt = compute_portfolio_backtest(df, holding_period=1, cost_bps=10.0, top_quantile=0.5, bottom_quantile=0.5)
 
     assert bt["long_only_annualized_return_gross"] > bt["long_only_annualized_return_net"]
     assert bt["long_short_annualized_return_gross"] > bt["long_short_annualized_return_net"]
-    assert bt["long_only_mean_turnover"] == 1.0
+    assert np.isclose(bt["long_only_mean_turnover"], 0.75)
+
 
 
 def test_max_drawdown():
@@ -122,6 +123,13 @@ def test_max_drawdown():
     assert mdd > 0.40
 
 
+def test_regression_metrics_empty():
+    res = compute_regression_metrics(np.array([]), np.array([]))
+    assert np.isnan(res["rmse"])
+    assert np.isnan(res["mae"])
+    assert np.isnan(res["r2"])
+
+
 def test_composite_evaluation():
     df = make_synthetic_eval_df(n_days=15, n_tickers=30)
     res = evaluate_predictions(df, holding_period=5, cost_bps=10.0)
@@ -131,11 +139,13 @@ def test_composite_evaluation():
         "rank_ic_mean", "rank_ic_std", "rank_ic_ir", "rank_ic_naive_tstat", "rank_ic_naive_pvalue", "rank_ic_pct_positive", "rank_ic_n_days",
         "rmse", "mae", "r2",
         "long_only_annualized_return_gross", "long_only_annualized_return_net",
-        "long_only_annualized_vol", "long_only_sharpe_gross", "long_only_sharpe_net",
+        "long_only_annualized_vol_gross", "long_only_annualized_vol_net",
+        "long_only_sharpe_gross", "long_only_sharpe_net",
         "long_only_max_drawdown_gross", "long_only_max_drawdown_net",
         "long_only_mean_turnover", "long_only_excess_return_gross", "long_only_excess_return_net",
         "long_short_annualized_return_gross", "long_short_annualized_return_net",
-        "long_short_annualized_vol", "long_short_sharpe_gross", "long_short_sharpe_net",
+        "long_short_annualized_vol_gross", "long_short_annualized_vol_net",
+        "long_short_sharpe_gross", "long_short_sharpe_net",
         "long_short_max_drawdown_gross", "long_short_max_drawdown_net",
         "long_short_mean_turnover",
         "benchmark_annualized_return", "benchmark_annualized_vol", "benchmark_sharpe", "benchmark_max_drawdown",
