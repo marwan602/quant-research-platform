@@ -1,0 +1,50 @@
+data:
+  raw_composition_path: "data/raw/s_and_p_500_daily_composition.parquet"
+  raw_prices_path: "data/raw/s_and_p_500_prices.parquet"
+  processed_features_path: "data/processed/sp500_alpha158.parquet"
+
+split:
+  train_start: "2015-01-01"
+  train_end: "2021-12-31"
+  val_start: "2022-01-01"
+  val_end: "2023-12-31"
+  test_start: "2024-01-01"
+  test_end: "2026-08-31"
+
+target:
+  horizon: 5
+
+features:
+  factor_set: "alpha158"
+  windows: [5, 10, 20, 30, 60]
+  lookback_window: 60
+
+models:
+  lightgbm:
+    n_estimators: 1000
+    learning_rate: 0.03
+    num_leaves: 31
+    subsample: 0.8
+    colsample_bytree: 0.8
+    early_stopping_rounds: 50
+    random_state: 42
+
+  alstm:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.2
+    learning_rate: 0.001
+    batch_size: 512
+    epochs: 30
+    early_stopping_patience: 7
+
+  transformer:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    dim_feedforward: 128
+    dropout: 0.1
+    learning_rate: 0.0005
+    batch_size: 512
+    epochs: 30
+    early_stopping_patience: 7
