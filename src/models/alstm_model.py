@@ -179,7 +179,7 @@ def train_alstm(
             "val_loss": val_loss,
         }
         history.append(epoch_metrics)
-        print(f"Epoch {epoch:02d}/{epochs:02d} - Train Loss: {train_loss:.6f} - Val Loss: {val_loss:.6f}")
+        print(f"Epoch {epoch:02d}/{epochs:02d} - Train Loss: {train_loss:.6f} - Val Loss: {val_loss:.6f}", flush=True)
 
         if val_loss < best_val_loss:
             best_val_loss = val_loss
@@ -188,7 +188,7 @@ def train_alstm(
         else:
             patience_counter += 1
             if patience_counter >= patience:
-                print(f"Early stopping triggered at epoch {epoch}. Best Val Loss: {best_val_loss:.6f}")
+                print(f"Early stopping triggered at epoch {epoch}. Best Val Loss: {best_val_loss:.6f}", flush=True)
                 break
 
     model.load_state_dict(best_weights)
