@@ -144,3 +144,21 @@ def test_composite_evaluation():
     for k in expected_keys:
         assert k in res, f"Missing key: {k}"
         assert not np.isnan(res[k]), f"NaN in key: {k}"
+
+
+def test_quantile_validation_and_disjoint_selection():
+    df = make_synthetic_eval_df(n_days=5, n_tickers=2)
+
+    with pytest.raises(ValueError, match="must be strictly between 0 and 1"):
+        compute_portfolio_backtest(df, top_quantile=0.0, bottom_quantile=0.5)
+
+    with pytest.raises(ValueError, match="must be strictly between 0 and 1"):
+        compute_portfolio_backtest(df, top_quantile=0.5, bottom_quantile=1.2)
+
+    with pytest.raises(ValueError, match="cannot exceed 1.0|must be <= 1.0"):
+        compute_portfolio_backtest(df, top_quantile=0.6, bottom_quantile=0.6)
+
+    # 2 tickers: 1 long, 1 short, zero overlap
+    bt = compute_portfolio_backtest(df, top_quantile=0.5, bottom_quantile=0.5)
+    assert not np.isnan(bt["long_short_annualized_return_gross"])
+

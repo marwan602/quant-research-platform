@@ -111,6 +111,11 @@ def compute_portfolio_backtest(
     holding_period: int = 5,
     cost_bps: float = 10.0,
 ) -> dict[str, float]:
+    if not (0.0 < top_quantile < 1.0 and 0.0 < bottom_quantile < 1.0):
+        raise ValueError("top_quantile and bottom_quantile must be strictly between 0 and 1")
+    if top_quantile + bottom_quantile > 1.0:
+        raise ValueError("top_quantile + bottom_quantile must be <= 1.0")
+
     clean_df = df.dropna(subset=["Date", "Ticker", "target", "pred"]).copy()
     unique_dates = sorted(clean_df["Date"].unique())
 
@@ -139,10 +144,13 @@ def compute_portfolio_backtest(
 
         n_top = max(1, int(np.floor(n_stocks * top_quantile)))
         n_bottom = max(1, int(np.floor(n_stocks * bottom_quantile)))
+        if n_top + n_bottom > n_stocks:
+            n_top = max(1, n_stocks // 2)
+            n_bottom = max(1, n_stocks - n_top)
 
         sorted_slice = day_slice.sort_values("pred", ascending=False)
         top_slice = sorted_slice.iloc[:n_top]
-        bottom_slice = sorted_slice.iloc[-n_bottom:]
+        bottom_slice = sorted_slice.iloc[n_stocks - n_bottom:]
 
         lo_tickers = set(top_slice["Ticker"])
         curr_lo_weights = {t: 1.0 / len(lo_tickers) for t in lo_tickers}
