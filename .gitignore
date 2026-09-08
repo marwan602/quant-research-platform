@@ -1,0 +1,19 @@
+# Data files (keep raw & processed data local)
+data/
+*.parquet
+*.csv
+
+# Python environment & caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Model weights & training outputs
+models/*.pt
+models/*.txt
+*.log
+
+# OS generated
+Thumbs.db
+.DS_Store
