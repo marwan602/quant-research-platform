@@ -259,13 +259,13 @@ def load_model(
     return model
 
 
-def save_scaler(scaler: StandardScaler, save_path: str = "models/alstm_scaler.pkl") -> None:
+def save_scaler(scaler: object, save_path: str = "models/alstm_scaler.pkl") -> None:
     path = Path(save_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(scaler, path)
 
 
-def load_scaler(scaler_path: str = "models/alstm_scaler.pkl") -> StandardScaler:
+def load_scaler(scaler_path: str = "models/alstm_scaler.pkl") -> object:
     return joblib.load(scaler_path)
 
 

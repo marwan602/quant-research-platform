@@ -133,11 +133,36 @@ class StockSequenceDataset(Dataset):
         })
 
 
+class RobustStandardScaler:
+    def __init__(self, lower_percentile: float = 0.05, upper_percentile: float = 99.95):
+        self.lower_percentile = lower_percentile
+        self.upper_percentile = upper_percentile
+        self.lower_bounds = None
+        self.upper_bounds = None
+        self.scaler = StandardScaler()
+
+    def fit(self, X: np.ndarray):
+        X_clean = np.where(np.isinf(X), np.nan, X)
+        self.lower_bounds = np.nanpercentile(X_clean, self.lower_percentile, axis=0)
+        self.upper_bounds = np.nanpercentile(X_clean, self.upper_percentile, axis=0)
+        X_clipped = np.clip(np.nan_to_num(X_clean, nan=0.0), self.lower_bounds, self.upper_bounds)
+        self.scaler.fit(X_clipped)
+        return self
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        X_clean = np.where(np.isinf(X), np.nan, X)
+        X_clipped = np.clip(np.nan_to_num(X_clean, nan=0.0), self.lower_bounds, self.upper_bounds)
+        return self.scaler.transform(X_clipped).astype(np.float32)
+
+    def fit_transform(self, X: np.ndarray) -> np.ndarray:
+        return self.fit(X).transform(X)
+
+
 def prepare_sequence_data(
     df: pd.DataFrame,
     config: dict | None = None,
     lookback: int = 60,
-    scaler: StandardScaler | None = None,
+    scaler: RobustStandardScaler | StandardScaler | None = None,
     clip_val: float = 5.0,
 ):
     if config is None:
@@ -169,7 +194,7 @@ def prepare_sequence_data(
     train_mask = (sorted_df["Date"] >= train_start) & (sorted_df["Date"] <= train_end)
 
     if scaler is None:
-        scaler = StandardScaler()
+        scaler = RobustStandardScaler()
         scaler.fit(features_raw[train_mask.values])
 
     features_scaled = scaler.transform(features_raw).astype(np.float32)
