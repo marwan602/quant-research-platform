@@ -12,6 +12,7 @@ __pycache__/
 # Model weights & training outputs
 models/*.pt
 models/*.txt
+models/*.pkl
 *.log
 
 # OS generated

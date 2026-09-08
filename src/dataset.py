@@ -2,6 +2,7 @@ from pathlib import Path
 import yaml
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
 import torch
 from torch.utils.data import Dataset
 
@@ -81,27 +82,36 @@ class StockSequenceDataset(Dataset):
         dates: np.ndarray,
         tickers: np.ndarray,
         lookback: int = 60,
+        target_start_date: str | pd.Timestamp | None = None,
+        target_end_date: str | pd.Timestamp | None = None,
     ):
         if lookback <= 0:
             raise ValueError("lookback must be a positive integer >= 1")
 
         self.lookback = lookback
         self.samples = []
+        self.features = features
+        self.targets = targets
+        self.dates = pd.to_datetime(dates)
+        self.tickers = np.asarray(tickers)
 
-        ticker_series = pd.Series(tickers)
+        start_dt = pd.to_datetime(target_start_date) if target_start_date is not None else None
+        end_dt = pd.to_datetime(target_end_date) if target_end_date is not None else None
+
+        ticker_series = pd.Series(self.tickers)
         for ticker, idxs in ticker_series.groupby(ticker_series).groups.items():
             idx_list = idxs.values
             if len(idx_list) < lookback:
                 continue
             for i in range(lookback - 1, len(idx_list)):
                 target_idx = idx_list[i]
+                target_dt = self.dates[target_idx]
+                if start_dt is not None and target_dt < start_dt:
+                    continue
+                if end_dt is not None and target_dt > end_dt:
+                    continue
                 window_idxs = idx_list[i - lookback + 1 : i + 1]
                 self.samples.append((window_idxs, target_idx))
-
-        self.features = features
-        self.targets = targets
-        self.dates = dates
-        self.tickers = tickers
 
     def __len__(self):
         return len(self.samples)
@@ -111,3 +121,113 @@ class StockSequenceDataset(Dataset):
         x_seq = self.features[window_idxs]
         y_val = self.targets[target_idx]
         return torch.from_numpy(x_seq), torch.tensor(y_val, dtype=torch.float32)
+
+    def get_metadata(self) -> pd.DataFrame:
+        if not self.samples:
+            return pd.DataFrame(columns=["Date", "Ticker", "target"])
+        target_indices = [target_idx for _, target_idx in self.samples]
+        return pd.DataFrame({
+            "Date": self.dates[target_indices].values,
+            "Ticker": self.tickers[target_indices],
+            "target": self.targets[target_indices],
+        })
+
+
+class RobustStandardScaler:
+    def __init__(self, lower_percentile: float = 0.05, upper_percentile: float = 99.95):
+        self.lower_percentile = lower_percentile
+        self.upper_percentile = upper_percentile
+        self.lower_bounds = None
+        self.upper_bounds = None
+        self.scaler = StandardScaler()
+
+    def fit(self, X: np.ndarray):
+        X_clean = np.where(np.isinf(X), np.nan, X)
+        self.lower_bounds = np.nanpercentile(X_clean, self.lower_percentile, axis=0)
+        self.upper_bounds = np.nanpercentile(X_clean, self.upper_percentile, axis=0)
+        X_clipped = np.clip(np.nan_to_num(X_clean, nan=0.0), self.lower_bounds, self.upper_bounds)
+        self.scaler.fit(X_clipped)
+        return self
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        X_clean = np.where(np.isinf(X), np.nan, X)
+        X_clipped = np.clip(np.nan_to_num(X_clean, nan=0.0), self.lower_bounds, self.upper_bounds)
+        return self.scaler.transform(X_clipped).astype(np.float32)
+
+    def fit_transform(self, X: np.ndarray) -> np.ndarray:
+        return self.fit(X).transform(X)
+
+
+def prepare_sequence_data(
+    df: pd.DataFrame,
+    config: dict | None = None,
+    lookback: int = 60,
+    scaler: RobustStandardScaler | StandardScaler | None = None,
+    clip_val: float = 5.0,
+):
+    if config is None:
+        config = load_config()
+
+    split_cfg = config["split"]
+    train_start = pd.to_datetime(split_cfg["train_start"])
+    train_end = pd.to_datetime(split_cfg["train_end"])
+    val_start = pd.to_datetime(split_cfg["val_start"])
+    val_end = pd.to_datetime(split_cfg["val_end"])
+    test_start = pd.to_datetime(split_cfg["test_start"])
+    test_end = pd.to_datetime(split_cfg["test_end"])
+
+    if not (train_start <= train_end < val_start <= val_end < test_start <= test_end):
+        raise ValueError(
+            "Split ranges must be strictly chronological and non-overlapping: "
+            "train_end < val_start and val_end < test_start"
+        )
+
+    feature_cols = get_feature_columns(df)
+    sorted_df = df.sort_values(["Ticker", "Date"]).reset_index(drop=True)
+    sorted_df["Date"] = pd.to_datetime(sorted_df["Date"])
+
+    features_raw = sorted_df[feature_cols].values.astype(np.float32)
+    targets = sorted_df["target"].values.astype(np.float32)
+    dates = sorted_df["Date"].values
+    tickers = sorted_df["Ticker"].values
+
+    train_mask = (sorted_df["Date"] >= train_start) & (sorted_df["Date"] <= train_end)
+
+    if scaler is None:
+        scaler = RobustStandardScaler()
+        scaler.fit(features_raw[train_mask.values])
+
+    features_scaled = scaler.transform(features_raw).astype(np.float32)
+    if clip_val is not None:
+        features_scaled = np.clip(features_scaled, -clip_val, clip_val)
+
+    train_ds = StockSequenceDataset(
+        features_scaled,
+        targets,
+        dates,
+        tickers,
+        lookback=lookback,
+        target_start_date=train_start,
+        target_end_date=train_end,
+    )
+    val_ds = StockSequenceDataset(
+        features_scaled,
+        targets,
+        dates,
+        tickers,
+        lookback=lookback,
+        target_start_date=val_start,
+        target_end_date=val_end,
+    )
+    test_ds = StockSequenceDataset(
+        features_scaled,
+        targets,
+        dates,
+        tickers,
+        lookback=lookback,
+        target_start_date=test_start,
+        target_end_date=test_end,
+    )
+
+    return train_ds, val_ds, test_ds, scaler, feature_cols
+
