@@ -28,6 +28,7 @@ models:
     colsample_bytree: 0.8
     early_stopping_rounds: 50
     random_state: 42
+    deterministic: true
 
   alstm:
     hidden_size: 64
