@@ -19,11 +19,8 @@ def get_feature_columns(df: pd.DataFrame) -> list[str]:
 def load_processed_data(file_path: str = "data/processed/sp500_alpha158.parquet") -> pd.DataFrame:
     df = pd.read_parquet(file_path)
     df["Date"] = pd.to_datetime(df["Date"])
-    # Drop rows without targets (e.g. final horizon days) or where warm-up features are NaN
-    df = df.dropna(subset=["target"]).copy()
     feature_cols = get_feature_columns(df)
-    # Fill remaining NaNs (e.g. 0 variance rolling correlations) with 0.0
-    df[feature_cols] = df[feature_cols].fillna(0.0)
+    df = df.dropna(subset=["target"] + feature_cols).copy()
     df = df.sort_values(["Date", "Ticker"]).reset_index(drop=True)
     return df
 

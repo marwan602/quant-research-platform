@@ -68,3 +68,21 @@ def test_zero_lookahead_leakage():
     feats_mutated = compute_ticker_alpha158(df_mutated)
     diff = np.nanmax(np.abs(feats_original.iloc[:70].values - feats_mutated.iloc[:70].values))
     assert diff < 1e-9
+
+
+def test_regression_slope():
+    close = np.array([10.0, 20.0, 30.0, 40.0, 50.0])
+    df = pd.DataFrame({
+        "Date": pd.date_range("2020-01-01", periods=5),
+        "Ticker": ["TEST"] * 5,
+        "Open": close,
+        "High": close,
+        "Low": close,
+        "Close": close,
+        "Volume": [1000.0] * 5,
+    })
+    feats = compute_ticker_alpha158(df, windows=[5])
+    assert np.isclose(feats["BETA5"].iloc[-1], 10.0 / 50.0)
+    assert np.isclose(feats["RSQR5"].iloc[-1], 1.0)
+    assert np.isclose(feats["RESI5"].iloc[-1], 0.0)
+
