@@ -1,4 +1,4 @@
-﻿import numpy as np
+import numpy as np
 import pandas as pd
 import pytest
 from src.evaluate import (
@@ -69,7 +69,29 @@ def test_degenerate_zero_variance():
 
     metrics = compute_ic_metrics(daily_ic)
     assert not np.isnan(metrics["ic_mean"])
-    assert not np.isnan(metrics["icir"])
+    assert not np.isnan(metrics["ic_ir"])
+
+
+def test_ic_metrics_edge_cases():
+    empty_s = pd.Series([], dtype=float)
+    m_empty = compute_ic_metrics(empty_s)
+    assert np.isnan(m_empty["ic_mean"])
+    assert np.isnan(m_empty["ic_ir"])
+    assert m_empty["ic_n_days"] == 0
+
+    one_s = pd.Series([0.05])
+    m_one = compute_ic_metrics(one_s)
+    assert np.isclose(m_one["ic_mean"], 0.05)
+    assert np.isnan(m_one["ic_std"])
+    assert np.isnan(m_one["ic_ir"])
+    assert m_one["ic_n_days"] == 1
+
+    const_s = pd.Series([0.05, 0.05, 0.05])
+    m_const = compute_ic_metrics(const_s)
+    assert np.isclose(m_const["ic_mean"], 0.05)
+    assert np.isclose(m_const["ic_std"], 0.0)
+    assert np.isnan(m_const["ic_ir"])
+    assert m_const["ic_n_days"] == 3
 
 
 def test_turnover_and_cost_deduction():
@@ -105,8 +127,8 @@ def test_composite_evaluation():
     res = evaluate_predictions(df, holding_period=5, cost_bps=10.0)
 
     expected_keys = [
-        "ic_mean", "ic_std", "icir", "ic_naive_tstat", "ic_naive_pvalue", "ic_pct_positive",
-        "rank_ic_mean", "rank_ic_std", "rank_icir", "rank_ic_naive_tstat", "rank_ic_naive_pvalue", "rank_ic_pct_positive",
+        "ic_mean", "ic_std", "ic_ir", "ic_naive_tstat", "ic_naive_pvalue", "ic_pct_positive", "ic_n_days",
+        "rank_ic_mean", "rank_ic_std", "rank_ic_ir", "rank_ic_naive_tstat", "rank_ic_naive_pvalue", "rank_ic_pct_positive", "rank_ic_n_days",
         "rmse", "mae", "r2",
         "long_only_annualized_return_gross", "long_only_annualized_return_net",
         "long_only_annualized_vol", "long_only_sharpe_gross", "long_only_sharpe_net",

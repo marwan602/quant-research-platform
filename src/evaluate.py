@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -11,11 +11,13 @@ def compute_daily_ic(df: pd.DataFrame) -> pd.Series:
     for date, group in clean_df.groupby("Date", sort=True):
         if len(group) < 2:
             continue
-        if group["target"].std() == 0 or group["pred"].std() == 0:
+        if group["target"].nunique() <= 1 or group["pred"].nunique() <= 1:
             ics[date] = np.nan
         else:
             ics[date] = group["target"].corr(group["pred"], method="pearson")
-    return pd.Series(ics, name="ic")
+    series = pd.Series(ics, name="ic")
+    series.index.name = "Date"
+    return series
 
 
 def compute_daily_rank_ic(df: pd.DataFrame) -> pd.Series:
@@ -24,11 +26,13 @@ def compute_daily_rank_ic(df: pd.DataFrame) -> pd.Series:
     for date, group in clean_df.groupby("Date", sort=True):
         if len(group) < 2:
             continue
-        if group["target"].std() == 0 or group["pred"].std() == 0:
+        if group["target"].nunique() <= 1 or group["pred"].nunique() <= 1:
             rank_ics[date] = np.nan
         else:
             rank_ics[date] = group["target"].corr(group["pred"], method="spearman")
-    return pd.Series(rank_ics, name="rank_ic")
+    series = pd.Series(rank_ics, name="rank_ic")
+    series.index.name = "Date"
+    return series
 
 
 def compute_ic_metrics(ic_series: pd.Series, prefix: str = "ic") -> dict[str, float]:
@@ -36,35 +40,45 @@ def compute_ic_metrics(ic_series: pd.Series, prefix: str = "ic") -> dict[str, fl
     n = len(valid_ic)
     if n == 0:
         return {
-            f"{prefix}_mean": 0.0,
-            f"{prefix}_std": 0.0,
-            f"{prefix}ir": 0.0,
-            f"{prefix}_naive_tstat": 0.0,
-            f"{prefix}_naive_pvalue": 1.0,
-            f"{prefix}_pct_positive": 0.0,
+            f"{prefix}_mean": np.nan,
+            f"{prefix}_std": np.nan,
+            f"{prefix}_ir": np.nan,
+            f"{prefix}_naive_tstat": np.nan,
+            f"{prefix}_naive_pvalue": np.nan,
+            f"{prefix}_pct_positive": np.nan,
+            f"{prefix}_n_days": 0,
         }
 
-    mean = float(valid_ic.mean())
-    std = float(valid_ic.std(ddof=1)) if n > 1 else 0.0
-    icir = (mean / std * np.sqrt(252.0)) if std > 1e-12 else 0.0
+    mean_ic = float(valid_ic.mean())
+    if n < 2:
+        return {
+            f"{prefix}_mean": mean_ic,
+            f"{prefix}_std": np.nan,
+            f"{prefix}_ir": np.nan,
+            f"{prefix}_naive_tstat": np.nan,
+            f"{prefix}_naive_pvalue": np.nan,
+            f"{prefix}_pct_positive": float((valid_ic > 0.0).mean()),
+            f"{prefix}_n_days": n,
+        }
 
-    if std > 1e-12 and n > 1:
-        se = std / np.sqrt(n)
-        tstat = mean / se
-        pvalue = float(stats.t.sf(np.abs(tstat), df=n - 1) * 2.0)
+    std_ic = float(valid_ic.std(ddof=1))
+    if std_ic > 1e-12:
+        ic_ir = mean_ic / std_ic * np.sqrt(252.0)
+        tstat = mean_ic / (std_ic / np.sqrt(n))
+        pvalue = float(2.0 * stats.t.sf(np.abs(tstat), df=n - 1))
     else:
-        tstat = 0.0
-        pvalue = 1.0
-
-    pct_positive = float((valid_ic > 0.0).mean())
+        ic_ir = np.nan
+        tstat = np.nan
+        pvalue = np.nan
 
     return {
-        f"{prefix}_mean": mean,
-        f"{prefix}_std": std,
-        f"{prefix}ir": icir,
-        f"{prefix}_naive_tstat": tstat,
-        f"{prefix}_naive_pvalue": pvalue,
-        f"{prefix}_pct_positive": pct_positive,
+        f"{prefix}_mean": mean_ic,
+        f"{prefix}_std": std_ic,
+        f"{prefix}_ir": float(ic_ir) if not np.isnan(ic_ir) else np.nan,
+        f"{prefix}_naive_tstat": float(tstat) if not np.isnan(tstat) else np.nan,
+        f"{prefix}_naive_pvalue": float(pvalue) if not np.isnan(pvalue) else np.nan,
+        f"{prefix}_pct_positive": float((valid_ic > 0.0).mean()),
+        f"{prefix}_n_days": n,
     }
 
 
