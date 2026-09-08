@@ -7,6 +7,7 @@ from src.dataset import (
     get_feature_columns,
     StockSequenceDataset,
     load_processed_data,
+    prepare_sequence_data,
 )
 
 
@@ -126,5 +127,88 @@ def test_load_processed_data_drops_incomplete_rows(tmp_path):
     assert len(loaded) == 8
     assert not loaded["FEAT_0"].isna().any()
     assert not loaded["target"].isna().any()
+
+
+def test_sequence_dataset_date_filtering():
+    dates = pd.date_range("2021-01-01", periods=100, freq="B")
+    n_days = len(dates)
+    features = np.random.randn(n_days, 158).astype(np.float32)
+    targets = np.random.randn(n_days).astype(np.float32)
+    tickers = np.array(["TEST"] * n_days)
+
+    lookback = 10
+    start_dt = "2021-02-01"
+    end_dt = "2021-03-01"
+
+    dataset = StockSequenceDataset(
+        features,
+        targets,
+        dates.values,
+        tickers,
+        lookback=lookback,
+        target_start_date=start_dt,
+        target_end_date=end_dt,
+    )
+
+    meta = dataset.get_metadata()
+    assert len(meta) == len(dataset)
+    assert meta["Date"].min() >= pd.to_datetime(start_dt)
+    assert meta["Date"].max() <= pd.to_datetime(end_dt)
+
+    x_seq, y_val = dataset[0]
+    assert x_seq.shape == (lookback, 158)
+    assert np.isclose(y_val.item(), meta["target"].iloc[0])
+
+
+def test_sequence_dataset_get_metadata_empty():
+    features = np.ones((5, 158), dtype=np.float32)
+    targets = np.ones(5, dtype=np.float32)
+    dates = pd.date_range("2021-01-01", periods=5, freq="B").values
+    tickers = np.array(["TEST"] * 5)
+
+    dataset = StockSequenceDataset(features, targets, dates, tickers, lookback=10)
+    meta = dataset.get_metadata()
+    assert len(meta) == 0
+    assert list(meta.columns) == ["Date", "Ticker", "target"]
+
+
+def test_prepare_sequence_data():
+    df = make_sample_processed_df(120, 2)
+    config = {
+        "split": {
+            "train_start": "2021-01-01",
+            "train_end": "2021-03-15",
+            "val_start": "2021-03-16",
+            "val_end": "2021-04-30",
+            "test_start": "2021-05-01",
+            "test_end": "2021-06-18",
+        }
+    }
+
+    lookback = 10
+    train_ds, val_ds, test_ds, scaler, feat_cols = prepare_sequence_data(
+        df, config=config, lookback=lookback
+    )
+
+    assert len(feat_cols) == 158
+    assert len(train_ds) > 0
+    assert len(val_ds) > 0
+    assert len(test_ds) > 0
+
+    meta_train = train_ds.get_metadata()
+    meta_val = val_ds.get_metadata()
+    meta_test = test_ds.get_metadata()
+
+    assert meta_train["Date"].max() <= pd.to_datetime("2021-03-15")
+    assert meta_val["Date"].min() >= pd.to_datetime("2021-03-16")
+    assert meta_val["Date"].max() <= pd.to_datetime("2021-04-30")
+    assert meta_test["Date"].min() >= pd.to_datetime("2021-05-01")
+    assert meta_test["Date"].max() <= pd.to_datetime("2021-06-18")
+
+    x_val_0, y_val_0 = val_ds[0]
+    assert x_val_0.shape == (lookback, 158)
+    assert np.all(x_val_0.numpy() >= -5.0)
+    assert np.all(x_val_0.numpy() <= 5.0)
+
 
 
