@@ -1,6 +1,6 @@
 # S&P 500 Quantitative Research Platform
 
-An institutional-grade research platform for predicting 5-day forward returns ($R_{t \rightarrow t+5} = \frac{\text{Close}_{t+5}}{\text{Close}_t} - 1$) across S&P 500 constituents using point-in-time index membership, Microsoft Qlib's Alpha158 factor suite, and reproducible machine learning & deep learning models.
+An institutional-grade research platform for predicting 5-day forward returns across S&P 500 constituents using point-in-time index membership, Microsoft Qlib's Alpha158 factor suite, and reproducible machine learning & deep learning models.
 
 ---
 
@@ -22,7 +22,9 @@ The underlying price and membership dataset spans January 2015 through August 20
   - 145 rolling technical and statistical metrics across 5, 10, 20, 30, and 60-day windows (momentum `ROC`, volatility `STD`, linear trend `BETA`/`RSQR`/`RESI`, volume dynamics `VMA`/`VSTD`/`WVMA`, and volume-price correlation `CORR`/`CORD`).
   - Rolling windows require full observation histories (`min_periods=w`); the initial 60-day warm-up period is cleanly dropped rather than zero-filled, leaving 1,409,169 clean rows in `data/processed/sp500_alpha158.parquet`.
 - **Target**: 5-day forward arithmetic return:
-  $$R_{t \rightarrow t+5} = \frac{\text{Close}_{t+5}}{\text{Close}_t} - 1$$
+  ```
+  R(t -> t+5) = (Close[t+5] - Close[t]) / Close[t]
+  ```
 
 ---
 
@@ -45,8 +47,8 @@ Models are evaluated across statistical signal quality and economic portfolio si
 - **Cross-Sectional Information Coefficient (Daily)**:
   - **Pearson IC**: Linear predictive correlation computed across universe constituents each trading day.
   - **Spearman Rank IC**: Monotonic ranking correlation computed daily.
-  - **Information Ratio (ICIR)**: Annualized signal stability ($\frac{\mu_{\text{IC}}}{\sigma_{\text{IC}}} \times \sqrt{252}$).
-  - **Hypothesis Testing**: Two-sided $t$-statistic and $p$-value for null hypothesis $\text{IC} = 0$.
+  - **Information Ratio (ICIR)**: Annualized signal stability (`mean(IC) / std(IC) * sqrt(252)`).
+  - **Hypothesis Testing**: Two-sided t-statistic and p-value for null hypothesis IC = 0.
 - **5-Day Holding Period Portfolio Simulation**:
   - Rebalanced every 5 trading days matching the forecast horizon.
   - **Market-Neutral Long-Short**: +50% top decile, -50% bottom decile ($1.00 gross exposure).
@@ -64,11 +66,11 @@ Evaluated out-of-sample on identical test data (January 2024 through August 2026
 | :--- | :---: | :---: | :---: |
 | **Mean IC (Pearson)** | 0.0152 | **0.0260** (+71.2%) | — |
 | **IC Information Ratio (ICIR)** | 1.831 | **2.454** | — |
-| **IC $t$-statistic / $p$-value** | 2.970 ($p = 0.0031$) | **3.981 ($p = 7.6 \times 10^{-5}$)** | — |
+| **IC t-statistic / p-value** | 2.970 (p = 0.0031) | **3.981 (p = 7.6e-5)** | — |
 | **IC Positive Days Win Rate** | 52.19% | **55.35%** | — |
 | **Mean Rank IC (Spearman)** | 0.0118 | **0.0123** | — |
 | **Rank ICIR** | 1.161 | **1.265** | — |
-| **Rank IC $t$-stat / $p$-value** | 1.883 ($p = 0.060$) | **2.052 ($p = 0.0405$)** | — |
+| **Rank IC t-stat / p-value** | 1.883 (p = 0.060) | **2.052 (p = 0.0405)** | — |
 | **Rank IC Positive Days Win Rate** | 52.94% | **51.73%** | — |
 | **Long-Only Annualized Return (Net)** | **+25.21%** | **+24.58%** | +13.69% |
 | **Long-Only Excess Return vs Bench** | **+11.26%** | **+10.90%** | — |
@@ -86,18 +88,20 @@ Evaluated out-of-sample on identical test data (January 2024 through August 2026
 
 ### Model 1: LightGBM (`src/models/lightgbm_model.py`)
 - **Type**: Gradient-boosted decision trees (`LGBMRegressor`, 1000 estimators, learning rate 0.03, 31 leaves).
-- **Objective**: Direct contemporaneous non-linear cross-sectional mapping $x_t \rightarrow y_{t, t+5}$.
+- **Objective**: Direct contemporaneous mapping from 158 features at date t to 5-day forward return.
 - **Top Predictive Features**: Multi-period momentum (`ROC30`, `ROC5`), volume-price correlation (`CORR20`), and trend exhaustion indicators (`IMIN60`, `IMAX20`).
 - **Strengths**: Excels at isolating tail quintiles for market-neutral long-short spread generation (+5.71% net return, 0.63 Sharpe).
 
 ### Model 2: Attentive LSTM / ALSTM (`src/models/alstm_model.py`)
 - **Type**: Stacked 2-layer unidirectional LSTM with temporal attention:
-  $$(B, 60, 158) \xrightarrow{\text{LSTM}} H \in \mathbb{R}^{B \times 60 \times 64}, \quad \mathbf{h}_{\text{last}} \in \mathbb{R}^{B \times 64}$$
-  $$\text{score}_t = \mathbf{v}^\top \tanh(\mathbf{W}_a \mathbf{h}_t + \mathbf{b}_a), \quad \alpha = \text{softmax}(\text{scores})$$
-  $$\mathbf{c} = \sum_{t=1}^{60} \alpha_t \mathbf{h}_t, \quad [\mathbf{c} \,;\, \mathbf{h}_{\text{last}}] \in \mathbb{R}^{B \times 128} \xrightarrow{\text{MLP}} 64 \xrightarrow{\text{ReLU}} 1$$
+  - Input: `(batch_size, 60, 158)`
+  - Backbone: 2-layer stacked unidirectional LSTM (`hidden_size=64`, `dropout=0.2`) producing hidden sequence `(batch_size, 60, 64)` and final step state `(batch_size, 64)`.
+  - Temporal Attention: Computes attention weights across the 60 days via `softmax(v^T * tanh(W * h_t + b))` to yield a weighted context vector `(batch_size, 64)`.
+  - Feature Concatenation: `[context_vector ; last_hidden_state]` -> combined representation `(batch_size, 128)`.
+  - Prediction Head: MLP `128 -> 64 -> ReLU -> Dropout(0.2) -> 1` producing the scalar 5-day return prediction.
 - **Normalization**: `RobustStandardScaler` fitted strictly on train data with 0.05% and 99.95% percentile winsorization to safely handle rolling volume spikes and zero-variance divisions.
 - **Training**: Adam optimizer, MSE loss, gradient clipping (1.0), early stopping patience 7 on validation loss. Best model checkpoint restored from Epoch 2 (validation loss `0.002237`).
-- **Strengths**: Temporal modeling of continuous 60-day feature trajectories drives a **+71% jump in Pearson IC ($0.0260$, $p = 7.6 \times 10^{-5}$)** and achieves **statistically significant Rank IC ($0.0123$, $p = 0.0405$)**, outperforming the universe benchmark by **+10.90% net annualized return**.
+- **Strengths**: Temporal modeling of continuous 60-day feature trajectories drives a **+71% jump in Pearson IC (0.0260, p = 7.6e-5)** and achieves **statistically significant Rank IC (0.0123, p = 0.0405)**, outperforming the universe benchmark by **+10.90% net annualized return**.
 
 ---
 
