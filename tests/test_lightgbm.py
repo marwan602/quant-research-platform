@@ -1,4 +1,4 @@
-﻿import json
+import json
 import numpy as np
 import pandas as pd
 import pytest
@@ -47,6 +47,30 @@ def test_train_and_predict():
     assert not np.isnan(preds).any()
     corr = np.corrcoef(preds, y_v)[0, 1]
     assert corr > 0.5
+
+
+def test_deterministic_reproducibility():
+    X, y = make_synthetic_training_data(100, 5)
+    cfg = {
+        "models": {
+            "lightgbm": {
+                "n_estimators": 20,
+                "learning_rate": 0.1,
+                "num_leaves": 15,
+                "subsample": 0.8,
+                "colsample_bytree": 0.8,
+                "random_state": 42,
+                "deterministic": True,
+            }
+        }
+    }
+    m1 = train_lightgbm(X, y, X, y, config=cfg)
+    p1 = predict_lightgbm(m1, X)
+
+    m2 = train_lightgbm(X, y, X, y, config=cfg)
+    p2 = predict_lightgbm(m2, X)
+
+    assert np.array_equal(p1, p2)
 
 
 def test_feature_importance():

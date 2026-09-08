@@ -1,11 +1,19 @@
-﻿import json
+import json
+import os
 from pathlib import Path
+import random
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import yaml
 from src.dataset import load_config, load_processed_data, split_tabular_data
 from src.evaluate import evaluate_predictions
+
+
+def set_seed(seed: int = 42) -> None:
+    random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    np.random.seed(seed)
 
 
 def train_lightgbm(
@@ -25,7 +33,10 @@ def train_lightgbm(
     subsample = lgb_cfg.get("subsample", 0.8)
     colsample_bytree = lgb_cfg.get("colsample_bytree", 0.8)
     early_stopping_rounds = lgb_cfg.get("early_stopping_rounds", 50)
-    random_state = lgb_cfg.get("random_state", 42)
+    seed = lgb_cfg.get("random_state", 42)
+    deterministic = lgb_cfg.get("deterministic", True)
+
+    set_seed(seed)
 
     model = lgb.LGBMRegressor(
         n_estimators=n_estimators,
@@ -33,7 +44,10 @@ def train_lightgbm(
         num_leaves=num_leaves,
         subsample=subsample,
         colsample_bytree=colsample_bytree,
-        random_state=random_state,
+        random_state=seed,
+        extra_seed=seed,
+        deterministic=deterministic,
+        force_col_wise=True,
         objective="regression",
         n_jobs=-1,
         verbosity=-1,
@@ -86,6 +100,9 @@ def run_pipeline(
     model_dir: str = "models",
 ) -> dict:
     config = load_config(config_path)
+    seed = config.get("models", {}).get("lightgbm", {}).get("random_state", 42)
+    set_seed(seed)
+
     df = load_processed_data(config["data"]["processed_features_path"])
 
     (X_tr, y_tr, meta_tr), (X_v, y_v, meta_v), (X_te, y_te, meta_te), feat_cols = split_tabular_data(
