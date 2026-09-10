@@ -4,6 +4,7 @@ from src.providers.base import (
     UniverseProvider,
     YahooProvider,
 )
+from src.providers.polygon import PolygonProvider
 from src.providers.store import RollingPriceStore
 
 __all__ = [
@@ -11,5 +12,6 @@ __all__ = [
     "LocalProvider",
     "UniverseProvider",
     "YahooProvider",
+    "PolygonProvider",
     "RollingPriceStore",
 ]
