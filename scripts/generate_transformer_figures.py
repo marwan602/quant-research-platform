@@ -168,7 +168,6 @@ ax.legend(frameon=True, facecolor="white", edgecolor="#e2e8f0", loc="upper left"
 ax.grid(True, linestyle=":", alpha=0.6)
 plt.tight_layout()
 fig.savefig(out_dir / "model_comparison_cumulative_returns.png", dpi=300)
-fig.savefig(out_dir / "three_model_comparison_cumulative_returns.png", dpi=300)
 plt.close(fig)
 
 # Training History Loss Plot
