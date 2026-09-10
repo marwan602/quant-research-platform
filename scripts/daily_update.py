@@ -3,15 +3,18 @@ from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import sys
 import time
 import pandas as pd
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.inference import InferenceEngine, PortfolioConstructor
 from src.providers.base import LocalProvider, UniverseProvider, YahooProvider
 from src.providers.polygon import PolygonProvider
 from src.providers.store import RollingPriceStore
-
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def _resolve_path(path: str | Path) -> Path:

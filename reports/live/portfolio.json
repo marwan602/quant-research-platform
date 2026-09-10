@@ -1,0 +1,311 @@
+{
+  "as_of_date": "2026-09-10",
+  "strategy": "Top Decile Long-Only",
+  "holdings_count": 50,
+  "holdings": [
+    {
+      "ticker": "COHR",
+      "weight": 0.02
+    },
+    {
+      "ticker": "STX",
+      "weight": 0.02
+    },
+    {
+      "ticker": "WDC",
+      "weight": 0.02
+    },
+    {
+      "ticker": "APP",
+      "weight": 0.02
+    },
+    {
+      "ticker": "SNDK",
+      "weight": 0.02
+    },
+    {
+      "ticker": "FLEX",
+      "weight": 0.02
+    },
+    {
+      "ticker": "LITE",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ON",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CIEN",
+      "weight": 0.02
+    },
+    {
+      "ticker": "TER",
+      "weight": 0.02
+    },
+    {
+      "ticker": "MPWR",
+      "weight": 0.02
+    },
+    {
+      "ticker": "RDDT",
+      "weight": 0.02
+    },
+    {
+      "ticker": "MRVL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "VRT",
+      "weight": 0.02
+    },
+    {
+      "ticker": "MU",
+      "weight": 0.02
+    },
+    {
+      "ticker": "SMCI",
+      "weight": 0.02
+    },
+    {
+      "ticker": "INTC",
+      "weight": 0.02
+    },
+    {
+      "ticker": "DELL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "FSLR",
+      "weight": 0.02
+    },
+    {
+      "ticker": "GLW",
+      "weight": 0.02
+    },
+    {
+      "ticker": "DECK",
+      "weight": 0.02
+    },
+    {
+      "ticker": "LRCX",
+      "weight": 0.02
+    },
+    {
+      "ticker": "AMD",
+      "weight": 0.02
+    },
+    {
+      "ticker": "AXON",
+      "weight": 0.02
+    },
+    {
+      "ticker": "AMAT",
+      "weight": 0.02
+    },
+    {
+      "ticker": "FIX",
+      "weight": 0.02
+    },
+    {
+      "ticker": "KLAC",
+      "weight": 0.02
+    },
+    {
+      "ticker": "TPL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "JBL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "FICO",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CHTR",
+      "weight": 0.02
+    },
+    {
+      "ticker": "TTD",
+      "weight": 0.02
+    },
+    {
+      "ticker": "COIN",
+      "weight": 0.02
+    },
+    {
+      "ticker": "NXPI",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CVNA",
+      "weight": 0.02
+    },
+    {
+      "ticker": "MCHP",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CSGP",
+      "weight": 0.02
+    },
+    {
+      "ticker": "HOOD",
+      "weight": 0.02
+    },
+    {
+      "ticker": "STLD",
+      "weight": 0.02
+    },
+    {
+      "ticker": "DDOG",
+      "weight": 0.02
+    },
+    {
+      "ticker": "RCL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "NKE",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CCL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "NCLH",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ORCL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "IDXX",
+      "weight": 0.02
+    },
+    {
+      "ticker": "PODD",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CNC",
+      "weight": 0.02
+    },
+    {
+      "ticker": "HPE",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ECHO",
+      "weight": 0.02
+    }
+  ],
+  "long_short_top": [
+    "COHR",
+    "STX",
+    "WDC",
+    "APP",
+    "SNDK",
+    "FLEX",
+    "LITE",
+    "ON",
+    "CIEN",
+    "TER",
+    "MPWR",
+    "RDDT",
+    "MRVL",
+    "VRT",
+    "MU",
+    "SMCI",
+    "INTC",
+    "DELL",
+    "FSLR",
+    "GLW",
+    "DECK",
+    "LRCX",
+    "AMD",
+    "AXON",
+    "AMAT",
+    "FIX",
+    "KLAC",
+    "TPL",
+    "JBL",
+    "FICO",
+    "CHTR",
+    "TTD",
+    "COIN",
+    "NXPI",
+    "CVNA",
+    "MCHP",
+    "CSGP",
+    "HOOD",
+    "STLD",
+    "DDOG",
+    "RCL",
+    "NKE",
+    "CCL",
+    "NCLH",
+    "ORCL",
+    "IDXX",
+    "PODD",
+    "CNC",
+    "HPE",
+    "ECHO"
+  ],
+  "long_short_bottom": [
+    "DGX",
+    "VZ",
+    "KDP",
+    "GEN",
+    "DIS",
+    "EXC",
+    "OKE",
+    "SLB",
+    "NVDA",
+    "T",
+    "STT",
+    "AEP",
+    "EXPD",
+    "C",
+    "BNY",
+    "MSFT",
+    "NDSN",
+    "PPL",
+    "TRGP",
+    "OXY",
+    "NEE",
+    "MSI",
+    "MDT",
+    "JNJ",
+    "KO",
+    "BRK.B",
+    "WBD",
+    "WFC",
+    "AES",
+    "ICE",
+    "PFE",
+    "EVRG",
+    "GILD",
+    "FANG",
+    "REGN",
+    "CVX",
+    "RSG",
+    "AWK",
+    "EOG",
+    "DVN",
+    "EXE",
+    "EQT",
+    "XOM",
+    "UHS",
+    "COP",
+    "TECH",
+    "V",
+    "PCG",
+    "EIX",
+    "COO"
+  ]
+}
