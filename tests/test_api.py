@@ -83,12 +83,26 @@ def test_portfolio_rebalance():
 
 
 def test_portfolio_rebalance_validation():
-    payload = {
+    payload_neg_val = {
         "portfolio_value": -1000.0,
         "top_quantile": 0.10,
     }
-    resp = client.post("/api/v1/portfolio/rebalance", json=payload)
+    resp = client.post("/api/v1/portfolio/rebalance", json=payload_neg_val)
     assert resp.status_code == 422
+
+    payload_neg_weight = {
+        "portfolio_value": 10000.0,
+        "current_holdings": {"AAPL": -0.05},
+    }
+    resp_neg_weight = client.post("/api/v1/portfolio/rebalance", json=payload_neg_weight)
+    assert resp_neg_weight.status_code == 422
+
+    payload_excessive = {
+        "portfolio_value": 10000.0,
+        "current_holdings": {"AAPL": 0.80, "MSFT": 0.35},
+    }
+    resp_excessive = client.post("/api/v1/portfolio/rebalance", json=payload_excessive)
+    assert resp_excessive.status_code == 422
 
 
 def test_models_benchmark():

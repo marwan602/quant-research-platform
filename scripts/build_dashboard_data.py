@@ -66,7 +66,6 @@ def compute_factor_percentiles(raw_prices_path: Path, target_tickers: list[str])
         trend = float((ma10 / (ma50 + 1e-8)) - 1.0)
 
         records[ticker] = {
-            "latest_close": round(float(c[-1]), 2),
             "momentum_raw": mom,
             "volatility_raw": vol,
             "reversal_raw": bias,
@@ -85,7 +84,6 @@ def compute_factor_percentiles(raw_prices_path: Path, target_tickers: list[str])
     result = {}
     for ticker, row in feat_df.iterrows():
         result[ticker] = {
-            "latest_close": row["latest_close"],
             "momentum": float(row["momentum"]),
             "volatility": float(row["volatility"]),
             "reversal": float(row["reversal"]),
@@ -137,11 +135,11 @@ def simulate_model_series(df: pd.DataFrame, rebalance_dates: list, cost_rate: fl
     w_ls = ((1.0 + pd.Series(ls_net)).cumprod() - 1.0) * 100.0
     w_bench = ((1.0 + pd.Series(bench)).cumprod() - 1.0) * 100.0
 
-    nav_lo = 1.0 + pd.Series(lo_net).cumsum()
+    nav_lo = (1.0 + pd.Series(lo_net)).cumprod()
     peak_lo = nav_lo.cummax()
     dd_lo = ((nav_lo - peak_lo) / peak_lo) * 100.0
 
-    nav_bench = 1.0 + pd.Series(bench).cumsum()
+    nav_bench = (1.0 + pd.Series(bench)).cumprod()
     peak_bench = nav_bench.cummax()
     dd_bench = ((nav_bench - peak_bench) / peak_bench) * 100.0
 
@@ -208,7 +206,6 @@ def generate_all_dashboard_data(
             item["sector"] = meta.get("sector", "Unclassified")
             item["sub_industry"] = meta.get("sub_industry", "General")
             feats = factor_percentiles.get(t, {})
-            item["latest_close"] = feats.get("latest_close", None)
             item["factors"] = {
                 "momentum": feats.get("momentum", 50.0),
                 "volatility": feats.get("volatility", 50.0),
@@ -232,8 +229,6 @@ def generate_all_dashboard_data(
             meta = company_meta.get(t, {})
             h["name"] = meta.get("name", t)
             h["sector"] = meta.get("sector", "Unclassified")
-            feats = factor_percentiles.get(t, {})
-            h["latest_close"] = feats.get("latest_close", None)
             sec = h["sector"]
             sector_counts[sec] = sector_counts.get(sec, 0) + 1
 
