@@ -1,0 +1,29 @@
+{
+  "deployment_date": "2026-09-10",
+  "days_tracked": 1,
+  "status": "active",
+  "signal_metrics": {
+    "mean_rank_ic": 0.0227,
+    "mean_directional_accuracy": 0.535,
+    "total_forecasts": 501,
+    "resolved_forecasts": 0,
+    "pending_forecasts": 501
+  },
+  "portfolio_metrics": {
+    "model_cumulative_return_pct": 0.0,
+    "benchmark_cumulative_return_pct": 0.0,
+    "net_alpha_pct": 0.0,
+    "realized_sharpe": 1.188,
+    "max_drawdown_pct": 0.0
+  },
+  "equity_curve": [
+    {
+      "date": "2026-09-10",
+      "model_nav": 1.0,
+      "benchmark_nav": 1.0,
+      "model_return_pct": 0.0,
+      "benchmark_return_pct": 0.0,
+      "excess_alpha_pct": 0.0
+    }
+  ]
+}
