@@ -44,7 +44,7 @@ models:
     nhead: 4
     num_layers: 2
     dim_feedforward: 128
-    dropout: 0.1
+    dropout: 0.2
     learning_rate: 0.0005
     batch_size: 512
     epochs: 30

@@ -28,8 +28,9 @@ def set_seed(seed: int = 42) -> None:
 
 
 class PositionalEncoding(nn.Module):
-    def __init__(self, d_model: int = 64, max_len: int = 100):
+    def __init__(self, d_model: int = 64, dropout: float = 0.2, max_len: int = 100):
         super().__init__()
+        self.dropout = nn.Dropout(p=dropout)
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
@@ -39,7 +40,23 @@ class PositionalEncoding(nn.Module):
         self.register_buffer("pe", pe)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return x + self.pe[:, :x.size(1), :]
+        return self.dropout(x + self.pe[:, :x.size(1), :])
+
+
+class TemporalAttention(nn.Module):
+    def __init__(self, d_model: int = 64):
+        super().__init__()
+        self.projection = nn.Sequential(
+            nn.Linear(d_model, d_model),
+            nn.Tanh(),
+            nn.Linear(d_model, 1, bias=False),
+        )
+
+    def forward(self, H: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        scores = self.projection(H)
+        weights = torch.softmax(scores, dim=1)
+        context = torch.sum(weights * H, dim=1)
+        return context, weights.squeeze(-1)
 
 
 class TransformerModel(nn.Module):
@@ -50,11 +67,11 @@ class TransformerModel(nn.Module):
         nhead: int = 4,
         num_layers: int = 2,
         dim_feedforward: int = 128,
-        dropout: float = 0.1,
+        dropout: float = 0.2,
     ):
         super().__init__()
         self.feature_proj = nn.Linear(input_size, d_model)
-        self.pos_encoder = PositionalEncoding(d_model=d_model, max_len=100)
+        self.pos_encoder = PositionalEncoding(d_model=d_model, dropout=dropout, max_len=100)
         encoder_layer = nn.TransformerEncoderLayer(
             d_model=d_model,
             nhead=nhead,
@@ -66,8 +83,9 @@ class TransformerModel(nn.Module):
             encoder_layer,
             num_layers=num_layers,
         )
+        self.attention = TemporalAttention(d_model=d_model)
         self.head = nn.Sequential(
-            nn.Linear(d_model, d_model),
+            nn.Linear(d_model * 2, d_model),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(d_model, 1),
@@ -78,7 +96,9 @@ class TransformerModel(nn.Module):
         h = self.pos_encoder(h)
         encoded = self.transformer_encoder(h)
         h_last = encoded[:, -1, :]
-        out = self.head(h_last)
+        context, _ = self.attention(encoded)
+        combined = torch.cat([context, h_last], dim=-1)
+        out = self.head(combined)
         return out.squeeze(-1)
 
 
@@ -254,7 +274,7 @@ def load_model(
     nhead: int = 4,
     num_layers: int = 2,
     dim_feedforward: int = 128,
-    dropout: float = 0.1,
+    dropout: float = 0.2,
     device: str = "cpu",
 ) -> TransformerModel:
     model = TransformerModel(

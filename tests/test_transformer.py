@@ -6,6 +6,7 @@ from torch.utils.data import TensorDataset
 
 from src.models.transformer_model import (
     PositionalEncoding,
+    TemporalAttention,
     TransformerModel,
     load_model,
     load_scaler,
@@ -17,12 +18,29 @@ from src.models.transformer_model import (
 )
 
 
+def test_temporal_attention_shapes_and_weights():
+    batch_size = 8
+    seq_len = 60
+    d_model = 64
+
+    attention = TemporalAttention(d_model=d_model)
+    H = torch.randn(batch_size, seq_len, d_model)
+
+    context, weights = attention(H)
+
+    assert context.shape == (batch_size, d_model)
+    assert weights.shape == (batch_size, seq_len)
+
+    weight_sums = weights.sum(dim=1)
+    assert torch.allclose(weight_sums, torch.ones(batch_size), atol=1e-5)
+
+
 def test_positional_encoding_shape_and_values():
     batch_size = 8
     seq_len = 60
     d_model = 64
 
-    pe = PositionalEncoding(d_model=d_model, max_len=100)
+    pe = PositionalEncoding(d_model=d_model, dropout=0.0, max_len=100)
     x = torch.zeros(batch_size, seq_len, d_model)
     out = pe(x)
 
