@@ -164,6 +164,12 @@ def run_daily_update(
         deployment_date="2026-09-10",
     )
 
+    try:
+        from scripts.build_dashboard_data import generate_all_dashboard_data
+        generate_all_dashboard_data(project_root=PROJECT_ROOT)
+    except Exception:
+        pass
+
     return {
         "status": "success",
         "date": date_str,
