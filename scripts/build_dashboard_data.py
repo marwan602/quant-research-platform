@@ -249,13 +249,35 @@ def generate_all_dashboard_data(
         with open(docs_data / "portfolio.json", "w", encoding="utf-8") as f:
             json.dump(port_data, f, indent=2)
 
-    for copy_name in ["system_status.json", "forward_tracking.json", "prediction_archive.json"]:
+    for copy_name in ["system_status.json", "forward_tracking.json"]:
         src = root / f"reports/live/{copy_name}"
         if src.exists():
             with open(src, "r", encoding="utf-8") as sf:
                 payload = json.load(sf)
             with open(docs_data / copy_name, "w", encoding="utf-8") as df:
                 json.dump(payload, df, indent=2)
+
+    archive_src = root / "reports/live/prediction_archive.json"
+    if archive_src.exists():
+        with open(archive_src, "r", encoding="utf-8") as sf:
+            arch_payload = json.load(sf)
+        for d_str, entry in arch_payload.get("dates", {}).items():
+            dt = pd.to_datetime(d_str)
+            count = 0
+            curr = dt
+            while count < 5:
+                curr += pd.Timedelta(days=1)
+                if curr.weekday() < 5:
+                    count += 1
+            target_str = curr.strftime("%Y-%m-%d")
+            entry["target_resolution_date"] = target_str
+            for p in entry.get("predictions", []):
+                p["target_resolution_date"] = target_str
+
+        with open(docs_data / "prediction_archive.json", "w", encoding="utf-8") as df:
+            json.dump(arch_payload, df, indent=2)
+        with open(archive_src, "w", encoding="utf-8") as df:
+            json.dump(arch_payload, df, indent=2)
 
     tf_pq = root / "reports/transformer_test_predictions.parquet"
     alstm_pq = root / "reports/alstm_test_predictions.parquet"

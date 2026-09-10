@@ -47,7 +47,7 @@
       <div class="section-header">
         <h1 class="section-title">Forward Performance & Execution Monitor</h1>
         <p class="section-desc">
-          Continuous out-of-sample forward tracking of the frozen temporal attention transformer. Model weights were strictly frozen upon deployment, ensuring verified real-world evaluation without retrospective overfitting.
+          Continuous out-of-sample forward tracking of the temporal attention transformer. Model weights are frozen at deployment; subsequent observations are tracked as a live forward test.
         </p>
       </div>
 
@@ -130,7 +130,7 @@
         <div class="chart-toolbar">
           <div>
             <div class="chart-heading">Cumulative Out-of-Sample & Live Forward Trajectory</div>
-            <div class="chart-subheading">Development test period (January 2024 to August 2026) followed by frozen live forward test.</div>
+            <div class="chart-subheading">Development OOS evaluation: January 2024 to August 2026 (portfolio rebalances through August 20, 2026; daily signal evaluation extends through deployment).</div>
           </div>
           <div class="chart-toggle-group">
             <button class="chart-toggle-btn active" id="btnToggleCumulative">Cumulative Return</button>
@@ -310,15 +310,27 @@
     <!-- Tab 3: Portfolio & Rebalance -->
     <section id="pane-portfolio" class="tab-pane">
       <div class="section-header">
-        <h1 class="section-title">Portfolio Allocation & Interactive Rebalance Calculator</h1>
+        <h1 class="section-title">Portfolio Construction & Rebalance Workstation</h1>
         <p class="section-desc">
-          Institutional rebalance workstation. Constructs the Top Decile Long-Only portfolio (50 equities at 2.0% equal weight) and generates execution trade tickets with transaction cost drag estimation.
+          Top Decile Long-Only strategy targeting 50 equities at 2.0% equal weight each. Supports initial cash deployments and drifted portfolio rebalancing with automated BUY, SELL, and HOLD order generation.
         </p>
+      </div>
+
+      <div class="notice-box" style="margin-bottom: 20px;">
+        <strong>Top-Decile Model Portfolio:</strong> 50 Holdings | Equal-Weighted (2.0% target each) | <strong style="color: #93C5FD;">56.0% Information Technology Concentration</strong> (28 of 50 holdings) vs S&P 500 Benchmark (~31.0%). The model autonomously concentrated in semiconductor and software momentum leaders.
       </div>
 
       <div class="rebalance-grid">
         <div class="calc-panel">
           <div class="calc-title">Rebalance Parameters</div>
+
+          <div class="calc-field">
+            <label class="calc-label">Execution Mode</label>
+            <div class="chart-toggle-group" style="width: 100%;">
+              <button class="chart-toggle-btn active" id="btnModeCleanSlate" style="flex: 1;">Cash Allocation</button>
+              <button class="chart-toggle-btn" id="btnModeRebalance" style="flex: 1;">Portfolio Rebalance</button>
+            </div>
+          </div>
           
           <div class="calc-field">
             <label class="calc-label" for="calcCapitalInput">Portfolio Total Capital ($ USD)</label>
@@ -345,11 +357,11 @@
               <span class="mono" id="calcTargetPositionsCount">50 Equities</span>
             </div>
             <div class="calc-stat-row">
-              <span class="calc-label">Allocation per Stock:</span>
-              <span class="mono" id="calcAllocPerStock">$2,000.00 (2.0%)</span>
+              <span class="calc-label" id="calcTradeBreakdownLabel">Order Breakdown:</span>
+              <span class="mono" id="calcTradeBreakdownVal">50 Buys</span>
             </div>
             <div class="calc-stat-row">
-              <span class="calc-label">Gross Order Volume:</span>
+              <span class="calc-label" id="calcVolumeLabel">Gross Order Volume:</span>
               <span class="mono" id="calcGrossVolume">$100,000.00</span>
             </div>
             <div class="calc-stat-row">
@@ -368,7 +380,7 @@
             <div class="chart-toolbar">
               <div>
                 <div class="chart-heading">Sector Composition of Model Portfolio</div>
-                <div class="chart-subheading">Weight distribution across the 50 top-decile target holdings.</div>
+                <div class="chart-subheading">Weight distribution across the 50 top-decile target holdings (56% Information Technology).</div>
               </div>
             </div>
             <div class="chart-canvas-wrapper" style="height: 240px;">
@@ -378,12 +390,12 @@
 
           <div class="table-card" style="margin-bottom: 0;">
             <div class="table-toolbar">
-              <span class="chart-heading">Target Allocation & Execution Ticket (50 Holdings)</span>
-              <span class="meta-badge highlight">2.00% Weight Each</span>
+              <span class="chart-heading" id="rebalanceTableHeading">Target Allocation Ticket (50 Holdings)</span>
+              <span class="meta-badge highlight" id="rebalanceTableBadge">2.00% Weight Each</span>
             </div>
             <div class="table-responsive" style="max-height: 420px;">
               <table class="data-table">
-                <thead>
+                <thead id="rebalanceTableHead">
                   <tr>
                     <th>Ticker</th>
                     <th>Company Name</th>

@@ -599,6 +599,24 @@ a:hover {
   border: 1px solid var(--border-color);
 }
 
+.tag-badge.buy {
+  background-color: var(--color-green-soft);
+  color: var(--color-green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tag-badge.sell {
+  background-color: var(--color-red-soft);
+  color: var(--color-red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.tag-badge.hold {
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
 .decile-badge {
   font-family: var(--font-mono);
   font-size: 11px;
