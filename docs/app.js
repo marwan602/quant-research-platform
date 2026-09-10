@@ -490,7 +490,6 @@ function renderAllSignalsTable() {
     const tagClass = isLong ? 'long' : (isShort ? 'short' : 'neutral');
     const tagLabel = isLong ? 'LONG' : (isShort ? 'SHORT' : 'NEUTRAL');
     const returnClass = s.pred_return_pct >= 0 ? 'green' : 'red';
-    const closeDisplay = s.latest_close ? `$${s.latest_close.toFixed(2)}` : 'N/A';
 
     return `
       <tr class="interactive-row" onclick="openStockModal('${s.ticker}')">
@@ -498,7 +497,6 @@ function renderAllSignalsTable() {
         <td class="ticker-cell">${s.ticker}</td>
         <td>${s.name || s.ticker}</td>
         <td style="color: var(--text-muted);">${s.sector || 'Unclassified'}</td>
-        <td style="text-align: right;" class="mono">${closeDisplay}</td>
         <td style="text-align: right;" class="mono ${returnClass}">
           ${s.pred_return_pct >= 0 ? '+' : ''}${s.pred_return_pct.toFixed(2)}%
         </td>
@@ -726,9 +724,9 @@ function calculateAndRenderOrders() {
           <th>Ticker</th>
           <th>Company Name</th>
           <th>Sector</th>
-          <th style="text-align: right;">Latest Price</th>
-          <th style="text-align: right;">Target Value</th>
-          <th style="text-align: right;">Target Shares</th>
+          <th style="text-align: right;">Target Weight</th>
+          <th style="text-align: right;">Target Allocation</th>
+          <th style="text-align: center;">Decile</th>
           <th style="text-align: center;">Order Action</th>
         </tr>
       `;
@@ -736,9 +734,8 @@ function calculateAndRenderOrders() {
 
     if (tbody) {
       tbody.innerHTML = holdings.map(h => {
-        const price = h.latest_close || 100.0;
-        const targetShares = Math.floor(allocPerStock / price);
-        const targetValue = targetShares * price;
+        const weightPct = ((h.weight || (1.0 / count)) * 100.0).toFixed(2);
+        const targetValue = capital * (h.weight || (1.0 / count));
         const isValid = targetValue >= minTrade;
 
         return `
@@ -746,9 +743,9 @@ function calculateAndRenderOrders() {
             <td class="ticker-cell">${h.ticker}</td>
             <td>${h.name || h.ticker}</td>
             <td style="color: var(--text-muted);">${h.sector || 'Unclassified'}</td>
-            <td style="text-align: right;" class="mono">$${price.toFixed(2)}</td>
+            <td style="text-align: right;" class="mono">${weightPct}%</td>
             <td style="text-align: right;" class="mono font-semibold">$${targetValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td style="text-align: right;" class="mono">${targetShares}</td>
+            <td style="text-align: center;"><span class="decile-badge">D1</span></td>
             <td style="text-align: center;">
               <span class="tag-badge ${isValid ? 'buy' : 'hold'}">${isValid ? 'BUY' : 'BELOW MIN'}</span>
             </td>
@@ -766,10 +763,10 @@ function calculateAndRenderOrders() {
         <tr>
           <th>Ticker</th>
           <th>Company Name</th>
-          <th style="text-align: right;">Latest Price</th>
-          <th style="text-align: right;">Current Shares</th>
-          <th style="text-align: right;">Target Shares</th>
-          <th style="text-align: right;">Trade Delta</th>
+          <th>Sector</th>
+          <th style="text-align: right;">Current Weight</th>
+          <th style="text-align: right;">Target Weight</th>
+          <th style="text-align: right;">Weight Delta</th>
           <th style="text-align: right;">Trade Value</th>
           <th style="text-align: center;">Order Action</th>
         </tr>
@@ -780,25 +777,27 @@ function calculateAndRenderOrders() {
     const exitHoldings = (appState.rankings || []).slice(55, 63);
 
     holdings.forEach((h, idx) => {
-      const price = h.latest_close || 100.0;
-      const targetShares = Math.floor(allocPerStock / price);
-      let currentShares = 0;
+      const targetWeight = h.weight || (1.0 / count);
+      let currentWeight = 0.0;
       if (idx < 42) {
         const drift = 0.94 + ((idx % 7) * 0.02);
-        currentShares = Math.round(targetShares * drift);
+        currentWeight = targetWeight * drift;
       } else {
-        currentShares = 0;
+        currentWeight = 0.0;
       }
-      const delta = targetShares - currentShares;
-      const tradeVal = Math.abs(delta) * price;
+      const deltaWeight = targetWeight - currentWeight;
+      const tradeVal = Math.abs(deltaWeight) * capital;
       let action = 'HOLD';
       let tagClass = 'hold';
 
       if (tradeVal >= minTrade) {
-        if (delta > 0) {
-          action = currentShares === 0 ? 'BUY (NEW)' : 'BUY (ADD)';
+        if (currentWeight === 0.0) {
+          action = 'BUY (NEW)';
           tagClass = 'buy';
-        } else if (delta < 0) {
+        } else if (deltaWeight > 0) {
+          action = 'BUY (ADD)';
+          tagClass = 'buy';
+        } else if (deltaWeight < 0) {
           action = 'SELL (TRIM)';
           tagClass = 'sell';
         }
@@ -807,10 +806,10 @@ function calculateAndRenderOrders() {
       items.push({
         ticker: h.ticker,
         name: h.name || h.ticker,
-        price,
-        currentShares,
-        targetShares,
-        delta,
+        sector: h.sector || 'Unclassified',
+        currentWeight,
+        targetWeight,
+        deltaWeight,
         tradeVal,
         action,
         tagClass
@@ -818,21 +817,23 @@ function calculateAndRenderOrders() {
     });
 
     exitHoldings.forEach(eh => {
-      const price = eh.latest_close || 100.0;
-      const currentShares = Math.floor(allocPerStock / price);
-      const targetShares = 0;
-      const delta = -currentShares;
-      const tradeVal = currentShares * price;
+      const targetWeight = 0.0;
+      const currentWeight = 1.0 / count;
+      const deltaWeight = -currentWeight;
+      const tradeVal = currentWeight * capital;
+      let action = tradeVal >= minTrade ? 'SELL (EXIT)' : 'HOLD';
+      let tagClass = tradeVal >= minTrade ? 'sell' : 'hold';
+
       items.push({
         ticker: eh.ticker,
         name: eh.name || eh.ticker,
-        price,
-        currentShares,
-        targetShares,
-        delta,
+        sector: eh.sector || 'Unclassified',
+        currentWeight,
+        targetWeight,
+        deltaWeight,
         tradeVal,
-        action: 'SELL (EXIT)',
-        tagClass: 'sell'
+        action,
+        tagClass
       });
     });
 
@@ -875,10 +876,10 @@ function calculateAndRenderOrders() {
         <tr class="interactive-row" onclick="openStockModal('${it.ticker}')">
           <td class="ticker-cell">${it.ticker}</td>
           <td>${it.name}</td>
-          <td style="text-align: right;" class="mono">$${it.price.toFixed(2)}</td>
-          <td style="text-align: right;" class="mono">${it.currentShares}</td>
-          <td style="text-align: right;" class="mono">${it.targetShares}</td>
-          <td style="text-align: right;" class="mono ${it.delta >= 0 ? 'green' : 'red'}">${it.delta >= 0 ? '+' : ''}${it.delta}</td>
+          <td style="color: var(--text-muted);">${it.sector}</td>
+          <td style="text-align: right;" class="mono">${(it.currentWeight * 100.0).toFixed(2)}%</td>
+          <td style="text-align: right;" class="mono">${(it.targetWeight * 100.0).toFixed(2)}%</td>
+          <td style="text-align: right;" class="mono ${it.deltaWeight >= 0 ? 'green' : 'red'}">${it.deltaWeight >= 0 ? '+' : ''}${(it.deltaWeight * 100.0).toFixed(2)}%</td>
           <td style="text-align: right;" class="mono font-semibold">$${it.tradeVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
           <td style="text-align: center;">
             <span class="tag-badge ${it.tagClass}">${it.action}</span>
@@ -892,47 +893,54 @@ function calculateAndRenderOrders() {
 function exportRebalanceOrdersCsv() {
   const mode = appState.rebalanceMode || 'clean_slate';
   const capital = parseFloat(document.getElementById('calcCapitalInput')?.value || '100000') || 100000;
+  const costBps = parseFloat(document.getElementById('calcCostBpsInput')?.value || '10') || 10;
   const port = appState.portfolio;
   if (!port) return;
 
   const holdings = port.holdings || [];
-  const allocPerStock = capital / (holdings.length || 50);
+  const asOf = port.as_of_date || new Date().toISOString().split('T')[0];
 
   let csvContent = "";
   if (mode === 'clean_slate') {
-    csvContent = "data:text/csv;charset=utf-8,Ticker,Company Name,Sector,Price,Target Value,Target Shares,Order Action\n";
+    csvContent = "# S&P 500 Quantitative Portfolio Target Allocation Ticket\n" +
+      `# Strategy: Equal-Weighted Top Decile (50 Holdings) | As-Of Date: ${asOf}\n` +
+      `# Portfolio Capital: $${capital.toFixed(2)} | Friction Model: ${costBps} bps per unit turnover\n` +
+      "Ticker,Company Name,Sector,Target Weight (%),Target Value ($),Order Action\n";
     holdings.forEach(h => {
-      const price = h.latest_close || 100.0;
-      const shares = Math.floor(allocPerStock / price);
-      const val = (shares * price).toFixed(2);
-      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${price.toFixed(2)},${val},${shares},"BUY"\n`;
+      const weightPct = ((h.weight || 0.02) * 100.0).toFixed(2);
+      const val = (capital * (h.weight || 0.02)).toFixed(2);
+      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${weightPct}%,${val},"BUY"\n`;
     });
   } else {
-    csvContent = "data:text/csv;charset=utf-8,Ticker,Company Name,Price,Current Shares,Target Shares,Trade Delta,Trade Value,Order Action\n";
+    csvContent = "# S&P 500 Quantitative Portfolio Rebalance Execution Ticket\n" +
+      `# Strategy: Equal-Weighted Top Decile Rebalance | As-Of Date: ${asOf}\n` +
+      `# Portfolio Capital: $${capital.toFixed(2)} | Friction Model: ${costBps} bps per unit turnover\n` +
+      "Ticker,Company Name,Sector,Current Weight (%),Target Weight (%),Weight Delta (%),Trade Value ($),Order Action\n";
     const exitHoldings = (appState.rankings || []).slice(55, 63);
+    const count = holdings.length || 50;
+
     holdings.forEach((h, idx) => {
-      const price = h.latest_close || 100.0;
-      const targetShares = Math.floor(allocPerStock / price);
-      const currentShares = idx < 42 ? Math.round(targetShares * (0.94 + ((idx % 7) * 0.02))) : 0;
-      const delta = targetShares - currentShares;
-      const tradeVal = (Math.abs(delta) * price).toFixed(2);
-      const action = currentShares === 0 ? 'BUY (NEW)' : (delta > 0 ? 'BUY (ADD)' : (delta < 0 ? 'SELL (TRIM)' : 'HOLD'));
-      csvContent += `"${h.ticker}","${h.name || h.ticker}",${price.toFixed(2)},${currentShares},${targetShares},${delta},${tradeVal},"${action}"\n`;
+      const targetWeight = h.weight || (1.0 / count);
+      const currentWeight = idx < 42 ? targetWeight * (0.94 + ((idx % 7) * 0.02)) : 0.0;
+      const deltaWeight = targetWeight - currentWeight;
+      const tradeVal = (Math.abs(deltaWeight) * capital).toFixed(2);
+      const action = currentWeight === 0.0 ? 'BUY (NEW)' : (deltaWeight > 0 ? 'BUY (ADD)' : (deltaWeight < 0 ? 'SELL (TRIM)' : 'HOLD'));
+      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${(currentWeight * 100.0).toFixed(2)}%,${(targetWeight * 100.0).toFixed(2)}%,${(deltaWeight >= 0 ? '+' : '') + (deltaWeight * 100.0).toFixed(2)}%,${tradeVal},"${action}"\n`;
     });
+
     exitHoldings.forEach(eh => {
-      const price = eh.latest_close || 100.0;
-      const currentShares = Math.floor(allocPerStock / price);
-      const targetShares = 0;
-      const delta = -currentShares;
-      const tradeVal = (currentShares * price).toFixed(2);
-      csvContent += `"${eh.ticker}","${eh.name || eh.ticker}",${price.toFixed(2)},${currentShares},${targetShares},${delta},${tradeVal},"SELL (EXIT)"\n`;
+      const targetWeight = 0.0;
+      const currentWeight = 1.0 / count;
+      const deltaWeight = -currentWeight;
+      const tradeVal = (currentWeight * capital).toFixed(2);
+      csvContent += `"${eh.ticker}","${eh.name || eh.ticker}","${eh.sector || ''}",${(currentWeight * 100.0).toFixed(2)}%,0.00%,-${(currentWeight * 100.0).toFixed(2)}%,${tradeVal},"SELL (EXIT)"\n`;
     });
   }
 
-  const encodedUri = encodeURI(csvContent);
+  const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
   const link = document.createElement("a");
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", `sp500_orders_${mode}_${new Date().toISOString().split('T')[0]}.csv`);
+  link.setAttribute("download", `sp500_orders_${mode}_${asOf}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

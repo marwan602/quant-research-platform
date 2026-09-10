@@ -190,7 +190,17 @@ def update_forward_tracking(
     cost_rate = cost_bps / 10000.0
     period_model_returns = []
 
+    if store_df is not None and not store_df.empty:
+        all_store_dates = sorted(pd.to_datetime(store_df["Date"]).dt.strftime("%Y-%m-%d").unique())
+        live_dates = [d for d in all_store_dates if pd.to_datetime(d) >= dep_dt]
+    else:
+        live_dates = sorted_dates
+
+    portfolio_rebalance_dates = set(live_dates[i] for i in range(0, len(live_dates), 5))
+
     for d in resolved_dates:
+        if d not in portfolio_rebalance_dates:
+            continue
         entry = dates_dict[d]
         preds = entry["predictions"]
         top_decile_size = max(1, len(preds) // 10)

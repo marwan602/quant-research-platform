@@ -72,7 +72,29 @@ def run_daily_update(
     if effective_date is None:
         raise RuntimeError("RollingPriceStore has no data after synchronization.")
 
+    if target_date is not None:
+        target_dt = pd.to_datetime(target_date).normalize()
+        if effective_date.normalize() < target_dt:
+            raise RuntimeError(
+                f"Pipeline fail-closed: Target session {target_date} not present in RollingPriceStore "
+                f"(max date is {effective_date.strftime('%Y-%m-%d')}). Provider synchronization failed."
+            )
+
     active_tickers = universe_provider.get_active_tickers(as_of_date=effective_date)
+    if not active_tickers:
+        raise RuntimeError(f"UniverseProvider found 0 active constituents on {effective_date.strftime('%Y-%m-%d')}.")
+
+    today_slice = store._df[store._df["Date"] == effective_date] if store._df is not None else pd.DataFrame()
+    today_tickers = set(today_slice["Ticker"].unique()) if not today_slice.empty else set()
+    covered_count = len(today_tickers.intersection(active_tickers))
+    coverage_ratio = covered_count / len(active_tickers) if active_tickers else 0.0
+
+    if coverage_ratio < 0.90:
+        raise RuntimeError(
+            f"Pipeline fail-closed: Low constituent coverage on {effective_date.strftime('%Y-%m-%d')} "
+            f"({covered_count}/{len(active_tickers)} = {coverage_ratio:.1%}). Minimum 90% required."
+        )
+
     trailing_df = store.get_trailing_window(
         tickers=active_tickers,
         lookback_days=125,
@@ -81,6 +103,11 @@ def run_daily_update(
 
     engine = InferenceEngine(device=device)
     preds_df = engine.predict(trailing_df, as_of_date=effective_date)
+    if len(preds_df) < int(0.85 * len(active_tickers)):
+        raise RuntimeError(
+            f"Pipeline fail-closed: Inference evaluated only {len(preds_df)}/{len(active_tickers)} stocks. Minimum 85% required."
+        )
+
     portfolio_res = PortfolioConstructor.construct_portfolios(preds_df)
 
     rankings_df = portfolio_res["rankings"]
@@ -164,11 +191,8 @@ def run_daily_update(
         deployment_date="2026-09-10",
     )
 
-    try:
-        from scripts.build_dashboard_data import generate_all_dashboard_data
-        generate_all_dashboard_data(project_root=PROJECT_ROOT)
-    except Exception:
-        pass
+    from scripts.build_dashboard_data import generate_all_dashboard_data
+    generate_all_dashboard_data(project_root=PROJECT_ROOT)
 
     return {
         "status": "success",

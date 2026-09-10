@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Any
 from fastapi import APIRouter, HTTPException, Query
 import pandas as pd
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from src.inference import PortfolioConstructor
 
@@ -39,6 +39,18 @@ class RebalanceRequest(BaseModel):
     portfolio_value: float = Field(default=100000.0, gt=0.0)
     top_quantile: float = Field(default=0.10, gt=0.0, le=0.5)
     current_holdings: dict[str, float] = Field(default_factory=dict)
+
+    @field_validator("current_holdings")
+    @classmethod
+    def validate_holdings(cls, v: dict[str, float]) -> dict[str, float]:
+        total_w = 0.0
+        for ticker, weight in v.items():
+            if weight < 0.0:
+                raise ValueError(f"Weight for {ticker} cannot be negative: {weight}")
+            total_w += weight
+        if total_w > 1.05:
+            raise ValueError(f"Total portfolio weight ({total_w:.3f}) exceeds 1.05 (105%)")
+        return v
 
 
 @router.get("/system/status")
