@@ -9,6 +9,11 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
+# Environment secrets
+.env
+.env*.local
+!.env.example
+
 # Model weights & training outputs
 models/*.pt
 models/*.txt

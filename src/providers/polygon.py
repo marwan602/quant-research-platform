@@ -1,9 +1,21 @@
 import os
+from pathlib import Path
 import time
+from dotenv import load_dotenv
 import pandas as pd
 import requests
 
 from src.providers.base import MarketDataProvider
+
+
+def _load_env_credentials():
+    curr = Path(__file__).resolve().parent
+    for _ in range(4):
+        cand = curr / ".env"
+        if cand.exists():
+            load_dotenv(dotenv_path=cand, override=False)
+            break
+        curr = curr.parent
 
 
 class PolygonProvider(MarketDataProvider):
@@ -14,20 +26,27 @@ class PolygonProvider(MarketDataProvider):
         api_key: str | None = None,
         session: requests.Session | None = None,
         timeout: float = 30.0,
-        rate_limit_delay: float = 0.2,
+        rate_limit_delay: float = 12.5,
     ):
-        self.api_key = api_key or os.getenv("POLYGON_API_KEY", "")
+        _load_env_credentials()
+        key = api_key or os.getenv("POLYGON_API_KEY", "").strip()
+        if key == "your_polygon_api_key_here":
+            key = ""
+        self.api_key = key
         self.session = session or requests.Session()
         self.timeout = timeout
         self.rate_limit_delay = rate_limit_delay
 
     def _fetch_grouped_daily(self, date_str: str) -> dict:
         if not self.api_key:
-            raise ValueError("Polygon API key is required. Set POLYGON_API_KEY environment variable or pass api_key.")
+            raise ValueError(
+                "Polygon API key is required. Set POLYGON_API_KEY in .env, environment variable, or pass api_key."
+            )
 
         url = f"{self.BASE_URL}/{date_str}"
-        params = {"adjusted": "true", "apiKey": self.api_key}
-        resp = self.session.get(url, params=params, timeout=self.timeout)
+        headers = {"Authorization": f"Bearer {self.api_key}"}
+        params = {"adjusted": "true"}
+        resp = self.session.get(url, params=params, headers=headers, timeout=self.timeout)
 
         if resp.status_code in (401, 403):
             raise PermissionError(f"Polygon authentication failed ({resp.status_code}): {resp.text}")

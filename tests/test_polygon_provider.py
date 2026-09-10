@@ -8,8 +8,16 @@ from src.providers.store import RollingPriceStore
 
 
 def test_polygon_provider_missing_key(monkeypatch):
+    monkeypatch.setattr("src.providers.polygon._load_env_credentials", lambda: None)
     monkeypatch.delenv("POLYGON_API_KEY", raising=False)
     provider = PolygonProvider(api_key=None)
+    with pytest.raises(ValueError, match="Polygon API key is required"):
+        provider.get_latest_bars(["AAPL"], "2026-09-10")
+
+
+def test_polygon_provider_placeholder_key(monkeypatch):
+    monkeypatch.setattr("src.providers.polygon._load_env_credentials", lambda: None)
+    provider = PolygonProvider(api_key="your_polygon_api_key_here")
     with pytest.raises(ValueError, match="Polygon API key is required"):
         provider.get_latest_bars(["AAPL"], "2026-09-10")
 
@@ -114,7 +122,7 @@ def test_polygon_provider_error_handling():
 def test_polygon_provider_historical_and_sync_delta(tmp_path):
     mock_session = MagicMock()
 
-    def side_effect(url, params=None, timeout=None):
+    def side_effect(url, **kwargs):
         resp = MagicMock()
         resp.status_code = 200
         date_str = url.split("/")[-1]

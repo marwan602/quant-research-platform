@@ -57,9 +57,7 @@ def run_daily_update(
     universe_provider = UniverseProvider(composition_path=str(resolved_comp_path))
     store = RollingPriceStore(initial_path=str(resolved_store_path) if resolved_store_path.exists() else None)
 
-    as_of = pd.to_datetime(target_date) if target_date else store.get_max_date()
-    if as_of is None:
-        as_of = pd.Timestamp.now()
+    as_of = pd.to_datetime(target_date) if target_date else pd.Timestamp.now().normalize()
 
     provider = provider_instance or get_provider(provider_name)
 
