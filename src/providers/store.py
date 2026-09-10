@@ -30,7 +30,9 @@ class RollingPriceStore:
         df["Date"] = pd.to_datetime(df["Date"])
         if "VWAP" not in df.columns:
             df["VWAP"] = (df["High"] + df["Low"] + df["Close"]) / 3.0
-        self._df = df.sort_values(["Date", "Ticker"]).reset_index(drop=True)
+        core_cols = ["Date", "Ticker", "Open", "High", "Low", "Close", "Volume", "VWAP"]
+        available_cols = [c for c in core_cols if c in df.columns]
+        self._df = df[available_cols].sort_values(["Date", "Ticker"]).reset_index(drop=True)
 
     def save(self, path: str) -> None:
         if self._df is None:
@@ -51,6 +53,10 @@ class RollingPriceStore:
         df_to_add["Date"] = pd.to_datetime(df_to_add["Date"])
         if "VWAP" not in df_to_add.columns:
             df_to_add["VWAP"] = (df_to_add["High"] + df_to_add["Low"] + df_to_add["Close"]) / 3.0
+
+        core_cols = ["Date", "Ticker", "Open", "High", "Low", "Close", "Volume", "VWAP"]
+        available_cols = [c for c in core_cols if c in df_to_add.columns]
+        df_to_add = df_to_add[available_cols]
 
         if self._df is None or self._df.empty:
             self._df = df_to_add.sort_values(["Date", "Ticker"]).reset_index(drop=True)
