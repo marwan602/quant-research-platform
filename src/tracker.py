@@ -33,8 +33,11 @@ def get_realized_forward_returns(
 
     future_dt = all_dates[idx + forward_days]
 
-    base_prices = store_df[store_df["Date"] == target_dt].set_index("Ticker")["Close"]
-    future_prices = store_df[store_df["Date"] == future_dt].set_index("Ticker")["Close"]
+    base_slice = store_df[store_df["Date"] == target_dt].drop_duplicates(subset=["Ticker"])
+    future_slice = store_df[store_df["Date"] == future_dt].drop_duplicates(subset=["Ticker"])
+
+    base_prices = base_slice.set_index("Ticker")["Close"]
+    future_prices = future_slice.set_index("Ticker")["Close"]
 
     common_tickers = base_prices.index.intersection(future_prices.index)
     if common_tickers.empty:
@@ -127,6 +130,7 @@ def update_forward_tracking(
     archive: dict,
     store_df: pd.DataFrame | None = None,
     deployment_date: str = "2026-09-10",
+    cost_bps: float = 15.0,
 ) -> dict:
     resolved_path = _resolve_path(tracking_file)
     dep_dt = pd.to_datetime(deployment_date)
@@ -144,12 +148,14 @@ def update_forward_tracking(
     ic_values = [dates_dict[d]["rank_ic"] for d in resolved_dates if dates_dict[d]["rank_ic"] is not None]
     acc_values = [dates_dict[d]["directional_accuracy"] for d in resolved_dates if dates_dict[d]["directional_accuracy"] is not None]
 
-    mean_rank_ic = round(float(np.mean(ic_values)), 4) if ic_values else 0.0227
-    mean_dir_acc = round(float(np.mean(acc_values)), 4) if acc_values else 0.535
+    mean_rank_ic = round(float(np.mean(ic_values)), 4) if ic_values else None
+    mean_dir_acc = round(float(np.mean(acc_values)), 4) if acc_values else None
 
     equity_curve = []
     current_model_nav = 1.0000
     current_bmark_nav = 1.0000
+    peak_model_nav = 1.0000
+    max_drawdown = 0.0
 
     equity_curve.append({
         "date": str(dep_dt.strftime("%Y-%m-%d")),
@@ -160,6 +166,10 @@ def update_forward_tracking(
         "excess_alpha_pct": 0.0,
     })
 
+    prev_weights = {}
+    cost_rate = cost_bps / 10000.0
+    period_model_returns = []
+
     for d in resolved_dates:
         entry = dates_dict[d]
         preds = entry["predictions"]
@@ -167,15 +177,31 @@ def update_forward_tracking(
         sorted_preds = sorted(preds, key=lambda x: x.get("rank", 999))
         top_picks = sorted_preds[:top_decile_size]
 
+        top_tickers = [p.get("ticker") or p.get("Ticker") for p in top_picks]
+        curr_weights = {t: 1.0 / len(top_tickers) for t in top_tickers}
+
+        all_holdings = set(curr_weights.keys()) | set(prev_weights.keys())
+        turnover = 0.5 * sum(abs(curr_weights.get(t, 0.0) - prev_weights.get(t, 0.0)) for t in all_holdings)
+        fee = turnover * cost_rate
+        prev_weights = curr_weights
+
         model_rets = [p["realized_return_5d"] for p in top_picks if p.get("realized_return_5d") is not None]
         all_rets = [p["realized_return_5d"] for p in preds if p.get("realized_return_5d") is not None]
 
         if model_rets and all_rets:
-            m_ret = float(np.mean(model_rets)) - 0.0015
+            gross_ret = float(np.mean(model_rets))
+            net_ret = gross_ret - fee
             b_ret = float(np.mean(all_rets))
 
-            current_model_nav *= (1.0 + m_ret)
+            period_model_returns.append(net_ret)
+            current_model_nav *= (1.0 + net_ret)
             current_bmark_nav *= (1.0 + b_ret)
+
+            if current_model_nav > peak_model_nav:
+                peak_model_nav = current_model_nav
+            dd = (peak_model_nav - current_model_nav) / peak_model_nav
+            if dd > max_drawdown:
+                max_drawdown = dd
 
             equity_curve.append({
                 "date": d,
@@ -189,6 +215,13 @@ def update_forward_tracking(
     total_model_ret_pct = round((current_model_nav - 1.0) * 100.0, 2)
     total_bmark_ret_pct = round((current_bmark_nav - 1.0) * 100.0, 2)
     net_alpha_pct = round((current_model_nav - current_bmark_nav) * 100.0, 2)
+
+    if len(period_model_returns) >= 2 and np.std(period_model_returns, ddof=1) > 1e-8:
+        mean_ret = np.mean(period_model_returns)
+        std_ret = np.std(period_model_returns, ddof=1)
+        realized_sharpe = round(float((mean_ret / std_ret) * np.sqrt(252.0 / 5.0)), 2)
+    else:
+        realized_sharpe = None
 
     tracking_payload = {
         "deployment_date": str(dep_dt.strftime("%Y-%m-%d")),
@@ -205,8 +238,8 @@ def update_forward_tracking(
             "model_cumulative_return_pct": total_model_ret_pct,
             "benchmark_cumulative_return_pct": total_bmark_ret_pct,
             "net_alpha_pct": net_alpha_pct,
-            "realized_sharpe": 1.188,
-            "max_drawdown_pct": 0.0,
+            "realized_sharpe": realized_sharpe,
+            "max_drawdown_pct": round(max_drawdown * 100.0, 2),
         },
         "equity_curve": equity_curve,
     }

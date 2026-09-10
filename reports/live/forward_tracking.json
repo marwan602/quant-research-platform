@@ -3,8 +3,8 @@
   "days_tracked": 1,
   "status": "active",
   "signal_metrics": {
-    "mean_rank_ic": 0.0227,
-    "mean_directional_accuracy": 0.535,
+    "mean_rank_ic": null,
+    "mean_directional_accuracy": null,
     "total_forecasts": 501,
     "resolved_forecasts": 0,
     "pending_forecasts": 501
@@ -13,7 +13,7 @@
     "model_cumulative_return_pct": 0.0,
     "benchmark_cumulative_return_pct": 0.0,
     "net_alpha_pct": 0.0,
-    "realized_sharpe": 1.188,
+    "realized_sharpe": null,
     "max_drawdown_pct": 0.0
   },
   "equity_curve": [
