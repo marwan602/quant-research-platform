@@ -27,21 +27,24 @@ def prepare_inference_features(
     scaler: object,
     required_feature_steps: int = 60,
     clip_val: float = 5.0,
+    as_of_date: str | pd.Timestamp | None = None,
 ) -> tuple[torch.Tensor, list[str], pd.Timestamp]:
     if trailing_df.empty:
         raise ValueError("trailing_df is empty, cannot generate inference features")
 
     trailing_df = trailing_df.copy()
     trailing_df["Date"] = pd.to_datetime(trailing_df["Date"])
+    target_as_of = pd.to_datetime(as_of_date) if as_of_date is not None else trailing_df["Date"].max()
     tickers = trailing_df["Ticker"].unique()
 
     feature_slices = []
     valid_tickers = []
-    max_dates = []
 
     min_raw_bars = 59 + required_feature_steps
     for ticker in sorted(tickers):
         sub = trailing_df[trailing_df["Ticker"] == ticker].sort_values("Date").reset_index(drop=True)
+        if sub.empty or sub["Date"].iloc[-1] != target_as_of:
+            continue
         if len(sub) < min_raw_bars:
             continue
 
@@ -53,7 +56,6 @@ def prepare_inference_features(
         seq_feats = clean_feats.iloc[-required_feature_steps:].values.astype(np.float32)
         feature_slices.append(seq_feats)
         valid_tickers.append(ticker)
-        max_dates.append(sub["Date"].iloc[-1])
 
     if not feature_slices:
         raise ValueError("No tickers had sufficient valid historical bars to form a 60-step sequence")
@@ -67,9 +69,7 @@ def prepare_inference_features(
         arr_scaled = np.clip(arr_scaled, -clip_val, clip_val)
 
     scaled_tensor = torch.from_numpy(arr_scaled.reshape(n_stocks, seq_len, n_feats)).float()
-    as_of_date = max(max_dates)
-
-    return scaled_tensor, valid_tickers, as_of_date
+    return scaled_tensor, valid_tickers, target_as_of
 
 
 class PortfolioConstructor:
@@ -167,19 +167,20 @@ class InferenceEngine:
         self.model = load_model(str(_resolve_path(model_path)), device=self.device)
         self.model.eval()
 
-    def predict(self, trailing_df: pd.DataFrame) -> pd.DataFrame:
-        x_tensor, tickers, as_of_date = prepare_inference_features(
+    def predict(self, trailing_df: pd.DataFrame, as_of_date: str | pd.Timestamp | None = None) -> pd.DataFrame:
+        x_tensor, tickers, evaluated_date = prepare_inference_features(
             trailing_df=trailing_df,
             scaler=self.scaler,
             required_feature_steps=60,
+            as_of_date=as_of_date,
         )
 
         with torch.no_grad():
             x_device = x_tensor.to(self.device)
-            preds = self.model(x_device).cpu().numpy()
+            preds = self.model(x_device).cpu().numpy().reshape(-1)
 
         results = pd.DataFrame({
-            "Date": as_of_date,
+            "Date": evaluated_date,
             "Ticker": tickers,
             "pred_return_5d": preds,
         })
@@ -211,7 +212,7 @@ def run_pipeline(
         scaler_path=str(_resolve_path(scaler_path)),
         device=device,
     )
-    preds_df = engine.predict(trailing_df)
+    preds_df = engine.predict(trailing_df, as_of_date=as_of_date)
 
     portfolio_data = PortfolioConstructor.construct_portfolios(preds_df)
     return portfolio_data

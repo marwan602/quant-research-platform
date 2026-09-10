@@ -142,8 +142,8 @@ class YahooProvider(MarketDataProvider):
         end_dt = pd.to_datetime(end_date) + pd.Timedelta(days=1)
         yf_tickers = [self._format_ticker(t) for t in tickers]
 
-        records = []
         chunk_size = 100
+        frames = []
         for i in range(0, len(yf_tickers), chunk_size):
             chunk = yf_tickers[i : i + chunk_size]
             data = yf.download(
@@ -151,6 +151,7 @@ class YahooProvider(MarketDataProvider):
                 start=start_dt.strftime("%Y-%m-%d"),
                 end=end_dt.strftime("%Y-%m-%d"),
                 auto_adjust=False,
+                actions=True,
                 progress=False,
                 threads=True,
             )
@@ -158,47 +159,48 @@ class YahooProvider(MarketDataProvider):
                 continue
 
             if isinstance(data.columns, pd.MultiIndex):
-                for yf_t in chunk:
-                    orig_t = self._unformat_ticker(yf_t)
-                    try:
-                        sub = data.xs(yf_t, axis=1, level="Ticker").dropna(how="all")
-                    except KeyError:
-                        continue
-                    for dt, row in sub.iterrows():
-                        c = row.get("Close")
-                        if pd.isna(c):
-                            continue
-                        records.append({
-                            "Date": pd.to_datetime(dt),
-                            "Ticker": orig_t,
-                            "Open": float(row.get("Open", c)),
-                            "High": float(row.get("High", c)),
-                            "Low": float(row.get("Low", c)),
-                            "Close": float(c),
-                            "Volume": float(row.get("Volume", 0.0)),
-                        })
+                flat = data.stack(level="Ticker", future_stack=True).reset_index()
+                flat["Ticker"] = flat["Ticker"].str.replace("-", ".")
             else:
-                orig_t = self._unformat_ticker(chunk[0])
-                for dt, row in data.iterrows():
-                    c = row.get("Close")
-                    if pd.isna(c):
-                        continue
-                    records.append({
-                        "Date": pd.to_datetime(dt),
-                        "Ticker": orig_t,
-                        "Open": float(row.get("Open", c)),
-                        "High": float(row.get("High", c)),
-                        "Low": float(row.get("Low", c)),
-                        "Close": float(c),
-                        "Volume": float(row.get("Volume", 0.0)),
-                    })
+                flat = data.copy()
+                flat["Ticker"] = self._unformat_ticker(chunk[0])
+                flat = flat.reset_index()
 
-        if not records:
-            return pd.DataFrame(columns=["Date", "Ticker", "Open", "High", "Low", "Close", "Volume", "VWAP"])
+            frames.append(flat)
 
-        out_df = pd.DataFrame(records)
+        if not frames:
+            return pd.DataFrame(columns=[
+                "Date", "Ticker", "Adj Close", "Capital Gains", "Close",
+                "Dividends", "High", "Low", "Open", "Stock Splits", "Volume", "VWAP"
+            ])
+
+        out_df = pd.concat(frames, ignore_index=True)
+        out_df["Date"] = pd.to_datetime(out_df["Date"])
+        if "Close" in out_df.columns:
+            out_df = out_df.dropna(subset=["Close"]).copy()
+
+        for col, default_val in [
+            ("Capital Gains", 0.0),
+            ("Dividends", 0.0),
+            ("Stock Splits", 0.0),
+            ("Volume", 0.0),
+        ]:
+            if col not in out_df.columns:
+                out_df[col] = default_val
+            else:
+                out_df[col] = out_df[col].fillna(default_val)
+
+        if "Adj Close" not in out_df.columns:
+            out_df["Adj Close"] = out_df["Close"]
+        else:
+            out_df["Adj Close"] = out_df["Adj Close"].fillna(out_df["Close"])
+
         out_df["VWAP"] = (out_df["High"] + out_df["Low"] + out_df["Close"]) / 3.0
-        out_df = out_df.sort_values(["Date", "Ticker"]).reset_index(drop=True)
+        cols_order = [
+            "Date", "Ticker", "Adj Close", "Capital Gains", "Close",
+            "Dividends", "High", "Low", "Open", "Stock Splits", "Volume", "VWAP"
+        ]
+        out_df = out_df[cols_order].sort_values(["Date", "Ticker"]).reset_index(drop=True)
         return out_df
 
     def get_latest_bars(

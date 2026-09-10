@@ -12,6 +12,8 @@ from src.providers.store import RollingPriceStore
 
 def sync_market_data(
     target_date: str = "2026-09-10",
+    start_date: str | None = None,
+    force: bool = False,
     store_path: str = "data/raw/s_and_p_500_prices.parquet",
     composition_path: str = "data/raw/s_and_p_500_daily_composition.parquet",
 ) -> int:
@@ -19,14 +21,19 @@ def sync_market_data(
     current_max = store.get_max_date()
     target_dt = pd.to_datetime(target_date)
 
-    if current_max is not None and current_max >= target_dt:
+    if not force and current_max is not None and current_max >= target_dt:
         print(f"Store is already up to date (max date: {current_max.strftime('%Y-%m-%d')}).")
         return 0
 
     universe = UniverseProvider(composition_path=composition_path)
     tickers = universe.get_active_tickers(target_dt)
 
-    start_dt = current_max + pd.Timedelta(days=1) if current_max is not None else target_dt - pd.Timedelta(days=30)
+    if start_date is not None:
+        start_dt = pd.to_datetime(start_date)
+    elif current_max is not None and not force:
+        start_dt = current_max + pd.Timedelta(days=1)
+    else:
+        start_dt = target_dt - pd.Timedelta(days=30)
     print(f"Syncing market data for {len(tickers)} tickers from {start_dt.strftime('%Y-%m-%d')} to {target_dt.strftime('%Y-%m-%d')}...")
 
     provider = YahooProvider()
@@ -48,7 +55,14 @@ def sync_market_data(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--target-date", type=str, default="2026-09-10")
+    parser.add_argument("--start-date", type=str, default=None)
+    parser.add_argument("--force", action="store_true")
     parser.add_argument("--store-path", type=str, default="data/raw/s_and_p_500_prices.parquet")
     args = parser.parse_args()
 
-    sync_market_data(target_date=args.target_date, store_path=args.store_path)
+    sync_market_data(
+        target_date=args.target_date,
+        start_date=args.start_date,
+        force=args.force,
+        store_path=args.store_path,
+    )
