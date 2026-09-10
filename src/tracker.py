@@ -56,6 +56,17 @@ def get_realized_forward_returns(
     return res_df
 
 
+def compute_forward_trading_date(start_date: str | pd.Timestamp, forward_days: int = 5) -> str:
+    dt = pd.to_datetime(start_date)
+    count = 0
+    curr = dt
+    while count < forward_days:
+        curr += pd.Timedelta(days=1)
+        if curr.weekday() < 5:
+            count += 1
+    return curr.strftime("%Y-%m-%d")
+
+
 def update_prediction_archive(
     archive_file: str | Path,
     new_rankings: list[dict],
@@ -71,17 +82,26 @@ def update_prediction_archive(
         archive = {"dates": {}}
 
     date_key = str(pd.to_datetime(as_of_date).strftime("%Y-%m-%d"))
+    target_date_str = compute_forward_trading_date(date_key, forward_days=forward_days)
 
     if date_key not in archive["dates"]:
         archive["dates"][date_key] = {
             "as_of_date": date_key,
+            "target_resolution_date": target_date_str,
             "status": "pending",
             "model": "AttentiveTransformer",
             "total_predictions": len(new_rankings),
             "rank_ic": None,
             "directional_accuracy": None,
-            "predictions": new_rankings,
+            "predictions": [
+                {**p, "target_resolution_date": target_date_str} for p in new_rankings
+            ],
         }
+    else:
+        archive["dates"][date_key]["target_resolution_date"] = target_date_str
+        for p in archive["dates"][date_key].get("predictions", []):
+            if "target_resolution_date" not in p:
+                p["target_resolution_date"] = target_date_str
 
     if store_df is not None and not store_df.empty:
         for d_str, entry in archive["dates"].items():

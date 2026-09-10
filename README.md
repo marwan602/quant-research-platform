@@ -1,6 +1,12 @@
 # S&P 500 Quantitative Research Platform
 
-An institutional-grade research platform for predicting 5-day forward returns across S&P 500 constituents using point-in-time index membership, Microsoft Qlib's Alpha158 factor suite, and reproducible machine learning & deep learning models.
+[![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-GitHub_Pages-blue?style=flat-square)](https://marwan602.github.io/quant-research-platform/)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+
+A quantitative research platform for 5-day cross-sectional S&P 500 return prediction using point-in-time index membership, Microsoft Qlib's Alpha158 factor suite adapted to US equities, and reproducible machine learning & deep learning architectures.
+
+🌐 **Live Web Dashboard**: [https://marwan602.github.io/quant-research-platform/](https://marwan602.github.io/quant-research-platform/)
 
 ---
 
@@ -15,7 +21,7 @@ The dataset covers daily trading activity from January 2015 onwards across histo
 
 ## Features & Target
 
-- **Features (`src/features.py`)**: Exact reimplementation of Microsoft Qlib's Alpha158 factor suite:
+- **Features (`src/features.py`)**: Implementation of Qlib's Alpha158 feature definitions adapted to the S&P 500 OHLCV dataset:
   - 9 K-bar price-action features (open, high, low, close relationships).
   - 4 normalized price ratios and moving trends.
   - 145 rolling technical and statistical metrics across 5, 10, 20, 30, and 60-day windows (momentum `ROC`, volatility `STD`, linear trend `BETA`/`RSQR`/`RESI`, volume dynamics `VMA`/`VSTD`/`WVMA`, and volume-price correlation `CORR`/`CORD`).
@@ -187,6 +193,22 @@ Available endpoints:
 * `GET /api/v1/portfolio/current`: Current top-decile target portfolio weights.
 * `POST /api/v1/portfolio/rebalance`: Calculates execution orders (BUY/SELL, trade dollar values) from current client holdings.
 * `GET /api/v1/models/benchmark`: Out-of-sample Sharpe ratio, Rank IC, and drawdown metrics across LightGBM, ALSTM, and Transformer.
+
+### 9. Public Web Dashboard & Cloud Automation
+The research platform is deployed as a zero-maintenance static web application on GitHub Pages:
+🔗 **[https://marwan602.github.io/quant-research-platform/](https://marwan602.github.io/quant-research-platform/)**
+
+Features:
+* **Overview**: Zero-input headline comparison, dual-track forward testing (Signal IC vs Portfolio return), and interactive compounded equity curves.
+* **Daily Signals**: Searchable, filterable 501-stock table with Selected Feature Profiles and forward prediction archive.
+* **Portfolio & Rebalance Workstation**: 50-stock target portfolio, sector composition breakdown (56% IT momentum exposure), and interactive rebalance simulator with BUY / SELL / HOLD execution tickets.
+* **Empirical Research**: 3-model out-of-sample comparison matrix and interactive backtest curves across 663 trading sessions.
+* **Methodology**: Paper-grade documentation of point-in-time universe, factor formulas, and temporal self-attention.
+
+To run the dashboard locally:
+```powershell
+py -3.11 -m http.server 8080 --directory docs
+```
 
 ---
 

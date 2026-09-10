@@ -2,8 +2,8 @@ name: Daily Quantitative Research Pipeline
 
 on:
   schedule:
-    # 5:00 PM EST (21:00 UTC), Monday through Friday after US market close
-    - cron: '0 21 * * 1-5'
+    # 22:00 UTC (6:00 PM EDT in summer / 5:00 PM EST in winter), safely after US market close year-round
+    - cron: '0 22 * * 1-5'
   workflow_dispatch:
     inputs:
       target_date:

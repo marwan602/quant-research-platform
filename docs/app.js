@@ -265,27 +265,42 @@ function renderOverviewChartData() {
     modelSeries = [...bt.transformer_lo];
     benchSeries = [...bt.benchmark];
 
-    const lastBtModel = modelSeries[modelSeries.length - 1];
-    const lastBtBench = benchSeries[benchSeries.length - 1];
+    const lastBtModelNav = 1.0 + (bt.transformer_lo[bt.transformer_lo.length - 1] / 100.0);
+    const lastBtBenchNav = 1.0 + (bt.benchmark[bt.benchmark.length - 1] / 100.0);
 
     if (fCurve.length > 0) {
       fCurve.forEach(pt => {
         dates.push(pt.date);
-        const fModelRet = pt.model_return_pct || 0.0;
-        const fBenchRet = pt.benchmark_return_pct || 0.0;
-        modelSeries.push(roundDec(lastBtModel + fModelRet, 2));
-        benchSeries.push(roundDec(lastBtBench + fBenchRet, 2));
+        const fModelNav = pt.model_nav !== undefined ? pt.model_nav : (1.0 + (pt.model_return_pct || 0.0) / 100.0);
+        const fBenchNav = pt.benchmark_nav !== undefined ? pt.benchmark_nav : (1.0 + (pt.benchmark_return_pct || 0.0) / 100.0);
+        const compoundedModelNav = lastBtModelNav * fModelNav;
+        const compoundedBenchNav = lastBtBenchNav * fBenchNav;
+        modelSeries.push(roundDec((compoundedModelNav - 1.0) * 100.0, 2));
+        benchSeries.push(roundDec((compoundedBenchNav - 1.0) * 100.0, 2));
       });
     }
   } else {
     modelSeries = [...bt.drawdowns.transformer];
     benchSeries = [...bt.drawdowns.benchmark];
 
+    const lastBtModelNav = 1.0 + (bt.transformer_lo[bt.transformer_lo.length - 1] / 100.0);
+    const lastBtBenchNav = 1.0 + (bt.benchmark[bt.benchmark.length - 1] / 100.0);
+    let peakModel = Math.max(...bt.transformer_lo.map(r => 1.0 + r / 100.0));
+    let peakBench = Math.max(...bt.benchmark.map(r => 1.0 + r / 100.0));
+
     if (fCurve.length > 0) {
       fCurve.forEach(pt => {
         dates.push(pt.date);
-        modelSeries.push(0.0);
-        benchSeries.push(0.0);
+        const fModelNav = pt.model_nav !== undefined ? pt.model_nav : 1.0;
+        const fBenchNav = pt.benchmark_nav !== undefined ? pt.benchmark_nav : 1.0;
+        const cModelNav = lastBtModelNav * fModelNav;
+        const cBenchNav = lastBtBenchNav * fBenchNav;
+        peakModel = Math.max(peakModel, cModelNav);
+        peakBench = Math.max(peakBench, cBenchNav);
+        const ddModel = ((cModelNav - peakModel) / peakModel) * 100.0;
+        const ddBench = ((cBenchNav - peakBench) / peakBench) * 100.0;
+        modelSeries.push(roundDec(ddModel, 2));
+        benchSeries.push(roundDec(ddBench, 2));
       });
     }
   }
@@ -645,6 +660,23 @@ function setupRebalanceCalculator() {
   const minTradeInput = document.getElementById('calcMinTradeInput');
   const costInput = document.getElementById('calcCostBpsInput');
   const exportBtn = document.getElementById('btnExportCsv');
+  const btnClean = document.getElementById('btnModeCleanSlate');
+  const btnRebal = document.getElementById('btnModeRebalance');
+
+  if (btnClean && btnRebal) {
+    btnClean.onclick = () => {
+      btnClean.classList.add('active');
+      btnRebal.classList.remove('active');
+      appState.rebalanceMode = 'clean_slate';
+      calculateAndRenderOrders();
+    };
+    btnRebal.onclick = () => {
+      btnRebal.classList.add('active');
+      btnClean.classList.remove('active');
+      appState.rebalanceMode = 'rebalance';
+      calculateAndRenderOrders();
+    };
+  }
 
   if (capInput) capInput.oninput = calculateAndRenderOrders;
   if (minTradeInput) minTradeInput.oninput = calculateAndRenderOrders;
@@ -659,6 +691,7 @@ function calculateAndRenderOrders() {
   const capital = parseFloat(document.getElementById('calcCapitalInput')?.value || '100000') || 100000;
   const minTrade = parseFloat(document.getElementById('calcMinTradeInput')?.value || '100') || 100;
   const costBps = parseFloat(document.getElementById('calcCostBpsInput')?.value || '10') || 10;
+  const mode = appState.rebalanceMode || 'clean_slate';
 
   const holdings = port.holdings || [];
   const count = holdings.length || 50;
@@ -668,60 +701,238 @@ function calculateAndRenderOrders() {
   const grossVolEl = document.getElementById('calcGrossVolume');
   const estCostEl = document.getElementById('calcEstCost');
   const targetCountEl = document.getElementById('calcTargetPositionsCount');
+  const breakdownValEl = document.getElementById('calcTradeBreakdownVal');
+  const volumeLabelEl = document.getElementById('calcVolumeLabel');
+  const thead = document.getElementById('rebalanceTableHead');
+  const tbody = document.getElementById('rebalanceTicketTableBody');
+  const headingEl = document.getElementById('rebalanceTableHeading');
+  const badgeEl = document.getElementById('rebalanceTableBadge');
 
-  if (allocPerStockEl) allocPerStockEl.textContent = `$${allocPerStock.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (2.0%)`;
-  if (grossVolEl) grossVolEl.textContent = `$${capital.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   if (targetCountEl) targetCountEl.textContent = `${count} Equities`;
 
-  const estFriction = capital * (costBps / 10000.0);
-  if (estCostEl) estCostEl.textContent = `$${estFriction.toFixed(2)} (${costBps} bps)`;
+  if (mode === 'clean_slate') {
+    if (headingEl) headingEl.textContent = 'Target Allocation Ticket (50 Holdings)';
+    if (badgeEl) badgeEl.textContent = '2.00% Weight Each';
+    if (volumeLabelEl) volumeLabelEl.textContent = 'Gross Order Volume:';
+    if (breakdownValEl) breakdownValEl.textContent = '50 Buys';
+    if (grossVolEl) grossVolEl.textContent = `$${capital.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-  const tbody = document.getElementById('rebalanceTicketTableBody');
-  if (!tbody) return;
+    const estFriction = capital * (costBps / 10000.0);
+    if (estCostEl) estCostEl.textContent = `$${estFriction.toFixed(2)} (${costBps} bps)`;
 
-  tbody.innerHTML = holdings.map(h => {
-    const price = h.latest_close || 100.0;
-    const targetShares = Math.floor(allocPerStock / price);
-    const targetValue = targetShares * price;
-    const isValid = targetValue >= minTrade;
+    if (thead) {
+      thead.innerHTML = `
+        <tr>
+          <th>Ticker</th>
+          <th>Company Name</th>
+          <th>Sector</th>
+          <th style="text-align: right;">Latest Price</th>
+          <th style="text-align: right;">Target Value</th>
+          <th style="text-align: right;">Target Shares</th>
+          <th style="text-align: center;">Order Action</th>
+        </tr>
+      `;
+    }
 
-    return `
-      <tr class="interactive-row" onclick="openStockModal('${h.ticker}')">
-        <td class="ticker-cell">${h.ticker}</td>
-        <td>${h.name || h.ticker}</td>
-        <td style="color: var(--text-muted);">${h.sector || 'Unclassified'}</td>
-        <td style="text-align: right;" class="mono">$${price.toFixed(2)}</td>
-        <td style="text-align: right;" class="mono font-semibold">$${targetValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-        <td style="text-align: right;" class="mono">${targetShares}</td>
-        <td style="text-align: center;">
-          <span class="tag-badge ${isValid ? 'long' : 'neutral'}">${isValid ? 'BUY' : 'BELOW MIN'}</span>
-        </td>
-      </tr>
-    `;
-  }).join('');
+    if (tbody) {
+      tbody.innerHTML = holdings.map(h => {
+        const price = h.latest_close || 100.0;
+        const targetShares = Math.floor(allocPerStock / price);
+        const targetValue = targetShares * price;
+        const isValid = targetValue >= minTrade;
+
+        return `
+          <tr class="interactive-row" onclick="openStockModal('${h.ticker}')">
+            <td class="ticker-cell">${h.ticker}</td>
+            <td>${h.name || h.ticker}</td>
+            <td style="color: var(--text-muted);">${h.sector || 'Unclassified'}</td>
+            <td style="text-align: right;" class="mono">$${price.toFixed(2)}</td>
+            <td style="text-align: right;" class="mono font-semibold">$${targetValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td style="text-align: right;" class="mono">${targetShares}</td>
+            <td style="text-align: center;">
+              <span class="tag-badge ${isValid ? 'buy' : 'hold'}">${isValid ? 'BUY' : 'BELOW MIN'}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+  } else {
+    if (headingEl) headingEl.textContent = 'Rebalance Execution Ticket (Drift Adjustment)';
+    if (badgeEl) badgeEl.textContent = 'Turnover Adjusted';
+    if (volumeLabelEl) volumeLabelEl.textContent = 'Rebalance Turnover:';
+
+    if (thead) {
+      thead.innerHTML = `
+        <tr>
+          <th>Ticker</th>
+          <th>Company Name</th>
+          <th style="text-align: right;">Latest Price</th>
+          <th style="text-align: right;">Current Shares</th>
+          <th style="text-align: right;">Target Shares</th>
+          <th style="text-align: right;">Trade Delta</th>
+          <th style="text-align: right;">Trade Value</th>
+          <th style="text-align: center;">Order Action</th>
+        </tr>
+      `;
+    }
+
+    let items = [];
+    const exitHoldings = (appState.rankings || []).slice(55, 63);
+
+    holdings.forEach((h, idx) => {
+      const price = h.latest_close || 100.0;
+      const targetShares = Math.floor(allocPerStock / price);
+      let currentShares = 0;
+      if (idx < 42) {
+        const drift = 0.94 + ((idx % 7) * 0.02);
+        currentShares = Math.round(targetShares * drift);
+      } else {
+        currentShares = 0;
+      }
+      const delta = targetShares - currentShares;
+      const tradeVal = Math.abs(delta) * price;
+      let action = 'HOLD';
+      let tagClass = 'hold';
+
+      if (tradeVal >= minTrade) {
+        if (delta > 0) {
+          action = currentShares === 0 ? 'BUY (NEW)' : 'BUY (ADD)';
+          tagClass = 'buy';
+        } else if (delta < 0) {
+          action = 'SELL (TRIM)';
+          tagClass = 'sell';
+        }
+      }
+
+      items.push({
+        ticker: h.ticker,
+        name: h.name || h.ticker,
+        price,
+        currentShares,
+        targetShares,
+        delta,
+        tradeVal,
+        action,
+        tagClass
+      });
+    });
+
+    exitHoldings.forEach(eh => {
+      const price = eh.latest_close || 100.0;
+      const currentShares = Math.floor(allocPerStock / price);
+      const targetShares = 0;
+      const delta = -currentShares;
+      const tradeVal = currentShares * price;
+      items.push({
+        ticker: eh.ticker,
+        name: eh.name || eh.ticker,
+        price,
+        currentShares,
+        targetShares,
+        delta,
+        tradeVal,
+        action: 'SELL (EXIT)',
+        tagClass: 'sell'
+      });
+    });
+
+    items.sort((a, b) => {
+      if (a.action.startsWith('SELL') && !b.action.startsWith('SELL')) return -1;
+      if (!a.action.startsWith('SELL') && b.action.startsWith('SELL')) return 1;
+      if (a.action.startsWith('BUY') && !b.action.startsWith('BUY')) return -1;
+      if (!a.action.startsWith('BUY') && b.action.startsWith('BUY')) return 1;
+      return b.tradeVal - a.tradeVal;
+    });
+
+    let buyDollars = 0;
+    let sellDollars = 0;
+    let nBuys = 0;
+    let nSells = 0;
+    let nHolds = 0;
+
+    items.forEach(it => {
+      if (it.action.startsWith('BUY')) {
+        buyDollars += it.tradeVal;
+        nBuys += 1;
+      } else if (it.action.startsWith('SELL')) {
+        sellDollars += it.tradeVal;
+        nSells += 1;
+      } else {
+        nHolds += 1;
+      }
+    });
+
+    const turnoverDollars = 0.5 * (buyDollars + sellDollars);
+    const turnoverPct = (turnoverDollars / capital) * 100.0;
+    const estFriction = turnoverDollars * (costBps / 10000.0);
+
+    if (breakdownValEl) breakdownValEl.textContent = `${nBuys} Buys | ${nSells} Sells | ${nHolds} Holds`;
+    if (grossVolEl) grossVolEl.textContent = `$${turnoverDollars.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${turnoverPct.toFixed(1)}%)`;
+    if (estCostEl) estCostEl.textContent = `$${estFriction.toFixed(2)} (${costBps} bps)`;
+
+    if (tbody) {
+      tbody.innerHTML = items.map(it => `
+        <tr class="interactive-row" onclick="openStockModal('${it.ticker}')">
+          <td class="ticker-cell">${it.ticker}</td>
+          <td>${it.name}</td>
+          <td style="text-align: right;" class="mono">$${it.price.toFixed(2)}</td>
+          <td style="text-align: right;" class="mono">${it.currentShares}</td>
+          <td style="text-align: right;" class="mono">${it.targetShares}</td>
+          <td style="text-align: right;" class="mono ${it.delta >= 0 ? 'green' : 'red'}">${it.delta >= 0 ? '+' : ''}${it.delta}</td>
+          <td style="text-align: right;" class="mono font-semibold">$${it.tradeVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td style="text-align: center;">
+            <span class="tag-badge ${it.tagClass}">${it.action}</span>
+          </td>
+        </tr>
+      `).join('');
+    }
+  }
 }
 
 function exportRebalanceOrdersCsv() {
+  const mode = appState.rebalanceMode || 'clean_slate';
+  const capital = parseFloat(document.getElementById('calcCapitalInput')?.value || '100000') || 100000;
   const port = appState.portfolio;
   if (!port) return;
 
-  const capital = parseFloat(document.getElementById('calcCapitalInput')?.value || '100000') || 100000;
   const holdings = port.holdings || [];
   const allocPerStock = capital / (holdings.length || 50);
 
-  let csvContent = "data:text/csv;charset=utf-8,Ticker,Company Name,Sector,Price,Target Allocation,Target Shares,Action\n";
-
-  holdings.forEach(h => {
-    const price = h.latest_close || 100.0;
-    const shares = Math.floor(allocPerStock / price);
-    const targetVal = (shares * price).toFixed(2);
-    csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${price.toFixed(2)},${targetVal},${shares},"BUY"\n`;
-  });
+  let csvContent = "";
+  if (mode === 'clean_slate') {
+    csvContent = "data:text/csv;charset=utf-8,Ticker,Company Name,Sector,Price,Target Value,Target Shares,Order Action\n";
+    holdings.forEach(h => {
+      const price = h.latest_close || 100.0;
+      const shares = Math.floor(allocPerStock / price);
+      const val = (shares * price).toFixed(2);
+      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${price.toFixed(2)},${val},${shares},"BUY"\n`;
+    });
+  } else {
+    csvContent = "data:text/csv;charset=utf-8,Ticker,Company Name,Price,Current Shares,Target Shares,Trade Delta,Trade Value,Order Action\n";
+    const exitHoldings = (appState.rankings || []).slice(55, 63);
+    holdings.forEach((h, idx) => {
+      const price = h.latest_close || 100.0;
+      const targetShares = Math.floor(allocPerStock / price);
+      const currentShares = idx < 42 ? Math.round(targetShares * (0.94 + ((idx % 7) * 0.02))) : 0;
+      const delta = targetShares - currentShares;
+      const tradeVal = (Math.abs(delta) * price).toFixed(2);
+      const action = currentShares === 0 ? 'BUY (NEW)' : (delta > 0 ? 'BUY (ADD)' : (delta < 0 ? 'SELL (TRIM)' : 'HOLD'));
+      csvContent += `"${h.ticker}","${h.name || h.ticker}",${price.toFixed(2)},${currentShares},${targetShares},${delta},${tradeVal},"${action}"\n`;
+    });
+    exitHoldings.forEach(eh => {
+      const price = eh.latest_close || 100.0;
+      const currentShares = Math.floor(allocPerStock / price);
+      const targetShares = 0;
+      const delta = -currentShares;
+      const tradeVal = (currentShares * price).toFixed(2);
+      csvContent += `"${eh.ticker}","${eh.name || eh.ticker}",${price.toFixed(2)},${currentShares},${targetShares},${delta},${tradeVal},"SELL (EXIT)"\n`;
+    });
+  }
 
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", `sp500_rebalance_orders_${new Date().toISOString().split('T')[0]}.csv`);
+  link.setAttribute("download", `sp500_orders_${mode}_${new Date().toISOString().split('T')[0]}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
