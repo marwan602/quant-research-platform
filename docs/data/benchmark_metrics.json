@@ -1,0 +1,63 @@
+{
+  "evaluation_period": "January 2024 to August 2026",
+  "holding_period_days": 5,
+  "transaction_cost_bps": 10,
+  "models": [
+    {
+      "id": "transformer",
+      "name": "Attentive Transformer (Production)",
+      "annualized_net_return_pct": 29.05,
+      "annualized_net_vol_pct": 24.45,
+      "net_sharpe": 1.188,
+      "max_drawdown_pct": 25.15,
+      "excess_return_pct": 15.37,
+      "ic_mean": 0.0269,
+      "rank_ic_mean": 0.0227,
+      "rank_ic_ir": 2.058,
+      "pct_positive_days": 53.54,
+      "parameters": 98881
+    },
+    {
+      "id": "alstm",
+      "name": "Attentive LSTM",
+      "annualized_net_return_pct": 24.58,
+      "annualized_net_vol_pct": 23.08,
+      "net_sharpe": 1.065,
+      "max_drawdown_pct": 23.88,
+      "excess_return_pct": 10.9,
+      "ic_mean": 0.026,
+      "rank_ic_mean": 0.0123,
+      "rank_ic_ir": 1.265,
+      "pct_positive_days": 51.73,
+      "parameters": 104513
+    },
+    {
+      "id": "lightgbm",
+      "name": "LightGBM GBDT Baseline",
+      "annualized_net_return_pct": 25.21,
+      "annualized_net_vol_pct": 22.75,
+      "net_sharpe": 1.108,
+      "max_drawdown_pct": 24.33,
+      "excess_return_pct": 11.26,
+      "ic_mean": 0.0152,
+      "rank_ic_mean": 0.0118,
+      "rank_ic_ir": 1.161,
+      "pct_positive_days": 52.94,
+      "parameters": 31000
+    },
+    {
+      "id": "benchmark",
+      "name": "S&P 500 Equal-Weighted Universe",
+      "annualized_net_return_pct": 13.69,
+      "annualized_net_vol_pct": 12.94,
+      "net_sharpe": 1.058,
+      "max_drawdown_pct": 15.79,
+      "excess_return_pct": 0.0,
+      "ic_mean": null,
+      "rank_ic_mean": null,
+      "rank_ic_ir": null,
+      "pct_positive_days": null,
+      "parameters": 0
+    }
+  ]
+}

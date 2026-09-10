@@ -1,5 +1,6 @@
-# Data files (keep raw & processed data local)
-data/
+# Data files (keep raw & processed data local/private)
+/data/
+!docs/data/
 *.parquet
 *.csv
 
