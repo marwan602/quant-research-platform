@@ -165,6 +165,29 @@ py -3.11 -m src.inference --as-of-date 2026-09-10 --top-n 10
 ```
 The inference pipeline loads trailing 120-day constituent bars, computes Alpha158 factor sequences, evaluates the trained Transformer checkpoint, and outputs top-decile long targets alongside portfolio rebalance weights.
 
+### 7. Daily Production Runner
+Automate the post-close market ingestion (via Polygon.io or local store), factor engineering, CPU Transformer inference (~15 seconds), and state payload serialization:
+```powershell
+py -3.11 scripts/daily_update.py --provider polygon
+```
+This updates the price store and outputs live JSON payloads to `reports/live/`:
+* `rankings.json`: Ranked forecasts and deciles for all active S&P 500 constituents.
+* `portfolio.json`: Top-decile target weights and long/short constituent buckets.
+* `system_status.json`: Sync timestamp, active constituent count, and pipeline execution health.
+
+### 8. Production REST API
+Serve real-time research outputs, portfolio rebalancing simulations, and cross-model performance benchmarks:
+```powershell
+uvicorn src.api.app:app --host 0.0.0.0 --port 8000
+```
+Available endpoints:
+* `GET /health`: Health probe.
+* `GET /api/v1/system/status`: Pipeline health, active model, and last synchronization date.
+* `GET /api/v1/rankings/latest?top_k=10&bottom_k=10`: Top-K and bottom-K ranked stock return predictions.
+* `GET /api/v1/portfolio/current`: Current top-decile target portfolio weights.
+* `POST /api/v1/portfolio/rebalance`: Calculates execution orders (BUY/SELL, trade dollar values) from current client holdings.
+* `GET /api/v1/models/benchmark`: Out-of-sample Sharpe ratio, Rank IC, and drawdown metrics across LightGBM, ALSTM, and Transformer.
+
 ---
 
 ## Acknowledgments & Licensing
