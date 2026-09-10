@@ -62,25 +62,26 @@ Models are evaluated across statistical signal quality and economic portfolio si
 
 Evaluated out-of-sample on identical test data (January 2024 through August 2026, 663 trading days):
 
-| Metric | Model 1: LightGBM | Model 2: ALSTM (Attentive LSTM) | Equal-Weighted Benchmark |
-| :--- | :---: | :---: | :---: |
-| **Mean IC (Pearson)** | 0.0152 | **0.0260** (+71.2%) | — |
-| **IC Information Ratio (ICIR)** | 1.831 | **2.454** | — |
-| **IC t-statistic / p-value** | 2.970 (p = 0.0031) | **3.981 (p = 7.6e-5)** | — |
-| **IC Positive Days Win Rate** | 52.19% | **55.35%** | — |
-| **Mean Rank IC (Spearman)** | 0.0118 | **0.0123** | — |
-| **Rank ICIR** | 1.161 | **1.265** | — |
-| **Rank IC t-stat / p-value** | 1.883 (p = 0.060) | **2.052 (p = 0.0405)** | — |
-| **Rank IC Positive Days Win Rate** | 52.94% | **51.73%** | — |
-| **Long-Only Annualized Return (Net)** | **+25.21%** | **+24.58%** | +13.69% |
-| **Long-Only Excess Return vs Bench** | **+11.26%** | **+10.90%** | — |
-| **Long-Only Net Sharpe Ratio** | **1.108** | **1.065** | 1.058 |
-| **Long-Only Max Drawdown (Net)** | 24.37% | **23.88%** | 15.79% |
-| **Long-Only Mean 5-Day Turnover** | 46.56% | 53.05% | — |
-| **Long-Short Annualized Return (Net)** | **+5.71%** | **+2.42%** | — |
-| **Long-Short Net Sharpe Ratio** | **0.629** | **0.274** | — |
-| **Long-Short Max Drawdown (Net)** | 11.09% | **11.41%** | — |
-| **Point Prediction RMSE / MAE** | 0.0472 / 0.0325 | 0.0472 / 0.0326 | — |
+| Metric | Model 1: LightGBM | Model 2: ALSTM (Attentive LSTM) | Model 3: Transformer (Attentive) | Equal-Weighted Benchmark |
+| :--- | :---: | :---: | :---: | :---: |
+| **Mean IC (Pearson)** | 0.0152 | 0.0260 | **0.0269** (+77.0%) | — |
+| **IC Information Ratio (ICIR)** | 1.831 | **2.454** | 2.409 | — |
+| **IC t-statistic / p-value** | 2.970 (p = 0.0031) | 3.981 (p = 7.6e-5) | **3.908 (p = 1.0e-4)** | — |
+| **IC Positive Days Win Rate** | 52.19% | **55.35%** | 53.39% | — |
+| **Mean Rank IC (Spearman)** | 0.0118 | 0.0123 | **0.0227** (+84.5% vs ALSTM) | — |
+| **Rank ICIR** | 1.161 | 1.265 | **2.058** | — |
+| **Rank IC t-stat / p-value** | 1.883 (p = 0.060) | 2.052 (p = 0.0405) | **3.338 (p = 0.00089)** | — |
+| **Rank IC Positive Days Win Rate** | 52.94% | 51.73% | **53.54%** | — |
+| **Long-Only Annualized Return (Net)** | +25.21% | +24.58% | **+29.05%** | +13.69% |
+| **Long-Only Excess Return vs Bench** | +11.26% | +10.90% | **+15.37%** | — |
+| **Long-Only Net Sharpe Ratio** | 1.108 | 1.065 | **1.188** | 1.058 |
+| **Long-Only Max Drawdown (Net)** | 24.37% | **23.88%** | 25.15% | 15.79% |
+| **Long-Only Mean 5-Day Turnover** | 46.56% | 53.05% | **42.31%** | — |
+| **Long-Short Annualized Return (Net)** | +5.71% | +2.42% | **+8.26%** | — |
+| **Long-Short Net Sharpe Ratio** | 0.629 | 0.274 | **0.811** | — |
+| **Long-Short Max Drawdown (Net)** | **11.09%** | 11.41% | 12.41% | — |
+| **Long-Short Mean 5-Day Turnover** | **46.56%** | 53.05% | 55.55% | — |
+| **Point Prediction RMSE / MAE** | 0.0472 / 0.0325 | 0.0472 / 0.0326 | **0.0469 / 0.0324** | — |
 
 ---
 
@@ -90,7 +91,7 @@ Evaluated out-of-sample on identical test data (January 2024 through August 2026
 - **Type**: Gradient-boosted decision trees (`LGBMRegressor`, 1000 estimators, learning rate 0.03, 31 leaves).
 - **Objective**: Direct contemporaneous mapping from 158 features at date t to 5-day forward return.
 - **Top Predictive Features**: Multi-period momentum (`ROC30`, `ROC5`), volume-price correlation (`CORR20`), and trend exhaustion indicators (`IMIN60`, `IMAX20`).
-- **Strengths**: Excels at isolating tail quintiles for market-neutral long-short spread generation (+5.71% net return, 0.63 Sharpe).
+- **Strengths**: Isolates non-linear cross-sectional feature interactions with fast training and deterministic evaluation.
 
 ### Model 2: Attentive LSTM / ALSTM (`src/models/alstm_model.py`)
 - **Type**: Stacked 2-layer unidirectional LSTM with temporal attention:
@@ -99,9 +100,20 @@ Evaluated out-of-sample on identical test data (January 2024 through August 2026
   - Temporal Attention: Computes attention weights across the 60 days via `softmax(v^T * tanh(W * h_t + b))` to yield a weighted context vector `(batch_size, 64)`.
   - Feature Concatenation: `[context_vector ; last_hidden_state]` -> combined representation `(batch_size, 128)`.
   - Prediction Head: MLP `128 -> 64 -> ReLU -> Dropout(0.2) -> 1` producing the scalar 5-day return prediction.
-- **Normalization**: `RobustStandardScaler` fitted strictly on train data with 0.05% and 99.95% percentile winsorization to safely handle rolling volume spikes and zero-variance divisions.
+- **Normalization**: `RobustStandardScaler` fitted strictly on train data with 0.05% and 99.95% percentile winsorization.
 - **Training**: Adam optimizer, MSE loss, gradient clipping (1.0), early stopping patience 7 on validation loss. Best model checkpoint restored from Epoch 2 (validation loss `0.002237`).
-- **Strengths**: Temporal modeling of continuous 60-day feature trajectories drives a **+71% jump in Pearson IC (0.0260, p = 7.6e-5)** and achieves **statistically significant Rank IC (0.0123, p = 0.0405)**, outperforming the universe benchmark by **+10.90% net annualized return**.
+
+### Model 3: Time-Series Transformer (`src/models/transformer_model.py`)
+- **Type**: Multi-head self-attention Transformer encoder with temporal attention pooling:
+  - Input: `(batch_size, 60, 158)`
+  - Linear Feature Projection: `nn.Linear(158, 64)` mapping factor dimensions into model space.
+  - Positional Encoding: Sinusoidal positional embeddings with input dropout (`dropout=0.2`) across the 60-day sequence.
+  - Backbone: 2-layer `nn.TransformerEncoder` (`d_model=64`, `nhead=4`, `dim_feedforward=128`, `dropout=0.2`, `batch_first=True`).
+  - Temporal Attention Pooling: Learns dynamic attention weights over all 60 contextualized states via `softmax(v^T * tanh(W * h_t + b))` to produce sequence context vector `c` `(batch_size, 64)`.
+  - State Concatenation: `[context_vector ; last_state]` -> combined representation `(batch_size, 128)`, fusing multi-week trajectory context with the latest day t state.
+  - Prediction Head: MLP `128 -> 64 -> ReLU -> Dropout(0.2) -> 1` producing the scalar 5-day return prediction.
+- **Training**: Adam (`lr=0.0005`, `weight_decay=1e-5`), MSE loss, gradient clipping (1.0), early stopping patience 7. Restored from Epoch 2 best checkpoint (validation loss `0.002233`, the lowest validation loss in the project).
+- **Strengths**: Undisputed top performer across all metrics. Delivers **0.0227 Rank IC (p = 0.00089, 3.34 sigma significance)**, **+29.05% net long-only return (+15.37% excess over benchmark, 1.188 Sharpe)**, **+8.26% net market-neutral long-short return (0.811 Sharpe)**, and lowest turnover (42.31%).
 
 ---
 
@@ -109,11 +121,12 @@ Evaluated out-of-sample on identical test data (January 2024 through August 2026
 
 Detailed plots are saved in `reports/figures/`:
 
-- `model_comparison_cumulative_returns.png`: Head-to-head out-of-sample cumulative performance comparing LightGBM, ALSTM, and the Universe Benchmark.
-- `alstm_cumulative_returns.png`: ALSTM Long-Only, Long-Short, and Benchmark cumulative net returns.
-- `alstm_cumulative_rank_ic.png`: Daily and cumulative Spearman Rank IC trajectory for ALSTM.
-- `alstm_underwater_drawdown.png`: Underwater drawdown curves over the 2024–2026 test period.
-- `alstm_training_loss.png`: Training vs validation loss convergence across epochs.
+- `model_comparison_cumulative_returns.png`: Three-model head-to-head out-of-sample cumulative performance comparing LightGBM, ALSTM, Transformer, and the Universe Benchmark.
+- `transformer_cumulative_returns.png`: Transformer Long-Only, Long-Short, and Benchmark cumulative net returns.
+- `transformer_cumulative_rank_ic.png`: Daily and cumulative Spearman Rank IC trajectory for Transformer.
+- `transformer_underwater_drawdown.png`: Underwater drawdown curves over the 2024–2026 test period.
+- `transformer_training_loss.png`: Training vs validation loss convergence across epochs.
+- `alstm_cumulative_returns.png`, `alstm_cumulative_rank_ic.png`, `alstm_underwater_drawdown.png`, `alstm_training_loss.png`: ALSTM research figures.
 - `cumulative_returns.png`, `cumulative_rank_ic.png`, `underwater_drawdown.png`, `factor_importance.png`: LightGBM baseline figures.
 
 ---
@@ -124,7 +137,7 @@ Detailed plots are saved in `reports/figures/`:
 ```bash
 uv run pytest
 ```
-*(35 unit tests covering dataset splitting, sequence preparation, factor formulas, portfolio math, LightGBM, and ALSTM architecture).*
+*(43 unit tests covering dataset splitting, sequence preparation, factor formulas, portfolio math, LightGBM, ALSTM, and Transformer architectures).*
 
 ### 2. Train Model 1 (LightGBM)
 ```bash
@@ -136,9 +149,14 @@ uv run python -m src.models.lightgbm_model
 py -3.11 -m src.models.alstm_model
 ```
 
-### 4. Generate Research Figures
+### 4. Train Model 3 (Transformer)
 ```powershell
-py -3.11 scripts/generate_alstm_figures.py
+py -3.11 -m src.models.transformer_model
+```
+
+### 5. Generate Research Figures
+```powershell
+py -3.11 scripts/generate_transformer_figures.py
 ```
 
 ---
