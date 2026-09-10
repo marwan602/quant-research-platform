@@ -1,0 +1,83 @@
+name: Daily Quantitative Research Pipeline
+
+on:
+  schedule:
+    # 5:00 PM EST (21:00 UTC), Monday through Friday after US market close
+    - cron: '0 21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: 'Target Date (YYYY-MM-DD), leave blank for today'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  daily-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Public Platform Repo
+        uses: actions/checkout@v4
+        with:
+          path: platform
+          fetch-depth: 1
+
+      - name: Checkout Private Data Repo
+        uses: actions/checkout@v4
+        with:
+          repository: marwan602/quant-data-private
+          token: ${{ secrets.DATA_REPO_TOKEN }}
+          path: platform/data
+          fetch-depth: 1
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: platform/pyproject.toml
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install platform/
+
+      - name: Execute Daily Update Pipeline
+        working-directory: platform
+        env:
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+        run: |
+          TARGET_ARG=""
+          if [ -n "${{ github.event.inputs.target_date }}" ]; then
+            TARGET_ARG="--target-date ${{ github.event.inputs.target_date }}"
+          fi
+          python scripts/daily_update.py --provider polygon $TARGET_ARG
+
+      - name: Commit & Push Updated Private Data
+        working-directory: platform/data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add raw/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): daily market sync [skip ci]"
+            git push origin HEAD:main
+          else
+            echo "No new market data to commit in private store."
+          fi
+
+      - name: Commit & Push Live Reports to Public Platform
+        working-directory: platform
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/live/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(live): update rankings, portfolio, and status [skip ci]"
+            git push origin HEAD:main
+          else
+            echo "No live reports changes to commit."
+          fi
