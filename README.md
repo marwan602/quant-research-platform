@@ -4,13 +4,12 @@ An institutional-grade research platform for predicting 5-day forward returns ac
 
 ---
 
-## Data & Survivorship Bias Prevention
+## Data & Universe Construction
 
-The underlying price and membership dataset spans January 2015 through August 2026 across 745 unique historical constituents:
+The dataset covers daily trading activity from January 2015 onwards across historical and active constituents:
 
-- **Point-in-Time Index Composition**: Reconstructed daily from corporate actions and historical index changes. Acquired, merged, and delisted companies are preserved throughout their active index tenure, preventing survivorship bias.
-- **Price History & Backfilling**: OHLCV data was acquired from Yahoo Finance and backfilled for delisted/acquired tickers via the Tiingo API (achieving 98.5% historical constituent price coverage).
-- **Storage**: Raw data resides in `data/raw/` (`s_and_p_500_daily_composition.parquet` and `s_and_p_500_prices.parquet`).
+- **Point-in-Time Index Composition**: Reconstructed daily from historical index changes. Acquired, merged, and delisted companies are tracked throughout their active index tenure to address survivorship bias.
+- **Price History**: Daily OHLCV bars stored locally in `data/raw/` (`s_and_p_500_daily_composition.parquet` and `s_and_p_500_prices.parquet`).
 
 ---
 
@@ -113,7 +112,7 @@ Evaluated out-of-sample on identical test data (January 2024 through August 2026
   - State Concatenation: `[context_vector ; last_state]` -> combined representation `(batch_size, 128)`, fusing multi-week trajectory context with the latest day t state.
   - Prediction Head: MLP `128 -> 64 -> ReLU -> Dropout(0.2) -> 1` producing the scalar 5-day return prediction.
 - **Training**: Adam (`lr=0.0005`, `weight_decay=1e-5`), MSE loss, gradient clipping (1.0), early stopping patience 7. Restored from Epoch 2 best checkpoint (validation loss `0.002233`, the lowest validation loss in the project).
-- **Strengths**: Undisputed top performer across all metrics. Delivers **0.0227 Rank IC (p = 0.00089, 3.34 sigma significance)**, **+29.05% net long-only return (+15.37% excess over benchmark, 1.188 Sharpe)**, **+8.26% net market-neutral long-short return (0.811 Sharpe)**, and lowest turnover (42.31%).
+- **Performance**: Yields the highest rank correlation and risk-adjusted excess returns among the evaluated models, delivering **0.0227 Rank IC (p = 0.00089)**, **+29.05% net long-only return (+15.37% excess over benchmark, 1.188 Sharpe)**, **+8.26% net market-neutral long-short return (0.811 Sharpe)**, and a 42.31% 5-day turnover.
 
 ---
 
@@ -137,7 +136,7 @@ Detailed plots are saved in `reports/figures/`:
 ```bash
 uv run pytest
 ```
-*(43 unit tests covering dataset splitting, sequence preparation, factor formulas, portfolio math, LightGBM, ALSTM, and Transformer architectures).*
+*(51 unit and regression tests covering dataset splitting, sequence preparation, factor formulas, portfolio math, model architectures, data providers, and the inference pipeline).*
 
 ### 2. Train Model 1 (LightGBM)
 ```bash
@@ -158,6 +157,13 @@ py -3.11 -m src.models.transformer_model
 ```powershell
 py -3.11 scripts/generate_transformer_figures.py
 ```
+
+### 6. Real-Time Inference
+Generate 5-day forward return forecasts and portfolio allocations for current index constituents:
+```powershell
+py -3.11 -m src.inference --as-of-date 2026-09-10 --top-n 10
+```
+The inference pipeline loads trailing 120-day constituent bars, computes Alpha158 factor sequences, evaluates the trained Transformer checkpoint, and outputs top-decile long targets alongside portfolio rebalance weights.
 
 ---
 
