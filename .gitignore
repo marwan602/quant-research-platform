@@ -14,10 +14,8 @@ __pycache__/
 .env*.local
 !.env.example
 
-# Model weights & training outputs
-models/*.pt
-models/*.txt
-models/*.pkl
+# Model training logs & temporary scratch files
+models/*_tmp*
 *.log
 
 # OS generated
