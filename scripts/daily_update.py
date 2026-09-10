@@ -15,6 +15,7 @@ from src.inference import InferenceEngine, PortfolioConstructor
 from src.providers.base import LocalProvider, UniverseProvider, YahooProvider
 from src.providers.polygon import PolygonProvider
 from src.providers.store import RollingPriceStore
+from src.tracker import update_forward_tracking, update_prediction_archive
 
 
 def _resolve_path(path: str | Path) -> Path:
@@ -136,6 +137,8 @@ def run_daily_update(
     rankings_file = resolved_out_dir / "rankings.json"
     portfolio_file = resolved_out_dir / "portfolio.json"
     status_file = resolved_out_dir / "system_status.json"
+    archive_file = resolved_out_dir / "prediction_archive.json"
+    tracking_file = resolved_out_dir / "forward_tracking.json"
 
     with open(rankings_file, "w", encoding="utf-8") as f:
         json.dump(rankings_payload, f, indent=2)
@@ -146,6 +149,21 @@ def run_daily_update(
     with open(status_file, "w", encoding="utf-8") as f:
         json.dump(system_status_payload, f, indent=2)
 
+    archive_data = update_prediction_archive(
+        archive_file=archive_file,
+        new_rankings=rankings_payload["rankings"],
+        as_of_date=date_str,
+        store_df=store._df,
+        forward_days=5,
+    )
+
+    update_forward_tracking(
+        tracking_file=tracking_file,
+        archive=archive_data,
+        store_df=store._df,
+        deployment_date="2026-09-10",
+    )
+
     return {
         "status": "success",
         "date": date_str,
@@ -154,6 +172,8 @@ def run_daily_update(
         "rankings_file": str(rankings_file),
         "portfolio_file": str(portfolio_file),
         "status_file": str(status_file),
+        "archive_file": str(archive_file),
+        "tracking_file": str(tracking_file),
     }
 
 
