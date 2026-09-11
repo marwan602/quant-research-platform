@@ -27,14 +27,15 @@ async function loadJson(url) {
 }
 
 async function initApp() {
-  const [status, forward, rankings, portfolio, archive, backtest, benchmarks] = await Promise.all([
+  const [status, forward, rankings, portfolio, archive, backtest, benchmarks, companyMeta] = await Promise.all([
     loadJson('data/system_status.json'),
     loadJson('data/forward_tracking.json'),
     loadJson('data/rankings.json'),
     loadJson('data/portfolio.json'),
     loadJson('data/prediction_archive.json'),
     loadJson('data/backtest_series.json'),
-    loadJson('data/benchmark_metrics.json')
+    loadJson('data/benchmark_metrics.json'),
+    loadJson('data/company_meta.json')
   ]);
 
   appState.status = status;
@@ -44,6 +45,7 @@ async function initApp() {
   appState.archive = archive;
   appState.backtest = backtest;
   appState.benchmarks = benchmarks;
+  appState.companyMeta = companyMeta || {};
 
   setupNavigation();
   renderOverview();
@@ -92,7 +94,29 @@ function renderOverview() {
   const sig = f.signal_metrics || {};
   const port = f.portfolio_metrics || {};
   const stat = appState.status || {};
+  const bm = appState.benchmarks || {};
+  const tf = (bm.models || []).find(m => m.id === 'transformer');
+  const sp = (bm.models || []).find(m => m.id === 'benchmark');
 
+  // Historical Out-of-Sample backtest dynamic binding
+  if (tf) {
+    const histRetEl = document.getElementById('histModelReturn');
+    if (histRetEl) histRetEl.textContent = `+${tf.annualized_net_return_pct.toFixed(2)}%`;
+    const histSharpeEl = document.getElementById('histNetSharpe');
+    if (histSharpeEl) histSharpeEl.textContent = tf.net_sharpe.toFixed(3);
+    const histDdEl = document.getElementById('histMaxDrawdown');
+    if (histDdEl) histDdEl.textContent = `−${tf.max_drawdown_pct.toFixed(2)}%`;
+    const histIcirEl = document.getElementById('histRankIcir');
+    if (histIcirEl) histIcirEl.textContent = tf.rank_ic_ir !== null ? tf.rank_ic_ir.toFixed(3) : 'N/A';
+    const histRankIcEl = document.getElementById('histMeanRankIc');
+    if (histRankIcEl) histRankIcEl.textContent = tf.rank_ic_mean !== null ? tf.rank_ic_mean.toFixed(4) : 'N/A';
+  }
+  if (sp) {
+    const histBenchEl = document.getElementById('histBenchReturn');
+    if (histBenchEl) histBenchEl.textContent = `+${sp.annualized_net_return_pct.toFixed(2)}%`;
+  }
+
+  // Live Forward Tracking dynamic binding
   const totalForecastsEl = document.getElementById('trackTotalForecasts');
   if (totalForecastsEl) {
     totalForecastsEl.textContent = sig.total_forecasts !== undefined ? sig.total_forecasts : (appState.rankings ? appState.rankings.length : 501);
@@ -101,6 +125,33 @@ function renderOverview() {
   const resForecastsEl = document.getElementById('trackResolvedForecasts');
   if (resForecastsEl) {
     resForecastsEl.textContent = sig.resolved_forecasts !== undefined ? sig.resolved_forecasts : 0;
+  }
+
+  const netRetEl = document.getElementById('trackNetReturn');
+  if (netRetEl) {
+    if (sig.resolved_forecasts && sig.resolved_forecasts > 0) {
+      const netRet = port.model_cumulative_return_pct !== undefined ? port.model_cumulative_return_pct : 0.0;
+      const isPos = netRet >= 0;
+      netRetEl.textContent = `${isPos ? '+' : '−'}${Math.abs(netRet).toFixed(2)}%`;
+      netRetEl.className = `metric-num font-semibold ${isPos ? 'pos-return' : 'neg-return'}`;
+    } else {
+      netRetEl.textContent = 'Active (0.0%)';
+      netRetEl.className = 'metric-num font-semibold';
+    }
+  }
+
+  const dirAccEl = document.getElementById('trackDirAccuracy');
+  if (dirAccEl) {
+    dirAccEl.textContent = sig.mean_directional_accuracy !== null && sig.mean_directional_accuracy !== undefined
+      ? `${(sig.mean_directional_accuracy * 100).toFixed(1)}%`
+      : 'Evaluating';
+  }
+
+  const sharpeEl = document.getElementById('trackSharpe');
+  if (sharpeEl) {
+    sharpeEl.textContent = port.realized_sharpe !== null && port.realized_sharpe !== undefined
+      ? port.realized_sharpe.toFixed(2)
+      : 'Evaluating';
   }
 
   const ddEl = document.getElementById('trackDrawdown');
@@ -544,7 +595,9 @@ function computeTargetDate(dateStr, addDays) {
 
 function lookupCompanyName(ticker) {
   const found = appState.rankings.find(x => x.ticker === ticker);
-  return found ? (found.name || ticker) : ticker;
+  if (found && found.name) return found.name;
+  if (appState.companyMeta && appState.companyMeta[ticker]?.name) return appState.companyMeta[ticker].name;
+  return ticker;
 }
 
 function renderPortfolio() {
@@ -653,6 +706,12 @@ function calculateAndRenderOrders() {
 
   const holdings = port.holdings || [];
   const count = holdings.length || 50;
+  const allocPerStock = capital / count;
+
+  const allocPerStockEl = document.getElementById('calcAllocPerStock');
+  if (allocPerStockEl) {
+    allocPerStockEl.textContent = `$${allocPerStock.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
 
   const grossVolEl = document.getElementById('calcGrossVolume');
   const estCostEl = document.getElementById('calcEstCost');
@@ -1138,7 +1197,8 @@ window.openStockModal = function(ticker) {
   document.getElementById('modalTicker').textContent = item.ticker;
   document.getElementById('modalName').textContent = item.name || item.ticker;
   document.getElementById('modalSector').textContent = item.sector || 'Unclassified';
-  document.getElementById('modalSubIndustry').textContent = item.sub_industry || 'General';
+  const subIndustry = item.sub_industry || (appState.companyMeta && appState.companyMeta[item.ticker]?.sub_industry) || 'General';
+  document.getElementById('modalSubIndustry').textContent = subIndustry;
 
   const retEl = document.getElementById('modalReturn');
   const isPos = item.pred_return_pct >= 0;

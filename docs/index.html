@@ -181,6 +181,10 @@
               <span class="line-val mono" id="calcTargetPositionsCount">50 Equities</span>
             </div>
             <div class="summary-line">
+              <span class="line-label">Capital / Position</span>
+              <span class="line-val mono" id="calcAllocPerStock">$2,000.00</span>
+            </div>
+            <div class="summary-line">
               <span class="line-label" id="calcTradeBreakdownLabel">Order Breakdown</span>
               <span class="line-val mono" id="calcTradeBreakdownVal">50 Buys</span>
             </div>
@@ -247,20 +251,28 @@
           <div class="block-title">January 2024 to August 2026 (663 Sessions)</div>
           <div class="metrics-row">
             <div class="metric-cell">
-              <span class="metric-num font-semibold">+29.05%</span>
-              <span class="metric-desc">Net Annualized Return (vs +13.69% Benchmark)</span>
+              <span class="metric-num font-semibold" id="histModelReturn">+29.05%</span>
+              <span class="metric-desc">Net Annualized Return (vs <span id="histBenchReturn">+13.69%</span>)</span>
             </div>
             <div class="metric-cell">
-              <span class="metric-num">1.188</span>
-              <span class="metric-desc">Net Sharpe Ratio (vs 1.058 Benchmark)</span>
+              <span class="metric-num" id="histNetSharpe">1.188</span>
+              <span class="metric-desc">Net Sharpe Ratio (vs 1.058)</span>
             </div>
             <div class="metric-cell">
-              <span class="metric-num">−25.20%</span>
-              <span class="metric-desc">Max Drawdown (vs −15.79% Benchmark)</span>
+              <span class="metric-num" id="histMaxDrawdown">−25.15%</span>
+              <span class="metric-desc">Max Drawdown (vs −15.79%)</span>
             </div>
             <div class="metric-cell">
-              <span class="metric-num">42.31%</span>
-              <span class="metric-desc">Mean 5-Day Turnover (10 bps friction applied)</span>
+              <span class="metric-num" id="histRankIcir">2.058</span>
+              <span class="metric-desc">Rank ICIR (vs 1.161 GBDT)</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num" id="histMeanRankIc">0.0227</span>
+              <span class="metric-desc">Mean Daily Rank IC</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num" id="histTurnover">42.31%</span>
+              <span class="metric-desc">Mean 5-Day Turnover (10 bps)</span>
             </div>
           </div>
         </div>
@@ -271,20 +283,31 @@
           <div class="metrics-row">
             <div class="metric-cell">
               <span class="metric-num font-semibold" id="trackTotalForecasts">501</span>
-              <span class="metric-desc">Forecasts Deployed at Inception</span>
+              <span class="metric-desc">Forecasts Deployed</span>
             </div>
             <div class="metric-cell">
               <span class="metric-num" id="trackResolvedForecasts">0</span>
               <span class="metric-desc">Resolved 5-Day Cycles</span>
             </div>
             <div class="metric-cell">
+              <span class="metric-num font-semibold" id="trackNetReturn">Active (0.0%)</span>
+              <span class="metric-desc">Realized Net Return</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num" id="trackDirAccuracy">Evaluating</span>
+              <span class="metric-desc">Directional Accuracy</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num" id="trackSharpe">Evaluating</span>
+              <span class="metric-desc">Realized Sharpe Ratio</span>
+            </div>
+            <div class="metric-cell">
               <span class="metric-num" id="trackDrawdown">0.00%</span>
               <span class="metric-desc">Live Forward Drawdown</span>
             </div>
-            <div class="metric-cell">
-              <span class="metric-num mono" id="liveResolutionDate">Sep 17, 2026</span>
-              <span class="metric-desc">First 5-Day Holding Cycle Matures</span>
-            </div>
+          </div>
+          <div style="margin-top: 14px; font-size: 11.5px; color: var(--text-muted);">
+            Holding Cycle Status: First 5-day cycle matures on <span id="liveResolutionDate" class="mono font-semibold" style="color: var(--text-primary);">Sep 17, 2026</span>
           </div>
         </div>
       </div>
