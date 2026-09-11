@@ -1,7 +1,7 @@
 # S&P 500 Quantitative Research Platform
 
 [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-GitHub_Pages-blue?style=flat-square)](https://marwan602.github.io/quant-research-platform/)
-[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 A quantitative research platform for 5-day cross-sectional S&P 500 return prediction using point-in-time index membership, Microsoft Qlib's Alpha158 factor suite adapted to US equities, and reproducible machine learning & deep learning architectures.
@@ -151,30 +151,30 @@ uv run python -m src.models.lightgbm_model
 
 ### 3. Train Model 2 (ALSTM)
 ```powershell
-py -3.11 -m src.models.alstm_model
+python -m src.models.alstm_model
 ```
 
 ### 4. Train Model 3 (Transformer)
 ```powershell
-py -3.11 -m src.models.transformer_model
+python -m src.models.transformer_model
 ```
 
 ### 5. Generate Research Figures
 ```powershell
-py -3.11 scripts/generate_transformer_figures.py
+python scripts/generate_transformer_figures.py
 ```
 
 ### 6. Real-Time Inference
 Generate 5-day forward return forecasts and portfolio allocations for current index constituents:
 ```powershell
-py -3.11 -m src.inference --as-of-date 2026-09-10 --top-n 10
+python -m src.inference --as-of-date 2026-09-10 --top-n 10
 ```
 The inference pipeline loads trailing 120-day constituent bars, computes Alpha158 factor sequences, evaluates the trained Transformer checkpoint, and outputs top-decile long targets alongside portfolio rebalance weights.
 
 ### 7. Daily Production Runner
 Automate the post-close market ingestion (via Polygon.io or local store), factor engineering, CPU Transformer inference (~15 seconds), and state payload serialization:
 ```powershell
-py -3.11 scripts/daily_update.py --provider polygon
+python scripts/daily_update.py --provider polygon
 ```
 This updates the price store and outputs live JSON payloads to `reports/live/`:
 * `rankings.json`: Ranked forecasts and deciles for all active S&P 500 constituents.

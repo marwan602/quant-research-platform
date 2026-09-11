@@ -150,7 +150,7 @@ def update_forward_tracking(
     archive: dict,
     store_df: pd.DataFrame | None = None,
     deployment_date: str = "2026-09-10",
-    cost_bps: float = 15.0,
+    cost_bps: float = 10.0,
 ) -> dict:
     resolved_path = _resolve_path(tracking_file)
     dep_dt = pd.to_datetime(deployment_date)

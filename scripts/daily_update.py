@@ -189,6 +189,7 @@ def run_daily_update(
         archive=archive_data,
         store_df=store._df,
         deployment_date="2026-09-10",
+        cost_bps=10.0,
     )
 
     from scripts.build_dashboard_data import generate_all_dashboard_data

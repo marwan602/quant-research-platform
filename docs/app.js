@@ -176,9 +176,11 @@ function renderOverview() {
   if (liveResDateEl) {
     let resDate = 'Sep 17, 2026';
     if (appState.archive && appState.archive.dates) {
-      const dates = Object.values(appState.archive.dates);
-      if (dates.length > 0 && dates[0].target_resolution_date) {
-        resDate = dates[0].target_resolution_date;
+      const pendingDates = Object.values(appState.archive.dates)
+        .filter(d => d.status === 'pending' && d.target_resolution_date)
+        .sort((a, b) => a.target_resolution_date.localeCompare(b.target_resolution_date));
+      if (pendingDates.length > 0) {
+        resDate = pendingDates[0].target_resolution_date;
       }
     }
     liveResDateEl.textContent = resDate;
@@ -950,13 +952,15 @@ function exportRebalanceOrdersCsv() {
     });
   }
 
-  const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
+  link.setAttribute("href", url);
   link.setAttribute("download", `sp500_orders_${mode}_${asOf}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function renderResearch() {
