@@ -52,6 +52,14 @@ async function initApp() {
   appState.benchmarks = benchmarks;
   appState.companyMeta = companyMeta || {};
 
+  if (!status || !rankings || !portfolio || !backtest) {
+    const banner = document.getElementById('dataLoadErrorBanner');
+    if (banner) {
+      banner.style.display = 'block';
+    }
+    return;
+  }
+
   initUserHoldings();
 
   setupNavigation();
@@ -860,156 +868,17 @@ function setupSectorChart(sectors) {
    PURE REBALANCING MATHEMATICS & HOLDINGS ENGINE (Decoupled from DOM)
    ========================================================================= */
 
-function computeDrawdownSeries(cumReturns) {
-  if (!cumReturns || cumReturns.length === 0) return [];
-  let peak = 1.0;
-  return cumReturns.map(r => {
-    const currentNav = 1.0 + (Number(r) / 100.0);
-    if (currentNav > peak) peak = currentNav;
-    return peak > 0 ? Number((((currentNav - peak) / peak) * 100.0).toFixed(2)) : 0.0;
-  });
-}
+/* =========================================================================
+   REBALANCE LOGIC ENGINE
+   Pure mathematical functions are loaded from rebalance.js:
+   - computeDrawdownSeries
+   - parseHoldingsInput
+   - classifyOrder
+   - calculateRebalanceOrders
+   - calculateRebalanceMetrics
+   Actions: HOLD (NO CHANGE), HOLD (BELOW MIN), BUY (NEW), BUY (ADD), SELL (TRIM), SELL (EXIT)
+   ========================================================================= */
 
-function parseHoldingsInput(rawText) {
-  if (!rawText || !rawText.trim()) {
-    return { holdings: {}, totalWeight: 0.0, count: 0 };
-  }
-  const lines = rawText.trim().split(/\r?\n/);
-  const holdings = {};
-  let totalWeight = 0.0;
-
-  lines.forEach(line => {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('//')) return;
-    const parts = trimmed.split(/[,:\t\s]+/).filter(Boolean);
-    if (parts.length >= 2) {
-      const ticker = parts[0].toUpperCase().trim();
-      let weightStr = parts[1].replace('%', '').trim();
-      let weightVal = parseFloat(weightStr);
-      if (!isNaN(weightVal) && weightVal >= 0) {
-        if (weightVal > 1.0 || parts[1].includes('%')) {
-          weightVal = weightVal / 100.0;
-        }
-        holdings[ticker] = weightVal;
-        totalWeight += weightVal;
-      }
-    }
-  });
-
-  return {
-    holdings,
-    totalWeight,
-    count: Object.keys(holdings).length
-  };
-}
-
-function classifyOrder(targetWeight, currentWeight, deltaWeight, tradeVal, minTrade) {
-  if (Math.abs(deltaWeight) < 1e-5) {
-    return 'HOLD (NO CHANGE)';
-  }
-  if (tradeVal < minTrade) {
-    return 'HOLD (BELOW MIN)';
-  }
-  if (targetWeight > 0 && currentWeight === 0) {
-    return 'BUY (NEW)';
-  }
-  if (targetWeight > 0 && currentWeight > 0 && deltaWeight > 0) {
-    return 'BUY (ADD)';
-  }
-  if (targetWeight > 0 && currentWeight > 0 && deltaWeight < 0) {
-    return 'SELL (TRIM)';
-  }
-  if (targetWeight === 0 && currentWeight > 0) {
-    return 'SELL (EXIT)';
-  }
-  return 'HOLD (NO CHANGE)';
-}
-
-function calculateRebalanceOrders(targetHoldings, currentHoldingsMap, capital, minTrade, metaMap) {
-  const targetMap = {};
-  const nTarget = targetHoldings.length || 50;
-  targetHoldings.forEach(h => {
-    targetMap[h.ticker] = h.weight !== undefined ? Number(h.weight) : (1.0 / nTarget);
-  });
-
-  const allTickers = Array.from(new Set([...Object.keys(targetMap), ...Object.keys(currentHoldingsMap)]));
-  const items = [];
-
-  allTickers.forEach(t => {
-    const targetWeight = targetMap[t] || 0.0;
-    const currentWeight = currentHoldingsMap[t] || 0.0;
-    const deltaWeight = targetWeight - currentWeight;
-    const tradeVal = Math.abs(deltaWeight) * capital;
-    const action = classifyOrder(targetWeight, currentWeight, deltaWeight, tradeVal, minTrade);
-
-    const meta = (metaMap && metaMap[t]) || {};
-    const targetItem = targetHoldings.find(h => h.ticker === t) || {};
-
-    items.push({
-      ticker: t,
-      name: meta.name || targetItem.name || t,
-      sector: meta.sector || targetItem.sector || 'Unclassified',
-      currentWeight,
-      targetWeight,
-      deltaWeight,
-      tradeVal,
-      action
-    });
-  });
-
-  const actionPriority = {
-    'SELL (EXIT)': 1,
-    'SELL (TRIM)': 2,
-    'BUY (NEW)': 3,
-    'BUY (ADD)': 4,
-    'HOLD (BELOW MIN)': 5,
-    'HOLD (NO CHANGE)': 6
-  };
-
-  items.sort((a, b) => {
-    const pA = actionPriority[a.action] || 99;
-    const pB = actionPriority[b.action] || 99;
-    if (pA !== pB) return pA - pB;
-    return b.tradeVal - a.tradeVal;
-  });
-
-  return items;
-}
-
-function calculateRebalanceMetrics(items, capital, costBps) {
-  let buyDollars = 0;
-  let sellDollars = 0;
-  let nBuys = 0;
-  let nSells = 0;
-  let nHolds = 0;
-
-  items.forEach(it => {
-    if (it.action.startsWith('BUY')) {
-      buyDollars += it.tradeVal;
-      nBuys += 1;
-    } else if (it.action.startsWith('SELL')) {
-      sellDollars += it.tradeVal;
-      nSells += 1;
-    } else {
-      nHolds += 1;
-    }
-  });
-
-  const turnoverDollars = 0.5 * (buyDollars + sellDollars);
-  const turnoverPct = capital > 0 ? (turnoverDollars / capital) * 100.0 : 0.0;
-  const estFriction = turnoverDollars * (costBps / 10000.0);
-
-  return {
-    buyDollars,
-    sellDollars,
-    nBuys,
-    nSells,
-    nHolds,
-    turnoverDollars,
-    turnoverPct,
-    estFriction
-  };
-}
 
 /* =========================================================================
    HOLDINGS STATE & UI BINDINGS
@@ -1151,7 +1020,19 @@ function setupRebalanceCalculator() {
   if (btnApplyCustom) {
     btnApplyCustom.onclick = () => {
       if (!customInput) return;
-      const parsed = parseHoldingsInput(customInput.value);
+      const capital = parseFloat(document.getElementById('calcCapitalInput')?.value || '100000') || 100000;
+      const parsed = parseHoldingsInput(customInput.value, capital);
+      const errBox = document.getElementById('customHoldingsError');
+
+      if (!parsed.isValid) {
+        if (errBox) {
+          errBox.style.display = 'block';
+          errBox.textContent = parsed.errors.join(' ');
+        }
+        return;
+      }
+
+      if (errBox) errBox.style.display = 'none';
       appState.userHoldings = parsed.holdings;
       appState.holdingsSource = 'custom';
       try {
@@ -1478,7 +1359,7 @@ function renderResearchChartData() {
     labels = bt.rebalance_dates;
     datasets = [
       {
-        label: 'Transformer (+98.7% Net)',
+        label: 'Attentive Transformer (LO)',
         data: bt.transformer_lo,
         borderColor: '#E07A5F',
         backgroundColor: 'rgba(224, 122, 95, 0.06)',
@@ -1487,7 +1368,7 @@ function renderResearchChartData() {
         pointRadius: 0
       },
       {
-        label: 'LightGBM Baseline (+81.5% Net)',
+        label: 'LightGBM (LO)',
         data: bt.lightgbm_lo,
         borderColor: '#81B29A',
         backgroundColor: 'transparent',
@@ -1495,7 +1376,7 @@ function renderResearchChartData() {
         pointRadius: 0
       },
       {
-        label: 'Attentive LSTM (+78.1% Net)',
+        label: 'Attentive LSTM (LO)',
         data: bt.alstm_lo,
         borderColor: '#E9C46A',
         backgroundColor: 'transparent',
@@ -1503,7 +1384,7 @@ function renderResearchChartData() {
         pointRadius: 0
       },
       {
-        label: 'Equal-Weighted Universe (+40.3%)',
+        label: 'S&P 500 Equal-Weighted',
         data: bt.benchmark,
         borderColor: '#94A3B8',
         borderDash: [4, 4],

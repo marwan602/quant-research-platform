@@ -41,6 +41,10 @@
 
   <main class="main-content">
 
+    <div id="dataLoadErrorBanner" class="editorial-notice-bar" style="display: none; background: rgba(220, 38, 38, 0.1); border-left: 3px solid #dc2626; color: var(--text-primary); margin-bottom: 24px;">
+      <strong>Data Unavailable:</strong> Failed to load research data snapshot. Please ensure the pipeline data payloads are present in <code>docs/data/</code>.
+    </div>
+
     <!-- Tab 1: Daily Forecast (Primary Landing View) -->
     <section id="pane-signals" class="tab-pane active">
       <div class="article-header">
@@ -171,7 +175,8 @@
               <button class="toggle-btn" id="btnClearHoldings" style="font-size: 10px; padding: 3px 6px;">Clear</button>
             </div>
             <div id="customHoldingsSection" style="display: none; margin-top: 8px;">
-              <textarea id="customHoldingsInput" rows="4" style="width: 100%; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; padding: 6px; background: var(--bg-dark); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 3px; resize: vertical;" placeholder="AAPL, 2.0%&#10;MSFT, 2.5%&#10;TSLA, 5.0%"></textarea>
+              <textarea id="customHoldingsInput" rows="5" style="width: 100%; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; padding: 6px; background: var(--bg-dark); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 3px; resize: vertical;" placeholder="AAPL, 2.0% (percentage)&#10;MSFT, 0.02 (weight fraction)&#10;NVDA, 2500 ($2,500 position)&#10;TSLA, $5,000 ($5,000 position)"></textarea>
+              <div id="customHoldingsError" style="display: none; margin-top: 6px; font-size: 10.5px; color: #f87171; background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); padding: 4px 8px; border-radius: 3px; line-height: 1.4;"></div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
                 <span id="customHoldingsInvestedLabel" class="mono" style="font-size: 10px; color: var(--text-muted);">Invested: 100.0%</span>
                 <button class="toggle-btn active" id="btnApplyCustomHoldings" style="font-size: 10px; padding: 3px 8px;">Apply</button>
@@ -618,6 +623,7 @@
     </div>
   </footer>
 
+  <script src="rebalance.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
