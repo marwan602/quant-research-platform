@@ -121,6 +121,9 @@ class PortfolioConstructor:
         target_weights: dict[str, float],
         current_weights: dict[str, float] | None = None,
         portfolio_value: float = 100000.0,
+        min_trade: float = 0.0,
+        include_holds: bool = False,
+        detailed_action: bool = False,
     ) -> pd.DataFrame:
         if current_weights is None:
             current_weights = {}
@@ -129,14 +132,28 @@ class PortfolioConstructor:
         orders = []
 
         for t in all_tickers:
-            tgt = target_weights.get(t, 0.0)
-            cur = current_weights.get(t, 0.0)
+            tgt = float(target_weights.get(t, 0.0))
+            cur = float(current_weights.get(t, 0.0))
             diff = tgt - cur
-            if abs(diff) < 1e-5:
-                continue
-
-            action = "BUY" if diff > 0 else "SELL"
             dollar_amount = abs(diff) * portfolio_value
+
+            if abs(diff) < 1e-5:
+                action = "HOLD (NO CHANGE)" if detailed_action else "HOLD"
+            elif min_trade > 0.0 and dollar_amount < min_trade:
+                action = "HOLD (BELOW MIN)" if detailed_action else "HOLD"
+            elif diff > 0:
+                if detailed_action:
+                    action = "BUY (NEW)" if cur == 0.0 else "BUY (ADD)"
+                else:
+                    action = "BUY"
+            else:
+                if detailed_action:
+                    action = "SELL (EXIT)" if tgt == 0.0 else "SELL (TRIM)"
+                else:
+                    action = "SELL"
+
+            if not include_holds and action.startswith("HOLD"):
+                continue
 
             orders.append({
                 "Ticker": t,

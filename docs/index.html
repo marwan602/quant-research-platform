@@ -152,7 +152,30 @@
             <label class="control-label">Allocation Mode</label>
             <div class="toggle-pair">
               <button class="toggle-btn active" id="btnModeCleanSlate">Fresh Cash Allocation</button>
-              <button class="toggle-btn" id="btnModeRebalance">Adjust Existing Holdings</button>
+              <button class="toggle-btn" id="btnModeRebalance">Rebalance Active Portfolio</button>
+            </div>
+          </div>
+
+          <!-- Holdings Manager (Active in Rebalance Mode) -->
+          <div id="holdingsManagerBox" style="display: none; margin-bottom: 16px; padding: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 4px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+              <span class="control-label" style="margin: 0; font-weight: 600;">Current Holdings</span>
+              <span id="holdingsSourceBadge" class="headline-meta" style="font-size: 10px; color: var(--accent);">Prior Cycle (2026-08-24)</span>
+            </div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.35; margin: 0 0 10px 0;">
+              <em>Current holdings are your portfolio now; target holdings come from today's model.</em>
+            </p>
+            <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+              <button class="toggle-btn active" id="btnLoadPriorCycle" style="font-size: 10px; padding: 3px 6px; flex: 1.2;">Prior Cycle</button>
+              <button class="toggle-btn" id="btnToggleCustomHoldings" style="font-size: 10px; padding: 3px 6px; flex: 1;">Paste / Edit</button>
+              <button class="toggle-btn" id="btnClearHoldings" style="font-size: 10px; padding: 3px 6px;">Clear</button>
+            </div>
+            <div id="customHoldingsSection" style="display: none; margin-top: 8px;">
+              <textarea id="customHoldingsInput" rows="4" style="width: 100%; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; padding: 6px; background: var(--bg-dark); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 3px; resize: vertical;" placeholder="AAPL, 2.0%&#10;MSFT, 2.5%&#10;TSLA, 5.0%"></textarea>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+                <span id="customHoldingsInvestedLabel" class="mono" style="font-size: 10px; color: var(--text-muted);">Invested: 100.0%</span>
+                <button class="toggle-btn active" id="btnApplyCustomHoldings" style="font-size: 10px; padding: 3px 8px;">Apply</button>
+              </div>
             </div>
           </div>
 
@@ -180,7 +203,11 @@
               <span class="line-label">Target Positions</span>
               <span class="line-val mono" id="calcTargetPositionsCount">50 Equities</span>
             </div>
-            <div class="summary-line">
+            <div class="summary-line" id="calcCurrentPositionsLine" style="display: none;">
+              <span class="line-label">Current Positions</span>
+              <span class="line-val mono" id="calcCurrentPositionsVal">50 Equities (100.0%)</span>
+            </div>
+            <div class="summary-line" id="calcAllocPerStockLine">
               <span class="line-label">Capital / Position</span>
               <span class="line-val mono" id="calcAllocPerStock">$2,000.00</span>
             </div>

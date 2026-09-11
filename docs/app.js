@@ -16,6 +16,8 @@ let appState = {
   overviewMode: 'cumulative',
   researchMode: 'returns',
   rebalanceMode: 'clean_slate',
+  userHoldings: {},
+  holdingsSource: 'prior_cycle',
   charts: {}
 };
 
@@ -49,6 +51,8 @@ async function initApp() {
   appState.backtest = backtest;
   appState.benchmarks = benchmarks;
   appState.companyMeta = companyMeta || {};
+
+  initUserHoldings();
 
   setupNavigation();
   renderOverview();
@@ -852,6 +856,234 @@ function setupSectorChart(sectors) {
   });
 }
 
+/* =========================================================================
+   PURE REBALANCING MATHEMATICS & HOLDINGS ENGINE (Decoupled from DOM)
+   ========================================================================= */
+
+function computeDrawdownSeries(cumReturns) {
+  if (!cumReturns || cumReturns.length === 0) return [];
+  let peak = 1.0;
+  return cumReturns.map(r => {
+    const currentNav = 1.0 + (Number(r) / 100.0);
+    if (currentNav > peak) peak = currentNav;
+    return peak > 0 ? Number((((currentNav - peak) / peak) * 100.0).toFixed(2)) : 0.0;
+  });
+}
+
+function parseHoldingsInput(rawText) {
+  if (!rawText || !rawText.trim()) {
+    return { holdings: {}, totalWeight: 0.0, count: 0 };
+  }
+  const lines = rawText.trim().split(/\r?\n/);
+  const holdings = {};
+  let totalWeight = 0.0;
+
+  lines.forEach(line => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('//')) return;
+    const parts = trimmed.split(/[,:\t\s]+/).filter(Boolean);
+    if (parts.length >= 2) {
+      const ticker = parts[0].toUpperCase().trim();
+      let weightStr = parts[1].replace('%', '').trim();
+      let weightVal = parseFloat(weightStr);
+      if (!isNaN(weightVal) && weightVal >= 0) {
+        if (weightVal > 1.0 || parts[1].includes('%')) {
+          weightVal = weightVal / 100.0;
+        }
+        holdings[ticker] = weightVal;
+        totalWeight += weightVal;
+      }
+    }
+  });
+
+  return {
+    holdings,
+    totalWeight,
+    count: Object.keys(holdings).length
+  };
+}
+
+function classifyOrder(targetWeight, currentWeight, deltaWeight, tradeVal, minTrade) {
+  if (Math.abs(deltaWeight) < 1e-5) {
+    return 'HOLD (NO CHANGE)';
+  }
+  if (tradeVal < minTrade) {
+    return 'HOLD (BELOW MIN)';
+  }
+  if (targetWeight > 0 && currentWeight === 0) {
+    return 'BUY (NEW)';
+  }
+  if (targetWeight > 0 && currentWeight > 0 && deltaWeight > 0) {
+    return 'BUY (ADD)';
+  }
+  if (targetWeight > 0 && currentWeight > 0 && deltaWeight < 0) {
+    return 'SELL (TRIM)';
+  }
+  if (targetWeight === 0 && currentWeight > 0) {
+    return 'SELL (EXIT)';
+  }
+  return 'HOLD (NO CHANGE)';
+}
+
+function calculateRebalanceOrders(targetHoldings, currentHoldingsMap, capital, minTrade, metaMap) {
+  const targetMap = {};
+  const nTarget = targetHoldings.length || 50;
+  targetHoldings.forEach(h => {
+    targetMap[h.ticker] = h.weight !== undefined ? Number(h.weight) : (1.0 / nTarget);
+  });
+
+  const allTickers = Array.from(new Set([...Object.keys(targetMap), ...Object.keys(currentHoldingsMap)]));
+  const items = [];
+
+  allTickers.forEach(t => {
+    const targetWeight = targetMap[t] || 0.0;
+    const currentWeight = currentHoldingsMap[t] || 0.0;
+    const deltaWeight = targetWeight - currentWeight;
+    const tradeVal = Math.abs(deltaWeight) * capital;
+    const action = classifyOrder(targetWeight, currentWeight, deltaWeight, tradeVal, minTrade);
+
+    const meta = (metaMap && metaMap[t]) || {};
+    const targetItem = targetHoldings.find(h => h.ticker === t) || {};
+
+    items.push({
+      ticker: t,
+      name: meta.name || targetItem.name || t,
+      sector: meta.sector || targetItem.sector || 'Unclassified',
+      currentWeight,
+      targetWeight,
+      deltaWeight,
+      tradeVal,
+      action
+    });
+  });
+
+  const actionPriority = {
+    'SELL (EXIT)': 1,
+    'SELL (TRIM)': 2,
+    'BUY (NEW)': 3,
+    'BUY (ADD)': 4,
+    'HOLD (BELOW MIN)': 5,
+    'HOLD (NO CHANGE)': 6
+  };
+
+  items.sort((a, b) => {
+    const pA = actionPriority[a.action] || 99;
+    const pB = actionPriority[b.action] || 99;
+    if (pA !== pB) return pA - pB;
+    return b.tradeVal - a.tradeVal;
+  });
+
+  return items;
+}
+
+function calculateRebalanceMetrics(items, capital, costBps) {
+  let buyDollars = 0;
+  let sellDollars = 0;
+  let nBuys = 0;
+  let nSells = 0;
+  let nHolds = 0;
+
+  items.forEach(it => {
+    if (it.action.startsWith('BUY')) {
+      buyDollars += it.tradeVal;
+      nBuys += 1;
+    } else if (it.action.startsWith('SELL')) {
+      sellDollars += it.tradeVal;
+      nSells += 1;
+    } else {
+      nHolds += 1;
+    }
+  });
+
+  const turnoverDollars = 0.5 * (buyDollars + sellDollars);
+  const turnoverPct = capital > 0 ? (turnoverDollars / capital) * 100.0 : 0.0;
+  const estFriction = turnoverDollars * (costBps / 10000.0);
+
+  return {
+    buyDollars,
+    sellDollars,
+    nBuys,
+    nSells,
+    nHolds,
+    turnoverDollars,
+    turnoverPct,
+    estFriction
+  };
+}
+
+/* =========================================================================
+   HOLDINGS STATE & UI BINDINGS
+   ========================================================================= */
+
+function initUserHoldings() {
+  try {
+    const stored = localStorage.getItem('sp500_user_holdings');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed && typeof parsed === 'object') {
+        appState.userHoldings = parsed;
+        appState.holdingsSource = 'custom';
+        return;
+      }
+    }
+  } catch (e) {
+    // localStorage unavailable or corrupt; fall back to prior cycle
+  }
+
+  loadPriorCycleHoldings();
+}
+
+function loadPriorCycleHoldings() {
+  const port = appState.portfolio;
+  if (port && port.prior_cycle && Array.isArray(port.prior_cycle.holdings)) {
+    const priorMap = {};
+    port.prior_cycle.holdings.forEach(h => {
+      priorMap[h.ticker] = h.weight !== undefined ? Number(h.weight) : 0.02;
+    });
+    appState.userHoldings = priorMap;
+    appState.holdingsSource = 'prior_cycle';
+  } else {
+    // Fallback if prior_cycle object not present
+    appState.userHoldings = {};
+    appState.holdingsSource = 'cleared';
+  }
+}
+
+function updateHoldingsUiState() {
+  const sourceBadge = document.getElementById('holdingsSourceBadge');
+  const btnPrior = document.getElementById('btnLoadPriorCycle');
+  const btnCustom = document.getElementById('btnToggleCustomHoldings');
+  const btnClear = document.getElementById('btnClearHoldings');
+  const customSection = document.getElementById('customHoldingsSection');
+  const investedLabel = document.getElementById('customHoldingsInvestedLabel');
+
+  const holdings = appState.userHoldings || {};
+  const count = Object.keys(holdings).length;
+  let totalW = 0.0;
+  Object.values(holdings).forEach(w => totalW += Number(w));
+
+  if (sourceBadge) {
+    if (appState.holdingsSource === 'prior_cycle') {
+      sourceBadge.textContent = 'Prior Cycle (2026-08-24)';
+      sourceBadge.style.color = 'var(--accent, #E07A5F)';
+    } else if (appState.holdingsSource === 'custom') {
+      sourceBadge.textContent = `Custom (${count} Positions)`;
+      sourceBadge.style.color = '#81B29A';
+    } else {
+      sourceBadge.textContent = 'All Cash (0 Holdings)';
+      sourceBadge.style.color = 'var(--text-muted)';
+    }
+  }
+
+  if (btnPrior) btnPrior.classList.toggle('active', appState.holdingsSource === 'prior_cycle');
+  if (btnCustom) btnCustom.classList.toggle('active', appState.holdingsSource === 'custom');
+  if (btnClear) btnClear.classList.toggle('active', appState.holdingsSource === 'cleared');
+
+  if (investedLabel) {
+    investedLabel.textContent = `Invested: ${(totalW * 100).toFixed(1)}% · Cash: ${(Math.max(0, 1 - totalW) * 100).toFixed(1)}%`;
+  }
+}
+
 function setupRebalanceCalculator() {
   const capInput = document.getElementById('calcCapitalInput');
   const minTradeInput = document.getElementById('calcMinTradeInput');
@@ -860,17 +1092,85 @@ function setupRebalanceCalculator() {
   const btnClean = document.getElementById('btnModeCleanSlate');
   const btnRebal = document.getElementById('btnModeRebalance');
 
+  const holdingsBox = document.getElementById('holdingsManagerBox');
+  const currentPosLine = document.getElementById('calcCurrentPositionsLine');
+  const allocPerStockLine = document.getElementById('calcAllocPerStockLine');
+
+  const btnPrior = document.getElementById('btnLoadPriorCycle');
+  const btnToggleCustom = document.getElementById('btnToggleCustomHoldings');
+  const btnClear = document.getElementById('btnClearHoldings');
+  const btnApplyCustom = document.getElementById('btnApplyCustomHoldings');
+  const customSection = document.getElementById('customHoldingsSection');
+  const customInput = document.getElementById('customHoldingsInput');
+
   if (btnClean && btnRebal) {
     btnClean.onclick = () => {
       btnClean.classList.add('active');
       btnRebal.classList.remove('active');
       appState.rebalanceMode = 'clean_slate';
+      if (holdingsBox) holdingsBox.style.display = 'none';
+      if (currentPosLine) currentPosLine.style.display = 'none';
+      if (allocPerStockLine) allocPerStockLine.style.display = 'flex';
       calculateAndRenderOrders();
     };
     btnRebal.onclick = () => {
       btnRebal.classList.add('active');
       btnClean.classList.remove('active');
       appState.rebalanceMode = 'rebalance';
+      if (holdingsBox) holdingsBox.style.display = 'block';
+      if (currentPosLine) currentPosLine.style.display = 'flex';
+      if (allocPerStockLine) allocPerStockLine.style.display = 'none';
+      updateHoldingsUiState();
+      calculateAndRenderOrders();
+    };
+  }
+
+  if (btnPrior) {
+    btnPrior.onclick = () => {
+      loadPriorCycleHoldings();
+      try { localStorage.removeItem('sp500_user_holdings'); } catch(e) {}
+      if (customSection) customSection.style.display = 'none';
+      updateHoldingsUiState();
+      calculateAndRenderOrders();
+    };
+  }
+
+  if (btnToggleCustom) {
+    btnToggleCustom.onclick = () => {
+      if (!customSection) return;
+      const isVisible = customSection.style.display !== 'none';
+      customSection.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible && customInput) {
+        // Pre-fill with current holdings formatted
+        const lines = Object.entries(appState.userHoldings || {}).map(([t, w]) => `${t}, ${(w * 100).toFixed(2)}%`);
+        customInput.value = lines.join('\n');
+      }
+    };
+  }
+
+  if (btnApplyCustom) {
+    btnApplyCustom.onclick = () => {
+      if (!customInput) return;
+      const parsed = parseHoldingsInput(customInput.value);
+      appState.userHoldings = parsed.holdings;
+      appState.holdingsSource = 'custom';
+      try {
+        localStorage.setItem('sp500_user_holdings', JSON.stringify(appState.userHoldings));
+      } catch(e) {}
+      updateHoldingsUiState();
+      calculateAndRenderOrders();
+    };
+  }
+
+  if (btnClear) {
+    btnClear.onclick = () => {
+      appState.userHoldings = {};
+      appState.holdingsSource = 'cleared';
+      try {
+        localStorage.setItem('sp500_user_holdings', JSON.stringify({}));
+      } catch(e) {}
+      if (customSection) customSection.style.display = 'none';
+      updateHoldingsUiState();
       calculateAndRenderOrders();
     };
   }
@@ -879,6 +1179,8 @@ function setupRebalanceCalculator() {
   if (minTradeInput) minTradeInput.oninput = calculateAndRenderOrders;
   if (costInput) costInput.onchange = calculateAndRenderOrders;
   if (exportBtn) exportBtn.onclick = exportRebalanceOrdersCsv;
+
+  updateHoldingsUiState();
 }
 
 function calculateAndRenderOrders() {
@@ -890,10 +1192,10 @@ function calculateAndRenderOrders() {
   const costBps = parseFloat(document.getElementById('calcCostBpsInput')?.value || '10') || 10;
   const mode = appState.rebalanceMode || 'clean_slate';
 
-  const holdings = port.holdings || [];
-  const count = holdings.length || 50;
-  const allocPerStock = capital / count;
+  const targetHoldings = port.holdings || [];
+  const nTarget = targetHoldings.length || 50;
 
+  const allocPerStock = capital / nTarget;
   const allocPerStockEl = document.getElementById('calcAllocPerStock');
   if (allocPerStockEl) {
     allocPerStockEl.textContent = `$${allocPerStock.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -902,6 +1204,7 @@ function calculateAndRenderOrders() {
   const grossVolEl = document.getElementById('calcGrossVolume');
   const estCostEl = document.getElementById('calcEstCost');
   const targetCountEl = document.getElementById('calcTargetPositionsCount');
+  const currentPosValEl = document.getElementById('calcCurrentPositionsVal');
   const breakdownValEl = document.getElementById('calcTradeBreakdownVal');
   const volumeLabelEl = document.getElementById('calcVolumeLabel');
   const thead = document.getElementById('rebalanceTableHead');
@@ -909,13 +1212,13 @@ function calculateAndRenderOrders() {
   const headingEl = document.getElementById('rebalanceTableHeading');
   const badgeEl = document.getElementById('rebalanceTableBadge');
 
-  if (targetCountEl) targetCountEl.textContent = `${count} Equities`;
+  if (targetCountEl) targetCountEl.textContent = `${nTarget} Equities`;
 
   if (mode === 'clean_slate') {
     if (headingEl) headingEl.textContent = 'Target Allocation Ticket (50 Holdings)';
     if (badgeEl) badgeEl.textContent = '2.00% Weight Each';
     if (volumeLabelEl) volumeLabelEl.textContent = 'Gross Order Volume';
-    if (breakdownValEl) breakdownValEl.textContent = '50 Buys';
+    if (breakdownValEl) breakdownValEl.textContent = `${nTarget} Buys`;
     if (grossVolEl) grossVolEl.textContent = `$${capital.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
     const estFriction = capital * (costBps / 10000.0);
@@ -936,9 +1239,9 @@ function calculateAndRenderOrders() {
     }
 
     if (tbody) {
-      tbody.innerHTML = holdings.map(h => {
-        const weightPct = ((h.weight || (1.0 / count)) * 100.0).toFixed(2);
-        const targetValue = capital * (h.weight || (1.0 / count));
+      tbody.innerHTML = targetHoldings.map(h => {
+        const weightPct = ((h.weight !== undefined ? Number(h.weight) : (1.0 / nTarget)) * 100.0).toFixed(2);
+        const targetValue = capital * (h.weight !== undefined ? Number(h.weight) : (1.0 / nTarget));
         const isValid = targetValue >= minTrade;
 
         return `
@@ -949,15 +1252,18 @@ function calculateAndRenderOrders() {
             <td style="text-align: right;" class="mono">${weightPct}%</td>
             <td style="text-align: right;" class="mono font-semibold">$${targetValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td style="text-align: center;" class="mono">D1</td>
-            <td style="text-align: center; font-size: 11.5px; color: var(--text-muted);">
-              ${isValid ? 'BUY' : 'BELOW MIN'}
+            <td style="text-align: center; font-size: 11px;">
+              <span class="action-badge ${isValid ? 'badge-buy' : 'badge-hold'}">
+                ${isValid ? 'BUY' : 'HOLD (BELOW MIN)'}
+              </span>
             </td>
           </tr>
         `;
       }).join('');
     }
   } else {
-    if (headingEl) headingEl.textContent = 'Rebalance Execution Ticket (Drift Adjustment)';
+    // REBALANCE MODE (Pure calculation decoupled from rendering)
+    if (headingEl) headingEl.textContent = 'Rebalance Execution Ticket (Active Portfolio)';
     if (badgeEl) badgeEl.textContent = 'Turnover Adjusted';
     if (volumeLabelEl) volumeLabelEl.textContent = 'Rebalance Turnover';
 
@@ -976,101 +1282,39 @@ function calculateAndRenderOrders() {
       `;
     }
 
-    let items = [];
-    const exitHoldings = (appState.rankings || []).slice(55, 63);
+    const currentMap = appState.userHoldings || {};
+    const items = calculateRebalanceOrders(targetHoldings, currentMap, capital, minTrade, appState.companyMeta);
+    const metrics = calculateRebalanceMetrics(items, capital, costBps);
 
-    holdings.forEach((h, idx) => {
-      const targetWeight = h.weight || (1.0 / count);
-      let currentWeight = 0.0;
-      if (idx < 42) {
-        const drift = 0.94 + ((idx % 7) * 0.02);
-        currentWeight = targetWeight * drift;
-      } else {
-        currentWeight = 0.0;
-      }
-      const deltaWeight = targetWeight - currentWeight;
-      const tradeVal = Math.abs(deltaWeight) * capital;
-      let action = 'HOLD';
+    // Current positions accounting
+    const currentCount = Object.keys(currentMap).length;
+    let totalCurrentW = 0.0;
+    Object.values(currentMap).forEach(w => totalCurrentW += Number(w));
 
-      if (tradeVal >= minTrade) {
-        if (currentWeight === 0.0) {
-          action = 'BUY (NEW)';
-        } else if (deltaWeight > 0) {
-          action = 'BUY (ADD)';
-        } else if (deltaWeight < 0) {
-          action = 'SELL (TRIM)';
-        }
-      }
+    if (currentPosValEl) {
+      currentPosValEl.textContent = `${currentCount} Equities (${(totalCurrentW * 100.0).toFixed(1)}% Invested)`;
+    }
 
-      items.push({
-        ticker: h.ticker,
-        name: h.name || h.ticker,
-        sector: h.sector || 'Unclassified',
-        currentWeight,
-        targetWeight,
-        deltaWeight,
-        tradeVal,
-        action
-      });
-    });
-
-    exitHoldings.forEach(eh => {
-      const targetWeight = 0.0;
-      const currentWeight = 1.0 / count;
-      const deltaWeight = -currentWeight;
-      const tradeVal = currentWeight * capital;
-      let action = tradeVal >= minTrade ? 'SELL (EXIT)' : 'HOLD';
-
-      items.push({
-        ticker: eh.ticker,
-        name: eh.name || eh.ticker,
-        sector: eh.sector || 'Unclassified',
-        currentWeight,
-        targetWeight,
-        deltaWeight,
-        tradeVal,
-        action
-      });
-    });
-
-    items.sort((a, b) => {
-      if (a.action.startsWith('SELL') && !b.action.startsWith('SELL')) return -1;
-      if (!a.action.startsWith('SELL') && b.action.startsWith('SELL')) return 1;
-      if (a.action.startsWith('BUY') && !b.action.startsWith('BUY')) return -1;
-      if (!a.action.startsWith('BUY') && b.action.startsWith('BUY')) return 1;
-      return b.tradeVal - a.tradeVal;
-    });
-
-    let buyDollars = 0;
-    let sellDollars = 0;
-    let nBuys = 0;
-    let nSells = 0;
-    let nHolds = 0;
-
-    items.forEach(it => {
-      if (it.action.startsWith('BUY')) {
-        buyDollars += it.tradeVal;
-        nBuys += 1;
-      } else if (it.action.startsWith('SELL')) {
-        sellDollars += it.tradeVal;
-        nSells += 1;
-      } else {
-        nHolds += 1;
-      }
-    });
-
-    const turnoverDollars = 0.5 * (buyDollars + sellDollars);
-    const turnoverPct = (turnoverDollars / capital) * 100.0;
-    const estFriction = turnoverDollars * (costBps / 10000.0);
-
-    if (breakdownValEl) breakdownValEl.textContent = `${nBuys} Buys | ${nSells} Sells | ${nHolds} Holds`;
-    if (grossVolEl) grossVolEl.textContent = `$${turnoverDollars.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${turnoverPct.toFixed(1)}%)`;
-    if (estCostEl) estCostEl.textContent = `$${estFriction.toFixed(2)} (${costBps} bps)`;
+    if (breakdownValEl) {
+      breakdownValEl.textContent = `${metrics.nBuys} Buys | ${metrics.nSells} Sells | ${metrics.nHolds} Holds`;
+    }
+    if (grossVolEl) {
+      grossVolEl.textContent = `$${metrics.turnoverDollars.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${metrics.turnoverPct.toFixed(1)}%)`;
+    }
+    if (estCostEl) {
+      estCostEl.textContent = `$${metrics.estFriction.toFixed(2)} (${costBps} bps)`;
+    }
 
     if (tbody) {
       tbody.innerHTML = items.map(it => {
         const deltaSign = it.deltaWeight >= 0 ? '+' : '−';
         const formattedDelta = `${deltaSign}${(Math.abs(it.deltaWeight) * 100.0).toFixed(2)}%`;
+        const deltaClass = it.deltaWeight > 1e-5 ? 'pos-return' : (it.deltaWeight < -1e-5 ? 'neg-return' : '');
+
+        let badgeClass = 'badge-hold';
+        if (it.action.startsWith('BUY')) badgeClass = 'badge-buy';
+        else if (it.action.startsWith('SELL')) badgeClass = 'badge-sell';
+
         return `
           <tr class="interactive-row" onclick="openStockModal('${it.ticker}')">
             <td class="ticker-cell">${it.ticker}</td>
@@ -1078,9 +1322,11 @@ function calculateAndRenderOrders() {
             <td style="color: var(--text-muted);">${it.sector}</td>
             <td style="text-align: right;" class="mono">${(it.currentWeight * 100.0).toFixed(2)}%</td>
             <td style="text-align: right;" class="mono">${(it.targetWeight * 100.0).toFixed(2)}%</td>
-            <td style="text-align: right;" class="mono ${it.deltaWeight >= 0 ? 'pos-return' : 'neg-return'}">${formattedDelta}</td>
+            <td style="text-align: right;" class="mono ${deltaClass}">${formattedDelta}</td>
             <td style="text-align: right;" class="mono font-semibold">$${it.tradeVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td style="text-align: center; font-size: 11.5px; color: var(--text-muted);">${it.action}</td>
+            <td style="text-align: center; font-size: 11px;">
+              <span class="action-badge ${badgeClass}">${it.action}</span>
+            </td>
           </tr>
         `;
       }).join('');
@@ -1091,48 +1337,48 @@ function calculateAndRenderOrders() {
 function exportRebalanceOrdersCsv() {
   const mode = appState.rebalanceMode || 'clean_slate';
   const capital = parseFloat(document.getElementById('calcCapitalInput')?.value || '100000') || 100000;
+  const minTrade = parseFloat(document.getElementById('calcMinTradeInput')?.value || '100') || 100;
   const costBps = parseFloat(document.getElementById('calcCostBpsInput')?.value || '10') || 10;
   const port = appState.portfolio;
   if (!port) return;
 
-  const holdings = port.holdings || [];
+  const targetHoldings = port.holdings || [];
   const asOf = port.as_of_date || new Date().toISOString().split('T')[0];
 
   let csvContent = "";
   if (mode === 'clean_slate') {
+    const estFriction = capital * (costBps / 10000.0);
     csvContent = "# S&P 500 Quantitative Portfolio Target Allocation Ticket\n" +
       `# Strategy: Equal-Weighted Top Decile (50 Holdings) | As-Of Date: ${asOf}\n` +
-      `# Portfolio Capital: $${capital.toFixed(2)} | Friction Model: ${costBps} bps per unit turnover\n` +
+      `# Portfolio Capital: $${capital.toFixed(2)} | Friction Model: ${costBps} bps per unit turnover | Min Trade: $${minTrade.toFixed(2)}\n` +
+      `# Total Order Volume: $${capital.toFixed(2)} | Estimated Turnover Friction: $${estFriction.toFixed(2)}\n` +
       "Ticker,Company Name,Sector,Target Weight (%),Target Value ($),Order Action\n";
-    holdings.forEach(h => {
-      const weightPct = ((h.weight || 0.02) * 100.0).toFixed(2);
-      const val = (capital * (h.weight || 0.02)).toFixed(2);
-      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${weightPct}%,${val},"BUY"\n`;
+    targetHoldings.forEach(h => {
+      const w = h.weight !== undefined ? Number(h.weight) : 0.02;
+      const weightPct = (w * 100.0).toFixed(2);
+      const val = (capital * w).toFixed(2);
+      const action = Number(val) >= minTrade ? "BUY" : "HOLD (BELOW MIN)";
+      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${weightPct}%,${val},"${action}"\n`;
     });
   } else {
+    const currentMap = appState.userHoldings || {};
+    const items = calculateRebalanceOrders(targetHoldings, currentMap, capital, minTrade, appState.companyMeta);
+    const metrics = calculateRebalanceMetrics(items, capital, costBps);
+
     csvContent = "# S&P 500 Quantitative Portfolio Rebalance Execution Ticket\n" +
       `# Strategy: Equal-Weighted Top Decile Rebalance | As-Of Date: ${asOf}\n` +
-      `# Portfolio Capital: $${capital.toFixed(2)} | Friction Model: ${costBps} bps per unit turnover\n` +
+      `# Portfolio Capital: $${capital.toFixed(2)} | Friction Model: ${costBps} bps per unit turnover | Min Trade Filter: $${minTrade.toFixed(2)}\n` +
+      `# Rebalance Turnover: $${metrics.turnoverDollars.toFixed(2)} (${metrics.turnoverPct.toFixed(1)}%) | Estimated Friction: $${metrics.estFriction.toFixed(2)}\n` +
+      `# Execution Summary: ${metrics.nBuys} Buys, ${metrics.nSells} Sells, ${metrics.nHolds} Holds\n` +
       "Ticker,Company Name,Sector,Current Weight (%),Target Weight (%),Weight Delta (%),Trade Value ($),Order Action\n";
-    const exitHoldings = (appState.rankings || []).slice(55, 63);
-    const count = holdings.length || 50;
 
-    holdings.forEach((h, idx) => {
-      const targetWeight = h.weight || (1.0 / count);
-      const currentWeight = idx < 42 ? targetWeight * (0.94 + ((idx % 7) * 0.02)) : 0.0;
-      const deltaWeight = targetWeight - currentWeight;
-      const tradeVal = (Math.abs(deltaWeight) * capital).toFixed(2);
-      const action = currentWeight === 0.0 ? 'BUY (NEW)' : (deltaWeight > 0 ? 'BUY (ADD)' : (deltaWeight < 0 ? 'SELL (TRIM)' : 'HOLD'));
-      const deltaSign = deltaWeight >= 0 ? '+' : '-';
-      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${(currentWeight * 100.0).toFixed(2)}%,${(targetWeight * 100.0).toFixed(2)}%,${deltaSign}${(Math.abs(deltaWeight) * 100.0).toFixed(2)}%,${tradeVal},"${action}"\n`;
-    });
-
-    exitHoldings.forEach(eh => {
-      const targetWeight = 0.0;
-      const currentWeight = 1.0 / count;
-      const deltaWeight = -currentWeight;
-      const tradeVal = (currentWeight * capital).toFixed(2);
-      csvContent += `"${eh.ticker}","${eh.name || eh.ticker}","${eh.sector || ''}",${(currentWeight * 100.0).toFixed(2)}%,0.00%,-${(currentWeight * 100.0).toFixed(2)}%,${tradeVal},"SELL (EXIT)"\n`;
+    items.forEach(it => {
+      const deltaSign = it.deltaWeight >= 0 ? '+' : '-';
+      const deltaFormatted = `${deltaSign}${(Math.abs(it.deltaWeight) * 100.0).toFixed(2)}%`;
+      const currentPct = `${(it.currentWeight * 100.0).toFixed(2)}%`;
+      const targetPct = `${(it.targetWeight * 100.0).toFixed(2)}%`;
+      const tradeValStr = it.tradeVal.toFixed(2);
+      csvContent += `"${it.ticker}","${it.name || it.ticker}","${it.sector || ''}",${currentPct},${targetPct},${deltaFormatted},${tradeValStr},"${it.action}"\n`;
     });
   }
 
@@ -1140,7 +1386,7 @@ function exportRebalanceOrdersCsv() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.setAttribute("href", url);
-  link.setAttribute("download", `sp500_orders_${mode}_${asOf}.csv`);
+  link.setAttribute("download", `sp500_rebalance_orders_${mode}_${asOf}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -1300,7 +1546,7 @@ function renderResearchChartData() {
     datasets = [
       {
         label: 'Transformer Drawdown (%)',
-        data: bt.drawdowns.transformer,
+        data: bt.drawdowns.transformer || computeDrawdownSeries(bt.transformer_lo),
         borderColor: '#E07A5F',
         backgroundColor: 'transparent',
         borderWidth: 2.2,
@@ -1308,7 +1554,7 @@ function renderResearchChartData() {
       },
       {
         label: 'LightGBM Drawdown (%)',
-        data: bt.drawdowns.lightgbm,
+        data: bt.drawdowns.lightgbm || computeDrawdownSeries(bt.lightgbm_lo),
         borderColor: '#81B29A',
         backgroundColor: 'transparent',
         borderWidth: 1.8,
@@ -1316,7 +1562,7 @@ function renderResearchChartData() {
       },
       {
         label: 'Attentive LSTM Drawdown (%)',
-        data: bt.drawdowns.alstm,
+        data: bt.drawdowns.alstm || computeDrawdownSeries(bt.alstm_lo),
         borderColor: '#E9C46A',
         backgroundColor: 'transparent',
         borderWidth: 1.8,
@@ -1324,7 +1570,7 @@ function renderResearchChartData() {
       },
       {
         label: 'Equal-Weighted Drawdown (%)',
-        data: bt.drawdowns.benchmark,
+        data: bt.drawdowns.benchmark || computeDrawdownSeries(bt.benchmark),
         borderColor: '#94A3B8',
         borderDash: [4, 4],
         backgroundColor: 'transparent',

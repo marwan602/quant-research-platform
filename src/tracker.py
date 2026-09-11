@@ -104,8 +104,15 @@ def update_prediction_archive(
                 p["target_resolution_date"] = target_date_str
 
     if store_df is not None and not store_df.empty:
+        max_store_dt = pd.to_datetime(store_df["Date"]).max().strftime("%Y-%m-%d")
+
         for d_str, entry in archive["dates"].items():
             if entry.get("status") == "resolved":
+                continue
+
+            # Authoritative maturity check: ensure the store has reached or passed the authoritative target date
+            target_res_date = entry.get("target_resolution_date")
+            if target_res_date and max_store_dt < target_res_date:
                 continue
 
             realized_df = get_realized_forward_returns(store_df, d_str, forward_days=forward_days)
@@ -128,7 +135,14 @@ def update_prediction_archive(
                 else:
                     p["realized_return_5d"] = None
 
-            if len(matched_pred) >= 10:
+            total_preds = len(preds)
+            min_matched = max(int(total_preds * 0.90), 1)
+            is_valid_coverage = (
+                (total_preds >= 450 and len(matched_pred) >= min(450, min_matched))
+                or (total_preds < 450 and len(matched_pred) >= min_matched)
+            )
+
+            if is_valid_coverage:
                 ic_val, _ = spearmanr(matched_pred, matched_real)
                 signs_match = np.sign(matched_pred) == np.sign(matched_real)
                 dir_acc = float(np.mean(signs_match))

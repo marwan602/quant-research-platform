@@ -72,6 +72,8 @@ class PolygonProvider(MarketDataProvider):
             high_px = float(item.get("h", 0.0))
             low_px = float(item.get("l", 0.0))
             close_px = float(item.get("c", 0.0))
+            if open_px <= 0.0 or close_px <= 0.0:
+                continue
             vol = float(item.get("v", 0.0))
             vwap = item.get("vw")
             if vwap is None or pd.isna(vwap) or float(vwap) <= 0.0:

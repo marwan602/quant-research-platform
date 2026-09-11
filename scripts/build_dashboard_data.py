@@ -241,6 +241,27 @@ def generate_all_dashboard_data(
             for sec, count in sorted(sector_counts.items(), key=lambda x: x[1], reverse=True)
         ]
 
+        tf_pq = root / "reports/transformer_test_predictions.parquet"
+        if tf_pq.exists():
+            df_tf_prior = pd.read_parquet(tf_pq)
+            df_tf_prior["Date"] = pd.to_datetime(df_tf_prior["Date"])
+            last_dt = df_tf_prior["Date"].max()
+            prior_slice = df_tf_prior[df_tf_prior["Date"] == last_dt].sort_values("pred", ascending=False).head(50)
+            prior_holdings = []
+            for _, r in prior_slice.iterrows():
+                sym = str(r["Ticker"]).strip()
+                meta = company_meta.get(sym, {})
+                prior_holdings.append({
+                    "ticker": sym,
+                    "weight": 0.02,
+                    "name": meta.get("name", sym),
+                    "sector": meta.get("sector", "Unclassified"),
+                })
+            port_data["prior_cycle"] = {
+                "as_of_date": last_dt.strftime("%Y-%m-%d"),
+                "holdings": prior_holdings,
+            }
+
         with open(docs_data / "portfolio.json", "w", encoding="utf-8") as f:
             json.dump(port_data, f, indent=2)
 
@@ -313,6 +334,8 @@ def generate_all_dashboard_data(
             "drawdowns": {
                 "dates": tf_res["dates"],
                 "transformer": tf_res["dd_lo_pct"],
+                "lightgbm": lgb_res["dd_lo_pct"],
+                "alstm": alstm_res["dd_lo_pct"],
                 "benchmark": tf_res["dd_bench_pct"],
             },
             "rank_ic": {

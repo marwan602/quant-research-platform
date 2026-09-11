@@ -68,6 +68,12 @@ def test_backtest_series_structure():
     assert len(data["transformer_lo"]) == len(data["rebalance_dates"])
     assert len(data["benchmark"]) == len(data["rebalance_dates"])
     assert "drawdowns" in data
+    assert "transformer" in data["drawdowns"]
+    assert "benchmark" in data["drawdowns"]
+    assert "lightgbm" in data["drawdowns"]
+    assert "alstm" in data["drawdowns"]
+    assert len(data["drawdowns"]["lightgbm"]) == len(data["rebalance_dates"])
+    assert len(data["drawdowns"]["alstm"]) == len(data["rebalance_dates"])
     assert "rank_ic" in data
 
 
@@ -100,3 +106,12 @@ def test_frontend_assets():
     assert "pane-research" in html_content
     assert "pane-methodology" in html_content
     assert "TODO" not in html_content
+
+    js_content = js_path.read_text(encoding="utf-8")
+    assert "parseHoldingsInput" in js_content
+    assert "calculateRebalanceOrders" in js_content
+    assert "classifyOrder" in js_content
+    assert "computeDrawdownSeries" in js_content
+    assert "HOLD (BELOW MIN)" in js_content
+    assert "HOLD (NO CHANGE)" in js_content
+    assert "0.94 + ((idx % 7) * 0.02)" not in js_content
