@@ -409,7 +409,7 @@ a {
 /* Rebalance Workspace */
 .rebalance-workspace {
   display: grid;
-  grid-template-columns: 310px 1fr;
+  grid-template-columns: 324px 1fr;
   gap: 36px;
   align-items: start;
 }
@@ -422,7 +422,7 @@ a {
 
 .worksheet-sidebar {
   border-right: 1px solid var(--border-rule);
-  padding-right: 32px;
+  padding-right: 28px;
 }
 
 @media (max-width: 960px) {
@@ -502,18 +502,22 @@ a {
 .summary-line {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   font-size: 12.5px;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
+  gap: 12px;
 }
 
 .line-label {
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .line-val {
   color: var(--text-primary);
   font-weight: 500;
+  white-space: nowrap;
+  text-align: right;
 }
 
 .action-btn {
