@@ -337,28 +337,43 @@
         <div class="table-header-controls">
           <div>
             <div class="table-headline-title">Forward Prediction Archive & Realization Log</div>
-            <div class="table-headline-desc">Audit log recording every individual forecast generated at market close to measure forward Rank IC.</div>
+            <div class="table-headline-desc mono" id="archiveFilterCount">Showing 501 of 501 forward forecasts</div>
           </div>
-          <div class="toggle-pair">
-            <button class="toggle-btn active" id="btnShowPending">Pending Realizations (501)</button>
-            <button class="toggle-btn" id="btnShowResolved">Resolved Realizations (0)</button>
+          <div class="table-filters-group">
+            <div class="toggle-pair">
+              <button class="toggle-btn active" id="btnShowPending">Pending (501)</button>
+              <button class="toggle-btn" id="btnShowResolved">Resolved (0)</button>
+              <button class="toggle-btn" id="btnShowAllArchive">All</button>
+            </div>
+            <select id="archiveDateFilter" class="filter-select">
+              <option value="ALL">All Generation Dates</option>
+            </select>
+            <input type="text" id="archiveSearchInput" class="filter-input" placeholder="Filter ticker or company..." style="width: 200px;">
           </div>
         </div>
-        <div class="table-scroll-wrap" style="max-height: 380px;">
+
+        <div id="archiveSessionSummary" class="editorial-notice-bar" style="margin-bottom: 14px; display: none; font-family: var(--font-sans); font-size: 12.5px;">
+        </div>
+
+        <div class="table-scroll-wrap" style="max-height: 440px;">
           <table class="editorial-table">
             <thead>
               <tr>
-                <th>Generated Date</th>
-                <th>Ticker</th>
+                <th style="width: 110px;">Generated Date</th>
+                <th style="width: 75px;">Ticker</th>
                 <th>Company Name</th>
-                <th>Predicted 5-Day Return</th>
-                <th>Target Resolution Date</th>
-                <th style="text-align: right;">Realized Return</th>
-                <th style="text-align: center;">Status</th>
+                <th style="text-align: right; width: 150px;">Predicted 5-Day Return</th>
+                <th style="width: 140px;">Target Resolution</th>
+                <th style="text-align: right; width: 140px;">Realized Return</th>
+                <th style="text-align: center; width: 100px;">Status</th>
               </tr>
             </thead>
             <tbody id="archiveTableBody"></tbody>
           </table>
+        </div>
+        <div id="archivePaginationControls" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 2px 0 2px; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">
+          <span id="archivePaginationInfo">Showing 501 records</span>
+          <button id="btnArchiveLoadMore" class="filter-select" style="display: none; cursor: pointer; padding: 4px 14px; font-family: var(--font-sans); font-size: 12px;">Load More (+500)</button>
         </div>
       </div>
     </section>

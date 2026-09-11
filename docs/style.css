@@ -252,14 +252,38 @@ a {
 }
 
 /* Return and Delta Typography */
-.pos-return {
-  color: var(--text-primary);
+.pos-return,
+.editorial-table td.pos-return,
+.editorial-table td .pos-return,
+.editorial-table tr:hover td.pos-return,
+.editorial-table tr.interactive-row:hover td.pos-return {
+  color: #059669 !important;
   font-weight: 500;
 }
 
-.neg-return {
-  color: var(--text-secondary);
-  font-weight: 400;
+.neg-return,
+.editorial-table td.neg-return,
+.editorial-table td .neg-return,
+.editorial-table tr:hover td.neg-return,
+.editorial-table tr.interactive-row:hover td.neg-return {
+  color: #dc2626 !important;
+  font-weight: 500;
+}
+
+.theme-dark .pos-return,
+.theme-dark .editorial-table td.pos-return,
+.theme-dark .editorial-table td .pos-return,
+.theme-dark .editorial-table tr:hover td.pos-return,
+.theme-dark .editorial-table tr.interactive-row:hover td.pos-return {
+  color: #10b981 !important;
+}
+
+.theme-dark .neg-return,
+.theme-dark .editorial-table td.neg-return,
+.theme-dark .editorial-table td .neg-return,
+.theme-dark .editorial-table tr:hover td.neg-return,
+.theme-dark .editorial-table tr.interactive-row:hover td.neg-return {
+  color: #f87171 !important;
 }
 
 /* Two Column Split */
@@ -903,4 +927,25 @@ a {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+/* Clean Status Typography for Archive Log */
+.status-cell {
+  font-size: 11.5px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.02em;
+}
+
+.status-cell.status-pending {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.status-cell.status-resolved {
+  color: #059669;
+  font-weight: 500;
+}
+
+.theme-dark .status-cell.status-resolved {
+  color: #10b981;
 }

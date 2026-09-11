@@ -10,6 +10,9 @@ let appState = {
   sortCol: 'rank',
   sortAsc: true,
   archiveMode: 'pending',
+  archiveDate: 'LATEST',
+  archiveSearch: '',
+  archiveLimit: 500,
   overviewMode: 'cumulative',
   researchMode: 'returns',
   rebalanceMode: 'clean_slate',
@@ -506,80 +509,248 @@ function renderAllSignalsTable() {
 function renderArchive() {
   const btnPending = document.getElementById('btnShowPending');
   const btnResolved = document.getElementById('btnShowResolved');
+  const btnAll = document.getElementById('btnShowAllArchive');
+  const dateFilter = document.getElementById('archiveDateFilter');
+  const searchInput = document.getElementById('archiveSearchInput');
+  const btnLoadMore = document.getElementById('btnArchiveLoadMore');
 
-  if (btnPending && btnResolved) {
-    btnPending.onclick = () => {
-      btnPending.classList.add('active');
-      btnResolved.classList.remove('active');
-      appState.archiveMode = 'pending';
-      drawArchiveRows();
-    };
-    btnResolved.onclick = () => {
-      btnResolved.classList.add('active');
-      btnPending.classList.remove('active');
-      appState.archiveMode = 'resolved';
+  if (!appState.archive || !appState.archive.dates) return;
+
+  // Populate session dates filter dropdown
+  if (dateFilter) {
+    const datesObj = appState.archive.dates || {};
+    const sortedDates = Object.keys(datesObj).sort().reverse();
+
+    if (appState.archiveDate === 'LATEST' || !appState.archiveDate) {
+      appState.archiveDate = sortedDates.length > 0 ? sortedDates[0] : 'ALL';
+    }
+
+    dateFilter.innerHTML = '<option value="ALL">All Generation Dates</option>' +
+      sortedDates.map(d => {
+        const dInfo = datesObj[d] || {};
+        const isResolved = dInfo.status === 'resolved';
+        const label = isResolved
+          ? `${d} (Resolved · IC: ${dInfo.rank_ic !== null && dInfo.rank_ic !== undefined ? (dInfo.rank_ic >= 0 ? '+' : '') + dInfo.rank_ic.toFixed(3) : 'N/A'})`
+          : `${d} (Pending · Matures ${dInfo.target_resolution_date || computeTargetDate(d, 5)})`;
+        return `<option value="${d}" ${d === appState.archiveDate ? 'selected' : ''}>${label}</option>`;
+      }).join('');
+
+    dateFilter.onchange = (e) => {
+      appState.archiveDate = e.target.value;
+      appState.archiveLimit = 500;
       drawArchiveRows();
     };
   }
 
+  // Live ticker & company search
+  if (searchInput) {
+    searchInput.value = appState.archiveSearch || '';
+    searchInput.oninput = (e) => {
+      appState.archiveSearch = (e.target.value || '').trim().toLowerCase();
+      appState.archiveLimit = 500;
+      drawArchiveRows();
+    };
+  }
+
+  // Mode toggles
+  const updateToggleButtons = () => {
+    [btnPending, btnResolved, btnAll].forEach(b => { if (b) b.classList.remove('active'); });
+    if (appState.archiveMode === 'pending' && btnPending) btnPending.classList.add('active');
+    else if (appState.archiveMode === 'resolved' && btnResolved) btnResolved.classList.add('active');
+    else if (appState.archiveMode === 'all' && btnAll) btnAll.classList.add('active');
+  };
+
+  if (btnPending) {
+    btnPending.onclick = () => {
+      appState.archiveMode = 'pending';
+      appState.archiveLimit = 500;
+      updateToggleButtons();
+      drawArchiveRows();
+    };
+  }
+
+  if (btnResolved) {
+    btnResolved.onclick = () => {
+      appState.archiveMode = 'resolved';
+      appState.archiveLimit = 500;
+      updateToggleButtons();
+      drawArchiveRows();
+    };
+  }
+
+  if (btnAll) {
+    btnAll.onclick = () => {
+      appState.archiveMode = 'all';
+      appState.archiveLimit = 500;
+      updateToggleButtons();
+      drawArchiveRows();
+    };
+  }
+
+  if (btnLoadMore) {
+    btnLoadMore.onclick = () => {
+      appState.archiveLimit = (appState.archiveLimit || 500) + 500;
+      drawArchiveRows();
+    };
+  }
+
+  updateToggleButtons();
   drawArchiveRows();
 }
 
 function drawArchiveRows() {
   const tbody = document.getElementById('archiveTableBody');
+  const countEl = document.getElementById('archiveFilterCount');
+  const sessionSummaryEl = document.getElementById('archiveSessionSummary');
+  const btnPending = document.getElementById('btnShowPending');
+  const btnResolved = document.getElementById('btnShowResolved');
+  const btnLoadMore = document.getElementById('btnArchiveLoadMore');
+  const paginationInfoEl = document.getElementById('archivePaginationInfo');
+
   if (!tbody || !appState.archive) return;
 
   const datesObj = appState.archive.dates || {};
-  let pendingRows = [];
-  let resolvedRows = [];
+  let allRows = [];
+  let totalPendingAcrossArchive = 0;
+  let totalResolvedAcrossArchive = 0;
 
-  Object.entries(datesObj).forEach(([dateStr, dData]) => {
+  const sortedDates = Object.keys(datesObj).sort().reverse();
+  sortedDates.forEach(dateStr => {
+    const dData = datesObj[dateStr] || {};
     (dData.predictions || []).forEach(p => {
       const isResolved = p.realized_return_5d !== undefined && p.realized_return_5d !== null;
+      if (isResolved) totalResolvedAcrossArchive++;
+      else totalPendingAcrossArchive++;
+
       const targetDate = p.target_resolution_date || computeTargetDate(dateStr, 5);
-      const row = {
+      const t = p.ticker || p.Ticker;
+      allRows.push({
         date: dateStr,
-        ticker: p.ticker,
-        predReturn: p.pred_return_pct,
+        ticker: t,
+        name: lookupCompanyName(t),
+        predReturn: p.pred_return_pct !== undefined ? p.pred_return_pct : (p.pred_return_5d ? p.pred_return_5d * 100 : 0.0),
         targetDate: targetDate,
         realizedReturn: isResolved ? (p.realized_return_5d * 100).toFixed(2) : null,
         isResolved: isResolved
-      };
-      if (isResolved) resolvedRows.push(row);
-      else pendingRows.push(row);
+      });
     });
   });
 
-  const list = appState.archiveMode === 'pending' ? pendingRows : resolvedRows;
-  if (list.length === 0) {
+  // Dynamic count badges on buttons
+  if (btnPending) btnPending.textContent = `Pending (${totalPendingAcrossArchive})`;
+  if (btnResolved) btnResolved.textContent = `Resolved (${totalResolvedAcrossArchive})`;
+
+  // Session summary callout
+  if (sessionSummaryEl) {
+    if (appState.archiveDate && appState.archiveDate !== 'ALL' && datesObj[appState.archiveDate]) {
+      const sData = datesObj[appState.archiveDate];
+      const isResolved = sData.status === 'resolved';
+      sessionSummaryEl.style.display = 'block';
+      if (isResolved) {
+        const icText = sData.rank_ic !== null && sData.rank_ic !== undefined
+          ? `${sData.rank_ic >= 0 ? '+' : ''}${sData.rank_ic.toFixed(4)}`
+          : 'N/A';
+        const dirAccText = sData.directional_accuracy !== null && sData.directional_accuracy !== undefined
+          ? `${(sData.directional_accuracy * 100).toFixed(1)}%`
+          : 'N/A';
+        sessionSummaryEl.innerHTML = `
+          <strong>Session ${appState.archiveDate} Audit Summary:</strong>
+          Resolved 5-day holding cycle. Realized Rank IC: <span class="mono font-semibold">${icText}</span> ·
+          Directional Accuracy: <span class="mono font-semibold">${dirAccText}</span> ·
+          Evaluated Constituents: <span class="mono font-semibold">${sData.total_predictions || 501}</span>.
+        `;
+      } else {
+        const matDate = sData.target_resolution_date || computeTargetDate(appState.archiveDate, 5);
+        sessionSummaryEl.innerHTML = `
+          <strong>Session ${appState.archiveDate} Status:</strong>
+          Active 5-day cycle. Predictions generated at market close; matures on <span class="mono font-semibold">${matDate}</span>.
+          Evaluated Constituents: <span class="mono font-semibold">${sData.total_predictions || 501}</span>. Realized returns will log post-close.
+        `;
+      }
+    } else {
+      sessionSummaryEl.style.display = 'none';
+    }
+  }
+
+  // Filter by Date
+  let filtered = allRows;
+  if (appState.archiveDate && appState.archiveDate !== 'ALL') {
+    filtered = filtered.filter(r => r.date === appState.archiveDate);
+  }
+
+  // Filter by Status (Pending, Resolved, All)
+  if (appState.archiveMode === 'pending') {
+    filtered = filtered.filter(r => !r.isResolved);
+  } else if (appState.archiveMode === 'resolved') {
+    filtered = filtered.filter(r => r.isResolved);
+  }
+
+  // Filter by Ticker / Company search query
+  if (appState.archiveSearch) {
+    const q = appState.archiveSearch;
+    filtered = filtered.filter(r =>
+      r.ticker.toLowerCase().includes(q) ||
+      (r.name && r.name.toLowerCase().includes(q))
+    );
+  }
+
+  const totalFiltered = filtered.length;
+  const limit = appState.archiveLimit || 500;
+  const pageSlice = filtered.slice(0, limit);
+
+  // Update headline description counter
+  if (countEl) {
+    const sessionLabel = appState.archiveDate === 'ALL' ? 'All Sessions' : `Session: ${appState.archiveDate}`;
+    countEl.textContent = `Showing ${pageSlice.length} of ${totalFiltered} forward forecasts (${sessionLabel})`;
+  }
+
+  // Update pagination controls
+  if (paginationInfoEl) {
+    paginationInfoEl.textContent = `Showing ${pageSlice.length} of ${totalFiltered} records`;
+  }
+  if (btnLoadMore) {
+    btnLoadMore.style.display = totalFiltered > limit ? 'inline-block' : 'none';
+  }
+
+  if (pageSlice.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="7" style="text-align: center; padding: 24px; color: var(--text-muted);">
-          ${appState.archiveMode === 'pending' ? 'No pending predictions.' : 'No resolved realizations yet. Signals are evaluated 5 trading days post-generation.'}
+        <td colspan="7" style="text-align: center; padding: 28px; color: var(--text-muted); font-size: 13px;">
+          ${appState.archiveMode === 'resolved' ? 'No resolved realizations for the selected criteria. Signals are evaluated 5 trading days post-generation.' : 'No forward forecasts match the selected session and search query.'}
         </td>
       </tr>
     `;
     return;
   }
 
-  tbody.innerHTML = list.slice(0, 100).map(r => {
+  tbody.innerHTML = pageSlice.map(r => {
     const isPos = r.predReturn >= 0;
     const sign = isPos ? '+' : '−';
     const formattedPred = `${sign}${Math.abs(r.predReturn).toFixed(2)}%`;
     const retClass = isPos ? 'pos-return' : 'neg-return';
-    const realizedText = r.realizedReturn !== null
-      ? (r.realizedReturn >= 0 ? `+${r.realizedReturn}%` : `−${Math.abs(r.realizedReturn)}%`)
-      : 'Pending';
+
+    let realizedCell = '<span style="color: var(--text-muted);">—</span>';
+    if (r.realizedReturn !== null) {
+      const realNum = parseFloat(r.realizedReturn);
+      const isRealPos = realNum >= 0;
+      const realSign = isRealPos ? '+' : '−';
+      const realClass = isRealPos ? 'pos-return' : 'neg-return';
+      realizedCell = `<span class="${realClass} font-semibold">${realSign}${Math.abs(realNum).toFixed(2)}%</span>`;
+    }
+
+    const statusBadge = r.isResolved
+      ? '<span class="status-cell status-resolved">Resolved</span>'
+      : '<span class="status-cell status-pending">Pending</span>';
 
     return `
-      <tr>
+      <tr class="interactive-row" onclick="openStockModal('${r.ticker}')">
         <td class="mono">${r.date}</td>
         <td class="ticker-cell">${r.ticker}</td>
-        <td>${lookupCompanyName(r.ticker)}</td>
+        <td>${r.name || r.ticker}</td>
         <td style="text-align: right;" class="mono ${retClass}">${formattedPred}</td>
         <td class="mono">${r.targetDate}</td>
-        <td style="text-align: right;" class="mono">${realizedText}</td>
-        <td style="text-align: center; color: var(--text-muted); font-size: 11.5px;">${r.isResolved ? 'RESOLVED' : 'PENDING'}</td>
+        <td style="text-align: right;" class="mono">${realizedCell}</td>
+        <td style="text-align: center;">${statusBadge}</td>
       </tr>
     `;
   }).join('');
@@ -894,7 +1065,7 @@ function calculateAndRenderOrders() {
             <td style="color: var(--text-muted);">${it.sector}</td>
             <td style="text-align: right;" class="mono">${(it.currentWeight * 100.0).toFixed(2)}%</td>
             <td style="text-align: right;" class="mono">${(it.targetWeight * 100.0).toFixed(2)}%</td>
-            <td style="text-align: right;" class="mono">${formattedDelta}</td>
+            <td style="text-align: right;" class="mono ${it.deltaWeight >= 0 ? 'pos-return' : 'neg-return'}">${formattedDelta}</td>
             <td style="text-align: right;" class="mono font-semibold">$${it.tradeVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td style="text-align: center; font-size: 11.5px; color: var(--text-muted);">${it.action}</td>
           </tr>
