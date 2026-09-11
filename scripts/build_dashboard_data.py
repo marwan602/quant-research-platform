@@ -277,22 +277,8 @@ def generate_all_dashboard_data(
     if archive_src.exists():
         with open(archive_src, "r", encoding="utf-8") as sf:
             arch_payload = json.load(sf)
-        for d_str, entry in arch_payload.get("dates", {}).items():
-            dt = pd.to_datetime(d_str)
-            count = 0
-            curr = dt
-            while count < 5:
-                curr += pd.Timedelta(days=1)
-                if curr.weekday() < 5:
-                    count += 1
-            target_str = curr.strftime("%Y-%m-%d")
-            entry["target_resolution_date"] = target_str
-            for p in entry.get("predictions", []):
-                p["target_resolution_date"] = target_str
 
         with open(docs_data / "prediction_archive.json", "w", encoding="utf-8") as df:
-            json.dump(arch_payload, df, indent=2)
-        with open(archive_src, "w", encoding="utf-8") as df:
             json.dump(arch_payload, df, indent=2)
 
     tf_pq = root / "reports/transformer_test_predictions.parquet"

@@ -73,6 +73,7 @@ def update_prediction_archive(
     as_of_date: str,
     store_df: pd.DataFrame | None = None,
     forward_days: int = 5,
+    min_universe_size: int = 450,
 ) -> dict:
     resolved_path = _resolve_path(archive_file)
     if resolved_path.exists():
@@ -110,7 +111,7 @@ def update_prediction_archive(
             if entry.get("status") == "resolved":
                 continue
 
-            # Authoritative maturity check: ensure the store has reached or passed the authoritative target date
+            # Authoritative maturity check: ensure store has reached or passed target resolution date
             target_res_date = entry.get("target_resolution_date")
             if target_res_date and max_store_dt < target_res_date:
                 continue
@@ -136,13 +137,23 @@ def update_prediction_archive(
                     p["realized_return_5d"] = None
 
             total_preds = len(preds)
-            min_matched = max(int(total_preds * 0.90), 1)
-            is_valid_coverage = (
-                (total_preds >= 450 and len(matched_pred) >= min(450, min_matched))
-                or (total_preds < 450 and len(matched_pred) >= min_matched)
+            coverage_valid = (
+                total_preds >= min_universe_size
+                and len(matched_pred) >= max(int(total_preds * 0.90), min(min_universe_size, 400))
             )
 
-            if is_valid_coverage:
+            resolved_date_str = (
+                pd.to_datetime(realized_df["resolved_date"].iloc[0]).strftime("%Y-%m-%d")
+                if "resolved_date" in realized_df.columns and not realized_df.empty
+                else None
+            )
+
+            horizon_valid = (
+                target_res_date is None
+                or (max_store_dt >= target_res_date and (resolved_date_str is None or resolved_date_str >= target_res_date))
+            )
+
+            if coverage_valid and horizon_valid:
                 ic_val, _ = spearmanr(matched_pred, matched_real)
                 signs_match = np.sign(matched_pred) == np.sign(matched_real)
                 dir_acc = float(np.mean(signs_match))

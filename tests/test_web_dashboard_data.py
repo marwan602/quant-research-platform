@@ -93,10 +93,12 @@ def test_frontend_assets():
     html_path = docs_dir / "index.html"
     css_path = docs_dir / "style.css"
     js_path = docs_dir / "app.js"
+    rebal_path = docs_dir / "rebalance.js"
 
     assert html_path.exists()
     assert css_path.exists()
     assert js_path.exists()
+    assert rebal_path.exists()
 
     html_content = html_path.read_text(encoding="utf-8")
     assert "S&P 500 Quantitative Research Platform" in html_content
@@ -106,12 +108,24 @@ def test_frontend_assets():
     assert "pane-research" in html_content
     assert "pane-methodology" in html_content
     assert "TODO" not in html_content
+    assert "rebalance.js" in html_content
+    assert "dataLoadErrorBanner" in html_content
+    assert "customHoldingsError" in html_content
+
+    rebal_content = rebal_path.read_text(encoding="utf-8")
+    assert "parseHoldingsInput" in rebal_content
+    assert "calculateRebalanceOrders" in rebal_content
+    assert "classifyOrder" in rebal_content
+    assert "computeDrawdownSeries" in rebal_content
+    assert "HOLD (BELOW MIN)" in rebal_content
+    assert "HOLD (NO CHANGE)" in rebal_content
+    assert "0.94 + ((idx % 7) * 0.02)" not in rebal_content
 
     js_content = js_path.read_text(encoding="utf-8")
     assert "parseHoldingsInput" in js_content
     assert "calculateRebalanceOrders" in js_content
-    assert "classifyOrder" in js_content
-    assert "computeDrawdownSeries" in js_content
-    assert "HOLD (BELOW MIN)" in js_content
-    assert "HOLD (NO CHANGE)" in js_content
     assert "0.94 + ((idx % 7) * 0.02)" not in js_content
+    assert "(+98.7% Net)" not in js_content
+    assert "(+81.5% Net)" not in js_content
+    assert "(+78.1% Net)" not in js_content
+    assert "(+40.3%)" not in js_content

@@ -54,8 +54,16 @@ def test_update_prediction_archive_and_resolve(tmp_path):
         records.append({"Date": dt, "Ticker": "NVDA", "Close": 300.0 - i * 3.0})
     store_df = pd.DataFrame(records)
 
-    arch_resolved = update_prediction_archive(archive_file, preds, as_of, store_df=store_df, forward_days=5)
+    # In production with min_universe_size=450 (default), 3-stock mock must NOT resolve
+    arch_pending = update_prediction_archive(archive_file, preds, as_of, store_df=store_df, forward_days=5)
+    assert arch_pending["dates"][as_of]["status"] == "pending", "Must stay pending when universe size < 450 in production"
+
+    # When min_universe_size=3 is explicitly passed, it resolves
+    arch_resolved = update_prediction_archive(
+        archive_file, preds, as_of, store_df=store_df, forward_days=5, min_universe_size=3
+    )
     entry = arch_resolved["dates"][as_of]
+    assert entry["status"] == "resolved"
 
     aapl_pred = [p for p in entry["predictions"] if p["ticker"] == "AAPL"][0]
     assert aapl_pred["realized_return_5d"] is not None
