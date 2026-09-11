@@ -199,15 +199,15 @@ The research platform is deployed as a zero-maintenance static web application o
 🔗 **[https://marwan602.github.io/quant-research-platform/](https://marwan602.github.io/quant-research-platform/)**
 
 Features:
-* **Overview**: Zero-input headline comparison, dual-track forward testing (Signal IC vs Portfolio return), and interactive compounded equity curves.
-* **Daily Signals**: Searchable, filterable 501-stock table with Selected Feature Profiles and forward prediction archive.
-* **Portfolio & Rebalance Workstation**: 50-stock target portfolio, sector composition breakdown (56% IT momentum exposure), and interactive rebalance simulator with BUY / SELL / HOLD execution tickets.
-* **Empirical Research**: 3-model out-of-sample comparison matrix and interactive backtest curves across 663 trading sessions.
-* **Methodology**: Paper-grade documentation of point-in-time universe, factor formulas, and temporal self-attention.
+* **Daily Forecast**: Complete 501-stock cross-sectional return forecasts, top/bottom ranked signals, and searchable universe table.
+* **Model Portfolio & Rebalance**: 50-stock target portfolio, dynamic sector distribution, and interactive rebalance execution worksheet.
+* **Forward Performance**: Out-of-sample historical evidence and live forward tracking curve with prediction audit log.
+* **Empirical Benchmarks**: Head-to-head empirical validation matrix and comparative trajectories across 663 trading sessions.
+* **Technical Appendix**: Specification of point-in-time universe, 158 Alpha factors, temporal self-attention, and cloud pipeline.
 
 To run the dashboard locally:
 ```powershell
-py -3.11 -m http.server 8080 --directory docs
+uv run python -m http.server 8000 --directory docs
 ```
 
 ---

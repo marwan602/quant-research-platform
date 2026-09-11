@@ -6,12 +6,13 @@ let appState = {
   archive: null,
   backtest: null,
   benchmarks: null,
-  activeTab: 'overview',
+  activeTab: 'signals',
   sortCol: 'rank',
   sortAsc: true,
   archiveMode: 'pending',
   overviewMode: 'cumulative',
   researchMode: 'returns',
+  rebalanceMode: 'clean_slate',
   charts: {}
 };
 
@@ -56,7 +57,7 @@ async function initApp() {
 }
 
 function setupNavigation() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  document.querySelectorAll('.nav-btn, .tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
       window.location.hash = tab;
@@ -65,12 +66,12 @@ function setupNavigation() {
 }
 
 function handleHashChange() {
-  const hash = window.location.hash.replace('#', '') || 'overview';
-  const targetBtn = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
+  const hash = window.location.hash.replace('#', '') || 'signals';
+  const targetBtn = document.querySelector(`.nav-btn[data-tab="${hash}"], .tab-btn[data-tab="${hash}"]`);
   const targetPane = document.getElementById(`pane-${hash}`);
 
   if (targetBtn && targetPane) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-btn, .tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     targetBtn.classList.add('active');
     targetPane.classList.add('active');
@@ -92,42 +93,9 @@ function renderOverview() {
   const port = f.portfolio_metrics || {};
   const stat = appState.status || {};
 
-  const netAlpha = port.net_alpha_pct !== undefined ? port.net_alpha_pct : 0.0;
-  const modelRet = port.model_cumulative_return_pct !== undefined ? port.model_cumulative_return_pct : 0.0;
-  const benchRet = port.benchmark_cumulative_return_pct !== undefined ? port.benchmark_cumulative_return_pct : 0.0;
-
-  const alphaEl = document.getElementById('kpiNetAlpha');
-  if (alphaEl) {
-    alphaEl.textContent = `${netAlpha >= 0 ? '+' : ''}${netAlpha.toFixed(2)}%`;
-    alphaEl.className = `kpi-value ${netAlpha >= 0 ? 'green' : 'red'}`;
-  }
-
-  const modelRetEl = document.getElementById('kpiModelReturn');
-  if (modelRetEl) {
-    modelRetEl.textContent = `${modelRet >= 0 ? '+' : ''}${modelRet.toFixed(2)}%`;
-    modelRetEl.className = `kpi-value ${modelRet >= 0 ? 'green' : 'red'}`;
-  }
-
-  const benchRetEl = document.getElementById('kpiBenchReturn');
-  if (benchRetEl) {
-    benchRetEl.textContent = `${benchRet >= 0 ? '+' : ''}${benchRet.toFixed(2)}%`;
-  }
-
-  const rankIcEl = document.getElementById('kpiRankIc');
-  if (rankIcEl) {
-    rankIcEl.textContent = sig.mean_rank_ic !== null && sig.mean_rank_ic !== undefined
-      ? sig.mean_rank_ic.toFixed(4)
-      : 'Evaluating (Day 1)';
-  }
-
-  const univCountEl = document.getElementById('kpiUniverseCount');
-  if (univCountEl) {
-    univCountEl.textContent = `${appState.rankings.length || 501} Stocks`;
-  }
-
   const totalForecastsEl = document.getElementById('trackTotalForecasts');
   if (totalForecastsEl) {
-    totalForecastsEl.textContent = sig.total_forecasts !== undefined ? sig.total_forecasts : appState.rankings.length;
+    totalForecastsEl.textContent = sig.total_forecasts !== undefined ? sig.total_forecasts : (appState.rankings ? appState.rankings.length : 501);
   }
 
   const resForecastsEl = document.getElementById('trackResolvedForecasts');
@@ -135,54 +103,34 @@ function renderOverview() {
     resForecastsEl.textContent = sig.resolved_forecasts !== undefined ? sig.resolved_forecasts : 0;
   }
 
-  const dirAccEl = document.getElementById('trackDirAccuracy');
-  if (dirAccEl) {
-    dirAccEl.textContent = sig.mean_directional_accuracy !== null && sig.mean_directional_accuracy !== undefined
-      ? `${(sig.mean_directional_accuracy * 100).toFixed(1)}%`
-      : 'Evaluating';
-  }
-
-  const netRetEl = document.getElementById('trackNetReturn');
-  if (netRetEl) {
-    netRetEl.textContent = `${modelRet >= 0 ? '+' : ''}${modelRet.toFixed(2)}%`;
-  }
-
-  const sharpeEl = document.getElementById('trackSharpe');
-  if (sharpeEl) {
-    sharpeEl.textContent = port.realized_sharpe !== null && port.realized_sharpe !== undefined
-      ? port.realized_sharpe.toFixed(2)
-      : 'Evaluating';
-  }
-
   const ddEl = document.getElementById('trackDrawdown');
   if (ddEl) {
     const dd = port.max_drawdown_pct !== undefined ? port.max_drawdown_pct : 0.0;
-    ddEl.textContent = `-${Math.abs(dd).toFixed(2)}%`;
+    ddEl.textContent = `${dd > 0 ? '−' : ''}${Math.abs(dd).toFixed(2)}%`;
   }
 
-  const sysStatusEl = document.getElementById('sysPipelineStatus');
-  if (sysStatusEl) {
-    sysStatusEl.textContent = stat.status ? stat.status.toUpperCase() : 'HEALTHY';
-  }
-
-  const sysLatencyEl = document.getElementById('sysLatency');
-  if (sysLatencyEl && stat.duration_seconds) {
-    sysLatencyEl.textContent = `${stat.duration_seconds} seconds`;
-  }
-
-  const sysDeviceEl = document.getElementById('sysDevice');
-  if (sysDeviceEl && stat.device) {
-    sysDeviceEl.textContent = `CPU Inference (${stat.device.toUpperCase()})`;
-  }
-
-  const sysLastSyncEl = document.getElementById('sysLastSync');
-  if (sysLastSyncEl && stat.last_sync_date) {
-    sysLastSyncEl.textContent = stat.last_sync_date;
+  const headerCoverageEl = document.getElementById('headerCoverage');
+  if (headerCoverageEl) {
+    const activeU = stat.active_universe_count || 503;
+    const evalU = stat.evaluated_stocks_count || (appState.rankings ? appState.rankings.length : 501);
+    headerCoverageEl.textContent = `${activeU} active · ${evalU} evaluated`;
   }
 
   const headerDateEl = document.getElementById('headerSessionDate');
   if (headerDateEl && stat.last_sync_date) {
-    headerDateEl.textContent = `Session: ${stat.last_sync_date}`;
+    headerDateEl.textContent = stat.last_sync_date;
+  }
+
+  const liveResDateEl = document.getElementById('liveResolutionDate');
+  if (liveResDateEl) {
+    let resDate = 'Sep 17, 2026';
+    if (appState.archive && appState.archive.dates) {
+      const dates = Object.values(appState.archive.dates);
+      if (dates.length > 0 && dates[0].target_resolution_date) {
+        resDate = dates[0].target_resolution_date;
+      }
+    }
+    liveResDateEl.textContent = resDate;
   }
 
   setupOverviewChart();
@@ -228,18 +176,18 @@ const frozenBoundaryPlugin = {
     const ctx = chart.ctx;
 
     ctx.save();
-    ctx.strokeStyle = '#3B82F6';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = '#5F6166';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
     ctx.beginPath();
     ctx.moveTo(x, top);
     ctx.lineTo(x, bottom);
     ctx.stroke();
 
-    ctx.fillStyle = '#93C5FD';
-    ctx.font = '11px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#8D9097';
+    ctx.font = '11px "Inter", sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText('Live Testing Commenced September 2026', x - 8, top + 16);
+    ctx.fillText('Live Tracking Commenced', x - 6, top + 14);
     ctx.restore();
   }
 };
@@ -311,22 +259,22 @@ function renderOverviewChartData() {
       labels: dates,
       datasets: [
         {
-          label: appState.overviewMode === 'cumulative' ? 'Transformer Long-Only Net (%)' : 'Transformer Drawdown (%)',
+          label: appState.overviewMode === 'cumulative' ? 'Transformer Net (%)' : 'Transformer Drawdown (%)',
           data: modelSeries,
-          borderColor: '#10B981',
+          borderColor: '#EDEDEA',
           backgroundColor: 'transparent',
-          borderWidth: 2.2,
+          borderWidth: 1.8,
           pointRadius: 0,
           pointHoverRadius: 4,
           tension: 0.1
         },
         {
-          label: appState.overviewMode === 'cumulative' ? 'Universe Benchmark (%)' : 'Benchmark Drawdown (%)',
+          label: appState.overviewMode === 'cumulative' ? 'S&P 500 Equal-Weighted (%)' : 'Benchmark Drawdown (%)',
           data: benchSeries,
-          borderColor: '#64748B',
+          borderColor: '#5F6166',
           borderDash: [3, 3],
           backgroundColor: 'transparent',
-          borderWidth: 1.8,
+          borderWidth: 1.4,
           pointRadius: 0,
           pointHoverRadius: 4,
           tension: 0.1
@@ -336,39 +284,32 @@ function renderOverviewChartData() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      interaction: {
-        mode: 'index',
-        intersect: false
-      },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#111827',
-          borderColor: '#1F2937',
+          backgroundColor: '#14161B',
+          borderColor: '#21242B',
           borderWidth: 1,
-          titleFont: { family: 'JetBrains Mono', size: 12 },
-          bodyFont: { family: 'JetBrains Mono', size: 12 },
+          titleFont: { family: 'Inter', size: 12 },
+          bodyFont: { family: 'Inter', size: 12 },
           callbacks: {
-            label: (item) => ` ${item.dataset.label}: ${item.parsed.y >= 0 ? '+' : ''}${item.parsed.y.toFixed(2)}%`
+            label: (item) => ` ${item.dataset.label}: ${item.parsed.y >= 0 ? '+' : '−'}${Math.abs(item.parsed.y).toFixed(2)}%`
           }
         },
         frozenBoundary: { boundaryIndex }
       },
       scales: {
         x: {
-          grid: { color: '#192233' },
-          ticks: {
-            color: '#6B7280',
-            maxTicksLimit: 10,
-            font: { family: 'JetBrains Mono', size: 11 }
-          }
+          grid: { color: '#191B21' },
+          ticks: { color: '#5F6166', maxTicksLimit: 8, font: { family: 'Inter', size: 11 } }
         },
         y: {
-          grid: { color: '#192233' },
+          grid: { color: '#191B21' },
           ticks: {
-            color: '#6B7280',
-            font: { family: 'JetBrains Mono', size: 11 },
-            callback: (val) => `${val >= 0 ? '+' : ''}${val}%`
+            color: '#5F6166',
+            font: { family: 'Inter', size: 11 },
+            callback: (val) => `${val >= 0 ? '+' : '−'}${Math.abs(val)}%`
           }
         }
       }
@@ -392,22 +333,28 @@ function renderSignals() {
         <td class="ticker-cell">${s.ticker}</td>
         <td>${s.name || s.ticker}</td>
         <td style="color: var(--text-muted);">${s.sector || 'Unclassified'}</td>
-        <td style="text-align: right;" class="mono green font-semibold">+${s.pred_return_pct.toFixed(2)}%</td>
+        <td style="text-align: right;" class="mono pos-return">+${s.pred_return_pct.toFixed(2)}%</td>
       </tr>
     `).join('');
   }
 
   const bottomTbody = document.getElementById('bottomShortsTableBody');
   if (bottomTbody) {
-    bottomTbody.innerHTML = bottom10.map(s => `
-      <tr class="interactive-row" onclick="openStockModal('${s.ticker}')">
-        <td class="mono">${s.rank}</td>
-        <td class="ticker-cell">${s.ticker}</td>
-        <td>${s.name || s.ticker}</td>
-        <td style="color: var(--text-muted);">${s.sector || 'Unclassified'}</td>
-        <td style="text-align: right;" class="mono red font-semibold">${s.pred_return_pct >= 0 ? '+' : ''}${s.pred_return_pct.toFixed(2)}%</td>
-      </tr>
-    `).join('');
+    bottomTbody.innerHTML = bottom10.map(s => {
+      const isPos = s.pred_return_pct >= 0;
+      const sign = isPos ? '+' : '−';
+      const formatted = `${sign}${Math.abs(s.pred_return_pct).toFixed(2)}%`;
+      const retClass = isPos ? 'pos-return' : 'neg-return';
+      return `
+        <tr class="interactive-row" onclick="openStockModal('${s.ticker}')">
+          <td class="mono">${s.rank}</td>
+          <td class="ticker-cell">${s.ticker}</td>
+          <td>${s.name || s.ticker}</td>
+          <td style="color: var(--text-muted);">${s.sector || 'Unclassified'}</td>
+          <td style="text-align: right;" class="mono ${retClass}">${formatted}</td>
+        </tr>
+      `;
+    }).join('');
   }
 
   populateSectorFilter(list);
@@ -434,7 +381,7 @@ function setupSignalTableFilters() {
   if (secFilter) secFilter.onchange = renderAllSignalsTable;
   if (decFilter) decFilter.onchange = renderAllSignalsTable;
 
-  document.querySelectorAll('.data-table th[data-sort]').forEach(th => {
+  document.querySelectorAll('.data-table th[data-sort], .editorial-table th[data-sort]').forEach(th => {
     th.addEventListener('click', () => {
       const col = th.dataset.sort;
       if (appState.sortCol === col) {
@@ -485,11 +432,10 @@ function renderAllSignalsTable() {
   }
 
   tbody.innerHTML = filtered.map(s => {
-    const isLong = s.decile === 1;
-    const isShort = s.decile === 10;
-    const tagClass = isLong ? 'long' : (isShort ? 'short' : 'neutral');
-    const tagLabel = isLong ? 'LONG' : (isShort ? 'SHORT' : 'NEUTRAL');
-    const returnClass = s.pred_return_pct >= 0 ? 'green' : 'red';
+    const isPos = s.pred_return_pct >= 0;
+    const sign = isPos ? '+' : '−';
+    const formattedRet = `${sign}${Math.abs(s.pred_return_pct).toFixed(2)}%`;
+    const retClass = isPos ? 'pos-return' : 'neg-return';
 
     return `
       <tr class="interactive-row" onclick="openStockModal('${s.ticker}')">
@@ -497,11 +443,8 @@ function renderAllSignalsTable() {
         <td class="ticker-cell">${s.ticker}</td>
         <td>${s.name || s.ticker}</td>
         <td style="color: var(--text-muted);">${s.sector || 'Unclassified'}</td>
-        <td style="text-align: right;" class="mono ${returnClass}">
-          ${s.pred_return_pct >= 0 ? '+' : ''}${s.pred_return_pct.toFixed(2)}%
-        </td>
-        <td style="text-align: center;"><span class="decile-badge">D${s.decile}</span></td>
-        <td style="text-align: center;"><span class="tag-badge ${tagClass}">${tagLabel}</span></td>
+        <td style="text-align: right;" class="mono ${retClass}">${formattedRet}</td>
+        <td style="text-align: center;" class="mono">D${s.decile}</td>
       </tr>
     `;
   }).join('');
@@ -510,7 +453,6 @@ function renderAllSignalsTable() {
 function renderArchive() {
   const btnPending = document.getElementById('btnShowPending');
   const btnResolved = document.getElementById('btnShowResolved');
-  const tbody = document.getElementById('archiveTableBody');
 
   if (btnPending && btnResolved) {
     btnPending.onclick = () => {
@@ -541,7 +483,7 @@ function drawArchiveRows() {
   Object.entries(datesObj).forEach(([dateStr, dData]) => {
     (dData.predictions || []).forEach(p => {
       const isResolved = p.realized_return_5d !== undefined && p.realized_return_5d !== null;
-      const targetDate = computeTargetDate(dateStr, 5);
+      const targetDate = p.target_resolution_date || computeTargetDate(dateStr, 5);
       const row = {
         date: dateStr,
         ticker: p.ticker,
@@ -567,24 +509,36 @@ function drawArchiveRows() {
     return;
   }
 
-  tbody.innerHTML = list.slice(0, 100).map(r => `
-    <tr>
-      <td class="mono">${r.date}</td>
-      <td class="ticker-cell">${r.ticker}</td>
-      <td>${lookupCompanyName(r.ticker)}</td>
-      <td class="mono ${r.predReturn >= 0 ? 'green' : 'red'}">${r.predReturn >= 0 ? '+' : ''}${r.predReturn.toFixed(2)}%</td>
-      <td class="mono">${r.targetDate}</td>
-      <td style="text-align: right;" class="mono">${r.realizedReturn !== null ? `${r.realizedReturn}%` : 'Pending'}</td>
-      <td style="text-align: center;">
-        <span class="tag-badge ${r.isResolved ? 'long' : 'neutral'}">${r.isResolved ? 'RESOLVED' : 'PENDING'}</span>
-      </td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = list.slice(0, 100).map(r => {
+    const isPos = r.predReturn >= 0;
+    const sign = isPos ? '+' : '−';
+    const formattedPred = `${sign}${Math.abs(r.predReturn).toFixed(2)}%`;
+    const retClass = isPos ? 'pos-return' : 'neg-return';
+    const realizedText = r.realizedReturn !== null
+      ? (r.realizedReturn >= 0 ? `+${r.realizedReturn}%` : `−${Math.abs(r.realizedReturn)}%`)
+      : 'Pending';
+
+    return `
+      <tr>
+        <td class="mono">${r.date}</td>
+        <td class="ticker-cell">${r.ticker}</td>
+        <td>${lookupCompanyName(r.ticker)}</td>
+        <td style="text-align: right;" class="mono ${retClass}">${formattedPred}</td>
+        <td class="mono">${r.targetDate}</td>
+        <td style="text-align: right;" class="mono">${realizedText}</td>
+        <td style="text-align: center; color: var(--text-muted); font-size: 11.5px;">${r.isResolved ? 'RESOLVED' : 'PENDING'}</td>
+      </tr>
+    `;
+  }).join('');
 }
 
 function computeTargetDate(dateStr, addDays) {
   const d = new Date(dateStr);
-  d.setDate(d.getDate() + 7);
+  let count = 0;
+  while (count < addDays) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() !== 0 && d.getDay() !== 6) count++;
+  }
   return d.toISOString().split('T')[0];
 }
 
@@ -596,6 +550,12 @@ function lookupCompanyName(ticker) {
 function renderPortfolio() {
   const port = appState.portfolio;
   if (!port) return;
+
+  const sectorCalloutEl = document.getElementById('portfolioSectorCallout');
+  if (sectorCalloutEl && port.sector_composition && port.sector_composition.length > 0) {
+    const lead = port.sector_composition[0];
+    sectorCalloutEl.textContent = `Lead Sector: ${lead.sector} (${lead.weight_pct}% · ${lead.count} of 50 holdings). Sector weights are a consequence of the model's stock rankings; no sector targets are imposed.`;
+  }
 
   setupSectorChart(port.sector_composition || []);
   setupRebalanceCalculator();
@@ -613,8 +573,8 @@ function setupSectorChart(sectors) {
   const labels = sectors.map(s => s.sector);
   const weights = sectors.map(s => s.weight_pct);
   const palette = [
-    '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899',
-    '#06B6D4', '#14B8A6', '#64748B', '#6366F1', '#D97706', '#94A3B8'
+    '#EDEDEA', '#D4D4D8', '#A1A1AA', '#71717A', '#52525B',
+    '#3F3F46', '#27272A', '#CBD5E1', '#94A3B8', '#64748B', '#475569'
   ];
 
   appState.charts.sector = new Chart(ctx, {
@@ -624,7 +584,7 @@ function setupSectorChart(sectors) {
       datasets: [{
         data: weights,
         backgroundColor: palette.slice(0, labels.length),
-        borderColor: '#111827',
+        borderColor: '#0E1013',
         borderWidth: 2
       }]
     },
@@ -635,14 +595,14 @@ function setupSectorChart(sectors) {
         legend: {
           position: 'right',
           labels: {
-            color: '#9CA3AF',
+            color: '#8D9097',
             font: { family: 'Inter', size: 11 },
-            boxWidth: 12
+            boxWidth: 10
           }
         },
         tooltip: {
-          backgroundColor: '#111827',
-          borderColor: '#1F2937',
+          backgroundColor: '#14161B',
+          borderColor: '#21242B',
           borderWidth: 1,
           callbacks: {
             label: (item) => ` ${item.label}: ${item.raw.toFixed(1)}% weight`
@@ -693,9 +653,7 @@ function calculateAndRenderOrders() {
 
   const holdings = port.holdings || [];
   const count = holdings.length || 50;
-  const allocPerStock = capital / count;
 
-  const allocPerStockEl = document.getElementById('calcAllocPerStock');
   const grossVolEl = document.getElementById('calcGrossVolume');
   const estCostEl = document.getElementById('calcEstCost');
   const targetCountEl = document.getElementById('calcTargetPositionsCount');
@@ -711,7 +669,7 @@ function calculateAndRenderOrders() {
   if (mode === 'clean_slate') {
     if (headingEl) headingEl.textContent = 'Target Allocation Ticket (50 Holdings)';
     if (badgeEl) badgeEl.textContent = '2.00% Weight Each';
-    if (volumeLabelEl) volumeLabelEl.textContent = 'Gross Order Volume:';
+    if (volumeLabelEl) volumeLabelEl.textContent = 'Gross Order Volume';
     if (breakdownValEl) breakdownValEl.textContent = '50 Buys';
     if (grossVolEl) grossVolEl.textContent = `$${capital.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
@@ -725,9 +683,9 @@ function calculateAndRenderOrders() {
           <th>Company Name</th>
           <th>Sector</th>
           <th style="text-align: right;">Target Weight</th>
-          <th style="text-align: right;">Target Allocation</th>
+          <th style="text-align: right;">Target Value</th>
           <th style="text-align: center;">Decile</th>
-          <th style="text-align: center;">Order Action</th>
+          <th style="text-align: center;">Action</th>
         </tr>
       `;
     }
@@ -745,9 +703,9 @@ function calculateAndRenderOrders() {
             <td style="color: var(--text-muted);">${h.sector || 'Unclassified'}</td>
             <td style="text-align: right;" class="mono">${weightPct}%</td>
             <td style="text-align: right;" class="mono font-semibold">$${targetValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td style="text-align: center;"><span class="decile-badge">D1</span></td>
-            <td style="text-align: center;">
-              <span class="tag-badge ${isValid ? 'buy' : 'hold'}">${isValid ? 'BUY' : 'BELOW MIN'}</span>
+            <td style="text-align: center;" class="mono">D1</td>
+            <td style="text-align: center; font-size: 11.5px; color: var(--text-muted);">
+              ${isValid ? 'BUY' : 'BELOW MIN'}
             </td>
           </tr>
         `;
@@ -756,7 +714,7 @@ function calculateAndRenderOrders() {
   } else {
     if (headingEl) headingEl.textContent = 'Rebalance Execution Ticket (Drift Adjustment)';
     if (badgeEl) badgeEl.textContent = 'Turnover Adjusted';
-    if (volumeLabelEl) volumeLabelEl.textContent = 'Rebalance Turnover:';
+    if (volumeLabelEl) volumeLabelEl.textContent = 'Rebalance Turnover';
 
     if (thead) {
       thead.innerHTML = `
@@ -768,7 +726,7 @@ function calculateAndRenderOrders() {
           <th style="text-align: right;">Target Weight</th>
           <th style="text-align: right;">Weight Delta</th>
           <th style="text-align: right;">Trade Value</th>
-          <th style="text-align: center;">Order Action</th>
+          <th style="text-align: center;">Action</th>
         </tr>
       `;
     }
@@ -788,18 +746,14 @@ function calculateAndRenderOrders() {
       const deltaWeight = targetWeight - currentWeight;
       const tradeVal = Math.abs(deltaWeight) * capital;
       let action = 'HOLD';
-      let tagClass = 'hold';
 
       if (tradeVal >= minTrade) {
         if (currentWeight === 0.0) {
           action = 'BUY (NEW)';
-          tagClass = 'buy';
         } else if (deltaWeight > 0) {
           action = 'BUY (ADD)';
-          tagClass = 'buy';
         } else if (deltaWeight < 0) {
           action = 'SELL (TRIM)';
-          tagClass = 'sell';
         }
       }
 
@@ -811,8 +765,7 @@ function calculateAndRenderOrders() {
         targetWeight,
         deltaWeight,
         tradeVal,
-        action,
-        tagClass
+        action
       });
     });
 
@@ -822,7 +775,6 @@ function calculateAndRenderOrders() {
       const deltaWeight = -currentWeight;
       const tradeVal = currentWeight * capital;
       let action = tradeVal >= minTrade ? 'SELL (EXIT)' : 'HOLD';
-      let tagClass = tradeVal >= minTrade ? 'sell' : 'hold';
 
       items.push({
         ticker: eh.ticker,
@@ -832,8 +784,7 @@ function calculateAndRenderOrders() {
         targetWeight,
         deltaWeight,
         tradeVal,
-        action,
-        tagClass
+        action
       });
     });
 
@@ -872,20 +823,22 @@ function calculateAndRenderOrders() {
     if (estCostEl) estCostEl.textContent = `$${estFriction.toFixed(2)} (${costBps} bps)`;
 
     if (tbody) {
-      tbody.innerHTML = items.map(it => `
-        <tr class="interactive-row" onclick="openStockModal('${it.ticker}')">
-          <td class="ticker-cell">${it.ticker}</td>
-          <td>${it.name}</td>
-          <td style="color: var(--text-muted);">${it.sector}</td>
-          <td style="text-align: right;" class="mono">${(it.currentWeight * 100.0).toFixed(2)}%</td>
-          <td style="text-align: right;" class="mono">${(it.targetWeight * 100.0).toFixed(2)}%</td>
-          <td style="text-align: right;" class="mono ${it.deltaWeight >= 0 ? 'green' : 'red'}">${it.deltaWeight >= 0 ? '+' : ''}${(it.deltaWeight * 100.0).toFixed(2)}%</td>
-          <td style="text-align: right;" class="mono font-semibold">$${it.tradeVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-          <td style="text-align: center;">
-            <span class="tag-badge ${it.tagClass}">${it.action}</span>
-          </td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = items.map(it => {
+        const deltaSign = it.deltaWeight >= 0 ? '+' : '−';
+        const formattedDelta = `${deltaSign}${(Math.abs(it.deltaWeight) * 100.0).toFixed(2)}%`;
+        return `
+          <tr class="interactive-row" onclick="openStockModal('${it.ticker}')">
+            <td class="ticker-cell">${it.ticker}</td>
+            <td>${it.name}</td>
+            <td style="color: var(--text-muted);">${it.sector}</td>
+            <td style="text-align: right;" class="mono">${(it.currentWeight * 100.0).toFixed(2)}%</td>
+            <td style="text-align: right;" class="mono">${(it.targetWeight * 100.0).toFixed(2)}%</td>
+            <td style="text-align: right;" class="mono">${formattedDelta}</td>
+            <td style="text-align: right;" class="mono font-semibold">$${it.tradeVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td style="text-align: center; font-size: 11.5px; color: var(--text-muted);">${it.action}</td>
+          </tr>
+        `;
+      }).join('');
     }
   }
 }
@@ -925,7 +878,8 @@ function exportRebalanceOrdersCsv() {
       const deltaWeight = targetWeight - currentWeight;
       const tradeVal = (Math.abs(deltaWeight) * capital).toFixed(2);
       const action = currentWeight === 0.0 ? 'BUY (NEW)' : (deltaWeight > 0 ? 'BUY (ADD)' : (deltaWeight < 0 ? 'SELL (TRIM)' : 'HOLD'));
-      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${(currentWeight * 100.0).toFixed(2)}%,${(targetWeight * 100.0).toFixed(2)}%,${(deltaWeight >= 0 ? '+' : '') + (deltaWeight * 100.0).toFixed(2)}%,${tradeVal},"${action}"\n`;
+      const deltaSign = deltaWeight >= 0 ? '+' : '-';
+      csvContent += `"${h.ticker}","${h.name || h.ticker}","${h.sector || ''}",${(currentWeight * 100.0).toFixed(2)}%,${(targetWeight * 100.0).toFixed(2)}%,${deltaSign}${(Math.abs(deltaWeight) * 100.0).toFixed(2)}%,${tradeVal},"${action}"\n`;
     });
 
     exitHoldings.forEach(eh => {
@@ -954,13 +908,13 @@ function renderResearch() {
   if (tbody) {
     tbody.innerHTML = (bm.models || []).map(m => `
       <tr>
-        <td style="font-weight: 600; color: var(--text-primary);">${m.name}</td>
-        <td style="text-align: right;" class="mono green font-semibold">+${m.annualized_net_return_pct.toFixed(2)}%</td>
+        <td style="font-weight: 500; color: var(--text-primary);">${m.name}</td>
+        <td style="text-align: right;" class="mono font-semibold">+${m.annualized_net_return_pct.toFixed(2)}%</td>
         <td style="text-align: right;" class="mono">${m.annualized_net_vol_pct.toFixed(2)}%</td>
         <td style="text-align: right;" class="mono font-semibold">${m.net_sharpe.toFixed(3)}</td>
-        <td style="text-align: right;" class="mono red">-${m.max_drawdown_pct.toFixed(2)}%</td>
+        <td style="text-align: right;" class="mono">−${m.max_drawdown_pct.toFixed(2)}%</td>
         <td style="text-align: right;" class="mono">${m.rank_ic_mean !== null ? m.rank_ic_mean.toFixed(4) : 'N/A'}</td>
-        <td style="text-align: right;" class="mono">${m.rank_ic_ir !== null ? m.rank_ic_ir.toFixed(3) : 'N/A'}</td>
+        <td style="text-align: right;" class="mono font-semibold">${m.rank_ic_ir !== null ? m.rank_ic_ir.toFixed(3) : 'N/A'}</td>
         <td style="text-align: right;" class="mono">${m.parameters > 0 ? m.parameters.toLocaleString() : 'Baseline'}</td>
       </tr>
     `).join('');
@@ -1020,36 +974,36 @@ function renderResearchChartData() {
     labels = bt.rebalance_dates;
     datasets = [
       {
-        label: 'Transformer (+98.7%)',
+        label: 'Transformer (+98.7% Net)',
         data: bt.transformer_lo,
-        borderColor: '#10B981',
+        borderColor: '#EDEDEA',
         backgroundColor: 'transparent',
-        borderWidth: 2.2,
+        borderWidth: 2,
         pointRadius: 0
       },
       {
-        label: 'LightGBM Baseline (+81.5%)',
+        label: 'LightGBM Baseline (+81.5% Net)',
         data: bt.lightgbm_lo,
-        borderColor: '#3B82F6',
+        borderColor: '#8D9097',
         backgroundColor: 'transparent',
-        borderWidth: 1.8,
+        borderWidth: 1.5,
         pointRadius: 0
       },
       {
-        label: 'Attentive LSTM (+78.1%)',
+        label: 'Attentive LSTM (+78.1% Net)',
         data: bt.alstm_lo,
-        borderColor: '#F59E0B',
+        borderColor: '#C4B5A5',
         backgroundColor: 'transparent',
-        borderWidth: 1.8,
+        borderWidth: 1.5,
         pointRadius: 0
       },
       {
         label: 'Equal-Weighted Universe (+40.3%)',
         data: bt.benchmark,
-        borderColor: '#64748B',
+        borderColor: '#5F6166',
         borderDash: [3, 3],
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.4,
         pointRadius: 0
       }
     ];
@@ -1059,25 +1013,25 @@ function renderResearchChartData() {
       {
         label: 'Transformer Cumulative Rank IC',
         data: bt.rank_ic.transformer_cumulative,
-        borderColor: '#10B981',
+        borderColor: '#EDEDEA',
         backgroundColor: 'transparent',
-        borderWidth: 2.2,
+        borderWidth: 2,
         pointRadius: 0
       },
       {
         label: 'Attentive LSTM Cumulative Rank IC',
         data: bt.rank_ic.alstm_cumulative,
-        borderColor: '#F59E0B',
+        borderColor: '#C4B5A5',
         backgroundColor: 'transparent',
-        borderWidth: 1.8,
+        borderWidth: 1.5,
         pointRadius: 0
       },
       {
         label: 'LightGBM Cumulative Rank IC',
         data: bt.rank_ic.lightgbm_cumulative,
-        borderColor: '#3B82F6',
+        borderColor: '#8D9097',
         backgroundColor: 'transparent',
-        borderWidth: 1.8,
+        borderWidth: 1.5,
         pointRadius: 0
       }
     ];
@@ -1085,20 +1039,36 @@ function renderResearchChartData() {
     labels = bt.drawdowns.dates;
     datasets = [
       {
-        label: 'Transformer Underwater Drawdown (%)',
+        label: 'Transformer Drawdown (%)',
         data: bt.drawdowns.transformer,
-        borderColor: '#EF4444',
+        borderColor: '#EDEDEA',
         backgroundColor: 'transparent',
-        borderWidth: 2.0,
+        borderWidth: 2,
         pointRadius: 0
       },
       {
-        label: 'Benchmark Underwater Drawdown (%)',
-        data: bt.drawdowns.benchmark,
-        borderColor: '#64748B',
-        borderDash: [3, 3],
+        label: 'LightGBM Drawdown (%)',
+        data: bt.drawdowns.lightgbm,
+        borderColor: '#8D9097',
         backgroundColor: 'transparent',
         borderWidth: 1.5,
+        pointRadius: 0
+      },
+      {
+        label: 'Attentive LSTM Drawdown (%)',
+        data: bt.drawdowns.alstm,
+        borderColor: '#C4B5A5',
+        backgroundColor: 'transparent',
+        borderWidth: 1.5,
+        pointRadius: 0
+      },
+      {
+        label: 'Equal-Weighted Drawdown (%)',
+        data: bt.drawdowns.benchmark,
+        borderColor: '#5F6166',
+        borderDash: [3, 3],
+        backgroundColor: 'transparent',
+        borderWidth: 1.4,
         pointRadius: 0
       }
     ];
@@ -1114,30 +1084,30 @@ function renderResearchChartData() {
       plugins: {
         legend: {
           labels: {
-            color: '#9CA3AF',
-            font: { family: 'Inter', size: 12 },
+            color: '#8D9097',
+            font: { family: 'Inter', size: 11 },
             boxWidth: 12
           }
         },
         tooltip: {
-          backgroundColor: '#111827',
-          borderColor: '#1F2937',
+          backgroundColor: '#14161B',
+          borderColor: '#21242B',
           borderWidth: 1,
-          titleFont: { family: 'JetBrains Mono', size: 12 },
-          bodyFont: { family: 'JetBrains Mono', size: 12 }
+          titleFont: { family: 'Inter', size: 12 },
+          bodyFont: { family: 'Inter', size: 12 }
         }
       },
       scales: {
         x: {
-          grid: { color: '#192233' },
-          ticks: { color: '#6B7280', maxTicksLimit: 10, font: { family: 'JetBrains Mono', size: 11 } }
+          grid: { color: '#191B21' },
+          ticks: { color: '#5F6166', maxTicksLimit: 8, font: { family: 'Inter', size: 11 } }
         },
         y: {
-          grid: { color: '#192233' },
+          grid: { color: '#191B21' },
           ticks: {
-            color: '#6B7280',
-            font: { family: 'JetBrains Mono', size: 11 },
-            callback: (val) => appState.researchMode === 'rank_ic' ? val.toFixed(2) : `${val >= 0 ? '+' : ''}${val}%`
+            color: '#5F6166',
+            font: { family: 'Inter', size: 11 },
+            callback: (val) => appState.researchMode === 'rank_ic' ? val.toFixed(2) : `${val >= 0 ? '+' : '−'}${Math.abs(val)}%`
           }
         }
       }
@@ -1171,8 +1141,9 @@ window.openStockModal = function(ticker) {
   document.getElementById('modalSubIndustry').textContent = item.sub_industry || 'General';
 
   const retEl = document.getElementById('modalReturn');
-  retEl.textContent = `${item.pred_return_pct >= 0 ? '+' : ''}${item.pred_return_pct.toFixed(2)}%`;
-  retEl.className = `stat-val mono ${item.pred_return_pct >= 0 ? 'green' : 'red'}`;
+  const isPos = item.pred_return_pct >= 0;
+  retEl.textContent = `${isPos ? '+' : '−'}${Math.abs(item.pred_return_pct).toFixed(2)}%`;
+  retEl.className = `m-val mono font-semibold ${isPos ? 'pos-return' : 'neg-return'}`;
 
   document.getElementById('modalDecile').textContent = `Decile ${item.decile} (Rank #${item.rank})`;
 

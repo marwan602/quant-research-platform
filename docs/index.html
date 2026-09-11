@@ -7,199 +7,57 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
-  <header class="top-nav">
-    <div class="nav-container">
-      <div class="brand-section">
-        <div class="brand-title">S&P 500 Quantitative Research Platform</div>
-        <div class="brand-meta-badges">
-          <span class="meta-badge highlight">End of Day Signal</span>
-          <span class="meta-badge">Model Frozen at Deployment</span>
-          <span class="meta-badge" id="headerSessionDate">Session: September 10, 2026</span>
-        </div>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <span class="brand-title">S&P 500 Quantitative Research Platform</span>
+        <span class="brand-subtitle">Point-in-Time Universe / Alpha158 Factors / Temporal Transformer</span>
       </div>
-      <div class="nav-actions">
-        <a href="https://github.com/marwan602/quant-research-platform" target="_blank" rel="noopener noreferrer" class="github-link-btn">
-          <span>GitHub Repository</span>
-        </a>
+      <div class="header-provenance">
+        <span class="prov-item mono" id="headerSessionDate">September 10, 2026</span>
+        <span class="prov-sep">/</span>
+        <span class="prov-item mono" id="headerCoverage">503 active · 501 evaluated</span>
+        <span class="prov-sep">/</span>
+        <span class="prov-item">Updated daily after market close</span>
+        <a href="https://github.com/marwan602/quant-research-platform" target="_blank" rel="noopener noreferrer" class="source-link">GitHub →</a>
       </div>
     </div>
   </header>
 
-  <nav class="tab-nav-bar">
-    <div class="tab-nav-container">
-      <button class="tab-btn active" data-tab="overview">Overview</button>
-      <button class="tab-btn" data-tab="signals">Daily Signals</button>
-      <button class="tab-btn" data-tab="portfolio">Portfolio & Rebalance</button>
-      <button class="tab-btn" data-tab="research">Empirical Research</button>
-      <button class="tab-btn" data-tab="methodology">Methodology & Architecture</button>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <button class="nav-btn active" data-tab="signals">Daily Forecast</button>
+      <button class="nav-btn" data-tab="portfolio">Model Portfolio</button>
+      <button class="nav-btn" data-tab="overview">Forward Performance</button>
+      <button class="nav-btn" data-tab="research">Empirical Benchmarks</button>
+      <button class="nav-btn" data-tab="methodology">Technical Appendix</button>
     </div>
   </nav>
 
   <main class="main-content">
 
-    <!-- Tab 1: Overview -->
-    <section id="pane-overview" class="tab-pane active">
-      <div class="section-header">
-        <h1 class="section-title">Forward Performance & Execution Monitor</h1>
-        <p class="section-desc">
-          Continuous out-of-sample forward tracking of the temporal attention transformer. Model weights are frozen at deployment; subsequent observations are tracked as a live forward test.
-        </p>
+    <!-- Tab 1: Daily Forecast (Primary Landing View) -->
+    <section id="pane-signals" class="tab-pane active">
+      <div class="article-header">
+        <h1 class="article-title">Today's 5-Day Forecast</h1>
+        <p class="article-subline">Cross-sectional return expectations generated at market close across the evaluated S&P 500 universe.</p>
       </div>
 
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Cumulative Net Alpha</div>
-          <div class="kpi-value green" id="kpiNetAlpha">+0.00%</div>
-          <div class="kpi-subtext">Post-deployment relative return vs S&P 500</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Model Cumulative Return</div>
-          <div class="kpi-value" id="kpiModelReturn">+0.00%</div>
-          <div class="kpi-subtext">Benchmark Cumulative: <span class="mono" id="kpiBenchReturn">0.00%</span></div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Signal Mean Rank IC</div>
-          <div class="kpi-value blue" id="kpiRankIc">Evaluating</div>
-          <div class="kpi-subtext">Cross-sectional Spearman correlation (T+5 horizon)</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Active Point-in-Time Universe</div>
-          <div class="kpi-value" id="kpiUniverseCount">501 Stocks</div>
-          <div class="kpi-subtext">Survivorship-bias-free S&P 500 constituents</div>
-        </div>
-      </div>
-
-      <div class="dual-track-container">
-        <div class="track-card">
-          <div class="track-header">
-            <span class="track-title">Signal Efficacy Track (Rank IC)</span>
-            <span class="track-badge">Cross-Sectional Forecasts</span>
+      <div class="columns-split">
+        <div class="split-col">
+          <div class="table-headline">
+            <span class="headline-text">Highest-Ranked Equities</span>
+            <span class="headline-meta">Top 10 Model Signals</span>
           </div>
-          <div class="track-stats-grid">
-            <div class="stat-item">
-              <span class="stat-label">Total Predictions Made</span>
-              <span class="stat-val" id="trackTotalForecasts">501</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Resolved Realizations</span>
-              <span class="stat-val" id="trackResolvedForecasts">0</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Directional Accuracy</span>
-              <span class="stat-val" id="trackDirAccuracy">Evaluating</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Evaluation Horizon</span>
-              <span class="stat-val">5 Trading Days</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="track-card">
-          <div class="track-header">
-            <span class="track-title">Portfolio Realization Track (Top Decile)</span>
-            <span class="track-badge">5-Day Rebalance Cycle</span>
-          </div>
-          <div class="track-stats-grid">
-            <div class="stat-item">
-              <span class="stat-label">Net Annualized Return</span>
-              <span class="stat-val green" id="trackNetReturn">Active</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Realized Sharpe Ratio</span>
-              <span class="stat-val" id="trackSharpe">Evaluating</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Current Drawdown</span>
-              <span class="stat-val" id="trackDrawdown">0.00%</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Transaction Cost Model</span>
-              <span class="stat-val">10 bps per Unit Turnover</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-toolbar">
-          <div>
-            <div class="chart-heading">Cumulative Out-of-Sample & Live Forward Trajectory</div>
-            <div class="chart-subheading">Development OOS evaluation: January 2024 to August 2026 (portfolio rebalances through August 20, 2026; daily signal evaluation extends through deployment).</div>
-          </div>
-          <div class="chart-toggle-group">
-            <button class="chart-toggle-btn active" id="btnToggleCumulative">Cumulative Return</button>
-            <button class="chart-toggle-btn" id="btnToggleDrawdown">Underwater Drawdown</button>
-          </div>
-        </div>
-        <div class="chart-canvas-wrapper">
-          <canvas id="overviewChart"></canvas>
-        </div>
-        <div class="chart-footnote">
-          <span class="chart-legend-badge">
-            <span class="legend-swatch" style="background-color: #10B981;"></span> Transformer Long-Only Net (+98.7% OOS)
-          </span>
-          <span class="chart-legend-badge" style="margin-left: 14px;">
-            <span class="legend-swatch" style="background-color: #64748B;"></span> Equal-Weighted Benchmark (+40.3% OOS)
-          </span>
-          <span style="margin-left: auto; color: #93C5FD;" class="mono">
-            Vertical line designates: Live Forward Testing Commenced September 2026
-          </span>
-        </div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-toolbar">
-          <span class="chart-heading">Autonomous Cloud Pipeline Status</span>
-          <span class="meta-badge highlight" id="sysPipelineStatus">Healthy</span>
-        </div>
-        <div style="padding: 16px;">
-          <div class="track-stats-grid">
-            <div class="stat-item">
-              <span class="stat-label">Execution Environment</span>
-              <span class="stat-val mono" id="sysDevice">CPU (GitHub Hosted Runner)</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Inference Latency</span>
-              <span class="stat-val mono" id="sysLatency">10.17 seconds</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Evaluated Universe</span>
-              <span class="stat-val mono" id="sysEvaluatedCount">501 equities</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Last Successful Pipeline Run</span>
-              <span class="stat-val mono" id="sysLastSync">September 10, 2026</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tab 2: Daily Signals -->
-    <section id="pane-signals" class="tab-pane">
-      <div class="section-header">
-        <h1 class="section-title">Daily Cross-Sectional Signals & Rankings</h1>
-        <p class="section-desc">
-          Individual equity forecasts generated at market close for the next 5-day holding period. Equities are ranked by model expected return into deciles across the survivorship-bias-free S&P 500 universe.
-        </p>
-      </div>
-
-      <div class="conviction-grid">
-        <div class="conviction-card">
-          <div class="conviction-title green">
-            <span>Top 10 High-Conviction Longs (Decile 1)</span>
-            <span class="mono">Target 2.0% Weight</span>
-          </div>
-          <table class="conviction-table">
+          <table class="editorial-table">
             <thead>
               <tr>
-                <th>Rank</th>
+                <th style="width: 50px;">Rank</th>
                 <th>Ticker</th>
                 <th>Company Name</th>
                 <th>Sector</th>
@@ -210,15 +68,15 @@
           </table>
         </div>
 
-        <div class="conviction-card">
-          <div class="conviction-title red">
-            <span>Bottom 10 Relative Underperformers (Decile 10)</span>
-            <span class="mono">Short / Underweight</span>
+        <div class="split-col">
+          <div class="table-headline">
+            <span class="headline-text">Lowest-Ranked Equities</span>
+            <span class="headline-meta">Bottom 10 Model Signals</span>
           </div>
-          <table class="conviction-table">
+          <table class="editorial-table">
             <thead>
               <tr>
-                <th>Rank</th>
+                <th style="width: 50px;">Rank</th>
                 <th>Ticker</th>
                 <th>Company Name</th>
                 <th>Sector</th>
@@ -230,16 +88,20 @@
         </div>
       </div>
 
-      <div class="table-card">
-        <div class="table-toolbar">
-          <div class="table-filters">
-            <input type="text" id="signalSearchInput" class="search-input" placeholder="Search by ticker, name, or sector...">
-            <select id="sectorFilter" class="select-input">
+      <div class="full-width-section">
+        <div class="table-header-controls">
+          <div>
+            <div class="table-headline-title">Complete Evaluated Universe</div>
+            <div class="table-headline-desc mono" id="tableFilterCount">Showing 501 of 501 equities</div>
+          </div>
+          <div class="table-filters-group">
+            <input type="text" id="signalSearchInput" class="filter-input" placeholder="Filter by ticker, name, or sector...">
+            <select id="sectorFilter" class="filter-select">
               <option value="ALL">All GICS Sectors</option>
             </select>
-            <select id="decileFilter" class="select-input">
+            <select id="decileFilter" class="filter-select">
               <option value="ALL">All Deciles (1 to 10)</option>
-              <option value="1">Decile 1 (Top Longs)</option>
+              <option value="1">Decile 1 (Top 10%)</option>
               <option value="2">Decile 2</option>
               <option value="3">Decile 3</option>
               <option value="4">Decile 4</option>
@@ -248,47 +110,219 @@
               <option value="7">Decile 7</option>
               <option value="8">Decile 8</option>
               <option value="9">Decile 9</option>
-              <option value="10">Decile 10 (Bottom Shorts)</option>
+              <option value="10">Decile 10 (Bottom 10%)</option>
             </select>
-          </div>
-          <div class="mono" id="tableFilterCount" style="font-size: 12px; color: var(--text-muted);">
-            Showing 501 of 501 equities
           </div>
         </div>
 
-        <div class="table-responsive">
-          <table class="data-table">
+        <div class="table-scroll-wrap">
+          <table class="editorial-table full-table">
             <thead>
               <tr>
-                <th data-sort="rank">Rank</th>
-                <th data-sort="ticker">Ticker</th>
+                <th data-sort="rank" style="width: 60px;">Rank</th>
+                <th data-sort="ticker" style="width: 80px;">Ticker</th>
                 <th data-sort="name">Company Name</th>
                 <th data-sort="sector">GICS Sector</th>
                 <th data-sort="pred_return_pct" style="text-align: right;">5-Day Forecast</th>
-                <th data-sort="decile" style="text-align: center;">Decile</th>
-                <th style="text-align: center;">Action</th>
+                <th data-sort="decile" style="text-align: center; width: 80px;">Decile</th>
               </tr>
             </thead>
             <tbody id="allSignalsTableBody"></tbody>
           </table>
         </div>
       </div>
+    </section>
 
-      <div class="table-card">
-        <div class="table-toolbar">
-          <div>
-            <span class="chart-heading">Forward Prediction Archive & Realization Audit</span>
-            <div class="chart-subheading" style="margin-top: 2px;">
-              Strict audit log preserving every signal generated at deployment to track forward Spearman Rank IC.
+    <!-- Tab 2: Model Portfolio & Rebalance -->
+    <section id="pane-portfolio" class="tab-pane">
+      <div class="article-header">
+        <h1 class="article-title">Model Portfolio & Rebalancing Worksheet</h1>
+        <p class="article-subline">Top-decile equal-weighted portfolio of 50 holdings (2.0% target each), rebalanced on a 5-trading-day cycle.</p>
+      </div>
+
+      <div class="editorial-notice-bar" id="portfolioSectorCallout">
+        Lead Sector: Information Technology (56.0% · 28 of 50 holdings). Sector weights are a consequence of the model's stock rankings; no sector targets are imposed.
+      </div>
+
+      <div class="rebalance-workspace">
+        <div class="worksheet-sidebar">
+          <div class="sidebar-title">Rebalance Parameters</div>
+
+          <div class="control-group">
+            <label class="control-label">Allocation Mode</label>
+            <div class="toggle-pair">
+              <button class="toggle-btn active" id="btnModeCleanSlate">Fresh Cash Allocation</button>
+              <button class="toggle-btn" id="btnModeRebalance">Adjust Existing Holdings</button>
             </div>
           </div>
-          <div class="chart-toggle-group">
-            <button class="chart-toggle-btn active" id="btnShowPending">Pending Realizations (501)</button>
-            <button class="chart-toggle-btn" id="btnShowResolved">Resolved Realizations (0)</button>
+
+          <div class="control-group">
+            <label class="control-label" for="calcCapitalInput">Portfolio Capital ($ USD)</label>
+            <input type="number" id="calcCapitalInput" class="control-input mono" value="100000" min="1000" step="1000">
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="calcMinTradeInput">Minimum Trade Filter ($ USD)</label>
+            <input type="number" id="calcMinTradeInput" class="control-input mono" value="100" min="10" step="10">
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="calcCostBpsInput">Turnover Friction Model</label>
+            <select id="calcCostBpsInput" class="control-select">
+              <option value="10">10 bps per unit turnover (Baseline)</option>
+              <option value="15">15 bps (Conservative)</option>
+              <option value="5">5 bps (Low Impact)</option>
+            </select>
+          </div>
+
+          <div class="worksheet-summary-block">
+            <div class="summary-line">
+              <span class="line-label">Target Positions</span>
+              <span class="line-val mono" id="calcTargetPositionsCount">50 Equities</span>
+            </div>
+            <div class="summary-line">
+              <span class="line-label" id="calcTradeBreakdownLabel">Order Breakdown</span>
+              <span class="line-val mono" id="calcTradeBreakdownVal">50 Buys</span>
+            </div>
+            <div class="summary-line">
+              <span class="line-label" id="calcVolumeLabel">Gross Order Volume</span>
+              <span class="line-val mono" id="calcGrossVolume">$100,000.00</span>
+            </div>
+            <div class="summary-line">
+              <span class="line-label">Estimated Turnover Friction</span>
+              <span class="line-val mono" id="calcEstCost">$100.00 (10 bps)</span>
+            </div>
+          </div>
+
+          <button class="action-btn" id="btnExportCsv">Download Execution Ticket (CSV)</button>
+        </div>
+
+        <div class="worksheet-main">
+          <div class="section-figure">
+            <div class="figure-title-bar">
+              <span class="figure-label">Sector Allocation of Target Portfolio</span>
+              <span class="figure-caption">50 top-decile equities</span>
+            </div>
+            <div style="height: 180px; width: 100%;">
+              <canvas id="sectorChart"></canvas>
+            </div>
+          </div>
+
+          <div class="section-table-wrap">
+            <div class="table-headline">
+              <span class="headline-text" id="rebalanceTableHeading">Target Allocation Ticket (50 Holdings)</span>
+              <span class="headline-meta" id="rebalanceTableBadge">2.00% Weight Each</span>
+            </div>
+            <div class="table-scroll-wrap" style="max-height: 480px;">
+              <table class="editorial-table">
+                <thead id="rebalanceTableHead">
+                  <tr>
+                    <th>Ticker</th>
+                    <th>Company Name</th>
+                    <th>Sector</th>
+                    <th style="text-align: right;">Target Weight</th>
+                    <th style="text-align: right;">Target Value</th>
+                    <th style="text-align: center;">Decile</th>
+                    <th style="text-align: center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="rebalanceTicketTableBody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
-        <div class="table-responsive" style="max-height: 350px;">
-          <table class="data-table">
+      </div>
+    </section>
+
+    <!-- Tab 3: Forward Performance -->
+    <section id="pane-overview" class="tab-pane">
+      <div class="article-header">
+        <h1 class="article-title">Out-of-Sample Performance & Forward Tracking</h1>
+        <p class="article-subline">Completed out-of-sample evidence (2024–2026) alongside post-deployment live forward monitoring.</p>
+      </div>
+
+      <div class="empirical-split-grid">
+        <div class="empirical-block">
+          <div class="block-eyebrow">Historical Out-of-Sample Backtest</div>
+          <div class="block-title">January 2024 to August 2026 (663 Sessions)</div>
+          <div class="metrics-row">
+            <div class="metric-cell">
+              <span class="metric-num font-semibold">+29.05%</span>
+              <span class="metric-desc">Net Annualized Return (vs +13.69% Benchmark)</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">1.188</span>
+              <span class="metric-desc">Net Sharpe Ratio (vs 1.058 Benchmark)</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">−25.20%</span>
+              <span class="metric-desc">Max Drawdown (vs −15.79% Benchmark)</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">42.31%</span>
+              <span class="metric-desc">Mean 5-Day Turnover (10 bps friction applied)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="empirical-block">
+          <div class="block-eyebrow">Post-Deployment Live Forward Tracking</div>
+          <div class="block-title">September 10, 2026 to Present</div>
+          <div class="metrics-row">
+            <div class="metric-cell">
+              <span class="metric-num font-semibold" id="trackTotalForecasts">501</span>
+              <span class="metric-desc">Forecasts Deployed at Inception</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num" id="trackResolvedForecasts">0</span>
+              <span class="metric-desc">Resolved 5-Day Cycles</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num" id="trackDrawdown">0.00%</span>
+              <span class="metric-desc">Live Forward Drawdown</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num mono" id="liveResolutionDate">Sep 17, 2026</span>
+              <span class="metric-desc">First 5-Day Holding Cycle Matures</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-container">
+        <div class="figure-header">
+          <div>
+            <div class="figure-heading">Figure 1: Cumulative Return & Drawdown Trajectory</div>
+            <div class="figure-subheading">Walk-forward out-of-sample backtest linked to the live forward testing series via multiplicative NAV compounding.</div>
+          </div>
+          <div class="figure-controls">
+            <button class="toggle-btn active" id="btnToggleCumulative">Cumulative Return</button>
+            <button class="toggle-btn" id="btnToggleDrawdown">Underwater Drawdown</button>
+          </div>
+        </div>
+        <div class="chart-box">
+          <canvas id="overviewChart"></canvas>
+        </div>
+        <div class="figure-caption-bar">
+          <span>— Primary Model: Transformer Long-Only Net (+98.67% OOS)</span>
+          <span style="margin-left: 20px;">- - Benchmark: S&P 500 Equal-Weighted (+40.29% OOS)</span>
+          <span style="margin-left: auto;" class="mono">Vertical marker: Live forward testing commenced September 2026</span>
+        </div>
+      </div>
+
+      <div class="full-width-section">
+        <div class="table-header-controls">
+          <div>
+            <div class="table-headline-title">Forward Prediction Archive & Realization Log</div>
+            <div class="table-headline-desc">Audit log recording every individual forecast generated at market close to measure forward Rank IC.</div>
+          </div>
+          <div class="toggle-pair">
+            <button class="toggle-btn active" id="btnShowPending">Pending Realizations (501)</button>
+            <button class="toggle-btn" id="btnShowResolved">Resolved Realizations (0)</button>
+          </div>
+        </div>
+        <div class="table-scroll-wrap" style="max-height: 380px;">
+          <table class="editorial-table">
             <thead>
               <tr>
                 <th>Generated Date</th>
@@ -306,139 +340,30 @@
       </div>
     </section>
 
-    <!-- Tab 3: Portfolio & Rebalance -->
-    <section id="pane-portfolio" class="tab-pane">
-      <div class="section-header">
-        <h1 class="section-title">Portfolio Construction & Rebalance Workstation</h1>
-        <p class="section-desc">
-          Top Decile Long-Only strategy targeting 50 equities at 2.0% equal weight each. Supports initial cash deployments and drifted portfolio rebalancing with automated BUY, SELL, and HOLD order generation.
-        </p>
-      </div>
-
-      <div class="notice-box" style="margin-bottom: 20px;">
-        <strong>Top-Decile Model Portfolio:</strong> 50 Holdings | Equal-Weighted (2.0% target each) | <strong style="color: #93C5FD;">56.0% Information Technology Concentration</strong> (28 of 50 holdings) vs S&P 500 Benchmark (~31.0%). The model autonomously concentrated in semiconductor and software momentum leaders.
-      </div>
-
-      <div class="rebalance-grid">
-        <div class="calc-panel">
-          <div class="calc-title">Rebalance Parameters</div>
-
-          <div class="calc-field">
-            <label class="calc-label">Execution Mode</label>
-            <div class="chart-toggle-group" style="width: 100%;">
-              <button class="chart-toggle-btn active" id="btnModeCleanSlate" style="flex: 1;">Cash Allocation</button>
-              <button class="chart-toggle-btn" id="btnModeRebalance" style="flex: 1;">Portfolio Rebalance</button>
-            </div>
-          </div>
-          
-          <div class="calc-field">
-            <label class="calc-label" for="calcCapitalInput">Portfolio Total Capital ($ USD)</label>
-            <input type="number" id="calcCapitalInput" class="calc-input mono" value="100000" min="1000" step="1000">
-          </div>
-
-          <div class="calc-field">
-            <label class="calc-label" for="calcMinTradeInput">Minimum Trade Filter ($ USD)</label>
-            <input type="number" id="calcMinTradeInput" class="calc-input mono" value="100" min="10" step="10">
-          </div>
-
-          <div class="calc-field">
-            <label class="calc-label" for="calcCostBpsInput">Slippage & Commission Model</label>
-            <select id="calcCostBpsInput" class="select-input">
-              <option value="10">10 bps (Institutional Liquid)</option>
-              <option value="15">15 bps (Conservative)</option>
-              <option value="5">5 bps (Ultra Low Impact)</option>
-            </select>
-          </div>
-
-          <div class="calc-summary-box">
-            <div class="calc-stat-row">
-              <span class="calc-label">Target Positions:</span>
-              <span class="mono" id="calcTargetPositionsCount">50 Equities</span>
-            </div>
-            <div class="calc-stat-row">
-              <span class="calc-label" id="calcTradeBreakdownLabel">Order Breakdown:</span>
-              <span class="mono" id="calcTradeBreakdownVal">50 Buys</span>
-            </div>
-            <div class="calc-stat-row">
-              <span class="calc-label" id="calcVolumeLabel">Gross Order Volume:</span>
-              <span class="mono" id="calcGrossVolume">$100,000.00</span>
-            </div>
-            <div class="calc-stat-row">
-              <span class="calc-label">Estimated Friction Drag:</span>
-              <span class="mono red" id="calcEstCost">$100.00 (10 bps)</span>
-            </div>
-          </div>
-
-          <button class="btn-primary" id="btnExportCsv">
-            <span>Download Execution CSV</span>
-          </button>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-          <div class="chart-card" style="margin-bottom: 0;">
-            <div class="chart-toolbar">
-              <div>
-                <div class="chart-heading">Sector Composition of Model Portfolio</div>
-                <div class="chart-subheading">Weight distribution across the 50 top-decile target holdings (56% Information Technology).</div>
-              </div>
-            </div>
-            <div class="chart-canvas-wrapper" style="height: 240px;">
-              <canvas id="sectorChart"></canvas>
-            </div>
-          </div>
-
-          <div class="table-card" style="margin-bottom: 0;">
-            <div class="table-toolbar">
-              <span class="chart-heading" id="rebalanceTableHeading">Target Allocation Ticket (50 Holdings)</span>
-              <span class="meta-badge highlight" id="rebalanceTableBadge">2.00% Weight Each</span>
-            </div>
-            <div class="table-responsive" style="max-height: 420px;">
-              <table class="data-table">
-                <thead id="rebalanceTableHead">
-                  <tr>
-                    <th>Ticker</th>
-                    <th>Company Name</th>
-                    <th>Sector</th>
-                    <th style="text-align: right;">Target Weight</th>
-                    <th style="text-align: right;">Target Value</th>
-                    <th style="text-align: center;">Decile</th>
-                    <th style="text-align: center;">Order Action</th>
-                  </tr>
-                </thead>
-                <tbody id="rebalanceTicketTableBody"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tab 4: Empirical Research -->
+    <!-- Tab 4: Empirical Benchmarks -->
     <section id="pane-research" class="tab-pane">
-      <div class="section-header">
-        <h1 class="section-title">Out-of-Sample Empirical Benchmarks (2024 to 2026)</h1>
-        <p class="section-desc">
-          Head-to-head empirical validation across 663 out-of-sample trading days. All models evaluated under identical survivorship-bias-free conditions with realistic 10 bps transaction cost per unit of portfolio turnover and 5-day rebalancing.
-        </p>
+      <div class="article-header">
+        <h1 class="article-title">Empirical Validation & Model Benchmarks</h1>
+        <p class="article-subline">Head-to-head empirical validation across 663 out-of-sample trading sessions under identical point-in-time universe and 10 bps turnover friction.</p>
       </div>
 
-      <div class="table-card" style="margin-bottom: 24px;">
-        <div class="table-toolbar">
-          <span class="chart-heading">Performance Summary Matrix</span>
-          <span class="meta-badge">663 Test Trading Sessions</span>
+      <div class="full-width-section" style="margin-top: 0;">
+        <div class="table-headline">
+          <span class="headline-text">Table 1: Out-of-Sample Performance Summary Matrix (2024 to 2026)</span>
+          <span class="headline-meta">663 Test Sessions</span>
         </div>
-        <div class="table-responsive">
-          <table class="data-table">
+        <div class="table-scroll-wrap">
+          <table class="editorial-table">
             <thead>
               <tr>
                 <th>Model Architecture</th>
                 <th style="text-align: right;">Net Annualized Return</th>
                 <th style="text-align: right;">Annualized Volatility</th>
-                <th style="text-align: right;">Net Sharpe Ratio</th>
+                <th style="text-align: right;">Net Sharpe</th>
                 <th style="text-align: right;">Max Drawdown</th>
                 <th style="text-align: right;">Mean Rank IC</th>
-                <th style="text-align: right;">Rank IC IR</th>
-                <th style="text-align: right;">Parameter Count</th>
+                <th style="text-align: right;">Rank ICIR</th>
+                <th style="text-align: right;">Parameters</th>
               </tr>
             </thead>
             <tbody id="benchmarkMatrixTableBody"></tbody>
@@ -446,240 +371,185 @@
         </div>
       </div>
 
-      <div class="chart-card">
-        <div class="chart-toolbar">
+      <div class="figure-container">
+        <div class="figure-header">
           <div>
-            <div class="chart-heading">Comparative Empirical Trajectories</div>
-            <div class="chart-subheading">Walk-forward evaluation curves across the full out-of-sample test horizon.</div>
+            <div class="figure-heading">Figure 2: Comparative Walk-Forward Trajectories</div>
+            <div class="figure-subheading">Walk-forward performance curves across the full out-of-sample test horizon.</div>
           </div>
-          <div class="chart-toggle-group">
-            <button class="chart-toggle-btn active" id="btnResearchReturns">Net Cumulative Return</button>
-            <button class="chart-toggle-btn" id="btnResearchRankIc">Cumulative Rank IC</button>
-            <button class="chart-toggle-btn" id="btnResearchDrawdown">Underwater Drawdown</button>
+          <div class="figure-controls">
+            <button class="toggle-btn active" id="btnResearchReturns">Net Cumulative Return</button>
+            <button class="toggle-btn" id="btnResearchRankIc">Cumulative Rank IC</button>
+            <button class="toggle-btn" id="btnResearchDrawdown">Underwater Drawdown</button>
           </div>
         </div>
-        <div class="chart-canvas-wrapper">
+        <div class="chart-box">
           <canvas id="researchChart"></canvas>
         </div>
       </div>
 
-      <div class="methodology-doc" style="margin-top: 24px;">
-        <h2 style="margin-top: 0;">Key Empirical Insights</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 14px;">
-          <div class="conviction-card">
-            <div class="chart-heading" style="color: #93C5FD; margin-bottom: 8px;">Superior Rank Stability</div>
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
-              The Attentive Transformer achieved a Rank IC Information Ratio of <strong>2.058</strong>, significantly outperforming both Attentive LSTM (1.265) and LightGBM (1.161), demonstrating that temporal self-attention extracts more consistent cross-sectional ranking signals.
-            </p>
-          </div>
-          <div class="conviction-card">
-            <div class="chart-heading" style="color: #10B981; margin-bottom: 8px;">Net Alpha After Costs</div>
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
-              After accounting for 10 bps turnover friction and 42.3% mean portfolio turnover, the Transformer produced <strong>+29.05% annualized net return</strong> (Sharpe 1.188) versus <strong>+13.69%</strong> for the equal-weighted universe benchmark (Sharpe 1.058).
-            </p>
-          </div>
-          <div class="conviction-card">
-            <div class="chart-heading" style="color: #F59E0B; margin-bottom: 8px;">Lower Computational Overhead</div>
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
-              With only 98,881 parameters (397 KB file footprint), the production Transformer executes CPU forward-pass inference on all 501 S&P 500 stocks in <strong>10.17 seconds</strong>, making it ideally suited for daily serverless cloud workflows.
-            </p>
-          </div>
-        </div>
+      <div class="research-note-box">
+        <div class="note-title">Note on Rank ICIR</div>
+        <p class="note-text">
+          Rank ICIR is calculated as the mean daily cross-sectional Spearman rank correlation divided by its standard deviation over the out-of-sample evaluation period. The Temporal Attention Transformer achieved a Rank ICIR of 2.058 (vs 1.265 for Attentive LSTM and 1.161 for LightGBM), reflecting a higher average ranking signal relative to its day-to-day variation.
+        </p>
       </div>
     </section>
 
-    <!-- Tab 5: Methodology -->
+    <!-- Tab 5: Technical Appendix -->
     <section id="pane-methodology" class="tab-pane">
-      <div class="section-header">
-        <h1 class="section-title">Quantitative Methodology & Cloud Architecture</h1>
-        <p class="section-desc">
-          Rigorous end-to-end specification covering point-in-time universe construction, Alpha158 factor formulation, attention mechanics, transaction cost modeling, and autonomous GitHub Actions orchestration.
-        </p>
+      <div class="article-header">
+        <h1 class="article-title">System Specification & Methodology</h1>
+        <p class="article-subline">Technical reference specification of data pipelines, factor formulations, neural architecture, and cloud automation.</p>
       </div>
 
-      <div class="methodology-doc">
-        <h2>1. Point-in-Time Universe & Elimination of Survivorship Bias</h2>
-        <p>
-          Backtesting only against current index members introduces severe survivorship bias by retroactively including future winners while excluding historical constituents that were delisted, went bankrupt, or were acquired.
-        </p>
-        <p>
-          This research platform strictly enforces point-in-time universe membership using daily historical index constituents from 2015 to present. On each historical trading day, the candidate universe consists exclusively of equities that were verified S&P 500 members on that specific date.
-        </p>
-
-        <h2>2. Alpha158 Factor Engineering Engine</h2>
-        <p>
-          For every active stock, the feature pipeline computes 158 normalized quantitative technical indicators over a 60-day historical lookback window:
-        </p>
-        <ul>
-          <li><strong>Normalized Bar Dynamics (KMID, KLEN, KSFT)</strong>: Proportional candle bodies, shadows, and intraday range skewness normalized by opening price and daily spread.</li>
-          <li><strong>Relative Price Channels</strong>: Normalized Open, High, Low, and Volume-Weighted Average Price (VWAP) relative to Close.</li>
-          <li><strong>Rolling Return Momentum (ROC5, ROC10, ROC20, ROC30, ROC60)</strong>: Rate-of-change indicators capturing multi-scale momentum dynamics.</li>
-          <li><strong>Volatility & Dispersion (STD5, STD20, STD60, BETA)</strong>: Trailing return dispersion and market covariance.</li>
-          <li><strong>Volume Dynamics & Liquidity (VOLUME_RATIO, VSTD, WVMA)</strong>: Moving average volume turnover and price-weighted volume concentration.</li>
-        </ul>
-        <div class="code-callout">
-Input Tensor Dimensions: [Batch Size: N Equities, Sequence Length: 60 Trading Days, Features: 158 Normalized Factors]
+      <div class="appendix-list">
+        <div class="appendix-entry">
+          <div class="entry-num">1</div>
+          <div class="entry-body">
+            <div class="entry-title">Point-in-Time Universe & Survivorship-Bias Mitigation</div>
+            <p class="entry-summary">
+              The platform reconstructs the verified historical constituent membership of the S&P 500 on every trading day from 2015 to present, reducing survivorship bias from bankruptcies, acquisitions, and delistings.
+            </p>
+            <details class="editorial-details">
+              <summary>Technical Details</summary>
+              <div class="details-content">
+                <p>On each historical date, candidate equities are filtered strictly through the point-in-time constituent registry. Ticker symbol changes are tracked across corporate actions. Daily coverage checks verify that historical members have valid daily bars before feature calculation.</p>
+              </div>
+            </details>
+          </div>
         </div>
 
-        <h2>3. Temporal Attention Transformer Architecture</h2>
-        <p>
-          Unlike recurrent models (LSTM / GRU) which compress sequential states into a single hidden vector and struggle with long-range factor interactions, the Temporal Attention Transformer computes direct non-linear interactions across all 60 time steps:
-        </p>
-        <p>
-          Each stock's temporal representation is passed through multi-head self-attention:
-        </p>
-        <div class="code-callout">
-Attention(Q, K, V) = softmax((Q * K^T) / sqrt(d_k)) * V
-        </div>
-        <p>
-          The attention outputs are passed through LayerNorm, dropout regularization, and a residual feed-forward network to project directly to the 5-day expected return target:
-        </p>
-        <div class="code-callout">
-y_hat = W_out * ReLU(W_fc * ContextVector + b_fc) + b_out
-        </div>
-
-        <h2>4. Evaluation Protocol & Transaction Cost Accounting</h2>
-        <p>
-          Out-of-sample evaluation strictly avoids lookahead bias:
-        </p>
-        <ul>
-          <li><strong>Training Split</strong>: 2015-01-01 to 2021-12-31 (In-Sample Calibration).</li>
-          <li><strong>Validation Split</strong>: 2022-01-01 to 2023-12-31 (Hyperparameter Optimization & Early Stopping).</li>
-          <li><strong>Test Split</strong>: 2024-01-01 to 2026-08-20 (Strict Out-of-Sample Holdout).</li>
-          <li><strong>Rebalance Horizon</strong>: 5 trading days non-overlapping portfolio rebalancing.</li>
-          <li><strong>Friction Accounting</strong>: 10 bps (0.10%) per unit of portfolio turnover deducted directly from gross returns:</li>
-        </ul>
-        <div class="code-callout">
-R_net(t) = R_gross(t) - Turnover(t) * CostRate
+        <div class="appendix-entry">
+          <div class="entry-num">2</div>
+          <div class="entry-body">
+            <div class="entry-title">Alpha158 Factor Suite</div>
+            <p class="entry-summary">
+              A suite of 158 normalized quantitative technical indicators measuring price dynamics, multi-scale momentum, trailing volatility, and volume concentration across a 60-day rolling lookback window.
+            </p>
+            <details class="editorial-details">
+              <summary>Technical Details</summary>
+              <div class="details-content">
+                <p>Features include normalized candle bodies (KMID, KLEN, KSFT), relative price channels, multi-scale rate of change (ROC5 through ROC60), return dispersion, moving average volume turnover, and volume-weighted average price (VWAP) relationships. Input tensors have shape <code>[N, 60, 158]</code>.</p>
+              </div>
+            </details>
+          </div>
         </div>
 
-        <h2>5. Autonomous Serverless Cloud Architecture</h2>
-        <p>
-          The production system runs entirely hands-off on GitHub Actions every weekday at 5:00 PM EST (post-close):
-        </p>
-        <div class="pipeline-diagram">
-┌────────────────────────────────────────────────────────────────────────┐
-│               GitHub Actions Cloud Orchestrator (Daily)                │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-       ┌────────────────────────────┴────────────────────────────┐
-       ▼                                                         ▼
-┌───────────────────────────────┐        ┌───────────────────────────────┐
-│ PRIVATE DATA REPOSITORY       │        │ PUBLIC RESEARCH PLATFORM      │
-│ • Raw Price Parquet (49 MB)   │        │ • Frozen Transformer Weights  │
-│ • Daily Composition (961 KB)  │        │ • Python Factor Engine        │
-│ • Ingests Polygon Daily Bars  │        │ • Static Dashboard in docs/   │
-└───────────────────────────────┘        └───────────────────────────────┘
-                                                         │
-                                                         ▼
-                                         GitHub Pages / Vercel ($0 Static)
+        <div class="appendix-entry">
+          <div class="entry-num">3</div>
+          <div class="entry-body">
+            <div class="entry-title">Temporal Attention Transformer Architecture</div>
+            <p class="entry-summary">
+              A sequence-to-scalar architecture utilizing multi-head self-attention to capture direct non-linear interactions across all 60 time steps, projecting to expected 5-day return forecasts.
+            </p>
+            <details class="editorial-details">
+              <summary>Technical Details</summary>
+              <div class="details-content">
+                <p>Features are projected to model dimension <code>d_model = 64</code> with learned positional encodings, processed through 2 multi-head attention layers (4 heads), temporal attention pooling, LayerNorm, and a feed-forward projection head. Total parameters: 98,881 (397 KB checkpoint). CPU inference latency is approximately 10 seconds for 501 equities.</p>
+              </div>
+            </details>
+          </div>
         </div>
+
+        <div class="appendix-entry">
+          <div class="entry-num">4</div>
+          <div class="entry-body">
+            <div class="entry-title">Friction Accounting & Rebalancing Protocol</div>
+            <p class="entry-summary">
+              Portfolios rebalance every 5 trading days. A transaction cost of 10 basis points (0.10%) per unit of portfolio turnover is deducted directly from gross returns.
+            </p>
+            <details class="editorial-details">
+              <summary>Technical Details</summary>
+              <div class="details-content">
+                <p>Net return is computed as <code>R_net(t) = R_gross(t) - Turnover(t) * 0.0010</code>. Portfolios hold 50 equal-weighted equities (2.0% target weight each). Turnover is measured as half the sum of absolute weight changes across rebalance sessions.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="appendix-entry">
+          <div class="entry-num">5</div>
+          <div class="entry-body">
+            <div class="entry-title">Automated Serverless Cloud Orchestration</div>
+            <p class="entry-summary">
+              An automated pipeline executed by GitHub Actions every weekday after market close at 22:00 UTC. Ingests raw market bars into private storage and publishes derived research forecasts to GitHub Pages.
+            </p>
+            <details class="editorial-details">
+              <summary>Technical Details</summary>
+              <div class="details-content">
+                <p>The workflow uses dual-repository separation to keep raw price data confidential while publishing public forecasts. The pipeline validates that the ingested market date matches target date, checks constituent coverage (≥90%), evaluates inference coverage (≥85%), and updates the static JSON payloads feeding this site.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="appendix-footer">
+        <a href="https://github.com/marwan602/quant-research-platform" target="_blank" rel="noopener noreferrer" class="source-link">View complete Python codebase, training checkpoints, and research logs on GitHub →</a>
       </div>
     </section>
 
   </main>
 
-  <!-- Stock Detail Modal / Drawer -->
-  <div class="modal-overlay" id="stockModalOverlay">
-    <div class="modal-box">
-      <div class="modal-header">
+  <!-- Stock Factor Profile Modal -->
+  <div id="stockModalOverlay" class="modal-overlay">
+    <div class="modal-window">
+      <div class="modal-header-bar">
         <div>
-          <div class="modal-ticker" id="modalTicker">AAPL</div>
-          <div class="modal-name" id="modalName">Apple Inc.</div>
+          <div class="modal-symbol mono" id="modalTicker">AAPL</div>
+          <div class="modal-company" id="modalName">Apple Inc.</div>
         </div>
-        <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+        <button id="modalCloseBtn" class="modal-close" aria-label="Close modal">×</button>
       </div>
-
-      <div class="notice-box">
-        Selected Feature Profile shows relative factor percentiles across the active S&P 500 cross-section. The temporal transformer computes joint non-linear representations across 60 historical time steps.
+      <div class="modal-meta-line">
+        <span id="modalSector">Information Technology</span> · <span id="modalSubIndustry">Consumer Electronics</span>
       </div>
-
-      <div class="track-stats-grid" style="margin-bottom: 18px;">
-        <div class="stat-item">
-          <span class="stat-label">Sector</span>
-          <span class="stat-val" id="modalSector" style="font-size: 13px;">Information Technology</span>
+      <div class="modal-metrics-strip">
+        <div class="modal-metric">
+          <span class="m-label">5-Day Expected Return</span>
+          <span class="m-val mono font-semibold" id="modalReturn">+2.45%</span>
         </div>
-        <div class="stat-item">
-          <span class="stat-label">Sub-Industry</span>
-          <span class="stat-val" id="modalSubIndustry" style="font-size: 13px;">Technology Hardware</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">5-Day Expected Return</span>
-          <span class="stat-val green mono" id="modalReturn">+2.45%</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Cross-Sectional Decile</span>
-          <span class="stat-val mono" id="modalDecile">Decile 1</span>
+        <div class="modal-metric">
+          <span class="m-label">Decile Assignment</span>
+          <span class="m-val mono" id="modalDecile">Decile 1 (Rank #14)</span>
         </div>
       </div>
-
-      <div style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">
-        Selected Feature Profile (Cross-Sectional Percentile Rank)
-      </div>
-
-      <div class="factor-bar-list">
-        <div class="factor-item">
-          <div class="factor-item-head">
-            <span class="factor-item-label">20-Day Momentum</span>
-            <span class="factor-item-val" id="barValMom">85%</span>
-          </div>
-          <div class="factor-track">
-            <div class="factor-fill" id="barFillMom" style="width: 85%;"></div>
-          </div>
+      <div class="modal-factors-title">Factor Percentile Profile (Trailing 60 Days)</div>
+      <div class="modal-factors-grid">
+        <div class="factor-row">
+          <span class="factor-name">Momentum (ROC20)</span>
+          <span class="factor-num mono" id="barValMom">78.2%</span>
+          <div class="factor-track"><div class="factor-bar" id="barFillMom" style="width: 78.2%;"></div></div>
         </div>
-
-        <div class="factor-item">
-          <div class="factor-item-head">
-            <span class="factor-item-label">Realized Volatility</span>
-            <span class="factor-item-val" id="barValVol">60%</span>
-          </div>
-          <div class="factor-track">
-            <div class="factor-fill" id="barFillVol" style="width: 60%; background-color: #F59E0B;"></div>
-          </div>
+        <div class="factor-row">
+          <span class="factor-name">Volatility (STD20)</span>
+          <span class="factor-num mono" id="barValVol">42.1%</span>
+          <div class="factor-track"><div class="factor-bar" id="barFillVol" style="width: 42.1%;"></div></div>
         </div>
-
-        <div class="factor-item">
-          <div class="factor-item-head">
-            <span class="factor-item-label">Short-Term Reversal</span>
-            <span class="factor-item-val" id="barValRev">45%</span>
-          </div>
-          <div class="factor-track">
-            <div class="factor-fill" id="barFillRev" style="width: 45%; background-color: #8B5CF6;"></div>
-          </div>
+        <div class="factor-row">
+          <span class="factor-name">Reversal Bias (MA20)</span>
+          <span class="factor-num mono" id="barValRev">61.0%</span>
+          <div class="factor-track"><div class="factor-bar" id="barFillRev" style="width: 61.0%;"></div></div>
         </div>
-
-        <div class="factor-item">
-          <div class="factor-item-head">
-            <span class="factor-item-label">Volume Liquidity Concentration</span>
-            <span class="factor-item-val" id="barValLiq">92%</span>
-          </div>
-          <div class="factor-track">
-            <div class="factor-fill" id="barFillLiq" style="width: 92%; background-color: #06B6D4;"></div>
-          </div>
+        <div class="factor-row">
+          <span class="factor-name">Volume Liquidity</span>
+          <span class="factor-num mono" id="barValLiq">94.5%</span>
+          <div class="factor-track"><div class="factor-bar" id="barFillLiq" style="width: 94.5%;"></div></div>
         </div>
-
-        <div class="factor-item">
-          <div class="factor-item-head">
-            <span class="factor-item-label">Moving Average Trend Strength</span>
-            <span class="factor-item-val" id="barValTrend">78%</span>
-          </div>
-          <div class="factor-track">
-            <div class="factor-fill" id="barFillTrend" style="width: 78%; background-color: #10B981;"></div>
-          </div>
+        <div class="factor-row">
+          <span class="factor-name">Trend Ratio (MA10/50)</span>
+          <span class="factor-num mono" id="barValTrend">83.4%</span>
+          <div class="factor-track"><div class="factor-bar" id="barFillTrend" style="width: 83.4%;"></div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="footer">
+  <footer class="site-footer">
     <div class="footer-container">
-      <div>
-        <span>Quantitative Research Platform &copy; 2026</span>
-        <span style="margin-left: 12px;">Temporal Attention Transformer · Alpha158 Architecture</span>
-      </div>
-      <div>
-        <span>Model Frozen at Deployment · Survivorship-Bias-Free Point-in-Time Data</span>
-      </div>
+      <span>S&P 500 Quantitative Research Platform · Attentive Transformer Architecture</span>
+      <span class="footer-note">Published research artifact. Not financial advice or trade solicitation.</span>
     </div>
   </footer>
 
