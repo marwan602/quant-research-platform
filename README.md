@@ -14,7 +14,7 @@ A production quantitative research platform predicting 5-day cross-sectional S&P
 
 ### Dataset Attribution & Reference Pipeline
 This project's historical universe and price data pipeline is adapted from the open-source pipeline by **Konrad Zatorski**:
-👉 **Reference Repository**: [https://github.com/K0D1Z/sp500-quantitative-dataset](https://github.com/K0D1Z/sp500-quantitative-dataset)
+**Reference Repository**: [https://github.com/K0D1Z/sp500-quantitative-dataset](https://github.com/K0D1Z/sp500-quantitative-dataset)
 
 Specifically, this project adapts **Steps 1 through 4** of that pipeline:
 - **Step 1**: Point-in-time daily S&P 500 composition scraping (survivorship-bias-free tracking of index additions and deletions).
