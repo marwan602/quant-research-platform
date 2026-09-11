@@ -104,19 +104,31 @@ function renderOverview() {
   // Historical Out-of-Sample backtest dynamic binding
   if (tf) {
     const histRetEl = document.getElementById('histModelReturn');
-    if (histRetEl) histRetEl.textContent = `+${tf.annualized_net_return_pct.toFixed(2)}%`;
+    if (histRetEl) {
+      histRetEl.textContent = `+${tf.annualized_net_return_pct.toFixed(2)}%`;
+      histRetEl.className = 'metric-num font-semibold pos-return';
+    }
     const histSharpeEl = document.getElementById('histNetSharpe');
     if (histSharpeEl) histSharpeEl.textContent = tf.net_sharpe.toFixed(3);
     const histDdEl = document.getElementById('histMaxDrawdown');
-    if (histDdEl) histDdEl.textContent = `−${tf.max_drawdown_pct.toFixed(2)}%`;
+    if (histDdEl) {
+      histDdEl.textContent = `−${tf.max_drawdown_pct.toFixed(2)}%`;
+      histDdEl.className = 'metric-num neg-return';
+    }
     const histIcirEl = document.getElementById('histRankIcir');
     if (histIcirEl) histIcirEl.textContent = tf.rank_ic_ir !== null ? tf.rank_ic_ir.toFixed(3) : 'N/A';
     const histRankIcEl = document.getElementById('histMeanRankIc');
-    if (histRankIcEl) histRankIcEl.textContent = tf.rank_ic_mean !== null ? tf.rank_ic_mean.toFixed(4) : 'N/A';
+    if (histRankIcEl) {
+      histRankIcEl.textContent = tf.rank_ic_mean !== null ? `+${tf.rank_ic_mean.toFixed(4)}` : 'N/A';
+      histRankIcEl.className = 'metric-num pos-return font-semibold';
+    }
   }
   if (sp) {
     const histBenchEl = document.getElementById('histBenchReturn');
-    if (histBenchEl) histBenchEl.textContent = `+${sp.annualized_net_return_pct.toFixed(2)}%`;
+    if (histBenchEl) {
+      histBenchEl.textContent = `+${sp.annualized_net_return_pct.toFixed(2)}%`;
+      histBenchEl.className = 'pos-return font-semibold';
+    }
   }
 
   // Live Forward Tracking dynamic binding
@@ -317,9 +329,10 @@ function renderOverviewChartData() {
         {
           label: appState.overviewMode === 'cumulative' ? 'Transformer Net (%)' : 'Transformer Drawdown (%)',
           data: modelSeries,
-          borderColor: '#EDEDEA',
-          backgroundColor: 'transparent',
-          borderWidth: 1.8,
+          borderColor: '#E07A5F',
+          backgroundColor: 'rgba(224, 122, 95, 0.08)',
+          fill: true,
+          borderWidth: 2.2,
           pointRadius: 0,
           pointHoverRadius: 4,
           tension: 0.1
@@ -327,10 +340,10 @@ function renderOverviewChartData() {
         {
           label: appState.overviewMode === 'cumulative' ? 'S&P 500 Equal-Weighted (%)' : 'Benchmark Drawdown (%)',
           data: benchSeries,
-          borderColor: '#5F6166',
-          borderDash: [3, 3],
+          borderColor: '#94A3B8',
+          borderDash: [4, 4],
           backgroundColor: 'transparent',
-          borderWidth: 1.4,
+          borderWidth: 1.6,
           pointRadius: 0,
           pointHoverRadius: 4,
           tension: 0.1
@@ -799,8 +812,8 @@ function setupSectorChart(sectors) {
   const labels = sectors.map(s => s.sector);
   const weights = sectors.map(s => s.weight_pct);
   const palette = [
-    '#EDEDEA', '#D4D4D8', '#A1A1AA', '#71717A', '#52525B',
-    '#3F3F46', '#27272A', '#CBD5E1', '#94A3B8', '#64748B', '#475569'
+    '#E07A5F', '#F4A261', '#E9C46A', '#81B29A', '#2A9D8F',
+    '#DDA15E', '#BC6C25', '#6C8EA4', '#9B8EB9', '#D9777F', '#A8A29E'
   ];
 
   appState.charts.sector = new Chart(ctx, {
@@ -1140,18 +1153,29 @@ function renderResearch() {
 
   const tbody = document.getElementById('benchmarkMatrixTableBody');
   if (tbody) {
-    tbody.innerHTML = (bm.models || []).map(m => `
-      <tr>
-        <td style="font-weight: 500; color: var(--text-primary);">${m.name}</td>
-        <td style="text-align: right;" class="mono font-semibold">+${m.annualized_net_return_pct.toFixed(2)}%</td>
-        <td style="text-align: right;" class="mono">${m.annualized_net_vol_pct.toFixed(2)}%</td>
-        <td style="text-align: right;" class="mono font-semibold">${m.net_sharpe.toFixed(3)}</td>
-        <td style="text-align: right;" class="mono">−${m.max_drawdown_pct.toFixed(2)}%</td>
-        <td style="text-align: right;" class="mono">${m.rank_ic_mean !== null ? m.rank_ic_mean.toFixed(4) : 'N/A'}</td>
-        <td style="text-align: right;" class="mono font-semibold">${m.rank_ic_ir !== null ? m.rank_ic_ir.toFixed(3) : 'N/A'}</td>
-        <td style="text-align: right;" class="mono">${m.parameters > 0 ? m.parameters.toLocaleString() : 'Baseline'}</td>
-      </tr>
-    `).join('');
+    tbody.innerHTML = (bm.models || []).map(m => {
+      const isRetPos = m.annualized_net_return_pct >= 0;
+      const retSign = isRetPos ? '+' : '−';
+      const retClass = isRetPos ? 'pos-return' : 'neg-return';
+      const retText = `${retSign}${Math.abs(m.annualized_net_return_pct).toFixed(2)}%`;
+      const ddText = `−${Math.abs(m.max_drawdown_pct).toFixed(2)}%`;
+      const isIcPos = m.rank_ic_mean !== null && m.rank_ic_mean >= 0;
+      const icClass = isIcPos ? 'pos-return' : (m.rank_ic_mean !== null ? 'neg-return' : '');
+      const icText = m.rank_ic_mean !== null ? `${isIcPos ? '+' : '−'}${Math.abs(m.rank_ic_mean).toFixed(4)}` : 'N/A';
+
+      return `
+        <tr>
+          <td style="font-weight: 500; color: var(--text-primary);">${m.name}</td>
+          <td style="text-align: right;" class="mono font-semibold ${retClass}">${retText}</td>
+          <td style="text-align: right;" class="mono">${m.annualized_net_vol_pct.toFixed(2)}%</td>
+          <td style="text-align: right;" class="mono font-semibold">${m.net_sharpe.toFixed(3)}</td>
+          <td style="text-align: right;" class="mono neg-return">${ddText}</td>
+          <td style="text-align: right;" class="mono font-semibold ${icClass}">${icText}</td>
+          <td style="text-align: right;" class="mono font-semibold">${m.rank_ic_ir !== null ? m.rank_ic_ir.toFixed(3) : 'N/A'}</td>
+          <td style="text-align: right;" class="mono">${m.parameters > 0 ? m.parameters.toLocaleString() : 'Baseline'}</td>
+        </tr>
+      `;
+    }).join('');
   }
 
   setupResearchChart();
@@ -1210,34 +1234,35 @@ function renderResearchChartData() {
       {
         label: 'Transformer (+98.7% Net)',
         data: bt.transformer_lo,
-        borderColor: '#EDEDEA',
-        backgroundColor: 'transparent',
-        borderWidth: 2,
+        borderColor: '#E07A5F',
+        backgroundColor: 'rgba(224, 122, 95, 0.06)',
+        fill: true,
+        borderWidth: 2.2,
         pointRadius: 0
       },
       {
         label: 'LightGBM Baseline (+81.5% Net)',
         data: bt.lightgbm_lo,
-        borderColor: '#8D9097',
+        borderColor: '#81B29A',
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.8,
         pointRadius: 0
       },
       {
         label: 'Attentive LSTM (+78.1% Net)',
         data: bt.alstm_lo,
-        borderColor: '#C4B5A5',
+        borderColor: '#E9C46A',
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.8,
         pointRadius: 0
       },
       {
         label: 'Equal-Weighted Universe (+40.3%)',
         data: bt.benchmark,
-        borderColor: '#5F6166',
-        borderDash: [3, 3],
+        borderColor: '#94A3B8',
+        borderDash: [4, 4],
         backgroundColor: 'transparent',
-        borderWidth: 1.4,
+        borderWidth: 1.5,
         pointRadius: 0
       }
     ];
@@ -1247,25 +1272,26 @@ function renderResearchChartData() {
       {
         label: 'Transformer Cumulative Rank IC',
         data: bt.rank_ic.transformer_cumulative,
-        borderColor: '#EDEDEA',
-        backgroundColor: 'transparent',
-        borderWidth: 2,
+        borderColor: '#E07A5F',
+        backgroundColor: 'rgba(224, 122, 95, 0.05)',
+        fill: true,
+        borderWidth: 2.2,
         pointRadius: 0
       },
       {
         label: 'Attentive LSTM Cumulative Rank IC',
         data: bt.rank_ic.alstm_cumulative,
-        borderColor: '#C4B5A5',
+        borderColor: '#E9C46A',
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.8,
         pointRadius: 0
       },
       {
         label: 'LightGBM Cumulative Rank IC',
         data: bt.rank_ic.lightgbm_cumulative,
-        borderColor: '#8D9097',
+        borderColor: '#81B29A',
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.8,
         pointRadius: 0
       }
     ];
@@ -1275,34 +1301,34 @@ function renderResearchChartData() {
       {
         label: 'Transformer Drawdown (%)',
         data: bt.drawdowns.transformer,
-        borderColor: '#EDEDEA',
+        borderColor: '#E07A5F',
         backgroundColor: 'transparent',
-        borderWidth: 2,
+        borderWidth: 2.2,
         pointRadius: 0
       },
       {
         label: 'LightGBM Drawdown (%)',
         data: bt.drawdowns.lightgbm,
-        borderColor: '#8D9097',
+        borderColor: '#81B29A',
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.8,
         pointRadius: 0
       },
       {
         label: 'Attentive LSTM Drawdown (%)',
         data: bt.drawdowns.alstm,
-        borderColor: '#C4B5A5',
+        borderColor: '#E9C46A',
         backgroundColor: 'transparent',
-        borderWidth: 1.5,
+        borderWidth: 1.8,
         pointRadius: 0
       },
       {
         label: 'Equal-Weighted Drawdown (%)',
         data: bt.drawdowns.benchmark,
-        borderColor: '#5F6166',
-        borderDash: [3, 3],
+        borderColor: '#94A3B8',
+        borderDash: [4, 4],
         backgroundColor: 'transparent',
-        borderWidth: 1.4,
+        borderWidth: 1.5,
         pointRadius: 0
       }
     ];

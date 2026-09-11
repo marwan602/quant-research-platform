@@ -251,15 +251,15 @@
           <div class="block-title">January 2024 to August 2026 (663 Sessions)</div>
           <div class="metrics-row">
             <div class="metric-cell">
-              <span class="metric-num font-semibold" id="histModelReturn">+29.05%</span>
-              <span class="metric-desc">Net Annualized Return (vs <span id="histBenchReturn">+13.69%</span>)</span>
+              <span class="metric-num font-semibold pos-return" id="histModelReturn">+29.05%</span>
+              <span class="metric-desc">Net Annualized Return (vs <span class="pos-return font-semibold" id="histBenchReturn">+13.69%</span>)</span>
             </div>
             <div class="metric-cell">
               <span class="metric-num" id="histNetSharpe">1.188</span>
               <span class="metric-desc">Net Sharpe Ratio (vs 1.058)</span>
             </div>
             <div class="metric-cell">
-              <span class="metric-num" id="histMaxDrawdown">−25.15%</span>
+              <span class="metric-num neg-return" id="histMaxDrawdown">−25.15%</span>
               <span class="metric-desc">Max Drawdown (vs −15.79%)</span>
             </div>
             <div class="metric-cell">
@@ -267,7 +267,7 @@
               <span class="metric-desc">Rank ICIR (vs 1.161 GBDT)</span>
             </div>
             <div class="metric-cell">
-              <span class="metric-num" id="histMeanRankIc">0.0227</span>
+              <span class="metric-num pos-return" id="histMeanRankIc">+0.0227</span>
               <span class="metric-desc">Mean Daily Rank IC</span>
             </div>
             <div class="metric-cell">
@@ -327,8 +327,8 @@
           <canvas id="overviewChart"></canvas>
         </div>
         <div class="figure-caption-bar">
-          <span>— Primary Model: Transformer Long-Only Net (+98.67% OOS)</span>
-          <span style="margin-left: 20px;">- - Benchmark: S&P 500 Equal-Weighted (+40.29% OOS)</span>
+          <span><strong style="color: #E07A5F; font-size: 14px;">—</strong> Primary Model: Transformer Long-Only Net (<span class="pos-return font-semibold">+98.67%</span> OOS)</span>
+          <span style="margin-left: 20px;"><strong style="color: #94A3B8; font-size: 14px;">- -</strong> Benchmark: S&P 500 Equal-Weighted (<span class="pos-return font-semibold">+40.29%</span> OOS)</span>
           <span style="margin-left: auto;" class="mono">Vertical marker: Live forward testing commenced September 2026</span>
         </div>
       </div>
