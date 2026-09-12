@@ -6,6 +6,7 @@ import pandas as pd
 import requests
 
 from src.providers.base import MarketDataProvider
+from src.providers.market_calendar import get_trading_days
 
 
 def _load_env_credentials():
@@ -48,8 +49,14 @@ class PolygonProvider(MarketDataProvider):
         params = {"adjusted": "true"}
         resp = self.session.get(url, params=params, headers=headers, timeout=self.timeout)
 
-        if resp.status_code in (401, 403):
-            raise PermissionError(f"Polygon authentication failed ({resp.status_code}): {resp.text}")
+        if resp.status_code == 401:
+            raise PermissionError(f"Polygon authentication failed (401): Invalid or unauthorized API key. {resp.text}")
+        if resp.status_code == 403:
+            if "before end of day" in resp.text.lower():
+                raise PermissionError(
+                    f"Polygon data unavailable (403): Grouped daily data for {date_str} is not yet available before end of day. {resp.text}"
+                )
+            raise PermissionError(f"Polygon permission/plan error (403): {resp.text}")
         if resp.status_code == 429:
             raise RuntimeError(f"Polygon rate limit exceeded: {resp.text}")
         if resp.status_code != 200:
@@ -118,8 +125,7 @@ class PolygonProvider(MarketDataProvider):
         start_date: str | pd.Timestamp,
         end_date: str | pd.Timestamp,
     ) -> pd.DataFrame:
-        dates = pd.date_range(start=start_date, end=end_date, freq="D")
-        trading_days = [d for d in dates if d.weekday() < 5]
+        trading_days = get_trading_days(start_date, end_date)
 
         frames = []
         for i, dt in enumerate(trading_days):
