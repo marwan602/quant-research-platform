@@ -3,6 +3,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from src.providers.market_calendar import (
+    get_latest_completed_trading_session,
+    get_trading_days,
+    is_trading_day,
+)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 

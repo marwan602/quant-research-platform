@@ -13,6 +13,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.inference import InferenceEngine, PortfolioConstructor
 from src.providers.base import LocalProvider, UniverseProvider, YahooProvider
+from src.providers.market_calendar import get_latest_completed_trading_session
 from src.providers.polygon import PolygonProvider
 from src.providers.store import RollingPriceStore
 from src.tracker import update_forward_tracking, update_prediction_archive
@@ -58,7 +59,10 @@ def run_daily_update(
     universe_provider = UniverseProvider(composition_path=str(resolved_comp_path))
     store = RollingPriceStore(initial_path=str(resolved_store_path) if resolved_store_path.exists() else None)
 
-    as_of = pd.to_datetime(target_date) if target_date else pd.Timestamp.now().normalize()
+    if target_date and str(target_date).strip():
+        as_of = pd.to_datetime(target_date).normalize()
+    else:
+        as_of = get_latest_completed_trading_session()
 
     provider = provider_instance or get_provider(provider_name)
 
@@ -72,13 +76,12 @@ def run_daily_update(
     if effective_date is None:
         raise RuntimeError("RollingPriceStore has no data after synchronization.")
 
-    if target_date is not None:
-        target_dt = pd.to_datetime(target_date).normalize()
-        if effective_date.normalize() < target_dt:
-            raise RuntimeError(
-                f"Pipeline fail-closed: Target session {target_date} not present in RollingPriceStore "
-                f"(max date is {effective_date.strftime('%Y-%m-%d')}). Provider synchronization failed."
-            )
+    if effective_date.normalize() < as_of:
+        target_label = target_date if (target_date and str(target_date).strip()) else as_of.strftime("%Y-%m-%d")
+        raise RuntimeError(
+            f"Pipeline fail-closed: Target session {target_label} not present in RollingPriceStore "
+            f"(max date is {effective_date.strftime('%Y-%m-%d')}). Provider synchronization failed."
+        )
 
     active_tickers = universe_provider.get_active_tickers(as_of_date=effective_date)
     if not active_tickers:

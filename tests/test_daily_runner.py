@@ -87,3 +87,49 @@ def test_run_daily_update_pipeline(tmp_path):
     assert status["status"] == "healthy"
     assert status["evaluated_stocks_count"] == 3
     assert status["device"] == "cpu"
+
+
+def test_run_daily_update_fail_closed_if_store_behind(tmp_path):
+    dates = pd.date_range("2026-01-01", periods=130, freq="B")
+    tickers = ["AAPL", "MSFT", "NVDA"]
+
+    records = []
+    for dt in dates:
+        for t in tickers:
+            records.append({
+                "Date": dt,
+                "Ticker": t,
+                "Open": 100.0,
+                "High": 105.0,
+                "Low": 99.0,
+                "Close": 102.0,
+                "Volume": 10000.0,
+                "VWAP": 102.0,
+            })
+    prices_df = pd.DataFrame(records)
+    store_file = tmp_path / "prices.parquet"
+    prices_df.to_parquet(store_file, index=False)
+
+    comp_records = [{"Date": dates[-1], "Ticker": t} for t in tickers]
+    comp_df = pd.DataFrame(comp_records)
+    comp_file = tmp_path / "comp.parquet"
+    comp_df.to_parquet(comp_file, index=False)
+
+    out_dir = tmp_path / "live"
+
+    mock_provider = MagicMock(spec=MarketDataProvider)
+    mock_provider.sync_delta.return_value = 0
+
+    future_target = (dates[-1] + pd.Timedelta(days=5)).strftime("%Y-%m-%d")
+
+    with pytest.raises(RuntimeError, match="Pipeline fail-closed: Target session"):
+        run_daily_update(
+            provider_name="mock",
+            target_date=future_target,
+            store_path=str(store_file),
+            composition_path=str(comp_file),
+            output_dir=str(out_dir),
+            device="cpu",
+            dry_run=False,
+            provider_instance=mock_provider,
+        )
