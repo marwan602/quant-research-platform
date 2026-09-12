@@ -101,13 +101,32 @@ def test_polygon_provider_empty_results():
 def test_polygon_provider_error_handling():
     mock_session = MagicMock()
 
+    # 401 Unauthorized / Bad Key
+    mock_resp_401 = MagicMock()
+    mock_resp_401.status_code = 401
+    mock_resp_401.text = "Unauthorized"
+    mock_session.get.return_value = mock_resp_401
+
+    provider = PolygonProvider(api_key="bad_key", session=mock_session)
+    with pytest.raises(PermissionError, match="Polygon authentication failed"):
+        provider.get_latest_bars(["AAPL"], "2026-09-10")
+
+    # 403 Before End of Day
+    mock_resp_403_eod = MagicMock()
+    mock_resp_403_eod.status_code = 403
+    mock_resp_403_eod.text = '{"message":"Attempted to request today\'s data before end of day"}'
+    mock_session.get.return_value = mock_resp_403_eod
+
+    with pytest.raises(PermissionError, match="not yet available before end of day"):
+        provider.get_latest_bars(["AAPL"], "2026-09-10")
+
+    # 403 Generic Plan / Permission
     mock_resp_403 = MagicMock()
     mock_resp_403.status_code = 403
     mock_resp_403.text = "Forbidden"
     mock_session.get.return_value = mock_resp_403
 
-    provider = PolygonProvider(api_key="bad_key", session=mock_session)
-    with pytest.raises(PermissionError, match="Polygon authentication failed"):
+    with pytest.raises(PermissionError, match="Polygon permission/plan error"):
         provider.get_latest_bars(["AAPL"], "2026-09-10")
 
     mock_resp_429 = MagicMock()
