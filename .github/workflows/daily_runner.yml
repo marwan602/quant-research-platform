@@ -2,8 +2,8 @@ name: Daily Quantitative Research Pipeline
 
 on:
   schedule:
-    # 22:00 UTC (6:00 PM EDT in summer / 5:00 PM EST in winter), safely after US market close year-round
-    - cron: '0 22 * * 1-5'
+    # 05:00 UTC (1:00 AM EDT / 12:00 AM EST), after midnight US Eastern settlement when Polygon EOD data is available
+    - cron: '0 5 * * 2-6'
   workflow_dispatch:
     inputs:
       target_date:
