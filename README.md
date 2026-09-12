@@ -104,6 +104,10 @@ Evaluated across 663 trading sessions on unseen test data:
 
 *Saved figures in `reports/figures/`: `model_comparison_cumulative_returns.png`, `transformer_cumulative_returns.png`, `transformer_underwater_drawdown.png`.*
 
+### Model Limitations & Notes
+
+- **Baseline Predictions on Weak Signals:** When the Transformer model detects little or no directional signal for a stock, its prediction naturally defaults to a flat baseline of around `+0.05%`. Across historical backtests and live trading, these stocks consistently sit near the bottom of the rankings (averaging around rank 400 out of 500) and have never entered the Top 50 portfolio—meaning this behavior has no effect on the quality, performance, or trustworthiness of the model's active long portfolio. Because of this, predictions should be viewed as a relative ranking tool rather than exact return forecasts. For complete technical details and historical data, see [Baseline Prediction Breakdown](docs/model/lower-tail-prediction-collapse.md).
+
 ---
 
 ## 4. Automated Daily Forward Pipeline
