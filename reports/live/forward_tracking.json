@@ -1,13 +1,13 @@
 {
   "deployment_date": "2026-09-10",
-  "days_tracked": 1,
+  "days_tracked": 2,
   "status": "active",
   "signal_metrics": {
     "mean_rank_ic": null,
     "mean_directional_accuracy": null,
-    "total_forecasts": 501,
+    "total_forecasts": 1002,
     "resolved_forecasts": 0,
-    "pending_forecasts": 501
+    "pending_forecasts": 1002
   },
   "portfolio_metrics": {
     "model_cumulative_return_pct": 0.0,
