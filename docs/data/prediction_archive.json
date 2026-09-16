@@ -12056,6 +12056,4025 @@
           "target_resolution_date": "2026-09-21"
         }
       ]
+    },
+    "2026-09-15": {
+      "as_of_date": "2026-09-15",
+      "target_resolution_date": "2026-09-22",
+      "status": "pending",
+      "model": "AttentiveTransformer",
+      "total_predictions": 501,
+      "rank_ic": null,
+      "directional_accuracy": null,
+      "predictions": [
+        {
+          "rank": 1,
+          "ticker": "SNDK",
+          "pred_return_5d": 0.057143885642290115,
+          "pred_return_pct": 5.714,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 2,
+          "ticker": "WDC",
+          "pred_return_5d": 0.0564727783203125,
+          "pred_return_pct": 5.647,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 3,
+          "ticker": "STX",
+          "pred_return_5d": 0.05415983125567436,
+          "pred_return_pct": 5.416,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 4,
+          "ticker": "COHR",
+          "pred_return_5d": 0.05022325739264488,
+          "pred_return_pct": 5.022,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 5,
+          "ticker": "LITE",
+          "pred_return_5d": 0.02615056373178959,
+          "pred_return_pct": 2.615,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 6,
+          "ticker": "MRVL",
+          "pred_return_5d": 0.02612261287868023,
+          "pred_return_pct": 2.612,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 7,
+          "ticker": "FLEX",
+          "pred_return_5d": 0.024041797965765,
+          "pred_return_pct": 2.404,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 8,
+          "ticker": "TER",
+          "pred_return_5d": 0.022681351751089096,
+          "pred_return_pct": 2.268,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 9,
+          "ticker": "GLW",
+          "pred_return_5d": 0.021879233419895172,
+          "pred_return_pct": 2.188,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 10,
+          "ticker": "LRCX",
+          "pred_return_5d": 0.021008338779211044,
+          "pred_return_pct": 2.101,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 11,
+          "ticker": "AMAT",
+          "pred_return_5d": 0.02048058994114399,
+          "pred_return_pct": 2.048,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 12,
+          "ticker": "RDDT",
+          "pred_return_5d": 0.019485188648104668,
+          "pred_return_pct": 1.949,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 13,
+          "ticker": "INTC",
+          "pred_return_5d": 0.019066376611590385,
+          "pred_return_pct": 1.907,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 14,
+          "ticker": "MU",
+          "pred_return_5d": 0.018695853650569916,
+          "pred_return_pct": 1.87,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 15,
+          "ticker": "VRT",
+          "pred_return_5d": 0.01850489154458046,
+          "pred_return_pct": 1.85,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 16,
+          "ticker": "CIEN",
+          "pred_return_5d": 0.018144115805625916,
+          "pred_return_pct": 1.814,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 17,
+          "ticker": "MPWR",
+          "pred_return_5d": 0.018051858991384506,
+          "pred_return_pct": 1.805,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 18,
+          "ticker": "FIX",
+          "pred_return_5d": 0.01720838062465191,
+          "pred_return_pct": 1.721,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 19,
+          "ticker": "ON",
+          "pred_return_5d": 0.0169721357524395,
+          "pred_return_pct": 1.697,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 20,
+          "ticker": "AMD",
+          "pred_return_5d": 0.016342950984835625,
+          "pred_return_pct": 1.634,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 21,
+          "ticker": "KLAC",
+          "pred_return_5d": 0.01608114503324032,
+          "pred_return_pct": 1.608,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 22,
+          "ticker": "Q",
+          "pred_return_5d": 0.015444288961589336,
+          "pred_return_pct": 1.544,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 23,
+          "ticker": "ORCL",
+          "pred_return_5d": 0.015046779997646809,
+          "pred_return_pct": 1.505,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 24,
+          "ticker": "AXON",
+          "pred_return_5d": 0.014874142594635487,
+          "pred_return_pct": 1.487,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 25,
+          "ticker": "PCG",
+          "pred_return_5d": 0.014804413542151451,
+          "pred_return_pct": 1.48,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 26,
+          "ticker": "HPE",
+          "pred_return_5d": 0.014745956286787987,
+          "pred_return_pct": 1.475,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 27,
+          "ticker": "DELL",
+          "pred_return_5d": 0.013741942122578621,
+          "pred_return_pct": 1.374,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 28,
+          "ticker": "SMCI",
+          "pred_return_5d": 0.013715715147554874,
+          "pred_return_pct": 1.372,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 29,
+          "ticker": "JBL",
+          "pred_return_5d": 0.013579661957919598,
+          "pred_return_pct": 1.358,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 30,
+          "ticker": "CVNA",
+          "pred_return_5d": 0.013179394416511059,
+          "pred_return_pct": 1.318,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 31,
+          "ticker": "DECK",
+          "pred_return_5d": 0.012007469311356544,
+          "pred_return_pct": 1.201,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 32,
+          "ticker": "GNRC",
+          "pred_return_5d": 0.011503727175295353,
+          "pred_return_pct": 1.15,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 33,
+          "ticker": "FSLR",
+          "pred_return_5d": 0.011490422300994396,
+          "pred_return_pct": 1.149,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 34,
+          "ticker": "GEV",
+          "pred_return_5d": 0.011263377033174038,
+          "pred_return_pct": 1.126,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 35,
+          "ticker": "AKAM",
+          "pred_return_5d": 0.010193934664130211,
+          "pred_return_pct": 1.019,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 36,
+          "ticker": "ALB",
+          "pred_return_5d": 0.010116095654666424,
+          "pred_return_pct": 1.012,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 37,
+          "ticker": "COIN",
+          "pred_return_5d": 0.009683371521532536,
+          "pred_return_pct": 0.968,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 38,
+          "ticker": "MCHP",
+          "pred_return_5d": 0.009584551677107811,
+          "pred_return_pct": 0.958,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 39,
+          "ticker": "TPL",
+          "pred_return_5d": 0.009394091553986073,
+          "pred_return_pct": 0.939,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 40,
+          "ticker": "CBOE",
+          "pred_return_5d": 0.009016611613333225,
+          "pred_return_pct": 0.902,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 41,
+          "ticker": "ARES",
+          "pred_return_5d": 0.009004187770187855,
+          "pred_return_pct": 0.9,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 42,
+          "ticker": "AVGO",
+          "pred_return_5d": 0.008886563591659069,
+          "pred_return_pct": 0.889,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 43,
+          "ticker": "HOOD",
+          "pred_return_5d": 0.008812262676656246,
+          "pred_return_pct": 0.881,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 44,
+          "ticker": "CCL",
+          "pred_return_5d": 0.00872382428497076,
+          "pred_return_pct": 0.872,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 45,
+          "ticker": "DDOG",
+          "pred_return_5d": 0.008689483627676964,
+          "pred_return_pct": 0.869,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 46,
+          "ticker": "PWR",
+          "pred_return_5d": 0.0084382314234972,
+          "pred_return_pct": 0.844,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 47,
+          "ticker": "RCL",
+          "pred_return_5d": 0.008153030648827553,
+          "pred_return_pct": 0.815,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 48,
+          "ticker": "NKE",
+          "pred_return_5d": 0.007844490930438042,
+          "pred_return_pct": 0.784,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 49,
+          "ticker": "IRM",
+          "pred_return_5d": 0.0077367061749100685,
+          "pred_return_pct": 0.774,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 50,
+          "ticker": "APTV",
+          "pred_return_5d": 0.007722815498709679,
+          "pred_return_pct": 0.772,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 51,
+          "ticker": "ANET",
+          "pred_return_5d": 0.007640049792826176,
+          "pred_return_pct": 0.764,
+          "decile": 1,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 52,
+          "ticker": "NCLH",
+          "pred_return_5d": 0.007561984471976757,
+          "pred_return_pct": 0.756,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 53,
+          "ticker": "NRG",
+          "pred_return_5d": 0.0075343274511396885,
+          "pred_return_pct": 0.753,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 54,
+          "ticker": "DPZ",
+          "pred_return_5d": 0.007208206690847874,
+          "pred_return_pct": 0.721,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 55,
+          "ticker": "APP",
+          "pred_return_5d": 0.007046126760542393,
+          "pred_return_pct": 0.705,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 56,
+          "ticker": "ETN",
+          "pred_return_5d": 0.00659962510690093,
+          "pred_return_pct": 0.66,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 57,
+          "ticker": "ALGN",
+          "pred_return_5d": 0.006536803208291531,
+          "pred_return_pct": 0.654,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 58,
+          "ticker": "HON",
+          "pred_return_5d": 0.006230025086551905,
+          "pred_return_pct": 0.623,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 59,
+          "ticker": "CCI",
+          "pred_return_5d": 0.006170529872179031,
+          "pred_return_pct": 0.617,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 60,
+          "ticker": "APH",
+          "pred_return_5d": 0.006150954402983189,
+          "pred_return_pct": 0.615,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 61,
+          "ticker": "IDXX",
+          "pred_return_5d": 0.0060914852656424046,
+          "pred_return_pct": 0.609,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 62,
+          "ticker": "IP",
+          "pred_return_5d": 0.005975000094622374,
+          "pred_return_pct": 0.598,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 63,
+          "ticker": "KEYS",
+          "pred_return_5d": 0.005971801932901144,
+          "pred_return_pct": 0.597,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 64,
+          "ticker": "MRNA",
+          "pred_return_5d": 0.0058684200048446655,
+          "pred_return_pct": 0.587,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 65,
+          "ticker": "DLTR",
+          "pred_return_5d": 0.005845385603606701,
+          "pred_return_pct": 0.585,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 66,
+          "ticker": "NTAP",
+          "pred_return_5d": 0.005744552705436945,
+          "pred_return_pct": 0.574,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 67,
+          "ticker": "DD",
+          "pred_return_5d": 0.00573302898555994,
+          "pred_return_pct": 0.573,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 68,
+          "ticker": "WDAY",
+          "pred_return_5d": 0.005662425421178341,
+          "pred_return_pct": 0.566,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 69,
+          "ticker": "BAX",
+          "pred_return_5d": 0.005556196440011263,
+          "pred_return_pct": 0.556,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 70,
+          "ticker": "KKR",
+          "pred_return_5d": 0.005555989686399698,
+          "pred_return_pct": 0.556,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 71,
+          "ticker": "FDS",
+          "pred_return_5d": 0.005517648532986641,
+          "pred_return_pct": 0.552,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 72,
+          "ticker": "GE",
+          "pred_return_5d": 0.005421643145382404,
+          "pred_return_pct": 0.542,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 73,
+          "ticker": "NXPI",
+          "pred_return_5d": 0.005364535376429558,
+          "pred_return_pct": 0.536,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 74,
+          "ticker": "PANW",
+          "pred_return_5d": 0.005349854938685894,
+          "pred_return_pct": 0.535,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 75,
+          "ticker": "ODFL",
+          "pred_return_5d": 0.0053177522495388985,
+          "pred_return_pct": 0.532,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 76,
+          "ticker": "APO",
+          "pred_return_5d": 0.005287603009492159,
+          "pred_return_pct": 0.529,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 77,
+          "ticker": "NOW",
+          "pred_return_5d": 0.005278094206005335,
+          "pred_return_pct": 0.528,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 78,
+          "ticker": "CMI",
+          "pred_return_5d": 0.005238228477537632,
+          "pred_return_pct": 0.524,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 79,
+          "ticker": "SNPS",
+          "pred_return_5d": 0.005197097547352314,
+          "pred_return_pct": 0.52,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 80,
+          "ticker": "STLD",
+          "pred_return_5d": 0.005173298995941877,
+          "pred_return_pct": 0.517,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 81,
+          "ticker": "VST",
+          "pred_return_5d": 0.005108693614602089,
+          "pred_return_pct": 0.511,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 82,
+          "ticker": "CARR",
+          "pred_return_5d": 0.005093561019748449,
+          "pred_return_pct": 0.509,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 83,
+          "ticker": "FIS",
+          "pred_return_5d": 0.0050164638087153435,
+          "pred_return_pct": 0.502,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 84,
+          "ticker": "DASH",
+          "pred_return_5d": 0.0050078220665454865,
+          "pred_return_pct": 0.501,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 85,
+          "ticker": "EME",
+          "pred_return_5d": 0.00494450144469738,
+          "pred_return_pct": 0.494,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 86,
+          "ticker": "UAL",
+          "pred_return_5d": 0.004813697654753923,
+          "pred_return_pct": 0.481,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 87,
+          "ticker": "CHTR",
+          "pred_return_5d": 0.004716850817203522,
+          "pred_return_pct": 0.472,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 88,
+          "ticker": "CSGP",
+          "pred_return_5d": 0.004661974962800741,
+          "pred_return_pct": 0.466,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 89,
+          "ticker": "HUBB",
+          "pred_return_5d": 0.004626634530723095,
+          "pred_return_pct": 0.463,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 90,
+          "ticker": "ECHO",
+          "pred_return_5d": 0.004620467312633991,
+          "pred_return_pct": 0.462,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 91,
+          "ticker": "SWK",
+          "pred_return_5d": 0.004470313899219036,
+          "pred_return_pct": 0.447,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 92,
+          "ticker": "FCX",
+          "pred_return_5d": 0.004467691294848919,
+          "pred_return_pct": 0.447,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 93,
+          "ticker": "IT",
+          "pred_return_5d": 0.004466669168323278,
+          "pred_return_pct": 0.447,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 94,
+          "ticker": "F",
+          "pred_return_5d": 0.004437415394932032,
+          "pred_return_pct": 0.444,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 95,
+          "ticker": "CRWD",
+          "pred_return_5d": 0.0044327243231236935,
+          "pred_return_pct": 0.443,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 96,
+          "ticker": "EIX",
+          "pred_return_5d": 0.0043899002484977245,
+          "pred_return_pct": 0.439,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 97,
+          "ticker": "JCI",
+          "pred_return_5d": 0.004374593961983919,
+          "pred_return_pct": 0.437,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 98,
+          "ticker": "TXN",
+          "pred_return_5d": 0.004297608509659767,
+          "pred_return_pct": 0.43,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 99,
+          "ticker": "HPQ",
+          "pred_return_5d": 0.004253691993653774,
+          "pred_return_pct": 0.425,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 100,
+          "ticker": "IBKR",
+          "pred_return_5d": 0.00424623629078269,
+          "pred_return_pct": 0.425,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 101,
+          "ticker": "PH",
+          "pred_return_5d": 0.004132133908569813,
+          "pred_return_pct": 0.413,
+          "decile": 2,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 102,
+          "ticker": "ROK",
+          "pred_return_5d": 0.004083307459950447,
+          "pred_return_pct": 0.408,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 103,
+          "ticker": "CEG",
+          "pred_return_5d": 0.0040801530703902245,
+          "pred_return_pct": 0.408,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 104,
+          "ticker": "DAL",
+          "pred_return_5d": 0.004079686477780342,
+          "pred_return_pct": 0.408,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 105,
+          "ticker": "HSY",
+          "pred_return_5d": 0.0040679629892110825,
+          "pred_return_pct": 0.407,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 106,
+          "ticker": "EMR",
+          "pred_return_5d": 0.004065984860062599,
+          "pred_return_pct": 0.407,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 107,
+          "ticker": "RJF",
+          "pred_return_5d": 0.004002000205218792,
+          "pred_return_pct": 0.4,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 108,
+          "ticker": "CAT",
+          "pred_return_5d": 0.00399851193651557,
+          "pred_return_pct": 0.4,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 109,
+          "ticker": "WYNN",
+          "pred_return_5d": 0.0039771078154444695,
+          "pred_return_pct": 0.398,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 110,
+          "ticker": "BSX",
+          "pred_return_5d": 0.003941662609577179,
+          "pred_return_pct": 0.394,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 111,
+          "ticker": "NDAQ",
+          "pred_return_5d": 0.0038700613658875227,
+          "pred_return_pct": 0.387,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 112,
+          "ticker": "FERG",
+          "pred_return_5d": 0.003860783064737916,
+          "pred_return_pct": 0.386,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 113,
+          "ticker": "IVZ",
+          "pred_return_5d": 0.0038482050877064466,
+          "pred_return_pct": 0.385,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 114,
+          "ticker": "WSM",
+          "pred_return_5d": 0.0038349919486790895,
+          "pred_return_pct": 0.383,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 115,
+          "ticker": "YUM",
+          "pred_return_5d": 0.0038207457400858402,
+          "pred_return_pct": 0.382,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 116,
+          "ticker": "TDG",
+          "pred_return_5d": 0.0038149801548570395,
+          "pred_return_pct": 0.381,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 117,
+          "ticker": "TSLA",
+          "pred_return_5d": 0.003808996407315135,
+          "pred_return_pct": 0.381,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 118,
+          "ticker": "JKHY",
+          "pred_return_5d": 0.003758984850719571,
+          "pred_return_pct": 0.376,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 119,
+          "ticker": "TTWO",
+          "pred_return_5d": 0.003749020164832473,
+          "pred_return_pct": 0.375,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 120,
+          "ticker": "QCOM",
+          "pred_return_5d": 0.003738939994946122,
+          "pred_return_pct": 0.374,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 121,
+          "ticker": "BLDR",
+          "pred_return_5d": 0.003698470303788781,
+          "pred_return_pct": 0.37,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 122,
+          "ticker": "RL",
+          "pred_return_5d": 0.003597766626626253,
+          "pred_return_pct": 0.36,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 123,
+          "ticker": "PLTR",
+          "pred_return_5d": 0.0035768263041973114,
+          "pred_return_pct": 0.358,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 124,
+          "ticker": "DOC",
+          "pred_return_5d": 0.003575685666874051,
+          "pred_return_pct": 0.358,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 125,
+          "ticker": "UNH",
+          "pred_return_5d": 0.0035744577180594206,
+          "pred_return_pct": 0.357,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 126,
+          "ticker": "KHC",
+          "pred_return_5d": 0.0035407471004873514,
+          "pred_return_pct": 0.354,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 127,
+          "ticker": "BF.B",
+          "pred_return_5d": 0.0035252582747489214,
+          "pred_return_pct": 0.353,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 128,
+          "ticker": "ZBRA",
+          "pred_return_5d": 0.003514587413519621,
+          "pred_return_pct": 0.351,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 129,
+          "ticker": "CL",
+          "pred_return_5d": 0.0035058516077697277,
+          "pred_return_pct": 0.351,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 130,
+          "ticker": "ROST",
+          "pred_return_5d": 0.0034977111499756575,
+          "pred_return_pct": 0.35,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 131,
+          "ticker": "LII",
+          "pred_return_5d": 0.003491707844659686,
+          "pred_return_pct": 0.349,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 132,
+          "ticker": "AMZN",
+          "pred_return_5d": 0.00345308193936944,
+          "pred_return_pct": 0.345,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 133,
+          "ticker": "ADI",
+          "pred_return_5d": 0.0034221031237393618,
+          "pred_return_pct": 0.342,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 134,
+          "ticker": "TROW",
+          "pred_return_5d": 0.0033787365537136793,
+          "pred_return_pct": 0.338,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 135,
+          "ticker": "FTNT",
+          "pred_return_5d": 0.0033733381424099207,
+          "pred_return_pct": 0.337,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 136,
+          "ticker": "IR",
+          "pred_return_5d": 0.00336308847181499,
+          "pred_return_pct": 0.336,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 137,
+          "ticker": "MKC",
+          "pred_return_5d": 0.003300480544567108,
+          "pred_return_pct": 0.33,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 138,
+          "ticker": "EFX",
+          "pred_return_5d": 0.0032850957941263914,
+          "pred_return_pct": 0.329,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 139,
+          "ticker": "HII",
+          "pred_return_5d": 0.0032426638063043356,
+          "pred_return_pct": 0.324,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 140,
+          "ticker": "SPG",
+          "pred_return_5d": 0.0032394554000347853,
+          "pred_return_pct": 0.324,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 141,
+          "ticker": "BX",
+          "pred_return_5d": 0.0032145334407687187,
+          "pred_return_pct": 0.321,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 142,
+          "ticker": "BG",
+          "pred_return_5d": 0.0032023435924202204,
+          "pred_return_pct": 0.32,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 143,
+          "ticker": "CDNS",
+          "pred_return_5d": 0.003179831663146615,
+          "pred_return_pct": 0.318,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 144,
+          "ticker": "SW",
+          "pred_return_5d": 0.0031761627178639174,
+          "pred_return_pct": 0.318,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 145,
+          "ticker": "CPRT",
+          "pred_return_5d": 0.0031761161517351866,
+          "pred_return_pct": 0.318,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 146,
+          "ticker": "AMCR",
+          "pred_return_5d": 0.003174361540004611,
+          "pred_return_pct": 0.317,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 147,
+          "ticker": "CRH",
+          "pred_return_5d": 0.0031721803825348616,
+          "pred_return_pct": 0.317,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 148,
+          "ticker": "MOS",
+          "pred_return_5d": 0.0031610028818249702,
+          "pred_return_pct": 0.316,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 149,
+          "ticker": "TPR",
+          "pred_return_5d": 0.003128552343696356,
+          "pred_return_pct": 0.313,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 150,
+          "ticker": "MGM",
+          "pred_return_5d": 0.0031193445902317762,
+          "pred_return_pct": 0.312,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 151,
+          "ticker": "NUE",
+          "pred_return_5d": 0.0031191969756036997,
+          "pred_return_pct": 0.312,
+          "decile": 3,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 152,
+          "ticker": "XYZ",
+          "pred_return_5d": 0.003070143284276128,
+          "pred_return_pct": 0.307,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 153,
+          "ticker": "FDX",
+          "pred_return_5d": 0.0030025073792785406,
+          "pred_return_pct": 0.3,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 154,
+          "ticker": "PODD",
+          "pred_return_5d": 0.0029908015858381987,
+          "pred_return_pct": 0.299,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 155,
+          "ticker": "TJX",
+          "pred_return_5d": 0.002986537991091609,
+          "pred_return_pct": 0.299,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 156,
+          "ticker": "TT",
+          "pred_return_5d": 0.002956666750833392,
+          "pred_return_pct": 0.296,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 157,
+          "ticker": "GS",
+          "pred_return_5d": 0.002943063387647271,
+          "pred_return_pct": 0.294,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 158,
+          "ticker": "HD",
+          "pred_return_5d": 0.0029396896716207266,
+          "pred_return_pct": 0.294,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 159,
+          "ticker": "STE",
+          "pred_return_5d": 0.002892197109758854,
+          "pred_return_pct": 0.289,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 160,
+          "ticker": "CLX",
+          "pred_return_5d": 0.0028849521186202765,
+          "pred_return_pct": 0.288,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 161,
+          "ticker": "TTD",
+          "pred_return_5d": 0.0028751438949257135,
+          "pred_return_pct": 0.288,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 162,
+          "ticker": "ADBE",
+          "pred_return_5d": 0.0028554063756018877,
+          "pred_return_pct": 0.286,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 163,
+          "ticker": "MSCI",
+          "pred_return_5d": 0.0028510901611298323,
+          "pred_return_pct": 0.285,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 164,
+          "ticker": "DOW",
+          "pred_return_5d": 0.002847119467332959,
+          "pred_return_pct": 0.285,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 165,
+          "ticker": "CRL",
+          "pred_return_5d": 0.0028434088453650475,
+          "pred_return_pct": 0.284,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 166,
+          "ticker": "CMS",
+          "pred_return_5d": 0.0028375538531690836,
+          "pred_return_pct": 0.284,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 167,
+          "ticker": "LDOS",
+          "pred_return_5d": 0.0027846896555274725,
+          "pred_return_pct": 0.278,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 168,
+          "ticker": "EQIX",
+          "pred_return_5d": 0.00276296422816813,
+          "pred_return_pct": 0.276,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 169,
+          "ticker": "SBUX",
+          "pred_return_5d": 0.002732515102252364,
+          "pred_return_pct": 0.273,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 170,
+          "ticker": "AZO",
+          "pred_return_5d": 0.0027098869904875755,
+          "pred_return_pct": 0.271,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 171,
+          "ticker": "FISV",
+          "pred_return_5d": 0.0026871797163039446,
+          "pred_return_pct": 0.269,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 172,
+          "ticker": "LVS",
+          "pred_return_5d": 0.002668180735781789,
+          "pred_return_pct": 0.267,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 173,
+          "ticker": "CVS",
+          "pred_return_5d": 0.002664667321369052,
+          "pred_return_pct": 0.266,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 174,
+          "ticker": "FICO",
+          "pred_return_5d": 0.0026579659897834063,
+          "pred_return_pct": 0.266,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 175,
+          "ticker": "URI",
+          "pred_return_5d": 0.0026220136787742376,
+          "pred_return_pct": 0.262,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 176,
+          "ticker": "BXP",
+          "pred_return_5d": 0.0026154795195907354,
+          "pred_return_pct": 0.262,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 177,
+          "ticker": "TDY",
+          "pred_return_5d": 0.0026037043426185846,
+          "pred_return_pct": 0.26,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 178,
+          "ticker": "EXPE",
+          "pred_return_5d": 0.0025981280487030745,
+          "pred_return_pct": 0.26,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 179,
+          "ticker": "CNP",
+          "pred_return_5d": 0.002586260437965393,
+          "pred_return_pct": 0.259,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 180,
+          "ticker": "GPN",
+          "pred_return_5d": 0.0025550059508532286,
+          "pred_return_pct": 0.256,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 181,
+          "ticker": "LOW",
+          "pred_return_5d": 0.0025535973254591227,
+          "pred_return_pct": 0.255,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 182,
+          "ticker": "BKNG",
+          "pred_return_5d": 0.002539808163419366,
+          "pred_return_pct": 0.254,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 183,
+          "ticker": "PPG",
+          "pred_return_5d": 0.0025092812720686197,
+          "pred_return_pct": 0.251,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 184,
+          "ticker": "TKO",
+          "pred_return_5d": 0.002433071844279766,
+          "pred_return_pct": 0.243,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 185,
+          "ticker": "ES",
+          "pred_return_5d": 0.0024219925981014967,
+          "pred_return_pct": 0.242,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 186,
+          "ticker": "VTR",
+          "pred_return_5d": 0.00238007097505033,
+          "pred_return_pct": 0.238,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 187,
+          "ticker": "GPC",
+          "pred_return_5d": 0.002377615775913,
+          "pred_return_pct": 0.238,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 188,
+          "ticker": "MS",
+          "pred_return_5d": 0.0023608659394085407,
+          "pred_return_pct": 0.236,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 189,
+          "ticker": "SRE",
+          "pred_return_5d": 0.0023608102928847075,
+          "pred_return_pct": 0.236,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 190,
+          "ticker": "BEN",
+          "pred_return_5d": 0.0023584498558193445,
+          "pred_return_pct": 0.236,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 191,
+          "ticker": "VRSK",
+          "pred_return_5d": 0.0023560936097055674,
+          "pred_return_pct": 0.236,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 192,
+          "ticker": "TEL",
+          "pred_return_5d": 0.0023458492942154408,
+          "pred_return_pct": 0.235,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 193,
+          "ticker": "NTRS",
+          "pred_return_5d": 0.002316484460607171,
+          "pred_return_pct": 0.232,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 194,
+          "ticker": "WELL",
+          "pred_return_5d": 0.002314503537490964,
+          "pred_return_pct": 0.231,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 195,
+          "ticker": "KIM",
+          "pred_return_5d": 0.0023108029272407293,
+          "pred_return_pct": 0.231,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 196,
+          "ticker": "CAH",
+          "pred_return_5d": 0.002306339330971241,
+          "pred_return_pct": 0.231,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 197,
+          "ticker": "BA",
+          "pred_return_5d": 0.0022650279570370913,
+          "pred_return_pct": 0.227,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 198,
+          "ticker": "HWM",
+          "pred_return_5d": 0.0022503992076963186,
+          "pred_return_pct": 0.225,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 199,
+          "ticker": "PSA",
+          "pred_return_5d": 0.0022485714871436357,
+          "pred_return_pct": 0.225,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 200,
+          "ticker": "ARE",
+          "pred_return_5d": 0.0022480739280581474,
+          "pred_return_pct": 0.225,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 201,
+          "ticker": "ROP",
+          "pred_return_5d": 0.002247170079499483,
+          "pred_return_pct": 0.225,
+          "decile": 4,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 202,
+          "ticker": "CSCO",
+          "pred_return_5d": 0.002244362374767661,
+          "pred_return_pct": 0.224,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 203,
+          "ticker": "UBER",
+          "pred_return_5d": 0.002240917179733515,
+          "pred_return_pct": 0.224,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 204,
+          "ticker": "HRL",
+          "pred_return_5d": 0.002238928573206067,
+          "pred_return_pct": 0.224,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 205,
+          "ticker": "ZTS",
+          "pred_return_5d": 0.0022284830920398235,
+          "pred_return_pct": 0.223,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 206,
+          "ticker": "CMCSA",
+          "pred_return_5d": 0.002226439770311117,
+          "pred_return_pct": 0.223,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 207,
+          "ticker": "LNT",
+          "pred_return_5d": 0.002221114234998822,
+          "pred_return_pct": 0.222,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 208,
+          "ticker": "ETR",
+          "pred_return_5d": 0.0022140382789075375,
+          "pred_return_pct": 0.221,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 209,
+          "ticker": "VMC",
+          "pred_return_5d": 0.0021985245402902365,
+          "pred_return_pct": 0.22,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 210,
+          "ticker": "PTC",
+          "pred_return_5d": 0.002195832785218954,
+          "pred_return_pct": 0.22,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 211,
+          "ticker": "CMG",
+          "pred_return_5d": 0.0021859456319361925,
+          "pred_return_pct": 0.219,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 212,
+          "ticker": "ADSK",
+          "pred_return_5d": 0.0021838208194822073,
+          "pred_return_pct": 0.218,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 213,
+          "ticker": "SNA",
+          "pred_return_5d": 0.0021789944730699062,
+          "pred_return_pct": 0.218,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 214,
+          "ticker": "XEL",
+          "pred_return_5d": 0.0021526573691517115,
+          "pred_return_pct": 0.215,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 215,
+          "ticker": "TSCO",
+          "pred_return_5d": 0.002146596321836114,
+          "pred_return_pct": 0.215,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 216,
+          "ticker": "RF",
+          "pred_return_5d": 0.002138596260920167,
+          "pred_return_pct": 0.214,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 217,
+          "ticker": "RTX",
+          "pred_return_5d": 0.0021370798349380493,
+          "pred_return_pct": 0.214,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 218,
+          "ticker": "OTIS",
+          "pred_return_5d": 0.0021277684718370438,
+          "pred_return_pct": 0.213,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 219,
+          "ticker": "GDDY",
+          "pred_return_5d": 0.0021116340067237616,
+          "pred_return_pct": 0.211,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 220,
+          "ticker": "NVDA",
+          "pred_return_5d": 0.002109506633132696,
+          "pred_return_pct": 0.211,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 221,
+          "ticker": "TRGP",
+          "pred_return_5d": 0.0021072353702038527,
+          "pred_return_pct": 0.211,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 222,
+          "ticker": "TGT",
+          "pred_return_5d": 0.0021065124310553074,
+          "pred_return_pct": 0.211,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 223,
+          "ticker": "AOS",
+          "pred_return_5d": 0.0020764009095728397,
+          "pred_return_pct": 0.208,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 224,
+          "ticker": "SPGI",
+          "pred_return_5d": 0.0020719864405691624,
+          "pred_return_pct": 0.207,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 225,
+          "ticker": "WY",
+          "pred_return_5d": 0.0020612648222595453,
+          "pred_return_pct": 0.206,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 226,
+          "ticker": "MCO",
+          "pred_return_5d": 0.002059783088043332,
+          "pred_return_pct": 0.206,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 227,
+          "ticker": "COF",
+          "pred_return_5d": 0.0020500507671386003,
+          "pred_return_pct": 0.205,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 228,
+          "ticker": "AON",
+          "pred_return_5d": 0.00204092706553638,
+          "pred_return_pct": 0.204,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 229,
+          "ticker": "NI",
+          "pred_return_5d": 0.0020197294652462006,
+          "pred_return_pct": 0.202,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 230,
+          "ticker": "CRM",
+          "pred_return_5d": 0.002014592755585909,
+          "pred_return_pct": 0.201,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 231,
+          "ticker": "DTE",
+          "pred_return_5d": 0.001995750702917576,
+          "pred_return_pct": 0.2,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 232,
+          "ticker": "OMC",
+          "pred_return_5d": 0.0019949732813984156,
+          "pred_return_pct": 0.199,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 233,
+          "ticker": "EW",
+          "pred_return_5d": 0.0019854200072586536,
+          "pred_return_pct": 0.199,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 234,
+          "ticker": "TMUS",
+          "pred_return_5d": 0.0019597276113927364,
+          "pred_return_pct": 0.196,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 235,
+          "ticker": "HUM",
+          "pred_return_5d": 0.001949614379554987,
+          "pred_return_pct": 0.195,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 236,
+          "ticker": "CHD",
+          "pred_return_5d": 0.0019480783957988024,
+          "pred_return_pct": 0.195,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 237,
+          "ticker": "CNC",
+          "pred_return_5d": 0.0019321353174746037,
+          "pred_return_pct": 0.193,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 238,
+          "ticker": "SYF",
+          "pred_return_5d": 0.0019304098095744848,
+          "pred_return_pct": 0.193,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 239,
+          "ticker": "LYB",
+          "pred_return_5d": 0.0019110313151031733,
+          "pred_return_pct": 0.191,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 240,
+          "ticker": "FTV",
+          "pred_return_5d": 0.0018921911250799894,
+          "pred_return_pct": 0.189,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 241,
+          "ticker": "ABT",
+          "pred_return_5d": 0.001880055759102106,
+          "pred_return_pct": 0.188,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 242,
+          "ticker": "KMB",
+          "pred_return_5d": 0.0018765879794955254,
+          "pred_return_pct": 0.188,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 243,
+          "ticker": "MTB",
+          "pred_return_5d": 0.001874889712780714,
+          "pred_return_pct": 0.187,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 244,
+          "ticker": "LHX",
+          "pred_return_5d": 0.0018679273780435324,
+          "pred_return_pct": 0.187,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 245,
+          "ticker": "META",
+          "pred_return_5d": 0.0018499863799661398,
+          "pred_return_pct": 0.185,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 246,
+          "ticker": "WTW",
+          "pred_return_5d": 0.0018456713296473026,
+          "pred_return_pct": 0.185,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 247,
+          "ticker": "CTVA",
+          "pred_return_5d": 0.0018454724922776222,
+          "pred_return_pct": 0.185,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 248,
+          "ticker": "SHW",
+          "pred_return_5d": 0.0018397578969597816,
+          "pred_return_pct": 0.184,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 249,
+          "ticker": "MAA",
+          "pred_return_5d": 0.0018333273474127054,
+          "pred_return_pct": 0.183,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 250,
+          "ticker": "BRO",
+          "pred_return_5d": 0.0018304253462702036,
+          "pred_return_pct": 0.183,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 251,
+          "ticker": "UNP",
+          "pred_return_5d": 0.001821010373532772,
+          "pred_return_pct": 0.182,
+          "decile": 5,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 252,
+          "ticker": "PSX",
+          "pred_return_5d": 0.0017777797766029835,
+          "pred_return_pct": 0.178,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 253,
+          "ticker": "PEG",
+          "pred_return_5d": 0.0017772361170500517,
+          "pred_return_pct": 0.178,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 254,
+          "ticker": "ADM",
+          "pred_return_5d": 0.0017756305169314146,
+          "pred_return_pct": 0.178,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 255,
+          "ticker": "AXP",
+          "pred_return_5d": 0.001764488173648715,
+          "pred_return_pct": 0.176,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 256,
+          "ticker": "PLD",
+          "pred_return_5d": 0.0017634890973567963,
+          "pred_return_pct": 0.176,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 257,
+          "ticker": "EBAY",
+          "pred_return_5d": 0.0017556133680045605,
+          "pred_return_pct": 0.176,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 258,
+          "ticker": "LYV",
+          "pred_return_5d": 0.001754280412569642,
+          "pred_return_pct": 0.175,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 259,
+          "ticker": "DXCM",
+          "pred_return_5d": 0.0017209909856319427,
+          "pred_return_pct": 0.172,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 260,
+          "ticker": "MMM",
+          "pred_return_5d": 0.0017094926442950964,
+          "pred_return_pct": 0.171,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 261,
+          "ticker": "PNR",
+          "pred_return_5d": 0.0017032562755048275,
+          "pred_return_pct": 0.17,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 262,
+          "ticker": "CBRE",
+          "pred_return_5d": 0.0017006758134812117,
+          "pred_return_pct": 0.17,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 263,
+          "ticker": "DG",
+          "pred_return_5d": 0.0016936443280428648,
+          "pred_return_pct": 0.169,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 264,
+          "ticker": "REG",
+          "pred_return_5d": 0.001688629388809204,
+          "pred_return_pct": 0.169,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 265,
+          "ticker": "BBY",
+          "pred_return_5d": 0.0016876172740012407,
+          "pred_return_pct": 0.169,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 266,
+          "ticker": "ATO",
+          "pred_return_5d": 0.0016845830250531435,
+          "pred_return_pct": 0.168,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 267,
+          "ticker": "BLK",
+          "pred_return_5d": 0.0016788553912192583,
+          "pred_return_pct": 0.168,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 268,
+          "ticker": "MAS",
+          "pred_return_5d": 0.0016614042688161135,
+          "pred_return_pct": 0.166,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 269,
+          "ticker": "GOOGL",
+          "pred_return_5d": 0.0016549178399145603,
+          "pred_return_pct": 0.165,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 270,
+          "ticker": "AEE",
+          "pred_return_5d": 0.0016509676352143288,
+          "pred_return_pct": 0.165,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 271,
+          "ticker": "MTD",
+          "pred_return_5d": 0.0016481701750308275,
+          "pred_return_pct": 0.165,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 272,
+          "ticker": "CTAS",
+          "pred_return_5d": 0.0016476374585181475,
+          "pred_return_pct": 0.165,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 273,
+          "ticker": "PPL",
+          "pred_return_5d": 0.0016235040966421366,
+          "pred_return_pct": 0.162,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 274,
+          "ticker": "FFIV",
+          "pred_return_5d": 0.001623430522158742,
+          "pred_return_pct": 0.162,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 275,
+          "ticker": "BR",
+          "pred_return_5d": 0.0016061547212302685,
+          "pred_return_pct": 0.161,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 276,
+          "ticker": "SOLV",
+          "pred_return_5d": 0.0016056562308222055,
+          "pred_return_pct": 0.161,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 277,
+          "ticker": "CASY",
+          "pred_return_5d": 0.0015963786281645298,
+          "pred_return_pct": 0.16,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 278,
+          "ticker": "EXR",
+          "pred_return_5d": 0.0015959017910063267,
+          "pred_return_pct": 0.16,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 279,
+          "ticker": "ED",
+          "pred_return_5d": 0.001583614619448781,
+          "pred_return_pct": 0.158,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 280,
+          "ticker": "GWW",
+          "pred_return_5d": 0.0015807626768946648,
+          "pred_return_pct": 0.158,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 281,
+          "ticker": "BKR",
+          "pred_return_5d": 0.0015797996893525124,
+          "pred_return_pct": 0.158,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 282,
+          "ticker": "AJG",
+          "pred_return_5d": 0.0015718105714768171,
+          "pred_return_pct": 0.157,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 283,
+          "ticker": "D",
+          "pred_return_5d": 0.0015623958315700293,
+          "pred_return_pct": 0.156,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 284,
+          "ticker": "IBM",
+          "pred_return_5d": 0.0015528332442045212,
+          "pred_return_pct": 0.155,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 285,
+          "ticker": "STZ",
+          "pred_return_5d": 0.001552010653540492,
+          "pred_return_pct": 0.155,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 286,
+          "ticker": "GEHC",
+          "pred_return_5d": 0.0015425481833517551,
+          "pred_return_pct": 0.154,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 287,
+          "ticker": "BAC",
+          "pred_return_5d": 0.0015378890093415976,
+          "pred_return_pct": 0.154,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 288,
+          "ticker": "PCAR",
+          "pred_return_5d": 0.001532592810690403,
+          "pred_return_pct": 0.153,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 289,
+          "ticker": "FOXA",
+          "pred_return_5d": 0.0015136790461838245,
+          "pred_return_pct": 0.151,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 290,
+          "ticker": "LUV",
+          "pred_return_5d": 0.0015016715042293072,
+          "pred_return_pct": 0.15,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 291,
+          "ticker": "PHM",
+          "pred_return_5d": 0.001499038189649582,
+          "pred_return_pct": 0.15,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 292,
+          "ticker": "KDP",
+          "pred_return_5d": 0.0014955129008740187,
+          "pred_return_pct": 0.15,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 293,
+          "ticker": "TYL",
+          "pred_return_5d": 0.001483068335801363,
+          "pred_return_pct": 0.148,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 294,
+          "ticker": "INCY",
+          "pred_return_5d": 0.0014739695470780134,
+          "pred_return_pct": 0.147,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 295,
+          "ticker": "MCD",
+          "pred_return_5d": 0.0014734179712831974,
+          "pred_return_pct": 0.147,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 296,
+          "ticker": "WAB",
+          "pred_return_5d": 0.001471273135393858,
+          "pred_return_pct": 0.147,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 297,
+          "ticker": "WEC",
+          "pred_return_5d": 0.0014673358527943492,
+          "pred_return_pct": 0.147,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 298,
+          "ticker": "ORLY",
+          "pred_return_5d": 0.00145998306106776,
+          "pred_return_pct": 0.146,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 299,
+          "ticker": "ROL",
+          "pred_return_5d": 0.0014455621130764484,
+          "pred_return_pct": 0.145,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 300,
+          "ticker": "CDW",
+          "pred_return_5d": 0.0014376193284988403,
+          "pred_return_pct": 0.144,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 301,
+          "ticker": "SO",
+          "pred_return_5d": 0.0014371813740581274,
+          "pred_return_pct": 0.144,
+          "decile": 6,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 302,
+          "ticker": "EXC",
+          "pred_return_5d": 0.0014369121054187417,
+          "pred_return_pct": 0.144,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 303,
+          "ticker": "VLO",
+          "pred_return_5d": 0.001436145743355155,
+          "pred_return_pct": 0.144,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 304,
+          "ticker": "IEX",
+          "pred_return_5d": 0.0014268551021814346,
+          "pred_return_pct": 0.143,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 305,
+          "ticker": "PNW",
+          "pred_return_5d": 0.00142490747384727,
+          "pred_return_pct": 0.142,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 306,
+          "ticker": "HLT",
+          "pred_return_5d": 0.0014179614372551441,
+          "pred_return_pct": 0.142,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 307,
+          "ticker": "FE",
+          "pred_return_5d": 0.0014108860632404685,
+          "pred_return_pct": 0.141,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 308,
+          "ticker": "TXT",
+          "pred_return_5d": 0.0014087151503190398,
+          "pred_return_pct": 0.141,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 309,
+          "ticker": "DRI",
+          "pred_return_5d": 0.0013992886524647474,
+          "pred_return_pct": 0.14,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 310,
+          "ticker": "FRT",
+          "pred_return_5d": 0.0013984197285026312,
+          "pred_return_pct": 0.14,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 311,
+          "ticker": "NEM",
+          "pred_return_5d": 0.0013910989509895444,
+          "pred_return_pct": 0.139,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 312,
+          "ticker": "CPAY",
+          "pred_return_5d": 0.001373507548123598,
+          "pred_return_pct": 0.137,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 313,
+          "ticker": "VICI",
+          "pred_return_5d": 0.0013718144036829472,
+          "pred_return_pct": 0.137,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 314,
+          "ticker": "COST",
+          "pred_return_5d": 0.0013716735411435366,
+          "pred_return_pct": 0.137,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 315,
+          "ticker": "SYY",
+          "pred_return_5d": 0.0013610012829303741,
+          "pred_return_pct": 0.136,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 316,
+          "ticker": "ERIE",
+          "pred_return_5d": 0.0013609742745757103,
+          "pred_return_pct": 0.136,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 317,
+          "ticker": "LEN",
+          "pred_return_5d": 0.0013581013772636652,
+          "pred_return_pct": 0.136,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 318,
+          "ticker": "TAP",
+          "pred_return_5d": 0.0013537106569856405,
+          "pred_return_pct": 0.135,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 319,
+          "ticker": "LLY",
+          "pred_return_5d": 0.0013519807253032923,
+          "pred_return_pct": 0.135,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 320,
+          "ticker": "ITW",
+          "pred_return_5d": 0.0013375612907111645,
+          "pred_return_pct": 0.134,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 321,
+          "ticker": "CF",
+          "pred_return_5d": 0.0013359060976654291,
+          "pred_return_pct": 0.134,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 322,
+          "ticker": "MPC",
+          "pred_return_5d": 0.0013322902377694845,
+          "pred_return_pct": 0.133,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 323,
+          "ticker": "HSIC",
+          "pred_return_5d": 0.0013313305098563433,
+          "pred_return_pct": 0.133,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 324,
+          "ticker": "EL",
+          "pred_return_5d": 0.0013308157213032246,
+          "pred_return_pct": 0.133,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 325,
+          "ticker": "JBHT",
+          "pred_return_5d": 0.0013132125604897738,
+          "pred_return_pct": 0.131,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 326,
+          "ticker": "WMB",
+          "pred_return_5d": 0.0012985647190362215,
+          "pred_return_pct": 0.13,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 327,
+          "ticker": "GM",
+          "pred_return_5d": 0.0012953041587024927,
+          "pred_return_pct": 0.13,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 328,
+          "ticker": "INTU",
+          "pred_return_5d": 0.0012950262753292918,
+          "pred_return_pct": 0.13,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 329,
+          "ticker": "GOOG",
+          "pred_return_5d": 0.001275446149520576,
+          "pred_return_pct": 0.128,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 330,
+          "ticker": "DLR",
+          "pred_return_5d": 0.0012736148200929165,
+          "pred_return_pct": 0.127,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 331,
+          "ticker": "DUK",
+          "pred_return_5d": 0.0012343991547822952,
+          "pred_return_pct": 0.123,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 332,
+          "ticker": "BMY",
+          "pred_return_5d": 0.0012324859853833914,
+          "pred_return_pct": 0.123,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 333,
+          "ticker": "WM",
+          "pred_return_5d": 0.0012212316505610943,
+          "pred_return_pct": 0.122,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 334,
+          "ticker": "INVH",
+          "pred_return_5d": 0.0012112378608435392,
+          "pred_return_pct": 0.121,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 335,
+          "ticker": "UDR",
+          "pred_return_5d": 0.0012109287781640887,
+          "pred_return_pct": 0.121,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 336,
+          "ticker": "SCHW",
+          "pred_return_5d": 0.0011828915448859334,
+          "pred_return_pct": 0.118,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 337,
+          "ticker": "VEEV",
+          "pred_return_5d": 0.0011658475268632174,
+          "pred_return_pct": 0.117,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 338,
+          "ticker": "J",
+          "pred_return_5d": 0.001158259343355894,
+          "pred_return_pct": 0.116,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 339,
+          "ticker": "CPT",
+          "pred_return_5d": 0.0011573112569749355,
+          "pred_return_pct": 0.116,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 340,
+          "ticker": "ABNB",
+          "pred_return_5d": 0.001142021268606186,
+          "pred_return_pct": 0.114,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 341,
+          "ticker": "APD",
+          "pred_return_5d": 0.0011348315747454762,
+          "pred_return_pct": 0.113,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 342,
+          "ticker": "LULU",
+          "pred_return_5d": 0.0011226253118366003,
+          "pred_return_pct": 0.112,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 343,
+          "ticker": "PEP",
+          "pred_return_5d": 0.0011221489403396845,
+          "pred_return_pct": 0.112,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 344,
+          "ticker": "MLM",
+          "pred_return_5d": 0.0011140371207147837,
+          "pred_return_pct": 0.111,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 345,
+          "ticker": "OKE",
+          "pred_return_5d": 0.001103188842535019,
+          "pred_return_pct": 0.11,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 346,
+          "ticker": "KMI",
+          "pred_return_5d": 0.001077301800251007,
+          "pred_return_pct": 0.108,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 347,
+          "ticker": "XYL",
+          "pred_return_5d": 0.0010664963629096746,
+          "pred_return_pct": 0.107,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 348,
+          "ticker": "IFF",
+          "pred_return_5d": 0.0010625905124470592,
+          "pred_return_pct": 0.106,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 349,
+          "ticker": "REGN",
+          "pred_return_5d": 0.0010585522977635264,
+          "pred_return_pct": 0.106,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 350,
+          "ticker": "PNC",
+          "pred_return_5d": 0.0010554487816989422,
+          "pred_return_pct": 0.106,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 351,
+          "ticker": "NVR",
+          "pred_return_5d": 0.0010458854958415031,
+          "pred_return_pct": 0.105,
+          "decile": 7,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 352,
+          "ticker": "ALL",
+          "pred_return_5d": 0.0010436393786221743,
+          "pred_return_pct": 0.104,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 353,
+          "ticker": "APA",
+          "pred_return_5d": 0.0010411480907350779,
+          "pred_return_pct": 0.104,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 354,
+          "ticker": "DHI",
+          "pred_return_5d": 0.0010384763590991497,
+          "pred_return_pct": 0.104,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 355,
+          "ticker": "LMT",
+          "pred_return_5d": 0.00103058572858572,
+          "pred_return_pct": 0.103,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 356,
+          "ticker": "AMGN",
+          "pred_return_5d": 0.0010278532281517982,
+          "pred_return_pct": 0.103,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 357,
+          "ticker": "FITB",
+          "pred_return_5d": 0.0010260047856718302,
+          "pred_return_pct": 0.103,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 358,
+          "ticker": "FOX",
+          "pred_return_5d": 0.0010196729563176632,
+          "pred_return_pct": 0.102,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 359,
+          "ticker": "HST",
+          "pred_return_5d": 0.0010163707192987204,
+          "pred_return_pct": 0.102,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 360,
+          "ticker": "NSC",
+          "pred_return_5d": 0.001006966456770897,
+          "pred_return_pct": 0.101,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 361,
+          "ticker": "MRSH",
+          "pred_return_5d": 0.0010065040551126003,
+          "pred_return_pct": 0.101,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 362,
+          "ticker": "MAR",
+          "pred_return_5d": 0.0010020735207945108,
+          "pred_return_pct": 0.1,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 363,
+          "ticker": "PSKY",
+          "pred_return_5d": 0.001001621363684535,
+          "pred_return_pct": 0.1,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 364,
+          "ticker": "HIG",
+          "pred_return_5d": 0.000987629871815443,
+          "pred_return_pct": 0.099,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 365,
+          "ticker": "SBAC",
+          "pred_return_5d": 0.0009738118969835341,
+          "pred_return_pct": 0.097,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 366,
+          "ticker": "TRMB",
+          "pred_return_5d": 0.0009661780204623938,
+          "pred_return_pct": 0.097,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 367,
+          "ticker": "AEP",
+          "pred_return_5d": 0.0009646160760894418,
+          "pred_return_pct": 0.096,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 368,
+          "ticker": "CTSH",
+          "pred_return_5d": 0.0009583412320353091,
+          "pred_return_pct": 0.096,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 369,
+          "ticker": "CME",
+          "pred_return_5d": 0.000936766795348376,
+          "pred_return_pct": 0.094,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 370,
+          "ticker": "DVA",
+          "pred_return_5d": 0.0009363936260342598,
+          "pred_return_pct": 0.094,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 371,
+          "ticker": "STT",
+          "pred_return_5d": 0.0009305018465965986,
+          "pred_return_pct": 0.093,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 372,
+          "ticker": "PKG",
+          "pred_return_5d": 0.000924617110285908,
+          "pred_return_pct": 0.092,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 373,
+          "ticker": "HBAN",
+          "pred_return_5d": 0.0009244587272405624,
+          "pred_return_pct": 0.092,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 374,
+          "ticker": "MRK",
+          "pred_return_5d": 0.0009234908502548933,
+          "pred_return_pct": 0.092,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 375,
+          "ticker": "BALL",
+          "pred_return_5d": 0.000922190141864121,
+          "pred_return_pct": 0.092,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 376,
+          "ticker": "BNY",
+          "pred_return_5d": 0.0009190697455778718,
+          "pred_return_pct": 0.092,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 377,
+          "ticker": "LIN",
+          "pred_return_5d": 0.0009160712361335754,
+          "pred_return_pct": 0.092,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 378,
+          "ticker": "GRMN",
+          "pred_return_5d": 0.0009129249956458807,
+          "pred_return_pct": 0.091,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 379,
+          "ticker": "DOV",
+          "pred_return_5d": 0.0009075112175196409,
+          "pred_return_pct": 0.091,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 380,
+          "ticker": "GIS",
+          "pred_return_5d": 0.0009056723210960627,
+          "pred_return_pct": 0.091,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 381,
+          "ticker": "ULTA",
+          "pred_return_5d": 0.000904159271158278,
+          "pred_return_pct": 0.09,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 382,
+          "ticker": "JPM",
+          "pred_return_5d": 0.0008964999578893185,
+          "pred_return_pct": 0.09,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 383,
+          "ticker": "EVRG",
+          "pred_return_5d": 0.0008920537075027823,
+          "pred_return_pct": 0.089,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 384,
+          "ticker": "HAL",
+          "pred_return_5d": 0.0008676375728100538,
+          "pred_return_pct": 0.087,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 385,
+          "ticker": "O",
+          "pred_return_5d": 0.0008665394852869213,
+          "pred_return_pct": 0.087,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 386,
+          "ticker": "ZBH",
+          "pred_return_5d": 0.0008643435430712998,
+          "pred_return_pct": 0.086,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 387,
+          "ticker": "SYK",
+          "pred_return_5d": 0.0008642972679808736,
+          "pred_return_pct": 0.086,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 388,
+          "ticker": "ECL",
+          "pred_return_5d": 0.0008489378960803151,
+          "pred_return_pct": 0.085,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 389,
+          "ticker": "PAYX",
+          "pred_return_5d": 0.0008473109919577837,
+          "pred_return_pct": 0.085,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 390,
+          "ticker": "VLTO",
+          "pred_return_5d": 0.0008334527956321836,
+          "pred_return_pct": 0.083,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 391,
+          "ticker": "MNST",
+          "pred_return_5d": 0.0008256036089733243,
+          "pred_return_pct": 0.083,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 392,
+          "ticker": "KEY",
+          "pred_return_5d": 0.0008228574879467487,
+          "pred_return_pct": 0.082,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 393,
+          "ticker": "PRU",
+          "pred_return_5d": 0.0008117419783957303,
+          "pred_return_pct": 0.081,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 394,
+          "ticker": "AMP",
+          "pred_return_5d": 0.000807066448032856,
+          "pred_return_pct": 0.081,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 395,
+          "ticker": "VRTX",
+          "pred_return_5d": 0.0007931468426249921,
+          "pred_return_pct": 0.079,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 396,
+          "ticker": "UPS",
+          "pred_return_5d": 0.0007923045777715743,
+          "pred_return_pct": 0.079,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 397,
+          "ticker": "MDLZ",
+          "pred_return_5d": 0.0007915717433206737,
+          "pred_return_pct": 0.079,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 398,
+          "ticker": "NWS",
+          "pred_return_5d": 0.0007797899888828397,
+          "pred_return_pct": 0.078,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 399,
+          "ticker": "EQT",
+          "pred_return_5d": 0.0007796901045367122,
+          "pred_return_pct": 0.078,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 400,
+          "ticker": "RMD",
+          "pred_return_5d": 0.000758315552957356,
+          "pred_return_pct": 0.076,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 401,
+          "ticker": "KVUE",
+          "pred_return_5d": 0.0007572086760774255,
+          "pred_return_pct": 0.076,
+          "decile": 8,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 402,
+          "ticker": "SJM",
+          "pred_return_5d": 0.0007550263544544578,
+          "pred_return_pct": 0.076,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 403,
+          "ticker": "A",
+          "pred_return_5d": 0.0007388734957203269,
+          "pred_return_pct": 0.074,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 404,
+          "ticker": "NOC",
+          "pred_return_5d": 0.0007369015365839005,
+          "pred_return_pct": 0.074,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 405,
+          "ticker": "DHR",
+          "pred_return_5d": 0.0007125518750399351,
+          "pred_return_pct": 0.071,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 406,
+          "ticker": "TFC",
+          "pred_return_5d": 0.0007095953333191574,
+          "pred_return_pct": 0.071,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 407,
+          "ticker": "GD",
+          "pred_return_5d": 0.0007091781008057296,
+          "pred_return_pct": 0.071,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 408,
+          "ticker": "DE",
+          "pred_return_5d": 0.000680080964230001,
+          "pred_return_pct": 0.068,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 409,
+          "ticker": "GL",
+          "pred_return_5d": 0.0006761167896911502,
+          "pred_return_pct": 0.068,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 410,
+          "ticker": "CFG",
+          "pred_return_5d": 0.0006635261233896017,
+          "pred_return_pct": 0.066,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 411,
+          "ticker": "AME",
+          "pred_return_5d": 0.0006501020397990942,
+          "pred_return_pct": 0.065,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 412,
+          "ticker": "JNJ",
+          "pred_return_5d": 0.0006497863214462996,
+          "pred_return_pct": 0.065,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 413,
+          "ticker": "GEN",
+          "pred_return_5d": 0.0006485346821136773,
+          "pred_return_pct": 0.065,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 414,
+          "ticker": "WMT",
+          "pred_return_5d": 0.0006412041839212179,
+          "pred_return_pct": 0.064,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 415,
+          "ticker": "COP",
+          "pred_return_5d": 0.0006384364096447825,
+          "pred_return_pct": 0.064,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 416,
+          "ticker": "C",
+          "pred_return_5d": 0.0006383523577824235,
+          "pred_return_pct": 0.064,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 417,
+          "ticker": "NDSN",
+          "pred_return_5d": 0.0006342045962810516,
+          "pred_return_pct": 0.063,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 418,
+          "ticker": "VRSN",
+          "pred_return_5d": 0.0006240960792638361,
+          "pred_return_pct": 0.062,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 419,
+          "ticker": "FAST",
+          "pred_return_5d": 0.0006173226283863187,
+          "pred_return_pct": 0.062,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 420,
+          "ticker": "DVN",
+          "pred_return_5d": 0.0006097194855101407,
+          "pred_return_pct": 0.061,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 421,
+          "ticker": "AVY",
+          "pred_return_5d": 0.0006079915328882635,
+          "pred_return_pct": 0.061,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 422,
+          "ticker": "NWSA",
+          "pred_return_5d": 0.0006062903557904065,
+          "pred_return_pct": 0.061,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 423,
+          "ticker": "SWKS",
+          "pred_return_5d": 0.0006047451752237976,
+          "pred_return_pct": 0.06,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 424,
+          "ticker": "CSX",
+          "pred_return_5d": 0.0005913160857744515,
+          "pred_return_pct": 0.059,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 425,
+          "ticker": "HAS",
+          "pred_return_5d": 0.0005789733841083944,
+          "pred_return_pct": 0.058,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 426,
+          "ticker": "NEE",
+          "pred_return_5d": 0.0005665980861522257,
+          "pred_return_pct": 0.057,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 427,
+          "ticker": "MSFT",
+          "pred_return_5d": 0.0005662409821525216,
+          "pred_return_pct": 0.057,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 428,
+          "ticker": "ESS",
+          "pred_return_5d": 0.000564150745049119,
+          "pred_return_pct": 0.056,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 429,
+          "ticker": "ICE",
+          "pred_return_5d": 0.0005550683126784861,
+          "pred_return_pct": 0.056,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 430,
+          "ticker": "RVTY",
+          "pred_return_5d": 0.0005531333736144006,
+          "pred_return_pct": 0.055,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 431,
+          "ticker": "FANG",
+          "pred_return_5d": 0.000543299363926053,
+          "pred_return_pct": 0.054,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 432,
+          "ticker": "VTRS",
+          "pred_return_5d": 0.0005350934807211161,
+          "pred_return_pct": 0.054,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 433,
+          "ticker": "TSN",
+          "pred_return_5d": 0.0005339905619621277,
+          "pred_return_pct": 0.053,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 434,
+          "ticker": "CHRW",
+          "pred_return_5d": 0.0005312635912559927,
+          "pred_return_pct": 0.053,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 435,
+          "ticker": "CB",
+          "pred_return_5d": 0.0005310263950377703,
+          "pred_return_pct": 0.053,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 436,
+          "ticker": "PM",
+          "pred_return_5d": 0.0005276369629427791,
+          "pred_return_pct": 0.053,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 437,
+          "ticker": "BDX",
+          "pred_return_5d": 0.0005169013747945428,
+          "pred_return_pct": 0.052,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 438,
+          "ticker": "ELV",
+          "pred_return_5d": 0.0005037935334257782,
+          "pred_return_pct": 0.05,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 439,
+          "ticker": "MDT",
+          "pred_return_5d": 0.0005022541736252606,
+          "pred_return_pct": 0.05,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 440,
+          "ticker": "KR",
+          "pred_return_5d": 0.0004994020564481616,
+          "pred_return_pct": 0.05,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 441,
+          "ticker": "SLB",
+          "pred_return_5d": 0.0004979720106348395,
+          "pred_return_pct": 0.05,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 442,
+          "ticker": "ISRG",
+          "pred_return_5d": 0.0004934312310069799,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 443,
+          "ticker": "CINF",
+          "pred_return_5d": 0.0004927710979245603,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 444,
+          "ticker": "BIIB",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 445,
+          "ticker": "HCA",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 446,
+          "ticker": "MCK",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 447,
+          "ticker": "COR",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 448,
+          "ticker": "GILD",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 449,
+          "ticker": "OXY",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 450,
+          "ticker": "L",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 451,
+          "ticker": "MO",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 9,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 452,
+          "ticker": "NFLX",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 453,
+          "ticker": "IQV",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 454,
+          "ticker": "XOM",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 455,
+          "ticker": "AIZ",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 456,
+          "ticker": "AFL",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 457,
+          "ticker": "AIG",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 458,
+          "ticker": "AES",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 459,
+          "ticker": "ADP",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 460,
+          "ticker": "ACGL",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 461,
+          "ticker": "ABBV",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 462,
+          "ticker": "WRB",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 463,
+          "ticker": "KO",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 464,
+          "ticker": "MET",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 465,
+          "ticker": "WFC",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 466,
+          "ticker": "MA",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 467,
+          "ticker": "WST",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 468,
+          "ticker": "MSI",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 469,
+          "ticker": "EXE",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 470,
+          "ticker": "ALLE",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 471,
+          "ticker": "BRK.B",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 472,
+          "ticker": "CVX",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 473,
+          "ticker": "DIS",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 474,
+          "ticker": "RSG",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 475,
+          "ticker": "EG",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 476,
+          "ticker": "EOG",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 477,
+          "ticker": "DGX",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 478,
+          "ticker": "PFE",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 479,
+          "ticker": "PFG",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 480,
+          "ticker": "PG",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 481,
+          "ticker": "PGR",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 482,
+          "ticker": "EXPD",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 483,
+          "ticker": "PYPL",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 484,
+          "ticker": "CI",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 485,
+          "ticker": "T",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 486,
+          "ticker": "WBD",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 487,
+          "ticker": "AWK",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 488,
+          "ticker": "TMO",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 489,
+          "ticker": "TRV",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 490,
+          "ticker": "TECH",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 491,
+          "ticker": "UHS",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 492,
+          "ticker": "V",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 493,
+          "ticker": "USB",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 494,
+          "ticker": "VZ",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 495,
+          "ticker": "WAT",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 496,
+          "ticker": "VMRK",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 497,
+          "ticker": "AMT",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 498,
+          "ticker": "AAPL",
+          "pred_return_5d": 0.0004910036805085838,
+          "pred_return_pct": 0.049,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 499,
+          "ticker": "LH",
+          "pred_return_5d": -0.000804669049102813,
+          "pred_return_pct": -0.08,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 500,
+          "ticker": "ACN",
+          "pred_return_5d": -0.006142555736005306,
+          "pred_return_pct": -0.614,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        },
+        {
+          "rank": 501,
+          "ticker": "COO",
+          "pred_return_5d": -0.0077846115455031395,
+          "pred_return_pct": -0.778,
+          "decile": 10,
+          "target_resolution_date": "2026-09-22"
+        }
+      ]
     }
   }
 }
