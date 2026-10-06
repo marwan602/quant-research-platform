@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-10-02",
+  "as_of_date": "2026-10-05",
   "strategy": "Top Decile Long-Only",
   "holdings_count": 50,
   "holdings": [
@@ -16,19 +16,11 @@
       "weight": 0.02
     },
     {
-      "ticker": "FICO",
-      "weight": 0.02
-    },
-    {
       "ticker": "STX",
       "weight": 0.02
     },
     {
-      "ticker": "HOOD",
-      "weight": 0.02
-    },
-    {
-      "ticker": "RDDT",
+      "ticker": "GLW",
       "weight": 0.02
     },
     {
@@ -44,15 +36,7 @@
       "weight": 0.02
     },
     {
-      "ticker": "FLEX",
-      "weight": 0.02
-    },
-    {
       "ticker": "BLDR",
-      "weight": 0.02
-    },
-    {
-      "ticker": "COIN",
       "weight": 0.02
     },
     {
@@ -60,39 +44,19 @@
       "weight": 0.02
     },
     {
-      "ticker": "MOS",
+      "ticker": "FLEX",
       "weight": 0.02
     },
     {
-      "ticker": "GLW",
+      "ticker": "HOOD",
       "weight": 0.02
     },
     {
-      "ticker": "CNC",
+      "ticker": "RDDT",
       "weight": 0.02
     },
     {
-      "ticker": "ALB",
-      "weight": 0.02
-    },
-    {
-      "ticker": "CSGP",
-      "weight": 0.02
-    },
-    {
-      "ticker": "VRT",
-      "weight": 0.02
-    },
-    {
-      "ticker": "IP",
-      "weight": 0.02
-    },
-    {
-      "ticker": "FCX",
-      "weight": 0.02
-    },
-    {
-      "ticker": "MRNA",
+      "ticker": "COIN",
       "weight": 0.02
     },
     {
@@ -100,15 +64,7 @@
       "weight": 0.02
     },
     {
-      "ticker": "NOW",
-      "weight": 0.02
-    },
-    {
-      "ticker": "TTD",
-      "weight": 0.02
-    },
-    {
-      "ticker": "AMAT",
+      "ticker": "CIEN",
       "weight": 0.02
     },
     {
@@ -116,83 +72,7 @@
       "weight": 0.02
     },
     {
-      "ticker": "IBKR",
-      "weight": 0.02
-    },
-    {
-      "ticker": "ERIE",
-      "weight": 0.02
-    },
-    {
-      "ticker": "DASH",
-      "weight": 0.02
-    },
-    {
-      "ticker": "WDAY",
-      "weight": 0.02
-    },
-    {
-      "ticker": "ARES",
-      "weight": 0.02
-    },
-    {
-      "ticker": "DELL",
-      "weight": 0.02
-    },
-    {
-      "ticker": "CIEN",
-      "weight": 0.02
-    },
-    {
-      "ticker": "SW",
-      "weight": 0.02
-    },
-    {
-      "ticker": "JBL",
-      "weight": 0.02
-    },
-    {
-      "ticker": "TYL",
-      "weight": 0.02
-    },
-    {
-      "ticker": "GPN",
-      "weight": 0.02
-    },
-    {
-      "ticker": "FDS",
-      "weight": 0.02
-    },
-    {
-      "ticker": "PHM",
-      "weight": 0.02
-    },
-    {
-      "ticker": "EFX",
-      "weight": 0.02
-    },
-    {
-      "ticker": "ELV",
-      "weight": 0.02
-    },
-    {
-      "ticker": "CDW",
-      "weight": 0.02
-    },
-    {
-      "ticker": "UBER",
-      "weight": 0.02
-    },
-    {
-      "ticker": "KKR",
-      "weight": 0.02
-    },
-    {
-      "ticker": "CBRE",
-      "weight": 0.02
-    },
-    {
-      "ticker": "BX",
+      "ticker": "MOS",
       "weight": 0.02
     },
     {
@@ -200,7 +80,127 @@
       "weight": 0.02
     },
     {
+      "ticker": "ALB",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ALGN",
+      "weight": 0.02
+    },
+    {
+      "ticker": "DASH",
+      "weight": 0.02
+    },
+    {
+      "ticker": "PSKY",
+      "weight": 0.02
+    },
+    {
+      "ticker": "AMAT",
+      "weight": 0.02
+    },
+    {
+      "ticker": "IP",
+      "weight": 0.02
+    },
+    {
+      "ticker": "SW",
+      "weight": 0.02
+    },
+    {
+      "ticker": "GPN",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ERIE",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CNC",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CSGP",
+      "weight": 0.02
+    },
+    {
+      "ticker": "JBL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "EXPE",
+      "weight": 0.02
+    },
+    {
+      "ticker": "WDAY",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ELV",
+      "weight": 0.02
+    },
+    {
+      "ticker": "LEN",
+      "weight": 0.02
+    },
+    {
+      "ticker": "INTU",
+      "weight": 0.02
+    },
+    {
+      "ticker": "DELL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "CDW",
+      "weight": 0.02
+    },
+    {
+      "ticker": "VRT",
+      "weight": 0.02
+    },
+    {
+      "ticker": "BSX",
+      "weight": 0.02
+    },
+    {
+      "ticker": "ARE",
+      "weight": 0.02
+    },
+    {
+      "ticker": "UAL",
+      "weight": 0.02
+    },
+    {
+      "ticker": "UBER",
+      "weight": 0.02
+    },
+    {
+      "ticker": "NOW",
+      "weight": 0.02
+    },
+    {
+      "ticker": "PNR",
+      "weight": 0.02
+    },
+    {
+      "ticker": "GPC",
+      "weight": 0.02
+    },
+    {
+      "ticker": "AMCR",
+      "weight": 0.02
+    },
+    {
+      "ticker": "TYL",
+      "weight": 0.02
+    },
+    {
       "ticker": "DHI",
+      "weight": 0.02
+    },
+    {
+      "ticker": "PHM",
       "weight": 0.02
     }
   ],
@@ -208,102 +208,102 @@
     "SNDK",
     "WDC",
     "APP",
-    "FICO",
     "STX",
-    "HOOD",
-    "RDDT",
+    "GLW",
     "AXON",
     "CHTR",
     "INTC",
-    "FLEX",
     "BLDR",
-    "COIN",
     "CVNA",
-    "MOS",
-    "GLW",
-    "CNC",
-    "ALB",
-    "CSGP",
-    "VRT",
-    "IP",
-    "FCX",
-    "MRNA",
+    "FLEX",
+    "HOOD",
+    "RDDT",
+    "COIN",
     "MU",
-    "NOW",
-    "TTD",
-    "AMAT",
-    "LRCX",
-    "IBKR",
-    "ERIE",
-    "DASH",
-    "WDAY",
-    "ARES",
-    "DELL",
     "CIEN",
-    "SW",
-    "JBL",
-    "TYL",
-    "GPN",
-    "FDS",
-    "PHM",
-    "EFX",
-    "ELV",
-    "CDW",
-    "UBER",
-    "KKR",
-    "CBRE",
-    "BX",
+    "LRCX",
+    "MOS",
     "LULU",
-    "DHI"
+    "ALB",
+    "ALGN",
+    "DASH",
+    "PSKY",
+    "AMAT",
+    "IP",
+    "SW",
+    "GPN",
+    "ERIE",
+    "CNC",
+    "CSGP",
+    "JBL",
+    "EXPE",
+    "WDAY",
+    "ELV",
+    "LEN",
+    "INTU",
+    "DELL",
+    "CDW",
+    "VRT",
+    "BSX",
+    "ARE",
+    "UAL",
+    "UBER",
+    "NOW",
+    "PNR",
+    "GPC",
+    "AMCR",
+    "TYL",
+    "DHI",
+    "PHM"
   ],
   "long_short_bottom": [
-    "DTE",
-    "CNP",
-    "ETR",
-    "HST",
-    "BRK.B",
-    "UNP",
-    "WAT",
-    "AEP",
     "MAR",
-    "COST",
-    "EVRG",
-    "ALLE",
+    "DTE",
+    "TJX",
+    "TECH",
+    "TRGP",
+    "WST",
+    "TMO",
     "AES",
+    "AEP",
+    "ALLE",
+    "AME",
+    "AFL",
     "AIG",
-    "AIZ",
-    "WRB",
-    "XOM",
-    "ABBV",
-    "TT",
-    "CHRW",
-    "OXY",
-    "NDSN",
-    "NEE",
-    "L",
-    "NVDA",
-    "IEX",
-    "MSFT",
-    "MGM",
-    "MCK",
-    "CSCO",
-    "DGX",
-    "PNW",
-    "EXPD",
-    "SO",
+    "AMZN",
+    "UNP",
     "VRSN",
     "VTRS",
-    "CVX",
     "TDY",
-    "TECH",
-    "TEL",
-    "TJX",
+    "PNW",
+    "SO",
+    "WAT",
+    "NEE",
+    "MET",
+    "MSFT",
+    "MTD",
+    "NDSN",
+    "KR",
+    "ABBV",
+    "ADI",
+    "PEG",
+    "JCI",
+    "EQT",
+    "NVDA",
+    "EXPD",
+    "CNP",
     "CMS",
+    "HST",
+    "HON",
+    "CVX",
+    "CSCO",
     "WBD",
+    "HAS",
     "AAPL",
-    "AMZN",
-    "AME",
-    "PSKY",
+    "IEX",
+    "COHR",
+    "CTVA",
+    "MRNA",
     "MRVL",
     "GEN",
     "LITE"
