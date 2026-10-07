@@ -1,453 +1,445 @@
 {
-  "as_of_date": "2026-10-05",
+  "as_of_date": "2026-10-06",
   "strategy": "Top Decile Long-Only",
-  "holdings_count": 50,
+  "holdings_count": 49,
   "holdings": [
     {
       "ticker": "SNDK",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Sandisk",
       "sector": "Information Technology"
     },
     {
       "ticker": "WDC",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Western Digital",
       "sector": "Information Technology"
     },
     {
-      "ticker": "APP",
-      "weight": 0.02,
-      "name": "AppLovin",
-      "sector": "Communication Services"
-    },
-    {
       "ticker": "STX",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Seagate Technology",
       "sector": "Information Technology"
     },
     {
-      "ticker": "GLW",
-      "weight": 0.02,
-      "name": "Corning Inc.",
-      "sector": "Information Technology"
-    },
-    {
-      "ticker": "AXON",
-      "weight": 0.02,
-      "name": "Axon Enterprise",
-      "sector": "Industrials"
-    },
-    {
-      "ticker": "CHTR",
-      "weight": 0.02,
-      "name": "Charter Communications",
+      "ticker": "APP",
+      "weight": 0.02041,
+      "name": "AppLovin",
       "sector": "Communication Services"
     },
     {
       "ticker": "INTC",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Intel",
       "sector": "Information Technology"
     },
     {
-      "ticker": "BLDR",
-      "weight": 0.02,
-      "name": "Builders FirstSource",
-      "sector": "Industrials"
-    },
-    {
-      "ticker": "CVNA",
-      "weight": 0.02,
-      "name": "Carvana",
-      "sector": "Consumer Discretionary"
-    },
-    {
-      "ticker": "FLEX",
-      "weight": 0.02,
-      "name": "Flex Ltd.",
-      "sector": "Information Technology"
-    },
-    {
-      "ticker": "HOOD",
-      "weight": 0.02,
-      "name": "Robinhood Markets",
-      "sector": "Financials"
-    },
-    {
-      "ticker": "RDDT",
-      "weight": 0.02,
-      "name": "Reddit",
-      "sector": "Communication Services"
-    },
-    {
-      "ticker": "COIN",
-      "weight": 0.02,
-      "name": "Coinbase",
-      "sector": "Financials"
-    },
-    {
-      "ticker": "MU",
-      "weight": 0.02,
-      "name": "Micron Technology",
-      "sector": "Information Technology"
-    },
-    {
-      "ticker": "CIEN",
-      "weight": 0.02,
-      "name": "Ciena",
-      "sector": "Information Technology"
-    },
-    {
       "ticker": "LRCX",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Lam Research",
       "sector": "Information Technology"
     },
     {
+      "ticker": "HOOD",
+      "weight": 0.02041,
+      "name": "Robinhood Markets",
+      "sector": "Financials"
+    },
+    {
+      "ticker": "CHTR",
+      "weight": 0.02041,
+      "name": "Charter Communications",
+      "sector": "Communication Services"
+    },
+    {
+      "ticker": "RDDT",
+      "weight": 0.02041,
+      "name": "Reddit",
+      "sector": "Communication Services"
+    },
+    {
+      "ticker": "AXON",
+      "weight": 0.02041,
+      "name": "Axon Enterprise",
+      "sector": "Industrials"
+    },
+    {
+      "ticker": "KLAC",
+      "weight": 0.02041,
+      "name": "KLA Corporation",
+      "sector": "Information Technology"
+    },
+    {
+      "ticker": "COIN",
+      "weight": 0.02041,
+      "name": "Coinbase",
+      "sector": "Financials"
+    },
+    {
+      "ticker": "GLW",
+      "weight": 0.02041,
+      "name": "Corning Inc.",
+      "sector": "Information Technology"
+    },
+    {
+      "ticker": "BLDR",
+      "weight": 0.02041,
+      "name": "Builders FirstSource",
+      "sector": "Industrials"
+    },
+    {
+      "ticker": "MU",
+      "weight": 0.02041,
+      "name": "Micron Technology",
+      "sector": "Information Technology"
+    },
+    {
       "ticker": "MOS",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Mosaic Company (The)",
       "sector": "Materials"
     },
     {
-      "ticker": "LULU",
-      "weight": 0.02,
-      "name": "Lululemon Athletica",
+      "ticker": "COHR",
+      "weight": 0.02041,
+      "name": "Coherent Corp.",
+      "sector": "Information Technology"
+    },
+    {
+      "ticker": "CVNA",
+      "weight": 0.02041,
+      "name": "Carvana",
       "sector": "Consumer Discretionary"
-    },
-    {
-      "ticker": "ALB",
-      "weight": 0.02,
-      "name": "Albemarle Corporation",
-      "sector": "Materials"
-    },
-    {
-      "ticker": "ALGN",
-      "weight": 0.02,
-      "name": "Align Technology",
-      "sector": "Health Care"
-    },
-    {
-      "ticker": "DASH",
-      "weight": 0.02,
-      "name": "DoorDash",
-      "sector": "Consumer Discretionary"
-    },
-    {
-      "ticker": "PSKY",
-      "weight": 0.02,
-      "name": "Paramount Skydance Corporation",
-      "sector": "Communication Services"
     },
     {
       "ticker": "AMAT",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Applied Materials",
       "sector": "Information Technology"
     },
     {
-      "ticker": "IP",
-      "weight": 0.02,
-      "name": "International Paper",
-      "sector": "Materials"
-    },
-    {
-      "ticker": "SW",
-      "weight": 0.02,
-      "name": "Smurfit Westrock",
-      "sector": "Materials"
-    },
-    {
-      "ticker": "GPN",
-      "weight": 0.02,
-      "name": "Global Payments",
-      "sector": "Financials"
-    },
-    {
-      "ticker": "ERIE",
-      "weight": 0.02,
-      "name": "Erie Indemnity",
-      "sector": "Financials"
-    },
-    {
-      "ticker": "CNC",
-      "weight": 0.02,
-      "name": "Centene Corporation",
-      "sector": "Health Care"
-    },
-    {
       "ticker": "CSGP",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "CoStar Group",
       "sector": "Real Estate"
     },
     {
-      "ticker": "JBL",
-      "weight": 0.02,
-      "name": "Jabil",
-      "sector": "Information Technology"
-    },
-    {
       "ticker": "EXPE",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Expedia Group",
       "sector": "Consumer Discretionary"
     },
     {
-      "ticker": "WDAY",
-      "weight": 0.02,
-      "name": "Workday, Inc.",
-      "sector": "Information Technology"
+      "ticker": "ALB",
+      "weight": 0.02041,
+      "name": "Albemarle Corporation",
+      "sector": "Materials"
     },
     {
-      "ticker": "ELV",
-      "weight": 0.02,
-      "name": "Elevance Health",
+      "ticker": "MRNA",
+      "weight": 0.02041,
+      "name": "Moderna",
       "sector": "Health Care"
     },
     {
-      "ticker": "LEN",
-      "weight": 0.02,
-      "name": "Lennar",
-      "sector": "Consumer Discretionary"
-    },
-    {
-      "ticker": "INTU",
-      "weight": 0.02,
-      "name": "Intuit",
-      "sector": "Information Technology"
-    },
-    {
-      "ticker": "DELL",
-      "weight": 0.02,
-      "name": "Dell Technologies",
-      "sector": "Information Technology"
-    },
-    {
-      "ticker": "CDW",
-      "weight": 0.02,
-      "name": "CDW Corporation",
-      "sector": "Information Technology"
+      "ticker": "SW",
+      "weight": 0.02041,
+      "name": "Smurfit Westrock",
+      "sector": "Materials"
     },
     {
       "ticker": "VRT",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Vertiv",
       "sector": "Industrials"
     },
     {
-      "ticker": "BSX",
-      "weight": 0.02,
-      "name": "Boston Scientific",
-      "sector": "Health Care"
+      "ticker": "TER",
+      "weight": 0.02041,
+      "name": "Teradyne",
+      "sector": "Information Technology"
     },
     {
-      "ticker": "ARE",
-      "weight": 0.02,
-      "name": "Alexandria Real Estate Equities",
-      "sector": "Real Estate"
+      "ticker": "BKNG",
+      "weight": 0.02041,
+      "name": "Booking Holdings",
+      "sector": "Consumer Discretionary"
+    },
+    {
+      "ticker": "IP",
+      "weight": 0.02041,
+      "name": "International Paper",
+      "sector": "Materials"
+    },
+    {
+      "ticker": "WDAY",
+      "weight": 0.02041,
+      "name": "Workday, Inc.",
+      "sector": "Information Technology"
     },
     {
       "ticker": "UAL",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "United Airlines Holdings",
       "sector": "Industrials"
     },
     {
+      "ticker": "TTD",
+      "weight": 0.02041,
+      "name": "Trade Desk (The)",
+      "sector": "Communication Services"
+    },
+    {
+      "ticker": "ALGN",
+      "weight": 0.02041,
+      "name": "Align Technology",
+      "sector": "Health Care"
+    },
+    {
+      "ticker": "GPN",
+      "weight": 0.02041,
+      "name": "Global Payments",
+      "sector": "Financials"
+    },
+    {
       "ticker": "UBER",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Uber",
       "sector": "Industrials"
     },
     {
-      "ticker": "NOW",
-      "weight": 0.02,
-      "name": "ServiceNow",
+      "ticker": "DELL",
+      "weight": 0.02041,
+      "name": "Dell Technologies",
       "sector": "Information Technology"
     },
     {
-      "ticker": "PNR",
-      "weight": 0.02,
-      "name": "Pentair",
-      "sector": "Industrials"
+      "ticker": "DASH",
+      "weight": 0.02041,
+      "name": "DoorDash",
+      "sector": "Consumer Discretionary"
     },
     {
       "ticker": "GPC",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Genuine Parts Company",
       "sector": "Consumer Discretionary"
     },
     {
+      "ticker": "ERIE",
+      "weight": 0.02041,
+      "name": "Erie Indemnity",
+      "sector": "Financials"
+    },
+    {
+      "ticker": "PNR",
+      "weight": 0.02041,
+      "name": "Pentair",
+      "sector": "Industrials"
+    },
+    {
       "ticker": "AMCR",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Amcor",
       "sector": "Materials"
     },
     {
+      "ticker": "FDS",
+      "weight": 0.02041,
+      "name": "FactSet",
+      "sector": "Financials"
+    },
+    {
+      "ticker": "CHRW",
+      "weight": 0.02041,
+      "name": "C.H. Robinson",
+      "sector": "Industrials"
+    },
+    {
+      "ticker": "BSX",
+      "weight": 0.02041,
+      "name": "Boston Scientific",
+      "sector": "Health Care"
+    },
+    {
+      "ticker": "NVR",
+      "weight": 0.02041,
+      "name": "NVR, Inc.",
+      "sector": "Consumer Discretionary"
+    },
+    {
+      "ticker": "LULU",
+      "weight": 0.02041,
+      "name": "Lululemon Athletica",
+      "sector": "Consumer Discretionary"
+    },
+    {
+      "ticker": "NOW",
+      "weight": 0.02041,
+      "name": "ServiceNow",
+      "sector": "Information Technology"
+    },
+    {
+      "ticker": "WTW",
+      "weight": 0.02041,
+      "name": "Willis Towers Watson",
+      "sector": "Financials"
+    },
+    {
       "ticker": "TYL",
-      "weight": 0.02,
+      "weight": 0.02041,
       "name": "Tyler Technologies",
       "sector": "Information Technology"
     },
     {
-      "ticker": "DHI",
-      "weight": 0.02,
-      "name": "D. R. Horton",
-      "sector": "Consumer Discretionary"
-    },
-    {
-      "ticker": "PHM",
-      "weight": 0.02,
-      "name": "PulteGroup",
-      "sector": "Consumer Discretionary"
+      "ticker": "BR",
+      "weight": 0.02041,
+      "name": "Broadridge Financial Solutions",
+      "sector": "Industrials"
     }
   ],
   "long_short_top": [
     "SNDK",
     "WDC",
-    "APP",
     "STX",
-    "GLW",
-    "AXON",
-    "CHTR",
+    "APP",
     "INTC",
-    "BLDR",
-    "CVNA",
-    "FLEX",
-    "HOOD",
-    "RDDT",
-    "COIN",
-    "MU",
-    "CIEN",
     "LRCX",
+    "HOOD",
+    "CHTR",
+    "RDDT",
+    "AXON",
+    "KLAC",
+    "COIN",
+    "GLW",
+    "BLDR",
+    "MU",
     "MOS",
-    "LULU",
-    "ALB",
-    "ALGN",
-    "DASH",
-    "PSKY",
+    "COHR",
+    "CVNA",
     "AMAT",
-    "IP",
-    "SW",
-    "GPN",
-    "ERIE",
-    "CNC",
     "CSGP",
-    "JBL",
     "EXPE",
-    "WDAY",
-    "ELV",
-    "LEN",
-    "INTU",
-    "DELL",
-    "CDW",
+    "ALB",
+    "MRNA",
+    "SW",
     "VRT",
-    "BSX",
-    "ARE",
+    "TER",
+    "BKNG",
+    "IP",
+    "WDAY",
     "UAL",
+    "TTD",
+    "ALGN",
+    "GPN",
     "UBER",
-    "NOW",
-    "PNR",
+    "DELL",
+    "DASH",
     "GPC",
+    "ERIE",
+    "PNR",
     "AMCR",
+    "FDS",
+    "CHRW",
+    "BSX",
+    "NVR",
+    "LULU",
+    "NOW",
+    "WTW",
     "TYL",
-    "DHI",
-    "PHM"
+    "BR"
   ],
   "long_short_bottom": [
-    "MAR",
-    "DTE",
-    "TJX",
-    "TECH",
-    "TRGP",
-    "WST",
-    "TMO",
-    "AES",
-    "AEP",
-    "ALLE",
-    "AME",
-    "AFL",
-    "AIG",
-    "AMZN",
-    "UNP",
-    "VRSN",
-    "VTRS",
-    "TDY",
+    "EQT",
     "PNW",
-    "SO",
-    "WAT",
-    "NEE",
-    "MET",
-    "MSFT",
-    "MTD",
-    "NDSN",
-    "KR",
+    "JCI",
+    "IEX",
     "ABBV",
     "ADI",
-    "PEG",
-    "JCI",
-    "EQT",
-    "NVDA",
-    "EXPD",
-    "CNP",
-    "CMS",
-    "HST",
-    "HON",
-    "CVX",
-    "CSCO",
-    "WBD",
-    "HAS",
     "AAPL",
-    "IEX",
-    "COHR",
-    "CTVA",
-    "MRNA",
+    "AFL",
+    "HON",
+    "L",
+    "LIN",
+    "KEYS",
+    "IR",
+    "EXPD",
+    "ES",
+    "BRK.B",
+    "GOOGL",
+    "CSX",
+    "XOM",
+    "XEL",
+    "VRSN",
+    "MSFT",
+    "MET",
+    "GOOG",
+    "PG",
+    "PYPL",
+    "CMS",
+    "NVDA",
+    "NDSN",
+    "BKR",
+    "NEE",
+    "NI",
+    "ATO",
+    "VTRS",
+    "EXR",
+    "ALLE",
+    "AMZN",
+    "TEL",
+    "TECH",
+    "TDY",
+    "UNP",
+    "AME",
+    "TJX",
+    "AES",
+    "FICO",
+    "AMD",
     "MRVL",
-    "GEN",
-    "LITE"
+    "LITE",
+    "CTVA"
   ],
   "sector_composition": [
     {
       "sector": "Information Technology",
-      "count": 17,
-      "weight_pct": 34.0
-    },
-    {
-      "sector": "Consumer Discretionary",
-      "count": 8,
-      "weight_pct": 16.0
+      "count": 15,
+      "weight_pct": 30.6
     },
     {
       "sector": "Industrials",
+      "count": 8,
+      "weight_pct": 16.3
+    },
+    {
+      "sector": "Consumer Discretionary",
+      "count": 7,
+      "weight_pct": 14.3
+    },
+    {
+      "sector": "Financials",
       "count": 6,
-      "weight_pct": 12.0
+      "weight_pct": 12.2
     },
     {
       "sector": "Materials",
       "count": 5,
-      "weight_pct": 10.0
+      "weight_pct": 10.2
     },
     {
       "sector": "Communication Services",
       "count": 4,
-      "weight_pct": 8.0
-    },
-    {
-      "sector": "Financials",
-      "count": 4,
-      "weight_pct": 8.0
+      "weight_pct": 8.2
     },
     {
       "sector": "Health Care",
-      "count": 4,
-      "weight_pct": 8.0
+      "count": 3,
+      "weight_pct": 6.1
     },
     {
       "sector": "Real Estate",
-      "count": 2,
-      "weight_pct": 4.0
+      "count": 1,
+      "weight_pct": 2.0
     }
   ]
 }
