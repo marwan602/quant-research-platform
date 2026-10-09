@@ -1,3499 +1,3499 @@
 {
-  "as_of_date": "2026-10-07",
+  "as_of_date": "2026-10-08",
   "model": "AttentiveTransformer",
   "total_universe": 499,
   "rankings": [
     {
       "rank": 1,
-      "ticker": "WDC",
-      "pred_return_5d": 0.03678647056221962,
-      "pred_return_pct": 3.679,
+      "ticker": "COHR",
+      "pred_return_5d": 0.039956483989953995,
+      "pred_return_pct": 3.996,
       "decile": 1
     },
     {
       "rank": 2,
-      "ticker": "SNDK",
-      "pred_return_5d": 0.032041192054748535,
-      "pred_return_pct": 3.204,
+      "ticker": "WDC",
+      "pred_return_5d": 0.03727997466921806,
+      "pred_return_pct": 3.728,
       "decile": 1
     },
     {
       "rank": 3,
-      "ticker": "COHR",
-      "pred_return_5d": 0.03071720153093338,
-      "pred_return_pct": 3.072,
+      "ticker": "SNDK",
+      "pred_return_5d": 0.029648903757333755,
+      "pred_return_pct": 2.965,
       "decile": 1
     },
     {
       "rank": 4,
-      "ticker": "CHTR",
-      "pred_return_5d": 0.023173056542873383,
-      "pred_return_pct": 2.317,
+      "ticker": "GLW",
+      "pred_return_5d": 0.021164042875170708,
+      "pred_return_pct": 2.116,
       "decile": 1
     },
     {
       "rank": 5,
-      "ticker": "STX",
-      "pred_return_5d": 0.019946346059441566,
-      "pred_return_pct": 1.995,
+      "ticker": "VRT",
+      "pred_return_5d": 0.02004564367234707,
+      "pred_return_pct": 2.005,
       "decile": 1
     },
     {
       "rank": 6,
-      "ticker": "RDDT",
-      "pred_return_5d": 0.019388478249311447,
-      "pred_return_pct": 1.939,
+      "ticker": "CHTR",
+      "pred_return_5d": 0.019717732444405556,
+      "pred_return_pct": 1.972,
       "decile": 1
     },
     {
       "rank": 7,
-      "ticker": "APP",
-      "pred_return_5d": 0.01772874966263771,
-      "pred_return_pct": 1.773,
+      "ticker": "STX",
+      "pred_return_5d": 0.019356586039066315,
+      "pred_return_pct": 1.936,
       "decile": 1
     },
     {
       "rank": 8,
-      "ticker": "LRCX",
-      "pred_return_5d": 0.01683337241411209,
-      "pred_return_pct": 1.683,
+      "ticker": "LITE",
+      "pred_return_5d": 0.019098514690995216,
+      "pred_return_pct": 1.91,
       "decile": 1
     },
     {
       "rank": 9,
-      "ticker": "CVNA",
-      "pred_return_5d": 0.016306795179843903,
-      "pred_return_pct": 1.631,
+      "ticker": "LRCX",
+      "pred_return_5d": 0.016673989593982697,
+      "pred_return_pct": 1.667,
       "decile": 1
     },
     {
       "rank": 10,
-      "ticker": "INTC",
-      "pred_return_5d": 0.015959901735186577,
-      "pred_return_pct": 1.596,
+      "ticker": "APP",
+      "pred_return_5d": 0.016583070158958435,
+      "pred_return_pct": 1.658,
       "decile": 1
     },
     {
       "rank": 11,
-      "ticker": "HOOD",
-      "pred_return_5d": 0.01536613516509533,
-      "pred_return_pct": 1.537,
+      "ticker": "INTC",
+      "pred_return_5d": 0.016088265925645828,
+      "pred_return_pct": 1.609,
       "decile": 1
     },
     {
       "rank": 12,
-      "ticker": "AXON",
-      "pred_return_5d": 0.015269889496266842,
-      "pred_return_pct": 1.527,
+      "ticker": "HOOD",
+      "pred_return_5d": 0.015604398213326931,
+      "pred_return_pct": 1.56,
       "decile": 1
     },
     {
       "rank": 13,
-      "ticker": "GLW",
-      "pred_return_5d": 0.014486451633274555,
-      "pred_return_pct": 1.449,
+      "ticker": "CVNA",
+      "pred_return_5d": 0.015129702165722847,
+      "pred_return_pct": 1.513,
       "decile": 1
     },
     {
       "rank": 14,
-      "ticker": "MOS",
-      "pred_return_5d": 0.013808085583150387,
-      "pred_return_pct": 1.381,
+      "ticker": "AMAT",
+      "pred_return_5d": 0.01482856273651123,
+      "pred_return_pct": 1.483,
       "decile": 1
     },
     {
       "rank": 15,
-      "ticker": "BLDR",
-      "pred_return_5d": 0.012837420217692852,
-      "pred_return_pct": 1.284,
+      "ticker": "AXON",
+      "pred_return_5d": 0.014489990659058094,
+      "pred_return_pct": 1.449,
       "decile": 1
     },
     {
       "rank": 16,
-      "ticker": "KLAC",
-      "pred_return_5d": 0.012690295465290546,
-      "pred_return_pct": 1.269,
+      "ticker": "COIN",
+      "pred_return_5d": 0.014311013743281364,
+      "pred_return_pct": 1.431,
       "decile": 1
     },
     {
       "rank": 17,
-      "ticker": "AMAT",
-      "pred_return_5d": 0.012278747744858265,
-      "pred_return_pct": 1.228,
+      "ticker": "KLAC",
+      "pred_return_5d": 0.013860438950359821,
+      "pred_return_pct": 1.386,
       "decile": 1
     },
     {
       "rank": 18,
-      "ticker": "COIN",
-      "pred_return_5d": 0.011490633711218834,
-      "pred_return_pct": 1.149,
+      "ticker": "MOS",
+      "pred_return_5d": 0.013149145059287548,
+      "pred_return_pct": 1.315,
       "decile": 1
     },
     {
       "rank": 19,
-      "ticker": "VRT",
-      "pred_return_5d": 0.01126378495246172,
-      "pred_return_pct": 1.126,
+      "ticker": "BLDR",
+      "pred_return_5d": 0.0128965824842453,
+      "pred_return_pct": 1.29,
       "decile": 1
     },
     {
       "rank": 20,
-      "ticker": "ERIE",
-      "pred_return_5d": 0.010677819140255451,
-      "pred_return_pct": 1.068,
+      "ticker": "FLEX",
+      "pred_return_5d": 0.011280843056738377,
+      "pred_return_pct": 1.128,
       "decile": 1
     },
     {
       "rank": 21,
       "ticker": "ALB",
-      "pred_return_5d": 0.010582330636680126,
-      "pred_return_pct": 1.058,
+      "pred_return_5d": 0.011134342290461063,
+      "pred_return_pct": 1.113,
       "decile": 1
     },
     {
       "rank": 22,
-      "ticker": "EXPE",
-      "pred_return_5d": 0.01032095868140459,
-      "pred_return_pct": 1.032,
+      "ticker": "ORCL",
+      "pred_return_5d": 0.010865858756005764,
+      "pred_return_pct": 1.087,
       "decile": 1
     },
     {
       "rank": 23,
-      "ticker": "TER",
-      "pred_return_5d": 0.009001492522656918,
-      "pred_return_pct": 0.9,
+      "ticker": "CIEN",
+      "pred_return_5d": 0.010857553221285343,
+      "pred_return_pct": 1.086,
       "decile": 1
     },
     {
       "rank": 24,
-      "ticker": "CMCSA",
-      "pred_return_5d": 0.007735608611255884,
-      "pred_return_pct": 0.774,
+      "ticker": "MU",
+      "pred_return_5d": 0.010685918852686882,
+      "pred_return_pct": 1.069,
       "decile": 1
     },
     {
       "rank": 25,
-      "ticker": "SW",
-      "pred_return_5d": 0.007545799948275089,
-      "pred_return_pct": 0.755,
+      "ticker": "TER",
+      "pred_return_5d": 0.01055220142006874,
+      "pred_return_pct": 1.055,
       "decile": 1
     },
     {
       "rank": 26,
-      "ticker": "WDAY",
-      "pred_return_5d": 0.007484625093638897,
-      "pred_return_pct": 0.748,
+      "ticker": "RDDT",
+      "pred_return_5d": 0.010216240771114826,
+      "pred_return_pct": 1.022,
       "decile": 1
     },
     {
       "rank": 27,
-      "ticker": "CSGP",
-      "pred_return_5d": 0.007418292574584484,
-      "pred_return_pct": 0.742,
+      "ticker": "UAL",
+      "pred_return_5d": 0.0077516185119748116,
+      "pred_return_pct": 0.775,
       "decile": 1
     },
     {
       "rank": 28,
-      "ticker": "ADBE",
-      "pred_return_5d": 0.00737268291413784,
-      "pred_return_pct": 0.737,
+      "ticker": "IBKR",
+      "pred_return_5d": 0.007637289352715015,
+      "pred_return_pct": 0.764,
       "decile": 1
     },
     {
       "rank": 29,
-      "ticker": "MU",
-      "pred_return_5d": 0.007348676677793264,
-      "pred_return_pct": 0.735,
+      "ticker": "AKAM",
+      "pred_return_5d": 0.007397713139653206,
+      "pred_return_pct": 0.74,
       "decile": 1
     },
     {
       "rank": 30,
-      "ticker": "DASH",
-      "pred_return_5d": 0.007101194001734257,
-      "pred_return_pct": 0.71,
+      "ticker": "MRVL",
+      "pred_return_5d": 0.007092140149325132,
+      "pred_return_pct": 0.709,
       "decile": 1
     },
     {
       "rank": 31,
-      "ticker": "MCHP",
-      "pred_return_5d": 0.006886964663863182,
-      "pred_return_pct": 0.689,
+      "ticker": "FCX",
+      "pred_return_5d": 0.006496627349406481,
+      "pred_return_pct": 0.65,
       "decile": 1
     },
     {
       "rank": 32,
-      "ticker": "BKNG",
-      "pred_return_5d": 0.006798189599066973,
-      "pred_return_pct": 0.68,
+      "ticker": "SW",
+      "pred_return_5d": 0.006423949729651213,
+      "pred_return_pct": 0.642,
       "decile": 1
     },
     {
       "rank": 33,
-      "ticker": "GPN",
-      "pred_return_5d": 0.006791569758206606,
-      "pred_return_pct": 0.679,
+      "ticker": "NVR",
+      "pred_return_5d": 0.0063814520835876465,
+      "pred_return_pct": 0.638,
       "decile": 1
     },
     {
       "rank": 34,
-      "ticker": "NEM",
-      "pred_return_5d": 0.006599476095288992,
-      "pred_return_pct": 0.66,
+      "ticker": "DASH",
+      "pred_return_5d": 0.006366413086652756,
+      "pred_return_pct": 0.637,
       "decile": 1
     },
     {
       "rank": 35,
-      "ticker": "CF",
-      "pred_return_5d": 0.006364294793456793,
-      "pred_return_pct": 0.636,
+      "ticker": "MPWR",
+      "pred_return_5d": 0.006254460196942091,
+      "pred_return_pct": 0.625,
       "decile": 1
     },
     {
       "rank": 36,
-      "ticker": "UBER",
-      "pred_return_5d": 0.006354674696922302,
-      "pred_return_pct": 0.635,
-      "decile": 1
-    },
-    {
-      "rank": 37,
-      "ticker": "ALGN",
-      "pred_return_5d": 0.0062747737392783165,
-      "pred_return_pct": 0.627,
-      "decile": 1
-    },
-    {
-      "rank": 38,
-      "ticker": "NVR",
-      "pred_return_5d": 0.006258578039705753,
-      "pred_return_pct": 0.626,
-      "decile": 1
-    },
-    {
-      "rank": 39,
-      "ticker": "PHM",
-      "pred_return_5d": 0.006225071847438812,
-      "pred_return_pct": 0.623,
-      "decile": 1
-    },
-    {
-      "rank": 40,
-      "ticker": "CNC",
-      "pred_return_5d": 0.006212570704519749,
+      "ticker": "ON",
+      "pred_return_5d": 0.006213748827576637,
       "pred_return_pct": 0.621,
       "decile": 1
     },
     {
+      "rank": 37,
+      "ticker": "MCHP",
+      "pred_return_5d": 0.006199200637638569,
+      "pred_return_pct": 0.62,
+      "decile": 1
+    },
+    {
+      "rank": 38,
+      "ticker": "HUM",
+      "pred_return_5d": 0.006166531704366207,
+      "pred_return_pct": 0.617,
+      "decile": 1
+    },
+    {
+      "rank": 39,
+      "ticker": "AMD",
+      "pred_return_5d": 0.006076130084693432,
+      "pred_return_pct": 0.608,
+      "decile": 1
+    },
+    {
+      "rank": 40,
+      "ticker": "PHM",
+      "pred_return_5d": 0.005934786982834339,
+      "pred_return_pct": 0.593,
+      "decile": 1
+    },
+    {
       "rank": 41,
-      "ticker": "NOW",
-      "pred_return_5d": 0.006143043749034405,
-      "pred_return_pct": 0.614,
+      "ticker": "CMCSA",
+      "pred_return_5d": 0.005880760028958321,
+      "pred_return_pct": 0.588,
       "decile": 1
     },
     {
       "rank": 42,
-      "ticker": "GE",
-      "pred_return_5d": 0.006108188070356846,
-      "pred_return_pct": 0.611,
+      "ticker": "FIX",
+      "pred_return_5d": 0.00574716879054904,
+      "pred_return_pct": 0.575,
       "decile": 1
     },
     {
       "rank": 43,
-      "ticker": "PNR",
-      "pred_return_5d": 0.006014786195009947,
-      "pred_return_pct": 0.601,
+      "ticker": "ETN",
+      "pred_return_5d": 0.005723617039620876,
+      "pred_return_pct": 0.572,
       "decile": 1
     },
     {
       "rank": 44,
-      "ticker": "UAL",
-      "pred_return_5d": 0.005910907872021198,
-      "pred_return_pct": 0.591,
+      "ticker": "DELL",
+      "pred_return_5d": 0.005701132118701935,
+      "pred_return_pct": 0.57,
       "decile": 1
     },
     {
       "rank": 45,
-      "ticker": "TTD",
-      "pred_return_5d": 0.005890960805118084,
-      "pred_return_pct": 0.589,
+      "ticker": "ADBE",
+      "pred_return_5d": 0.005701001267880201,
+      "pred_return_pct": 0.57,
       "decile": 1
     },
     {
       "rank": 46,
-      "ticker": "BX",
-      "pred_return_5d": 0.005862148478627205,
-      "pred_return_pct": 0.586,
+      "ticker": "JBL",
+      "pred_return_5d": 0.005594197660684586,
+      "pred_return_pct": 0.559,
       "decile": 1
     },
     {
       "rank": 47,
-      "ticker": "GPC",
-      "pred_return_5d": 0.0058495537377893925,
-      "pred_return_pct": 0.585,
+      "ticker": "RCL",
+      "pred_return_5d": 0.005409584380686283,
+      "pred_return_pct": 0.541,
       "decile": 1
     },
     {
       "rank": 48,
-      "ticker": "IBKR",
-      "pred_return_5d": 0.0058492012321949005,
-      "pred_return_pct": 0.585,
+      "ticker": "ALGN",
+      "pred_return_5d": 0.005408309865742922,
+      "pred_return_pct": 0.541,
       "decile": 1
     },
     {
       "rank": 49,
-      "ticker": "BSX",
-      "pred_return_5d": 0.005837394390255213,
-      "pred_return_pct": 0.584,
+      "ticker": "EXPE",
+      "pred_return_5d": 0.005402321927249432,
+      "pred_return_pct": 0.54,
       "decile": 1
     },
     {
       "rank": 50,
-      "ticker": "ARES",
-      "pred_return_5d": 0.005811531562358141,
-      "pred_return_pct": 0.581,
+      "ticker": "CSGP",
+      "pred_return_5d": 0.005293997935950756,
+      "pred_return_pct": 0.529,
       "decile": 1
     },
     {
       "rank": 51,
-      "ticker": "WTW",
-      "pred_return_5d": 0.005718930624425411,
-      "pred_return_pct": 0.572,
+      "ticker": "CNC",
+      "pred_return_5d": 0.005249625071883202,
+      "pred_return_pct": 0.525,
       "decile": 2
     },
     {
       "rank": 52,
-      "ticker": "DDOG",
-      "pred_return_5d": 0.005660823080688715,
-      "pred_return_pct": 0.566,
+      "ticker": "NEM",
+      "pred_return_5d": 0.005239402875304222,
+      "pred_return_pct": 0.524,
       "decile": 2
     },
     {
       "rank": 53,
-      "ticker": "CDW",
-      "pred_return_5d": 0.005659530870616436,
-      "pred_return_pct": 0.566,
+      "ticker": "Q",
+      "pred_return_5d": 0.005132073536515236,
+      "pred_return_pct": 0.513,
       "decile": 2
     },
     {
       "rank": 54,
-      "ticker": "DOW",
-      "pred_return_5d": 0.005572357680648565,
-      "pred_return_pct": 0.557,
+      "ticker": "DAL",
+      "pred_return_5d": 0.005082392133772373,
+      "pred_return_pct": 0.508,
       "decile": 2
     },
     {
       "rank": 55,
-      "ticker": "SWKS",
-      "pred_return_5d": 0.005532483104616404,
-      "pred_return_pct": 0.553,
+      "ticker": "KKR",
+      "pred_return_5d": 0.00505339540541172,
+      "pred_return_pct": 0.505,
       "decile": 2
     },
     {
       "rank": 56,
-      "ticker": "AJG",
-      "pred_return_5d": 0.0054909843020141125,
-      "pred_return_pct": 0.549,
+      "ticker": "BKNG",
+      "pred_return_5d": 0.004973812028765678,
+      "pred_return_pct": 0.497,
       "decile": 2
     },
     {
       "rank": 57,
-      "ticker": "AMCR",
-      "pred_return_5d": 0.005369829945266247,
-      "pred_return_pct": 0.537,
+      "ticker": "GS",
+      "pred_return_5d": 0.004909198731184006,
+      "pred_return_pct": 0.491,
       "decile": 2
     },
     {
       "rank": 58,
-      "ticker": "ON",
-      "pred_return_5d": 0.005352049134671688,
-      "pred_return_pct": 0.535,
+      "ticker": "ARES",
+      "pred_return_5d": 0.00484878197312355,
+      "pred_return_pct": 0.485,
       "decile": 2
     },
     {
       "rank": 59,
-      "ticker": "IP",
-      "pred_return_5d": 0.005328347906470299,
-      "pred_return_pct": 0.533,
+      "ticker": "GPC",
+      "pred_return_5d": 0.004744867328554392,
+      "pred_return_pct": 0.474,
       "decile": 2
     },
     {
       "rank": 60,
-      "ticker": "GIS",
-      "pred_return_5d": 0.00530573446303606,
-      "pred_return_pct": 0.531,
+      "ticker": "GEN",
+      "pred_return_5d": 0.004722047597169876,
+      "pred_return_pct": 0.472,
       "decile": 2
     },
     {
       "rank": 61,
-      "ticker": "FLEX",
-      "pred_return_5d": 0.005286991596221924,
-      "pred_return_pct": 0.529,
+      "ticker": "CF",
+      "pred_return_5d": 0.0047102393582463264,
+      "pred_return_pct": 0.471,
       "decile": 2
     },
     {
       "rank": 62,
-      "ticker": "LULU",
-      "pred_return_5d": 0.00521499291062355,
-      "pred_return_pct": 0.521,
+      "ticker": "ERIE",
+      "pred_return_5d": 0.004703711252659559,
+      "pred_return_pct": 0.47,
       "decile": 2
     },
     {
       "rank": 63,
-      "ticker": "FDS",
-      "pred_return_5d": 0.005210543051362038,
-      "pred_return_pct": 0.521,
+      "ticker": "CRWD",
+      "pred_return_5d": 0.004586939234286547,
+      "pred_return_pct": 0.459,
       "decile": 2
     },
     {
       "rank": 64,
-      "ticker": "DELL",
-      "pred_return_5d": 0.005168205127120018,
-      "pred_return_pct": 0.517,
-      "decile": 2
-    },
-    {
-      "rank": 65,
-      "ticker": "RCL",
-      "pred_return_5d": 0.005157788284122944,
-      "pred_return_pct": 0.516,
-      "decile": 2
-    },
-    {
-      "rank": 66,
-      "ticker": "JBL",
-      "pred_return_5d": 0.005093793850392103,
-      "pred_return_pct": 0.509,
-      "decile": 2
-    },
-    {
-      "rank": 67,
-      "ticker": "CMI",
-      "pred_return_5d": 0.005038260482251644,
-      "pred_return_pct": 0.504,
-      "decile": 2
-    },
-    {
-      "rank": 68,
-      "ticker": "AKAM",
-      "pred_return_5d": 0.004995780531316996,
-      "pred_return_pct": 0.5,
-      "decile": 2
-    },
-    {
-      "rank": 69,
-      "ticker": "GDDY",
-      "pred_return_5d": 0.004958363249897957,
-      "pred_return_pct": 0.496,
-      "decile": 2
-    },
-    {
-      "rank": 70,
-      "ticker": "GS",
-      "pred_return_5d": 0.004921244457364082,
-      "pred_return_pct": 0.492,
-      "decile": 2
-    },
-    {
-      "rank": 71,
-      "ticker": "ARE",
-      "pred_return_5d": 0.004917556885629892,
-      "pred_return_pct": 0.492,
-      "decile": 2
-    },
-    {
-      "rank": 72,
-      "ticker": "KKR",
-      "pred_return_5d": 0.004888707771897316,
-      "pred_return_pct": 0.489,
-      "decile": 2
-    },
-    {
-      "rank": 73,
-      "ticker": "FCX",
-      "pred_return_5d": 0.00488695502281189,
-      "pred_return_pct": 0.489,
-      "decile": 2
-    },
-    {
-      "rank": 74,
-      "ticker": "FOXA",
-      "pred_return_5d": 0.0048768422566354275,
-      "pred_return_pct": 0.488,
-      "decile": 2
-    },
-    {
-      "rank": 75,
-      "ticker": "DHI",
-      "pred_return_5d": 0.00484488857910037,
-      "pred_return_pct": 0.484,
-      "decile": 2
-    },
-    {
-      "rank": 76,
-      "ticker": "BBY",
-      "pred_return_5d": 0.004774519242346287,
-      "pred_return_pct": 0.477,
-      "decile": 2
-    },
-    {
-      "rank": 77,
-      "ticker": "FISV",
-      "pred_return_5d": 0.004603090696036816,
-      "pred_return_pct": 0.46,
-      "decile": 2
-    },
-    {
-      "rank": 78,
-      "ticker": "PODD",
-      "pred_return_5d": 0.004577558487653732,
+      "ticker": "VST",
+      "pred_return_5d": 0.00457567535340786,
       "pred_return_pct": 0.458,
       "decile": 2
     },
     {
-      "rank": 79,
-      "ticker": "HWM",
-      "pred_return_5d": 0.004468757659196854,
+      "rank": 65,
+      "ticker": "DDOG",
+      "pred_return_5d": 0.004546377342194319,
+      "pred_return_pct": 0.455,
+      "decile": 2
+    },
+    {
+      "rank": 66,
+      "ticker": "HPE",
+      "pred_return_5d": 0.004471201449632645,
       "pred_return_pct": 0.447,
       "decile": 2
     },
     {
+      "rank": 67,
+      "ticker": "WDAY",
+      "pred_return_5d": 0.0044473628513514996,
+      "pred_return_pct": 0.445,
+      "decile": 2
+    },
+    {
+      "rank": 68,
+      "ticker": "GE",
+      "pred_return_5d": 0.004419981501996517,
+      "pred_return_pct": 0.442,
+      "decile": 2
+    },
+    {
+      "rank": 69,
+      "ticker": "IRM",
+      "pred_return_5d": 0.004330398514866829,
+      "pred_return_pct": 0.433,
+      "decile": 2
+    },
+    {
+      "rank": 70,
+      "ticker": "NOW",
+      "pred_return_5d": 0.00426021171733737,
+      "pred_return_pct": 0.426,
+      "decile": 2
+    },
+    {
+      "rank": 71,
+      "ticker": "DHI",
+      "pred_return_5d": 0.004254342522472143,
+      "pred_return_pct": 0.425,
+      "decile": 2
+    },
+    {
+      "rank": 72,
+      "ticker": "CDW",
+      "pred_return_5d": 0.00417852308601141,
+      "pred_return_pct": 0.418,
+      "decile": 2
+    },
+    {
+      "rank": 73,
+      "ticker": "NRG",
+      "pred_return_5d": 0.004140193574130535,
+      "pred_return_pct": 0.414,
+      "decile": 2
+    },
+    {
+      "rank": 74,
+      "ticker": "CAT",
+      "pred_return_5d": 0.0041384086944162846,
+      "pred_return_pct": 0.414,
+      "decile": 2
+    },
+    {
+      "rank": 75,
+      "ticker": "GDDY",
+      "pred_return_5d": 0.004122820682823658,
+      "pred_return_pct": 0.412,
+      "decile": 2
+    },
+    {
+      "rank": 76,
+      "ticker": "GEV",
+      "pred_return_5d": 0.00409123208373785,
+      "pred_return_pct": 0.409,
+      "decile": 2
+    },
+    {
+      "rank": 77,
+      "ticker": "COO",
+      "pred_return_5d": 0.004037476610392332,
+      "pred_return_pct": 0.404,
+      "decile": 2
+    },
+    {
+      "rank": 78,
+      "ticker": "CMI",
+      "pred_return_5d": 0.004012766759842634,
+      "pred_return_pct": 0.401,
+      "decile": 2
+    },
+    {
+      "rank": 79,
+      "ticker": "ADSK",
+      "pred_return_5d": 0.004005592782050371,
+      "pred_return_pct": 0.401,
+      "decile": 2
+    },
+    {
       "rank": 80,
-      "ticker": "BR",
-      "pred_return_5d": 0.004427563864737749,
-      "pred_return_pct": 0.443,
+      "ticker": "BX",
+      "pred_return_5d": 0.003927833400666714,
+      "pred_return_pct": 0.393,
       "decile": 2
     },
     {
       "rank": 81,
       "ticker": "TPL",
-      "pred_return_5d": 0.0044113826006650925,
-      "pred_return_pct": 0.441,
+      "pred_return_5d": 0.003921740222722292,
+      "pred_return_pct": 0.392,
       "decile": 2
     },
     {
       "rank": 82,
-      "ticker": "HPE",
-      "pred_return_5d": 0.004402701742947102,
-      "pred_return_pct": 0.44,
+      "ticker": "HWM",
+      "pred_return_5d": 0.003921077121049166,
+      "pred_return_pct": 0.392,
       "decile": 2
     },
     {
       "rank": 83,
-      "ticker": "HAL",
-      "pred_return_5d": 0.004388946574181318,
-      "pred_return_pct": 0.439,
+      "ticker": "TYL",
+      "pred_return_5d": 0.0039151255041360855,
+      "pred_return_pct": 0.392,
       "decile": 2
     },
     {
       "rank": 84,
-      "ticker": "BXP",
-      "pred_return_5d": 0.004377409350126982,
-      "pred_return_pct": 0.438,
+      "ticker": "EFX",
+      "pred_return_5d": 0.00391308544203639,
+      "pred_return_pct": 0.391,
       "decile": 2
     },
     {
       "rank": 85,
-      "ticker": "INCY",
-      "pred_return_5d": 0.004336755257099867,
-      "pred_return_pct": 0.434,
+      "ticker": "BSX",
+      "pred_return_5d": 0.0038982948753982782,
+      "pred_return_pct": 0.39,
       "decile": 2
     },
     {
       "rank": 86,
-      "ticker": "MKC",
-      "pred_return_5d": 0.004333379212766886,
-      "pred_return_pct": 0.433,
+      "ticker": "PNR",
+      "pred_return_5d": 0.0038802933413535357,
+      "pred_return_pct": 0.388,
       "decile": 2
     },
     {
       "rank": 87,
-      "ticker": "CRH",
-      "pred_return_5d": 0.004298921208828688,
-      "pred_return_pct": 0.43,
+      "ticker": "CEG",
+      "pred_return_5d": 0.003805820131674409,
+      "pred_return_pct": 0.381,
       "decile": 2
     },
     {
       "rank": 88,
-      "ticker": "LOW",
-      "pred_return_5d": 0.004286470822989941,
-      "pred_return_pct": 0.429,
+      "ticker": "LULU",
+      "pred_return_5d": 0.003790736198425293,
+      "pred_return_pct": 0.379,
       "decile": 2
     },
     {
       "rank": 89,
-      "ticker": "SHW",
-      "pred_return_5d": 0.00419562216848135,
-      "pred_return_pct": 0.42,
+      "ticker": "AOS",
+      "pred_return_5d": 0.0037769011687487364,
+      "pred_return_pct": 0.378,
       "decile": 2
     },
     {
       "rank": 90,
-      "ticker": "XYZ",
-      "pred_return_5d": 0.004194614943116903,
-      "pred_return_pct": 0.419,
+      "ticker": "MS",
+      "pred_return_5d": 0.0036999692674726248,
+      "pred_return_pct": 0.37,
       "decile": 2
     },
     {
       "rank": 91,
-      "ticker": "APO",
-      "pred_return_5d": 0.004189762286841869,
-      "pred_return_pct": 0.419,
+      "ticker": "PANW",
+      "pred_return_5d": 0.003641702001914382,
+      "pred_return_pct": 0.364,
       "decile": 2
     },
     {
       "rank": 92,
-      "ticker": "EFX",
-      "pred_return_5d": 0.004106065724045038,
-      "pred_return_pct": 0.411,
+      "ticker": "BXP",
+      "pred_return_5d": 0.0036199570167809725,
+      "pred_return_pct": 0.362,
       "decile": 2
     },
     {
       "rank": 93,
-      "ticker": "NXPI",
-      "pred_return_5d": 0.004085587337613106,
-      "pred_return_pct": 0.409,
+      "ticker": "LDOS",
+      "pred_return_5d": 0.0035663724411278963,
+      "pred_return_pct": 0.357,
       "decile": 2
     },
     {
       "rank": 94,
-      "ticker": "LYB",
-      "pred_return_5d": 0.004072875250130892,
-      "pred_return_pct": 0.407,
+      "ticker": "AMCR",
+      "pred_return_5d": 0.003542545950040221,
+      "pred_return_pct": 0.354,
       "decile": 2
     },
     {
       "rank": 95,
-      "ticker": "NWS",
-      "pred_return_5d": 0.004072549752891064,
-      "pred_return_pct": 0.407,
+      "ticker": "SHW",
+      "pred_return_5d": 0.003527821274474263,
+      "pred_return_pct": 0.353,
       "decile": 2
     },
     {
       "rank": 96,
-      "ticker": "LEN",
-      "pred_return_5d": 0.004053656477481127,
-      "pred_return_pct": 0.405,
+      "ticker": "CHRW",
+      "pred_return_5d": 0.003525783075019717,
+      "pred_return_pct": 0.353,
       "decile": 2
     },
     {
       "rank": 97,
-      "ticker": "JKHY",
-      "pred_return_5d": 0.004007393028587103,
-      "pred_return_pct": 0.401,
+      "ticker": "TTD",
+      "pred_return_5d": 0.0035232349764555693,
+      "pred_return_pct": 0.352,
       "decile": 2
     },
     {
       "rank": 98,
-      "ticker": "INTU",
-      "pred_return_5d": 0.0039994302205741405,
-      "pred_return_pct": 0.4,
+      "ticker": "FDS",
+      "pred_return_5d": 0.003480158979073167,
+      "pred_return_pct": 0.348,
       "decile": 2
     },
     {
       "rank": 99,
-      "ticker": "CHRW",
-      "pred_return_5d": 0.003994571510702372,
-      "pred_return_pct": 0.399,
+      "ticker": "BBY",
+      "pred_return_5d": 0.0034199971705675125,
+      "pred_return_pct": 0.342,
       "decile": 2
     },
     {
       "rank": 100,
-      "ticker": "LDOS",
-      "pred_return_5d": 0.003963977564126253,
-      "pred_return_pct": 0.396,
+      "ticker": "WELL",
+      "pred_return_5d": 0.003405985189601779,
+      "pred_return_pct": 0.341,
       "decile": 2
     },
     {
       "rank": 101,
-      "ticker": "WYNN",
-      "pred_return_5d": 0.003955152351409197,
-      "pred_return_pct": 0.396,
+      "ticker": "CDNS",
+      "pred_return_5d": 0.0034006002824753523,
+      "pred_return_pct": 0.34,
       "decile": 3
     },
     {
       "rank": 102,
-      "ticker": "CBRE",
-      "pred_return_5d": 0.0039525991305708885,
-      "pred_return_pct": 0.395,
+      "ticker": "SNPS",
+      "pred_return_5d": 0.0033911459613591433,
+      "pred_return_pct": 0.339,
       "decile": 3
     },
     {
       "rank": 103,
-      "ticker": "ORCL",
-      "pred_return_5d": 0.003920732066035271,
-      "pred_return_pct": 0.392,
-      "decile": 3
-    },
-    {
-      "rank": 104,
-      "ticker": "APD",
-      "pred_return_5d": 0.003853750415146351,
-      "pred_return_pct": 0.385,
-      "decile": 3
-    },
-    {
-      "rank": 105,
-      "ticker": "AOS",
-      "pred_return_5d": 0.00383536284789443,
-      "pred_return_pct": 0.384,
-      "decile": 3
-    },
-    {
-      "rank": 106,
-      "ticker": "WELL",
-      "pred_return_5d": 0.0038303753826767206,
-      "pred_return_pct": 0.383,
-      "decile": 3
-    },
-    {
-      "rank": 107,
-      "ticker": "FSLR",
-      "pred_return_5d": 0.00379969016648829,
-      "pred_return_pct": 0.38,
-      "decile": 3
-    },
-    {
-      "rank": 108,
-      "ticker": "NOC",
-      "pred_return_5d": 0.003785736160352826,
-      "pred_return_pct": 0.379,
-      "decile": 3
-    },
-    {
-      "rank": 109,
-      "ticker": "FIX",
-      "pred_return_5d": 0.003771158866584301,
-      "pred_return_pct": 0.377,
-      "decile": 3
-    },
-    {
-      "rank": 110,
-      "ticker": "TYL",
-      "pred_return_5d": 0.0037408394273370504,
-      "pred_return_pct": 0.374,
-      "decile": 3
-    },
-    {
-      "rank": 111,
-      "ticker": "SYF",
-      "pred_return_5d": 0.0037047264631837606,
-      "pred_return_pct": 0.37,
-      "decile": 3
-    },
-    {
-      "rank": 112,
-      "ticker": "LVS",
-      "pred_return_5d": 0.003681875066831708,
-      "pred_return_pct": 0.368,
-      "decile": 3
-    },
-    {
-      "rank": 113,
-      "ticker": "DPZ",
-      "pred_return_5d": 0.0036496517714112997,
-      "pred_return_pct": 0.365,
-      "decile": 3
-    },
-    {
-      "rank": 114,
-      "ticker": "ZBH",
-      "pred_return_5d": 0.003649587044492364,
-      "pred_return_pct": 0.365,
-      "decile": 3
-    },
-    {
-      "rank": 115,
-      "ticker": "CPRT",
-      "pred_return_5d": 0.0036017366219311953,
-      "pred_return_pct": 0.36,
-      "decile": 3
-    },
-    {
-      "rank": 116,
-      "ticker": "MLM",
-      "pred_return_5d": 0.003590505803003907,
-      "pred_return_pct": 0.359,
-      "decile": 3
-    },
-    {
-      "rank": 117,
-      "ticker": "MCO",
-      "pred_return_5d": 0.003571911947801709,
-      "pred_return_pct": 0.357,
-      "decile": 3
-    },
-    {
-      "rank": 118,
-      "ticker": "CBOE",
-      "pred_return_5d": 0.0035580883268266916,
-      "pred_return_pct": 0.356,
-      "decile": 3
-    },
-    {
-      "rank": 119,
-      "ticker": "AON",
-      "pred_return_5d": 0.003553229384124279,
-      "pred_return_pct": 0.355,
-      "decile": 3
-    },
-    {
-      "rank": 120,
-      "ticker": "ROP",
-      "pred_return_5d": 0.0034920198377221823,
-      "pred_return_pct": 0.349,
-      "decile": 3
-    },
-    {
-      "rank": 121,
-      "ticker": "FICO",
-      "pred_return_5d": 0.003471167990937829,
-      "pred_return_pct": 0.347,
-      "decile": 3
-    },
-    {
-      "rank": 122,
-      "ticker": "HUM",
-      "pred_return_5d": 0.0034508933313190937,
-      "pred_return_pct": 0.345,
-      "decile": 3
-    },
-    {
-      "rank": 123,
-      "ticker": "BEN",
-      "pred_return_5d": 0.00344419339671731,
-      "pred_return_pct": 0.344,
-      "decile": 3
-    },
-    {
-      "rank": 124,
-      "ticker": "DAL",
-      "pred_return_5d": 0.003443104913458228,
-      "pred_return_pct": 0.344,
-      "decile": 3
-    },
-    {
-      "rank": 125,
-      "ticker": "SLB",
-      "pred_return_5d": 0.0034372489899396896,
-      "pred_return_pct": 0.344,
-      "decile": 3
-    },
-    {
-      "rank": 126,
-      "ticker": "KMB",
-      "pred_return_5d": 0.003432056400924921,
-      "pred_return_pct": 0.343,
-      "decile": 3
-    },
-    {
-      "rank": 127,
-      "ticker": "NCLH",
-      "pred_return_5d": 0.003402755130082369,
-      "pred_return_pct": 0.34,
-      "decile": 3
-    },
-    {
-      "rank": 128,
-      "ticker": "AMD",
-      "pred_return_5d": 0.0033996354322880507,
-      "pred_return_pct": 0.34,
-      "decile": 3
-    },
-    {
-      "rank": 129,
-      "ticker": "MPWR",
-      "pred_return_5d": 0.003398774890229106,
-      "pred_return_pct": 0.34,
-      "decile": 3
-    },
-    {
-      "rank": 130,
-      "ticker": "SPGI",
-      "pred_return_5d": 0.0033966144546866417,
-      "pred_return_pct": 0.34,
-      "decile": 3
-    },
-    {
-      "rank": 131,
-      "ticker": "F",
-      "pred_return_5d": 0.0033681730274111032,
+      "ticker": "WYNN",
+      "pred_return_5d": 0.0033711991272866726,
       "pred_return_pct": 0.337,
       "decile": 3
     },
     {
-      "rank": 132,
-      "ticker": "TSCO",
-      "pred_return_5d": 0.0033612390980124474,
-      "pred_return_pct": 0.336,
-      "decile": 3
-    },
-    {
-      "rank": 133,
-      "ticker": "IDXX",
-      "pred_return_5d": 0.003357519628480077,
-      "pred_return_pct": 0.336,
-      "decile": 3
-    },
-    {
-      "rank": 134,
-      "ticker": "HPQ",
-      "pred_return_5d": 0.0033431120682507753,
-      "pred_return_pct": 0.334,
-      "decile": 3
-    },
-    {
-      "rank": 135,
-      "ticker": "COO",
-      "pred_return_5d": 0.003330155974254012,
-      "pred_return_pct": 0.333,
-      "decile": 3
-    },
-    {
-      "rank": 136,
-      "ticker": "VTR",
-      "pred_return_5d": 0.00330905569717288,
+      "rank": 104,
+      "ticker": "APO",
+      "pred_return_5d": 0.0033064743038266897,
       "pred_return_pct": 0.331,
       "decile": 3
     },
     {
-      "rank": 137,
-      "ticker": "SWK",
-      "pred_return_5d": 0.0032957671210169792,
-      "pred_return_pct": 0.33,
-      "decile": 3
-    },
-    {
-      "rank": 138,
-      "ticker": "MS",
-      "pred_return_5d": 0.0032915619667619467,
+      "rank": 105,
+      "ticker": "BEN",
+      "pred_return_5d": 0.0032934306655079126,
       "pred_return_pct": 0.329,
       "decile": 3
     },
     {
-      "rank": 139,
-      "ticker": "GEV",
-      "pred_return_5d": 0.003285101382061839,
-      "pred_return_pct": 0.329,
+      "rank": 106,
+      "ticker": "XYZ",
+      "pred_return_5d": 0.003262421116232872,
+      "pred_return_pct": 0.326,
       "decile": 3
     },
     {
-      "rank": 140,
-      "ticker": "NRG",
-      "pred_return_5d": 0.0032771427650004625,
-      "pred_return_pct": 0.328,
-      "decile": 3
-    },
-    {
-      "rank": 141,
-      "ticker": "IRM",
-      "pred_return_5d": 0.0032734370324760675,
-      "pred_return_pct": 0.327,
-      "decile": 3
-    },
-    {
-      "rank": 142,
-      "ticker": "BAX",
-      "pred_return_5d": 0.0032531090546399355,
+      "rank": 107,
+      "ticker": "CPRT",
+      "pred_return_5d": 0.003249733941629529,
       "pred_return_pct": 0.325,
       "decile": 3
     },
     {
-      "rank": 143,
-      "ticker": "TPR",
-      "pred_return_5d": 0.003224426181986928,
-      "pred_return_pct": 0.322,
+      "rank": 108,
+      "ticker": "IVZ",
+      "pred_return_5d": 0.0032424747478216887,
+      "pred_return_pct": 0.324,
       "decile": 3
     },
     {
-      "rank": 144,
-      "ticker": "CAT",
-      "pred_return_5d": 0.0032190841156989336,
-      "pred_return_pct": 0.322,
+      "rank": 109,
+      "ticker": "NXPI",
+      "pred_return_5d": 0.0032417732290923595,
+      "pred_return_pct": 0.324,
       "decile": 3
     },
     {
-      "rank": 145,
-      "ticker": "QCOM",
-      "pred_return_5d": 0.0032072972971946,
+      "rank": 110,
+      "ticker": "FSLR",
+      "pred_return_5d": 0.0032143681310117245,
       "pred_return_pct": 0.321,
       "decile": 3
     },
     {
-      "rank": 146,
-      "ticker": "CMG",
-      "pred_return_5d": 0.0031689254101365805,
+      "rank": 111,
+      "ticker": "EW",
+      "pred_return_5d": 0.003171277465298772,
       "pred_return_pct": 0.317,
       "decile": 3
     },
     {
-      "rank": 147,
-      "ticker": "IT",
-      "pred_return_5d": 0.003162977984175086,
+      "rank": 112,
+      "ticker": "CRM",
+      "pred_return_5d": 0.003165662055835128,
+      "pred_return_pct": 0.317,
+      "decile": 3
+    },
+    {
+      "rank": 113,
+      "ticker": "SWK",
+      "pred_return_5d": 0.0031640720553696156,
       "pred_return_pct": 0.316,
       "decile": 3
     },
     {
+      "rank": 114,
+      "ticker": "IP",
+      "pred_return_5d": 0.0031617877539247274,
+      "pred_return_pct": 0.316,
+      "decile": 3
+    },
+    {
+      "rank": 115,
+      "ticker": "UBER",
+      "pred_return_5d": 0.0031608545687049627,
+      "pred_return_pct": 0.316,
+      "decile": 3
+    },
+    {
+      "rank": 116,
+      "ticker": "WTW",
+      "pred_return_5d": 0.003127430332824588,
+      "pred_return_pct": 0.313,
+      "decile": 3
+    },
+    {
+      "rank": 117,
+      "ticker": "GPN",
+      "pred_return_5d": 0.003109375946223736,
+      "pred_return_pct": 0.311,
+      "decile": 3
+    },
+    {
+      "rank": 118,
+      "ticker": "RJF",
+      "pred_return_5d": 0.003075717482715845,
+      "pred_return_pct": 0.308,
+      "decile": 3
+    },
+    {
+      "rank": 119,
+      "ticker": "INCY",
+      "pred_return_5d": 0.00304015981964767,
+      "pred_return_pct": 0.304,
+      "decile": 3
+    },
+    {
+      "rank": 120,
+      "ticker": "LVS",
+      "pred_return_5d": 0.0030267757829278708,
+      "pred_return_pct": 0.303,
+      "decile": 3
+    },
+    {
+      "rank": 121,
+      "ticker": "TGT",
+      "pred_return_5d": 0.003023377852514386,
+      "pred_return_pct": 0.302,
+      "decile": 3
+    },
+    {
+      "rank": 122,
+      "ticker": "ECHO",
+      "pred_return_5d": 0.003003099700435996,
+      "pred_return_pct": 0.3,
+      "decile": 3
+    },
+    {
+      "rank": 123,
+      "ticker": "CRH",
+      "pred_return_5d": 0.0030024400912225246,
+      "pred_return_pct": 0.3,
+      "decile": 3
+    },
+    {
+      "rank": 124,
+      "ticker": "PODD",
+      "pred_return_5d": 0.002988038817420602,
+      "pred_return_pct": 0.299,
+      "decile": 3
+    },
+    {
+      "rank": 125,
+      "ticker": "MLM",
+      "pred_return_5d": 0.0029704957269132137,
+      "pred_return_pct": 0.297,
+      "decile": 3
+    },
+    {
+      "rank": 126,
+      "ticker": "VTR",
+      "pred_return_5d": 0.002968546701595187,
+      "pred_return_pct": 0.297,
+      "decile": 3
+    },
+    {
+      "rank": 127,
+      "ticker": "BMY",
+      "pred_return_5d": 0.0029680815059691668,
+      "pred_return_pct": 0.297,
+      "decile": 3
+    },
+    {
+      "rank": 128,
+      "ticker": "LEN",
+      "pred_return_5d": 0.0029417546465992928,
+      "pred_return_pct": 0.294,
+      "decile": 3
+    },
+    {
+      "rank": 129,
+      "ticker": "CBRE",
+      "pred_return_5d": 0.0028754801023751497,
+      "pred_return_pct": 0.288,
+      "decile": 3
+    },
+    {
+      "rank": 130,
+      "ticker": "CBOE",
+      "pred_return_5d": 0.0027912380173802376,
+      "pred_return_pct": 0.279,
+      "decile": 3
+    },
+    {
+      "rank": 131,
+      "ticker": "SWKS",
+      "pred_return_5d": 0.0027790344320237637,
+      "pred_return_pct": 0.278,
+      "decile": 3
+    },
+    {
+      "rank": 132,
+      "ticker": "MCO",
+      "pred_return_5d": 0.002778329188004136,
+      "pred_return_pct": 0.278,
+      "decile": 3
+    },
+    {
+      "rank": 133,
+      "ticker": "AJG",
+      "pred_return_5d": 0.0027621930930763483,
+      "pred_return_pct": 0.276,
+      "decile": 3
+    },
+    {
+      "rank": 134,
+      "ticker": "CMG",
+      "pred_return_5d": 0.002742851385846734,
+      "pred_return_pct": 0.274,
+      "decile": 3
+    },
+    {
+      "rank": 135,
+      "ticker": "HPQ",
+      "pred_return_5d": 0.0027232342399656773,
+      "pred_return_pct": 0.272,
+      "decile": 3
+    },
+    {
+      "rank": 136,
+      "ticker": "FISV",
+      "pred_return_5d": 0.002703786361962557,
+      "pred_return_pct": 0.27,
+      "decile": 3
+    },
+    {
+      "rank": 137,
+      "ticker": "SCHW",
+      "pred_return_5d": 0.0027001677080988884,
+      "pred_return_pct": 0.27,
+      "decile": 3
+    },
+    {
+      "rank": 138,
+      "ticker": "SBUX",
+      "pred_return_5d": 0.002683469094336033,
+      "pred_return_pct": 0.268,
+      "decile": 3
+    },
+    {
+      "rank": 139,
+      "ticker": "DRI",
+      "pred_return_5d": 0.0026543517597019672,
+      "pred_return_pct": 0.265,
+      "decile": 3
+    },
+    {
+      "rank": 140,
+      "ticker": "CCL",
+      "pred_return_5d": 0.0026224502362310886,
+      "pred_return_pct": 0.262,
+      "decile": 3
+    },
+    {
+      "rank": 141,
+      "ticker": "GIS",
+      "pred_return_5d": 0.002548739081248641,
+      "pred_return_pct": 0.255,
+      "decile": 3
+    },
+    {
+      "rank": 142,
+      "ticker": "F",
+      "pred_return_5d": 0.002539244247600436,
+      "pred_return_pct": 0.254,
+      "decile": 3
+    },
+    {
+      "rank": 143,
+      "ticker": "BG",
+      "pred_return_5d": 0.0025180166121572256,
+      "pred_return_pct": 0.252,
+      "decile": 3
+    },
+    {
+      "rank": 144,
+      "ticker": "HSIC",
+      "pred_return_5d": 0.002517922082915902,
+      "pred_return_pct": 0.252,
+      "decile": 3
+    },
+    {
+      "rank": 145,
+      "ticker": "NTRS",
+      "pred_return_5d": 0.0025080067571252584,
+      "pred_return_pct": 0.251,
+      "decile": 3
+    },
+    {
+      "rank": 146,
+      "ticker": "ARE",
+      "pred_return_5d": 0.0025066386442631483,
+      "pred_return_pct": 0.251,
+      "decile": 3
+    },
+    {
+      "rank": 147,
+      "ticker": "RTX",
+      "pred_return_5d": 0.002503372495993972,
+      "pred_return_pct": 0.25,
+      "decile": 3
+    },
+    {
       "rank": 148,
-      "ticker": "CLX",
-      "pred_return_5d": 0.0031402588356286287,
-      "pred_return_pct": 0.314,
+      "ticker": "HAL",
+      "pred_return_5d": 0.0024796987418085337,
+      "pred_return_pct": 0.248,
       "decile": 3
     },
     {
       "rank": 149,
-      "ticker": "FOX",
-      "pred_return_5d": 0.003136765444651246,
-      "pred_return_pct": 0.314,
+      "ticker": "BLK",
+      "pred_return_5d": 0.002461211057379842,
+      "pred_return_pct": 0.246,
       "decile": 3
     },
     {
       "rank": 150,
-      "ticker": "NKE",
-      "pred_return_5d": 0.0031234377529472113,
-      "pred_return_pct": 0.312,
+      "ticker": "APH",
+      "pred_return_5d": 0.002455970738083124,
+      "pred_return_pct": 0.246,
       "decile": 3
     },
     {
       "rank": 151,
-      "ticker": "FIS",
-      "pred_return_5d": 0.0031212244648486376,
-      "pred_return_pct": 0.312,
+      "ticker": "LOW",
+      "pred_return_5d": 0.0024452025536447763,
+      "pred_return_pct": 0.245,
       "decile": 4
     },
     {
       "rank": 152,
-      "ticker": "BG",
-      "pred_return_5d": 0.0031178167555481195,
-      "pred_return_pct": 0.312,
+      "ticker": "UHS",
+      "pred_return_5d": 0.002427854109555483,
+      "pred_return_pct": 0.243,
       "decile": 4
     },
     {
       "rank": 153,
-      "ticker": "ADSK",
-      "pred_return_5d": 0.003113016951829195,
-      "pred_return_pct": 0.311,
+      "ticker": "DLTR",
+      "pred_return_5d": 0.0024081103038042784,
+      "pred_return_pct": 0.241,
       "decile": 4
     },
     {
       "rank": 154,
-      "ticker": "VRSK",
-      "pred_return_5d": 0.003108586650341749,
-      "pred_return_pct": 0.311,
+      "ticker": "FOXA",
+      "pred_return_5d": 0.0023453515022993088,
+      "pred_return_pct": 0.235,
       "decile": 4
     },
     {
       "rank": 155,
-      "ticker": "DLTR",
-      "pred_return_5d": 0.0030974550172686577,
-      "pred_return_pct": 0.31,
+      "ticker": "INTU",
+      "pred_return_5d": 0.002331104828044772,
+      "pred_return_pct": 0.233,
       "decile": 4
     },
     {
       "rank": 156,
-      "ticker": "BRO",
-      "pred_return_5d": 0.003095968859270215,
-      "pred_return_pct": 0.31,
+      "ticker": "IDXX",
+      "pred_return_5d": 0.0023301809560507536,
+      "pred_return_pct": 0.233,
       "decile": 4
     },
     {
       "rank": 157,
-      "ticker": "SCHW",
-      "pred_return_5d": 0.00308457063511014,
-      "pred_return_pct": 0.308,
+      "ticker": "PCAR",
+      "pred_return_5d": 0.0023301481269299984,
+      "pred_return_pct": 0.233,
       "decile": 4
     },
     {
       "rank": 158,
-      "ticker": "CRM",
-      "pred_return_5d": 0.003082507522776723,
-      "pred_return_pct": 0.308,
+      "ticker": "NWS",
+      "pred_return_5d": 0.0023227964993566275,
+      "pred_return_pct": 0.232,
       "decile": 4
     },
     {
       "rank": 159,
-      "ticker": "CARR",
-      "pred_return_5d": 0.003043942851945758,
-      "pred_return_pct": 0.304,
+      "ticker": "CAH",
+      "pred_return_5d": 0.002297844970598817,
+      "pred_return_pct": 0.23,
       "decile": 4
     },
     {
       "rank": 160,
-      "ticker": "AZO",
-      "pred_return_5d": 0.0030321769881993532,
-      "pred_return_pct": 0.303,
+      "ticker": "PPG",
+      "pred_return_5d": 0.0022928104735910892,
+      "pred_return_pct": 0.229,
       "decile": 4
     },
     {
       "rank": 161,
-      "ticker": "KHC",
-      "pred_return_5d": 0.0030232109129428864,
-      "pred_return_pct": 0.302,
+      "ticker": "ABNB",
+      "pred_return_5d": 0.0022918572649359703,
+      "pred_return_pct": 0.229,
       "decile": 4
     },
     {
       "rank": 162,
-      "ticker": "OMC",
-      "pred_return_5d": 0.0029729839880019426,
-      "pred_return_pct": 0.297,
+      "ticker": "GRMN",
+      "pred_return_5d": 0.0022830083034932613,
+      "pred_return_pct": 0.228,
       "decile": 4
     },
     {
       "rank": 163,
-      "ticker": "FERG",
-      "pred_return_5d": 0.0029646067414432764,
-      "pred_return_pct": 0.296,
+      "ticker": "JKHY",
+      "pred_return_5d": 0.00227764411829412,
+      "pred_return_pct": 0.228,
       "decile": 4
     },
     {
       "rank": 164,
-      "ticker": "IBM",
-      "pred_return_5d": 0.0029643080197274685,
-      "pred_return_pct": 0.296,
+      "ticker": "SPGI",
+      "pred_return_5d": 0.0022740389686077833,
+      "pred_return_pct": 0.227,
       "decile": 4
     },
     {
       "rank": 165,
-      "ticker": "RJF",
-      "pred_return_5d": 0.002960519166663289,
-      "pred_return_pct": 0.296,
+      "ticker": "HII",
+      "pred_return_5d": 0.002252921462059021,
+      "pred_return_pct": 0.225,
       "decile": 4
     },
     {
       "rank": 166,
-      "ticker": "TTWO",
-      "pred_return_5d": 0.002917670411989093,
-      "pred_return_pct": 0.292,
+      "ticker": "TDG",
+      "pred_return_5d": 0.0022508755791932344,
+      "pred_return_pct": 0.225,
       "decile": 4
     },
     {
       "rank": 167,
-      "ticker": "VST",
-      "pred_return_5d": 0.0029062447138130665,
-      "pred_return_pct": 0.291,
+      "ticker": "AON",
+      "pred_return_5d": 0.002247361931949854,
+      "pred_return_pct": 0.225,
       "decile": 4
     },
     {
       "rank": 168,
-      "ticker": "STE",
-      "pred_return_5d": 0.002892983378842473,
-      "pred_return_pct": 0.289,
+      "ticker": "IBM",
+      "pred_return_5d": 0.002244265517219901,
+      "pred_return_pct": 0.224,
       "decile": 4
     },
     {
       "rank": 169,
-      "ticker": "VRTX",
-      "pred_return_5d": 0.0028502107597887516,
-      "pred_return_pct": 0.285,
+      "ticker": "SNA",
+      "pred_return_5d": 0.002242481568828225,
+      "pred_return_pct": 0.224,
       "decile": 4
     },
     {
       "rank": 170,
-      "ticker": "TXT",
-      "pred_return_5d": 0.0028284944128245115,
-      "pred_return_pct": 0.283,
+      "ticker": "APD",
+      "pred_return_5d": 0.0022310942877084017,
+      "pred_return_pct": 0.223,
       "decile": 4
     },
     {
       "rank": 171,
-      "ticker": "MAA",
-      "pred_return_5d": 0.00281155901029706,
-      "pred_return_pct": 0.281,
+      "ticker": "PTC",
+      "pred_return_5d": 0.0022208914160728455,
+      "pred_return_pct": 0.222,
       "decile": 4
     },
     {
       "rank": 172,
-      "ticker": "KDP",
-      "pred_return_5d": 0.0028015291318297386,
-      "pred_return_pct": 0.28,
+      "ticker": "LUV",
+      "pred_return_5d": 0.002219071378931403,
+      "pred_return_pct": 0.222,
       "decile": 4
     },
     {
       "rank": 173,
-      "ticker": "ABNB",
-      "pred_return_5d": 0.0028004476334899664,
-      "pred_return_pct": 0.28,
+      "ticker": "QCOM",
+      "pred_return_5d": 0.0022057334426790476,
+      "pred_return_pct": 0.221,
       "decile": 4
     },
     {
       "rank": 174,
-      "ticker": "CAH",
-      "pred_return_5d": 0.002785289892926812,
-      "pred_return_pct": 0.279,
+      "ticker": "MAA",
+      "pred_return_5d": 0.0022009341046214104,
+      "pred_return_pct": 0.22,
       "decile": 4
     },
     {
       "rank": 175,
-      "ticker": "EBAY",
-      "pred_return_5d": 0.002776003209874034,
-      "pred_return_pct": 0.278,
+      "ticker": "DE",
+      "pred_return_5d": 0.0021799367386847734,
+      "pred_return_pct": 0.218,
       "decile": 4
     },
     {
       "rank": 176,
-      "ticker": "CRWD",
-      "pred_return_5d": 0.002762052696198225,
-      "pred_return_pct": 0.276,
+      "ticker": "BR",
+      "pred_return_5d": 0.0021769709419459105,
+      "pred_return_pct": 0.218,
       "decile": 4
     },
     {
       "rank": 177,
-      "ticker": "JNJ",
-      "pred_return_5d": 0.0027584547642618418,
-      "pred_return_pct": 0.276,
+      "ticker": "CTSH",
+      "pred_return_5d": 0.0021640833001583815,
+      "pred_return_pct": 0.216,
       "decile": 4
     },
     {
       "rank": 178,
-      "ticker": "ROST",
-      "pred_return_5d": 0.002729979809373617,
-      "pred_return_pct": 0.273,
+      "ticker": "NKE",
+      "pred_return_5d": 0.002154354238882661,
+      "pred_return_pct": 0.215,
       "decile": 4
     },
     {
       "rank": 179,
-      "ticker": "ALL",
-      "pred_return_5d": 0.0027298303321003914,
-      "pred_return_pct": 0.273,
+      "ticker": "ELV",
+      "pred_return_5d": 0.0021492927335202694,
+      "pred_return_pct": 0.215,
       "decile": 4
     },
     {
       "rank": 180,
-      "ticker": "RTX",
-      "pred_return_5d": 0.002725759753957391,
-      "pred_return_pct": 0.273,
+      "ticker": "STLD",
+      "pred_return_5d": 0.0021468878258019686,
+      "pred_return_pct": 0.215,
       "decile": 4
     },
     {
       "rank": 181,
-      "ticker": "BIIB",
-      "pred_return_5d": 0.0027163245249539614,
-      "pred_return_pct": 0.272,
+      "ticker": "NOC",
+      "pred_return_5d": 0.002138691721484065,
+      "pred_return_pct": 0.214,
       "decile": 4
     },
     {
       "rank": 182,
-      "ticker": "REGN",
-      "pred_return_5d": 0.0027046403847634792,
-      "pred_return_pct": 0.27,
+      "ticker": "BIIB",
+      "pred_return_5d": 0.0021297556813806295,
+      "pred_return_pct": 0.213,
       "decile": 4
     },
     {
       "rank": 183,
-      "ticker": "SYK",
-      "pred_return_5d": 0.002703997539356351,
-      "pred_return_pct": 0.27,
+      "ticker": "TXT",
+      "pred_return_5d": 0.0021237321197986603,
+      "pred_return_pct": 0.212,
       "decile": 4
     },
     {
       "rank": 184,
-      "ticker": "EL",
-      "pred_return_5d": 0.002683419967070222,
-      "pred_return_pct": 0.268,
+      "ticker": "GM",
+      "pred_return_5d": 0.0021168100647628307,
+      "pred_return_pct": 0.212,
       "decile": 4
     },
     {
       "rank": 185,
-      "ticker": "CINF",
-      "pred_return_5d": 0.0026592020876705647,
-      "pred_return_pct": 0.266,
+      "ticker": "BAX",
+      "pred_return_5d": 0.002107895677909255,
+      "pred_return_pct": 0.211,
       "decile": 4
     },
     {
       "rank": 186,
-      "ticker": "ADP",
-      "pred_return_5d": 0.0026387039106339216,
-      "pred_return_pct": 0.264,
+      "ticker": "CARR",
+      "pred_return_5d": 0.0021011929493397474,
+      "pred_return_pct": 0.21,
       "decile": 4
     },
     {
       "rank": 187,
-      "ticker": "STLD",
-      "pred_return_5d": 0.00263719679787755,
-      "pred_return_pct": 0.264,
+      "ticker": "SLB",
+      "pred_return_5d": 0.0021004669833928347,
+      "pred_return_pct": 0.21,
       "decile": 4
     },
     {
       "rank": 188,
-      "ticker": "PANW",
-      "pred_return_5d": 0.0026242213789373636,
-      "pred_return_pct": 0.262,
+      "ticker": "TKO",
+      "pred_return_5d": 0.0020760176703333855,
+      "pred_return_pct": 0.208,
       "decile": 4
     },
     {
       "rank": 189,
-      "ticker": "CTSH",
-      "pred_return_5d": 0.0025854622945189476,
-      "pred_return_pct": 0.259,
+      "ticker": "PNC",
+      "pred_return_5d": 0.0020673053804785013,
+      "pred_return_pct": 0.207,
       "decile": 4
     },
     {
       "rank": 190,
-      "ticker": "HSY",
-      "pred_return_5d": 0.002573257079347968,
-      "pred_return_pct": 0.257,
+      "ticker": "NUE",
+      "pred_return_5d": 0.0020638254936784506,
+      "pred_return_pct": 0.206,
       "decile": 4
     },
     {
       "rank": 191,
-      "ticker": "BMY",
-      "pred_return_5d": 0.002565826289355755,
-      "pred_return_pct": 0.257,
+      "ticker": "LII",
+      "pred_return_5d": 0.0020463631954044104,
+      "pred_return_pct": 0.205,
       "decile": 4
     },
     {
       "rank": 192,
-      "ticker": "VLO",
-      "pred_return_5d": 0.002543168840929866,
-      "pred_return_pct": 0.254,
+      "ticker": "DLR",
+      "pred_return_5d": 0.002044313820078969,
+      "pred_return_pct": 0.204,
       "decile": 4
     },
     {
       "rank": 193,
-      "ticker": "TGT",
-      "pred_return_5d": 0.002526617143303156,
-      "pred_return_pct": 0.253,
+      "ticker": "DPZ",
+      "pred_return_5d": 0.0020237064454704523,
+      "pred_return_pct": 0.202,
       "decile": 4
     },
     {
       "rank": 194,
-      "ticker": "CCL",
-      "pred_return_5d": 0.002523665549233556,
-      "pred_return_pct": 0.252,
+      "ticker": "TSLA",
+      "pred_return_5d": 0.002013213699683547,
+      "pred_return_pct": 0.201,
       "decile": 4
     },
     {
       "rank": 195,
-      "ticker": "KVUE",
-      "pred_return_5d": 0.002509588608518243,
-      "pred_return_pct": 0.251,
+      "ticker": "LMT",
+      "pred_return_5d": 0.002010173164308071,
+      "pred_return_pct": 0.201,
       "decile": 4
     },
     {
       "rank": 196,
-      "ticker": "ZTS",
-      "pred_return_5d": 0.002503909869119525,
-      "pred_return_pct": 0.25,
+      "ticker": "USB",
+      "pred_return_5d": 0.0020056667272001505,
+      "pred_return_pct": 0.201,
       "decile": 4
     },
     {
       "rank": 197,
-      "ticker": "Q",
-      "pred_return_5d": 0.0025028425734490156,
-      "pred_return_pct": 0.25,
+      "ticker": "VRSK",
+      "pred_return_5d": 0.002004131907597184,
+      "pred_return_pct": 0.2,
       "decile": 4
     },
     {
       "rank": 198,
-      "ticker": "ORLY",
-      "pred_return_5d": 0.002496040193364024,
-      "pred_return_pct": 0.25,
+      "ticker": "UNH",
+      "pred_return_5d": 0.0019959297496825457,
+      "pred_return_pct": 0.2,
       "decile": 4
     },
     {
       "rank": 199,
-      "ticker": "CDNS",
-      "pred_return_5d": 0.0024891311768442392,
-      "pred_return_pct": 0.249,
+      "ticker": "NCLH",
+      "pred_return_5d": 0.0019952019210904837,
+      "pred_return_pct": 0.2,
       "decile": 4
     },
     {
       "rank": 200,
-      "ticker": "NTRS",
-      "pred_return_5d": 0.0024814342614263296,
-      "pred_return_pct": 0.248,
+      "ticker": "ROST",
+      "pred_return_5d": 0.0019905115477740765,
+      "pred_return_pct": 0.199,
       "decile": 4
     },
     {
       "rank": 201,
-      "ticker": "MRK",
-      "pred_return_5d": 0.0024802833795547485,
-      "pred_return_pct": 0.248,
+      "ticker": "VRTX",
+      "pred_return_5d": 0.001990503864362836,
+      "pred_return_pct": 0.199,
       "decile": 5
     },
     {
       "rank": 202,
-      "ticker": "DECK",
-      "pred_return_5d": 0.0024667151737958193,
-      "pred_return_pct": 0.247,
+      "ticker": "AVGO",
+      "pred_return_5d": 0.0019625939894467592,
+      "pred_return_pct": 0.196,
       "decile": 5
     },
     {
       "rank": 203,
-      "ticker": "LYV",
-      "pred_return_5d": 0.002463923068717122,
-      "pred_return_pct": 0.246,
+      "ticker": "MGM",
+      "pred_return_5d": 0.001957525731995702,
+      "pred_return_pct": 0.196,
       "decile": 5
     },
     {
       "rank": 204,
-      "ticker": "PSA",
-      "pred_return_5d": 0.0024370881728827953,
-      "pred_return_pct": 0.244,
+      "ticker": "ALLE",
+      "pred_return_5d": 0.0019404841586947441,
+      "pred_return_pct": 0.194,
       "decile": 5
     },
     {
       "rank": 205,
-      "ticker": "VMC",
-      "pred_return_5d": 0.002436273731291294,
-      "pred_return_pct": 0.244,
+      "ticker": "VLO",
+      "pred_return_5d": 0.0019339171703904867,
+      "pred_return_pct": 0.193,
       "decile": 5
     },
     {
       "rank": 206,
-      "ticker": "DXCM",
-      "pred_return_5d": 0.0024362625554203987,
-      "pred_return_pct": 0.244,
+      "ticker": "OMC",
+      "pred_return_5d": 0.00191778177395463,
+      "pred_return_pct": 0.192,
       "decile": 5
     },
     {
       "rank": 207,
-      "ticker": "YUM",
-      "pred_return_5d": 0.002432286972180009,
-      "pred_return_pct": 0.243,
+      "ticker": "KHC",
+      "pred_return_5d": 0.0019158651120960712,
+      "pred_return_pct": 0.192,
       "decile": 5
     },
     {
       "rank": 208,
-      "ticker": "UHS",
-      "pred_return_5d": 0.002422454534098506,
-      "pred_return_pct": 0.242,
+      "ticker": "SMCI",
+      "pred_return_5d": 0.0019010375253856182,
+      "pred_return_pct": 0.19,
       "decile": 5
     },
     {
       "rank": 209,
-      "ticker": "FAST",
-      "pred_return_5d": 0.0024216577876359224,
-      "pred_return_pct": 0.242,
+      "ticker": "J",
+      "pred_return_5d": 0.0018913589883595705,
+      "pred_return_pct": 0.189,
       "decile": 5
     },
     {
       "rank": 210,
-      "ticker": "SNPS",
-      "pred_return_5d": 0.002412928966805339,
-      "pred_return_pct": 0.241,
+      "ticker": "MSI",
+      "pred_return_5d": 0.0018892961088567972,
+      "pred_return_pct": 0.189,
       "decile": 5
     },
     {
       "rank": 211,
-      "ticker": "LII",
-      "pred_return_5d": 0.002399600576609373,
-      "pred_return_pct": 0.24,
+      "ticker": "TPR",
+      "pred_return_5d": 0.0018830965273082256,
+      "pred_return_pct": 0.188,
       "decile": 5
     },
     {
       "rank": 212,
-      "ticker": "ETN",
-      "pred_return_5d": 0.0023972743656486273,
-      "pred_return_pct": 0.24,
+      "ticker": "WMB",
+      "pred_return_5d": 0.0018762166146188974,
+      "pred_return_pct": 0.188,
       "decile": 5
     },
     {
       "rank": 213,
-      "ticker": "CL",
-      "pred_return_5d": 0.0023834696039557457,
-      "pred_return_pct": 0.238,
+      "ticker": "C",
+      "pred_return_5d": 0.001863852608948946,
+      "pred_return_pct": 0.186,
       "decile": 5
     },
     {
       "rank": 214,
-      "ticker": "LMT",
-      "pred_return_5d": 0.0023572612553834915,
-      "pred_return_pct": 0.236,
+      "ticker": "CLX",
+      "pred_return_5d": 0.0018599790055304766,
+      "pred_return_pct": 0.186,
       "decile": 5
     },
     {
       "rank": 215,
-      "ticker": "PKG",
-      "pred_return_5d": 0.0023384573869407177,
-      "pred_return_pct": 0.234,
+      "ticker": "GWW",
+      "pred_return_5d": 0.0018586262594908476,
+      "pred_return_pct": 0.186,
       "decile": 5
     },
     {
       "rank": 216,
-      "ticker": "SJM",
-      "pred_return_5d": 0.002322136890143156,
-      "pred_return_pct": 0.232,
+      "ticker": "PKG",
+      "pred_return_5d": 0.0018508939538151026,
+      "pred_return_pct": 0.185,
       "decile": 5
     },
     {
       "rank": 217,
-      "ticker": "TKO",
-      "pred_return_5d": 0.002311613643541932,
-      "pred_return_pct": 0.231,
+      "ticker": "NTAP",
+      "pred_return_5d": 0.0018239945638924837,
+      "pred_return_pct": 0.182,
       "decile": 5
     },
     {
       "rank": 218,
-      "ticker": "UNH",
-      "pred_return_5d": 0.002306642010807991,
-      "pred_return_pct": 0.231,
+      "ticker": "ROK",
+      "pred_return_5d": 0.0018212166614830494,
+      "pred_return_pct": 0.182,
       "decile": 5
     },
     {
       "rank": 219,
-      "ticker": "ELV",
-      "pred_return_5d": 0.0022935171145945787,
-      "pred_return_pct": 0.229,
+      "ticker": "ODFL",
+      "pred_return_5d": 0.001806645654141903,
+      "pred_return_pct": 0.181,
       "decile": 5
     },
     {
       "rank": 220,
-      "ticker": "SBUX",
-      "pred_return_5d": 0.002286711474880576,
-      "pred_return_pct": 0.229,
+      "ticker": "EBAY",
+      "pred_return_5d": 0.0017961852718144655,
+      "pred_return_pct": 0.18,
       "decile": 5
     },
     {
       "rank": 221,
-      "ticker": "DE",
-      "pred_return_5d": 0.0022781402803957462,
-      "pred_return_pct": 0.228,
+      "ticker": "PH",
+      "pred_return_5d": 0.0017927580047398806,
+      "pred_return_pct": 0.179,
       "decile": 5
     },
     {
       "rank": 222,
-      "ticker": "DG",
-      "pred_return_5d": 0.0022499756887555122,
-      "pred_return_pct": 0.225,
+      "ticker": "AVY",
+      "pred_return_5d": 0.0017876687925308943,
+      "pred_return_pct": 0.179,
       "decile": 5
     },
     {
       "rank": 223,
-      "ticker": "SNA",
-      "pred_return_5d": 0.002229014877229929,
-      "pred_return_pct": 0.223,
+      "ticker": "BNY",
+      "pred_return_5d": 0.0017836405895650387,
+      "pred_return_pct": 0.178,
       "decile": 5
     },
     {
       "rank": 224,
-      "ticker": "VMRK",
-      "pred_return_5d": 0.002219537738710642,
-      "pred_return_pct": 0.222,
+      "ticker": "GD",
+      "pred_return_5d": 0.0017724914941936731,
+      "pred_return_pct": 0.177,
       "decile": 5
     },
     {
       "rank": 225,
-      "ticker": "DVA",
-      "pred_return_5d": 0.002218856243416667,
-      "pred_return_pct": 0.222,
+      "ticker": "ROP",
+      "pred_return_5d": 0.001745255896821618,
+      "pred_return_pct": 0.175,
       "decile": 5
     },
     {
       "rank": 226,
-      "ticker": "VZ",
-      "pred_return_5d": 0.002213306725025177,
-      "pred_return_pct": 0.221,
+      "ticker": "DVA",
+      "pred_return_5d": 0.0017318734899163246,
+      "pred_return_pct": 0.173,
       "decile": 5
     },
     {
       "rank": 227,
-      "ticker": "CASY",
-      "pred_return_5d": 0.002194406697526574,
-      "pred_return_pct": 0.219,
+      "ticker": "MPC",
+      "pred_return_5d": 0.0016618617810308933,
+      "pred_return_pct": 0.166,
       "decile": 5
     },
     {
       "rank": 228,
-      "ticker": "C",
-      "pred_return_5d": 0.0021940767765045166,
-      "pred_return_pct": 0.219,
+      "ticker": "PRU",
+      "pred_return_5d": 0.0016579600051045418,
+      "pred_return_pct": 0.166,
       "decile": 5
     },
     {
       "rank": 229,
-      "ticker": "DOC",
-      "pred_return_5d": 0.0021878760308027267,
-      "pred_return_pct": 0.219,
+      "ticker": "APTV",
+      "pred_return_5d": 0.0016553930472582579,
+      "pred_return_pct": 0.166,
       "decile": 5
     },
     {
       "rank": 230,
-      "ticker": "PTC",
-      "pred_return_5d": 0.0021867745090276003,
-      "pred_return_pct": 0.219,
+      "ticker": "DECK",
+      "pred_return_5d": 0.0016514810267835855,
+      "pred_return_pct": 0.165,
       "decile": 5
     },
     {
       "rank": 231,
-      "ticker": "AVY",
-      "pred_return_5d": 0.002180107170715928,
-      "pred_return_pct": 0.218,
+      "ticker": "BA",
+      "pred_return_5d": 0.0016142509412020445,
+      "pred_return_pct": 0.161,
       "decile": 5
     },
     {
       "rank": 232,
-      "ticker": "GM",
-      "pred_return_5d": 0.0021750417072325945,
-      "pred_return_pct": 0.218,
+      "ticker": "STE",
+      "pred_return_5d": 0.0016089817509055138,
+      "pred_return_pct": 0.161,
       "decile": 5
     },
     {
       "rank": 233,
       "ticker": "EG",
-      "pred_return_5d": 0.0021586415823549032,
-      "pred_return_pct": 0.216,
+      "pred_return_5d": 0.0015965979546308517,
+      "pred_return_pct": 0.16,
       "decile": 5
     },
     {
       "rank": 234,
-      "ticker": "CI",
-      "pred_return_5d": 0.002151515567675233,
-      "pred_return_pct": 0.215,
+      "ticker": "TTWO",
+      "pred_return_5d": 0.0015815915539860725,
+      "pred_return_pct": 0.158,
       "decile": 5
     },
     {
       "rank": 235,
-      "ticker": "J",
-      "pred_return_5d": 0.0021504706237465143,
-      "pred_return_pct": 0.215,
+      "ticker": "BRO",
+      "pred_return_5d": 0.0015716664493083954,
+      "pred_return_pct": 0.157,
       "decile": 5
     },
     {
       "rank": 236,
-      "ticker": "BF.B",
-      "pred_return_5d": 0.0021321852691471577,
-      "pred_return_pct": 0.213,
+      "ticker": "FAST",
+      "pred_return_5d": 0.0015588514506816864,
+      "pred_return_pct": 0.156,
       "decile": 5
     },
     {
       "rank": 237,
-      "ticker": "JBHT",
-      "pred_return_5d": 0.002131196903064847,
-      "pred_return_pct": 0.213,
+      "ticker": "PFG",
+      "pred_return_5d": 0.001545360079035163,
+      "pred_return_pct": 0.155,
       "decile": 5
     },
     {
       "rank": 238,
-      "ticker": "TSLA",
-      "pred_return_5d": 0.0021220450289547443,
-      "pred_return_pct": 0.212,
+      "ticker": "FITB",
+      "pred_return_5d": 0.001534018199890852,
+      "pred_return_pct": 0.153,
       "decile": 5
     },
     {
       "rank": 239,
-      "ticker": "AMP",
-      "pred_return_5d": 0.002109367400407791,
-      "pred_return_pct": 0.211,
+      "ticker": "TSCO",
+      "pred_return_5d": 0.0015329148154705763,
+      "pred_return_pct": 0.153,
       "decile": 5
     },
     {
       "rank": 240,
-      "ticker": "MNST",
-      "pred_return_5d": 0.002099985023960471,
-      "pred_return_pct": 0.21,
+      "ticker": "VMC",
+      "pred_return_5d": 0.0015320752281695604,
+      "pred_return_pct": 0.153,
       "decile": 5
     },
     {
       "rank": 241,
-      "ticker": "NWSA",
-      "pred_return_5d": 0.00209075422026217,
-      "pred_return_pct": 0.209,
+      "ticker": "DOW",
+      "pred_return_5d": 0.0015301750972867012,
+      "pred_return_pct": 0.153,
       "decile": 5
     },
     {
       "rank": 242,
-      "ticker": "LHX",
-      "pred_return_5d": 0.002087671309709549,
-      "pred_return_pct": 0.209,
+      "ticker": "YUM",
+      "pred_return_5d": 0.0015244828537106514,
+      "pred_return_pct": 0.152,
       "decile": 5
     },
     {
       "rank": 243,
-      "ticker": "SYY",
-      "pred_return_5d": 0.0020830712746828794,
-      "pred_return_pct": 0.208,
+      "ticker": "MKC",
+      "pred_return_5d": 0.0015146511141210794,
+      "pred_return_pct": 0.151,
       "decile": 5
     },
     {
       "rank": 244,
-      "ticker": "BNY",
-      "pred_return_5d": 0.0020765557419508696,
-      "pred_return_pct": 0.208,
+      "ticker": "AZO",
+      "pred_return_5d": 0.0015113218687474728,
+      "pred_return_pct": 0.151,
       "decile": 5
     },
     {
       "rank": 245,
-      "ticker": "MCD",
-      "pred_return_5d": 0.0020701661705970764,
-      "pred_return_pct": 0.207,
+      "ticker": "PSA",
+      "pred_return_5d": 0.0014921221882104874,
+      "pred_return_pct": 0.149,
       "decile": 5
     },
     {
       "rank": 246,
-      "ticker": "GD",
-      "pred_return_5d": 0.002066686050966382,
-      "pred_return_pct": 0.207,
+      "ticker": "EL",
+      "pred_return_5d": 0.0014914516359567642,
+      "pred_return_pct": 0.149,
       "decile": 5
     },
     {
       "rank": 247,
-      "ticker": "BKR",
-      "pred_return_5d": 0.0020649523939937353,
-      "pred_return_pct": 0.206,
+      "ticker": "FERG",
+      "pred_return_5d": 0.0014679322484880686,
+      "pred_return_pct": 0.147,
       "decile": 5
     },
     {
       "rank": 248,
-      "ticker": "PPG",
-      "pred_return_5d": 0.0020625025499612093,
-      "pred_return_pct": 0.206,
+      "ticker": "JNJ",
+      "pred_return_5d": 0.0014670807868242264,
+      "pred_return_pct": 0.147,
       "decile": 5
     },
     {
       "rank": 249,
-      "ticker": "UPS",
-      "pred_return_5d": 0.002043407876044512,
-      "pred_return_pct": 0.204,
+      "ticker": "DOC",
+      "pred_return_5d": 0.0014629061333835125,
+      "pred_return_pct": 0.146,
       "decile": 5
     },
     {
       "rank": 250,
-      "ticker": "PCAR",
-      "pred_return_5d": 0.002042769454419613,
-      "pred_return_pct": 0.204,
+      "ticker": "HBAN",
+      "pred_return_5d": 0.0014604580355808139,
+      "pred_return_pct": 0.146,
       "decile": 5
     },
     {
       "rank": 251,
-      "ticker": "USB",
-      "pred_return_5d": 0.0020409589633345604,
-      "pred_return_pct": 0.204,
+      "ticker": "JBHT",
+      "pred_return_5d": 0.0014462776016443968,
+      "pred_return_pct": 0.145,
       "decile": 6
     },
     {
       "rank": 252,
-      "ticker": "HSIC",
-      "pred_return_5d": 0.002039829734712839,
-      "pred_return_pct": 0.204,
+      "ticker": "JPM",
+      "pred_return_5d": 0.001442364533431828,
+      "pred_return_pct": 0.144,
       "decile": 6
     },
     {
       "rank": 253,
-      "ticker": "IVZ",
-      "pred_return_5d": 0.0020112611819058657,
-      "pred_return_pct": 0.201,
+      "ticker": "AMP",
+      "pred_return_5d": 0.0014322856441140175,
+      "pred_return_pct": 0.143,
       "decile": 6
     },
     {
       "rank": 254,
-      "ticker": "REG",
-      "pred_return_5d": 0.0020073591731488705,
-      "pred_return_pct": 0.201,
+      "ticker": "LHX",
+      "pred_return_5d": 0.0014316556043922901,
+      "pred_return_pct": 0.143,
       "decile": 6
     },
     {
       "rank": 255,
-      "ticker": "NTAP",
-      "pred_return_5d": 0.001996621722355485,
-      "pred_return_pct": 0.2,
+      "ticker": "REGN",
+      "pred_return_5d": 0.0014202779857441783,
+      "pred_return_pct": 0.142,
       "decile": 6
     },
     {
       "rank": 256,
-      "ticker": "NFLX",
-      "pred_return_5d": 0.0019851350225508213,
-      "pred_return_pct": 0.199,
+      "ticker": "ACN",
+      "pred_return_5d": 0.0014200517907738686,
+      "pred_return_pct": 0.142,
       "decile": 6
     },
     {
       "rank": 257,
-      "ticker": "PH",
-      "pred_return_5d": 0.0019832297693938017,
-      "pred_return_pct": 0.198,
+      "ticker": "STT",
+      "pred_return_5d": 0.0014063969720155,
+      "pred_return_pct": 0.141,
       "decile": 6
     },
     {
       "rank": 258,
-      "ticker": "SOLV",
-      "pred_return_5d": 0.0019621674437075853,
-      "pred_return_pct": 0.196,
+      "ticker": "IT",
+      "pred_return_5d": 0.001396993175148964,
+      "pred_return_pct": 0.14,
       "decile": 6
     },
     {
       "rank": 259,
-      "ticker": "ACN",
-      "pred_return_5d": 0.001961564412340522,
-      "pred_return_pct": 0.196,
+      "ticker": "ZBH",
+      "pred_return_5d": 0.0013965375255793333,
+      "pred_return_pct": 0.14,
       "decile": 6
     },
     {
       "rank": 260,
-      "ticker": "GILD",
-      "pred_return_5d": 0.0019515655003488064,
-      "pred_return_pct": 0.195,
+      "ticker": "SYF",
+      "pred_return_5d": 0.001395674073137343,
+      "pred_return_pct": 0.14,
       "decile": 6
     },
     {
       "rank": 261,
-      "ticker": "HII",
-      "pred_return_5d": 0.0019483601208776236,
-      "pred_return_pct": 0.195,
+      "ticker": "FANG",
+      "pred_return_5d": 0.0013720300048589706,
+      "pred_return_pct": 0.137,
       "decile": 6
     },
     {
       "rank": 262,
-      "ticker": "HD",
-      "pred_return_5d": 0.001947284210473299,
-      "pred_return_pct": 0.195,
+      "ticker": "A",
+      "pred_return_5d": 0.0013677924871444702,
+      "pred_return_pct": 0.137,
       "decile": 6
     },
     {
       "rank": 263,
-      "ticker": "PCG",
-      "pred_return_5d": 0.0019455645233392715,
-      "pred_return_pct": 0.195,
+      "ticker": "GNRC",
+      "pred_return_5d": 0.0013559877406805754,
+      "pred_return_pct": 0.136,
       "decile": 6
     },
     {
       "rank": 264,
-      "ticker": "FDX",
-      "pred_return_5d": 0.0019264768343418837,
-      "pred_return_pct": 0.193,
+      "ticker": "ALL",
+      "pred_return_5d": 0.0013554010074585676,
+      "pred_return_pct": 0.136,
       "decile": 6
     },
     {
       "rank": 265,
-      "ticker": "NUE",
-      "pred_return_5d": 0.0019253971986472607,
-      "pred_return_pct": 0.193,
+      "ticker": "EIX",
+      "pred_return_5d": 0.0013414828572422266,
+      "pred_return_pct": 0.134,
       "decile": 6
     },
     {
       "rank": 266,
-      "ticker": "VICI",
-      "pred_return_5d": 0.0019077092874795198,
-      "pred_return_pct": 0.191,
+      "ticker": "URI",
+      "pred_return_5d": 0.001330230850726366,
+      "pred_return_pct": 0.133,
       "decile": 6
     },
     {
       "rank": 267,
-      "ticker": "TAP",
-      "pred_return_5d": 0.0019041651394218206,
-      "pred_return_pct": 0.19,
+      "ticker": "MNST",
+      "pred_return_5d": 0.0013219858519732952,
+      "pred_return_pct": 0.132,
       "decile": 6
     },
     {
       "rank": 268,
-      "ticker": "CCI",
-      "pred_return_5d": 0.0019009076058864594,
-      "pred_return_pct": 0.19,
+      "ticker": "HSY",
+      "pred_return_5d": 0.0013132471358403563,
+      "pred_return_pct": 0.131,
       "decile": 6
     },
     {
       "rank": 269,
-      "ticker": "ODFL",
-      "pred_return_5d": 0.0018957073334604502,
-      "pred_return_pct": 0.19,
+      "ticker": "EQIX",
+      "pred_return_5d": 0.0013111007865518332,
+      "pred_return_pct": 0.131,
       "decile": 6
     },
     {
       "rank": 270,
-      "ticker": "FANG",
-      "pred_return_5d": 0.0018648316618055105,
-      "pred_return_pct": 0.186,
+      "ticker": "GEHC",
+      "pred_return_5d": 0.0013013186398893595,
+      "pred_return_pct": 0.13,
       "decile": 6
     },
     {
       "rank": 271,
-      "ticker": "FITB",
-      "pred_return_5d": 0.001861143158748746,
-      "pred_return_pct": 0.186,
+      "ticker": "LYV",
+      "pred_return_5d": 0.0012847799807786942,
+      "pred_return_pct": 0.128,
       "decile": 6
     },
     {
       "rank": 272,
-      "ticker": "APA",
-      "pred_return_5d": 0.0018577857408672571,
-      "pred_return_pct": 0.186,
+      "ticker": "ANET",
+      "pred_return_5d": 0.001280824770219624,
+      "pred_return_pct": 0.128,
       "decile": 6
     },
     {
       "rank": 273,
-      "ticker": "PNC",
-      "pred_return_5d": 0.001857078867033124,
-      "pred_return_pct": 0.186,
+      "ticker": "BKR",
+      "pred_return_5d": 0.0012685121037065983,
+      "pred_return_pct": 0.127,
       "decile": 6
     },
     {
       "rank": 274,
-      "ticker": "OTIS",
-      "pred_return_5d": 0.0018448014743626118,
-      "pred_return_pct": 0.184,
+      "ticker": "APA",
+      "pred_return_5d": 0.0012665865942835808,
+      "pred_return_pct": 0.127,
       "decile": 6
     },
     {
       "rank": 275,
-      "ticker": "PRU",
-      "pred_return_5d": 0.0018405711743980646,
-      "pred_return_pct": 0.184,
+      "ticker": "FIS",
+      "pred_return_5d": 0.0012532018590718508,
+      "pred_return_pct": 0.125,
       "decile": 6
     },
     {
       "rank": 276,
-      "ticker": "EMR",
-      "pred_return_5d": 0.0018104373011738062,
-      "pred_return_pct": 0.181,
+      "ticker": "GL",
+      "pred_return_5d": 0.0012466029729694128,
+      "pred_return_pct": 0.125,
       "decile": 6
     },
     {
       "rank": 277,
-      "ticker": "T",
-      "pred_return_5d": 0.0017958101816475391,
-      "pred_return_pct": 0.18,
+      "ticker": "AWK",
+      "pred_return_5d": 0.0012373724021017551,
+      "pred_return_pct": 0.124,
       "decile": 6
     },
     {
       "rank": 278,
-      "ticker": "PEP",
-      "pred_return_5d": 0.0017754028085619211,
-      "pred_return_pct": 0.178,
+      "ticker": "META",
+      "pred_return_5d": 0.0012129321694374084,
+      "pred_return_pct": 0.121,
       "decile": 6
     },
     {
       "rank": 279,
-      "ticker": "URI",
-      "pred_return_5d": 0.0017556485254317522,
-      "pred_return_pct": 0.176,
+      "ticker": "FTNT",
+      "pred_return_5d": 0.0011895266361534595,
+      "pred_return_pct": 0.119,
       "decile": 6
     },
     {
       "rank": 280,
-      "ticker": "PSX",
-      "pred_return_5d": 0.0017500841058790684,
-      "pred_return_pct": 0.175,
+      "ticker": "CL",
+      "pred_return_5d": 0.0011838630307465792,
+      "pred_return_pct": 0.118,
       "decile": 6
     },
     {
       "rank": 281,
-      "ticker": "JPM",
-      "pred_return_5d": 0.0017466351855546236,
-      "pred_return_pct": 0.175,
+      "ticker": "STZ",
+      "pred_return_5d": 0.0011802185326814651,
+      "pred_return_pct": 0.118,
       "decile": 6
     },
     {
       "rank": 282,
-      "ticker": "AWK",
-      "pred_return_5d": 0.001718402374535799,
-      "pred_return_pct": 0.172,
+      "ticker": "FDX",
+      "pred_return_5d": 0.0011634950060397387,
+      "pred_return_pct": 0.116,
       "decile": 6
     },
     {
       "rank": 283,
-      "ticker": "PFG",
-      "pred_return_5d": 0.001710287295281887,
-      "pred_return_pct": 0.171,
+      "ticker": "NDAQ",
+      "pred_return_5d": 0.0011531106429174542,
+      "pred_return_pct": 0.115,
       "decile": 6
     },
     {
       "rank": 284,
-      "ticker": "DD",
-      "pred_return_5d": 0.0016937307082116604,
-      "pred_return_pct": 0.169,
+      "ticker": "UPS",
+      "pred_return_5d": 0.0011394571047276258,
+      "pred_return_pct": 0.114,
       "decile": 6
     },
     {
       "rank": 285,
-      "ticker": "GNRC",
-      "pred_return_5d": 0.0016720301937311888,
-      "pred_return_pct": 0.167,
+      "ticker": "PCG",
+      "pred_return_5d": 0.0011284451466053724,
+      "pred_return_pct": 0.113,
       "decile": 6
     },
     {
       "rank": 286,
-      "ticker": "ICE",
-      "pred_return_5d": 0.0016661228146404028,
-      "pred_return_pct": 0.167,
+      "ticker": "EMR",
+      "pred_return_5d": 0.001110677607357502,
+      "pred_return_pct": 0.111,
       "decile": 6
     },
     {
       "rank": 287,
-      "ticker": "SMCI",
-      "pred_return_5d": 0.0016497448086738586,
-      "pred_return_pct": 0.165,
+      "ticker": "RL",
+      "pred_return_5d": 0.0010987388668581843,
+      "pred_return_pct": 0.11,
       "decile": 6
     },
     {
       "rank": 288,
-      "ticker": "META",
-      "pred_return_5d": 0.0016377950087189674,
-      "pred_return_pct": 0.164,
+      "ticker": "SYY",
+      "pred_return_5d": 0.0010839449241757393,
+      "pred_return_pct": 0.108,
       "decile": 6
     },
     {
       "rank": 289,
-      "ticker": "EIX",
-      "pred_return_5d": 0.0016285195015370846,
-      "pred_return_pct": 0.163,
+      "ticker": "LYB",
+      "pred_return_5d": 0.0010782775934785604,
+      "pred_return_pct": 0.108,
       "decile": 6
     },
     {
       "rank": 290,
-      "ticker": "GWW",
-      "pred_return_5d": 0.0016068522818386555,
-      "pred_return_pct": 0.161,
+      "ticker": "WST",
+      "pred_return_5d": 0.001061872229911387,
+      "pred_return_pct": 0.106,
       "decile": 6
     },
     {
       "rank": 291,
-      "ticker": "WMB",
-      "pred_return_5d": 0.0015963430050760508,
-      "pred_return_pct": 0.16,
+      "ticker": "TRGP",
+      "pred_return_5d": 0.0010566196870058775,
+      "pred_return_pct": 0.106,
       "decile": 6
     },
     {
       "rank": 292,
-      "ticker": "O",
-      "pred_return_5d": 0.0015610149130225182,
-      "pred_return_pct": 0.156,
+      "ticker": "ZTS",
+      "pred_return_5d": 0.0010312458034604788,
+      "pred_return_pct": 0.103,
       "decile": 6
     },
     {
       "rank": 293,
-      "ticker": "NDAQ",
-      "pred_return_5d": 0.0015541096217930317,
-      "pred_return_pct": 0.155,
+      "ticker": "CINF",
+      "pred_return_5d": 0.0010234315413981676,
+      "pred_return_pct": 0.102,
       "decile": 6
     },
     {
       "rank": 294,
-      "ticker": "PLD",
-      "pred_return_5d": 0.0015501189045608044,
-      "pred_return_pct": 0.155,
+      "ticker": "MRK",
+      "pred_return_5d": 0.0010190736502408981,
+      "pred_return_pct": 0.102,
       "decile": 6
     },
     {
       "rank": 295,
-      "ticker": "WST",
-      "pred_return_5d": 0.0015207938849925995,
-      "pred_return_pct": 0.152,
+      "ticker": "MCK",
+      "pred_return_5d": 0.001000055344775319,
+      "pred_return_pct": 0.1,
       "decile": 6
     },
     {
       "rank": 296,
-      "ticker": "STZ",
-      "pred_return_5d": 0.0015153000131249428,
-      "pred_return_pct": 0.152,
+      "ticker": "VMRK",
+      "pred_return_5d": 0.0009935719426721334,
+      "pred_return_pct": 0.099,
       "decile": 6
     },
     {
       "rank": 297,
-      "ticker": "DRI",
-      "pred_return_5d": 0.0015117144212126732,
-      "pred_return_pct": 0.151,
+      "ticker": "IQV",
+      "pred_return_5d": 0.0009907556232064962,
+      "pred_return_pct": 0.099,
       "decile": 6
     },
     {
       "rank": 298,
-      "ticker": "TMUS",
-      "pred_return_5d": 0.0014880688395351171,
-      "pred_return_pct": 0.149,
+      "ticker": "KDP",
+      "pred_return_5d": 0.0009824763983488083,
+      "pred_return_pct": 0.098,
       "decile": 6
     },
     {
       "rank": 299,
-      "ticker": "INVH",
-      "pred_return_5d": 0.0014765241649001837,
-      "pred_return_pct": 0.148,
+      "ticker": "WFC",
+      "pred_return_5d": 0.0009803720749914646,
+      "pred_return_pct": 0.098,
       "decile": 6
     },
     {
       "rank": 300,
-      "ticker": "ALLE",
-      "pred_return_5d": 0.0014738233294337988,
-      "pred_return_pct": 0.147,
+      "ticker": "WSM",
+      "pred_return_5d": 0.0009790451731532812,
+      "pred_return_pct": 0.098,
       "decile": 7
     },
     {
       "rank": 301,
-      "ticker": "ULTA",
-      "pred_return_5d": 0.0014659480657428503,
-      "pred_return_pct": 0.147,
+      "ticker": "ADP",
+      "pred_return_5d": 0.0009725397685542703,
+      "pred_return_pct": 0.097,
       "decile": 7
     },
     {
       "rank": 302,
-      "ticker": "WY",
-      "pred_return_5d": 0.0014366941759362817,
-      "pred_return_pct": 0.144,
+      "ticker": "FOX",
+      "pred_return_5d": 0.0009680813527666032,
+      "pred_return_pct": 0.097,
       "decile": 7
     },
     {
       "rank": 303,
-      "ticker": "WAB",
-      "pred_return_5d": 0.0014343844959512353,
-      "pred_return_pct": 0.143,
+      "ticker": "ETR",
+      "pred_return_5d": 0.0009643834782764316,
+      "pred_return_pct": 0.096,
       "decile": 7
     },
     {
       "rank": 304,
-      "ticker": "CEG",
-      "pred_return_5d": 0.0014311331324279308,
-      "pred_return_pct": 0.143,
+      "ticker": "ADM",
+      "pred_return_5d": 0.0009545609354972839,
+      "pred_return_pct": 0.095,
       "decile": 7
     },
     {
       "rank": 305,
-      "ticker": "LH",
-      "pred_return_5d": 0.001428532414138317,
-      "pred_return_pct": 0.143,
+      "ticker": "DG",
+      "pred_return_5d": 0.0009535349672660232,
+      "pred_return_pct": 0.095,
       "decile": 7
     },
     {
       "rank": 306,
-      "ticker": "CFG",
-      "pred_return_5d": 0.0014117875834926963,
-      "pred_return_pct": 0.141,
+      "ticker": "T",
+      "pred_return_5d": 0.0009500989690423012,
+      "pred_return_pct": 0.095,
       "decile": 7
     },
     {
       "rank": 307,
-      "ticker": "LUV",
-      "pred_return_5d": 0.0013940108474344015,
-      "pred_return_pct": 0.139,
+      "ticker": "DXCM",
+      "pred_return_5d": 0.0009473257814534009,
+      "pred_return_pct": 0.095,
       "decile": 7
     },
     {
       "rank": 308,
-      "ticker": "AMT",
-      "pred_return_5d": 0.0013863088097423315,
-      "pred_return_pct": 0.139,
+      "ticker": "DD",
+      "pred_return_5d": 0.0009455644758418202,
+      "pred_return_pct": 0.095,
       "decile": 7
     },
     {
       "rank": 309,
-      "ticker": "MPC",
-      "pred_return_5d": 0.001383674913085997,
-      "pred_return_pct": 0.138,
+      "ticker": "HRL",
+      "pred_return_5d": 0.0009405809105373919,
+      "pred_return_pct": 0.094,
       "decile": 7
     },
     {
       "rank": 310,
-      "ticker": "MMM",
-      "pred_return_5d": 0.001372473663650453,
-      "pred_return_pct": 0.137,
+      "ticker": "EME",
+      "pred_return_5d": 0.0009402728755958378,
+      "pred_return_pct": 0.094,
       "decile": 7
     },
     {
       "rank": 311,
-      "ticker": "VEEV",
-      "pred_return_5d": 0.0013097655028104782,
-      "pred_return_pct": 0.131,
+      "ticker": "PSX",
+      "pred_return_5d": 0.0009302438702434301,
+      "pred_return_pct": 0.093,
       "decile": 7
     },
     {
       "rank": 312,
-      "ticker": "BAC",
-      "pred_return_5d": 0.0013013174757361412,
-      "pred_return_pct": 0.13,
+      "ticker": "RVTY",
+      "pred_return_5d": 0.0009221330983564258,
+      "pred_return_pct": 0.092,
       "decile": 7
     },
     {
       "rank": 313,
-      "ticker": "GEHC",
-      "pred_return_5d": 0.001294335932470858,
-      "pred_return_pct": 0.129,
+      "ticker": "MMM",
+      "pred_return_5d": 0.0009129594545811415,
+      "pred_return_pct": 0.091,
       "decile": 7
     },
     {
       "rank": 314,
-      "ticker": "AXP",
-      "pred_return_5d": 0.0012908047065138817,
-      "pred_return_pct": 0.129,
+      "ticker": "KMB",
+      "pred_return_5d": 0.0009024393511936069,
+      "pred_return_pct": 0.09,
       "decile": 7
     },
     {
       "rank": 315,
-      "ticker": "ACGL",
-      "pred_return_5d": 0.0012869341298937798,
-      "pred_return_pct": 0.129,
+      "ticker": "SJM",
+      "pred_return_5d": 0.0008895691717043519,
+      "pred_return_pct": 0.089,
       "decile": 7
     },
     {
       "rank": 316,
-      "ticker": "MDLZ",
-      "pred_return_5d": 0.0012843359727412462,
-      "pred_return_pct": 0.128,
+      "ticker": "TDY",
+      "pred_return_5d": 0.0008859967347234488,
+      "pred_return_pct": 0.089,
       "decile": 7
     },
     {
       "rank": 317,
-      "ticker": "EW",
-      "pred_return_5d": 0.0012770371977239847,
-      "pred_return_pct": 0.128,
+      "ticker": "AIZ",
+      "pred_return_5d": 0.0008723741630092263,
+      "pred_return_pct": 0.087,
       "decile": 7
     },
     {
       "rank": 318,
-      "ticker": "SBAC",
-      "pred_return_5d": 0.0012760870158672333,
-      "pred_return_pct": 0.128,
+      "ticker": "AMGN",
+      "pred_return_5d": 0.0008709180983714759,
+      "pred_return_pct": 0.087,
       "decile": 7
     },
     {
       "rank": 319,
-      "ticker": "BDX",
-      "pred_return_5d": 0.0012748863082379103,
-      "pred_return_pct": 0.127,
+      "ticker": "CPAY",
+      "pred_return_5d": 0.0008676790166646242,
+      "pred_return_pct": 0.087,
       "decile": 7
     },
     {
       "rank": 320,
-      "ticker": "WFC",
-      "pred_return_5d": 0.001274503068998456,
-      "pred_return_pct": 0.127,
+      "ticker": "CASY",
+      "pred_return_5d": 0.0008672603871673346,
+      "pred_return_pct": 0.087,
       "decile": 7
     },
     {
       "rank": 321,
-      "ticker": "ROK",
-      "pred_return_5d": 0.0012716418132185936,
-      "pred_return_pct": 0.127,
+      "ticker": "WEC",
+      "pred_return_5d": 0.0008647575741633773,
+      "pred_return_pct": 0.086,
       "decile": 7
     },
     {
       "rank": 322,
-      "ticker": "ADM",
-      "pred_return_5d": 0.0012709194561466575,
-      "pred_return_pct": 0.127,
+      "ticker": "TAP",
+      "pred_return_5d": 0.000862944289110601,
+      "pred_return_pct": 0.086,
       "decile": 7
     },
     {
       "rank": 323,
-      "ticker": "XYL",
-      "pred_return_5d": 0.0012690394651144743,
-      "pred_return_pct": 0.127,
+      "ticker": "SOLV",
+      "pred_return_5d": 0.0008612396777607501,
+      "pred_return_pct": 0.086,
       "decile": 7
     },
     {
       "rank": 324,
-      "ticker": "MTB",
-      "pred_return_5d": 0.0012614247389137745,
-      "pred_return_pct": 0.126,
+      "ticker": "HUBB",
+      "pred_return_5d": 0.0008600736618973315,
+      "pred_return_pct": 0.086,
       "decile": 7
     },
     {
       "rank": 325,
-      "ticker": "NSC",
-      "pred_return_5d": 0.0012609289260581136,
-      "pred_return_pct": 0.126,
+      "ticker": "HON",
+      "pred_return_5d": 0.0008517240057699382,
+      "pred_return_pct": 0.085,
       "decile": 7
     },
     {
       "rank": 326,
-      "ticker": "WSM",
-      "pred_return_5d": 0.00124918925575912,
-      "pred_return_pct": 0.125,
+      "ticker": "COR",
+      "pred_return_5d": 0.0008509430335834622,
+      "pred_return_pct": 0.085,
       "decile": 7
     },
     {
       "rank": 327,
-      "ticker": "BLK",
-      "pred_return_5d": 0.0012480381410568953,
-      "pred_return_pct": 0.125,
+      "ticker": "MAS",
+      "pred_return_5d": 0.0008437270298600197,
+      "pred_return_pct": 0.084,
       "decile": 7
     },
     {
       "rank": 328,
-      "ticker": "UDR",
-      "pred_return_5d": 0.0012464621104300022,
-      "pred_return_pct": 0.125,
+      "ticker": "ORLY",
+      "pred_return_5d": 0.0008301344932988286,
+      "pred_return_pct": 0.083,
       "decile": 7
     },
     {
       "rank": 329,
-      "ticker": "SPG",
-      "pred_return_5d": 0.001232919399626553,
-      "pred_return_pct": 0.123,
+      "ticker": "VEEV",
+      "pred_return_5d": 0.0008260528557002544,
+      "pred_return_pct": 0.083,
       "decile": 7
     },
     {
       "rank": 330,
-      "ticker": "KEY",
-      "pred_return_5d": 0.0012204130180180073,
-      "pred_return_pct": 0.122,
+      "ticker": "BAC",
+      "pred_return_5d": 0.000825899769552052,
+      "pred_return_pct": 0.083,
       "decile": 7
     },
     {
       "rank": 331,
-      "ticker": "MGM",
-      "pred_return_5d": 0.0012155459262430668,
-      "pred_return_pct": 0.122,
+      "ticker": "ABT",
+      "pred_return_5d": 0.0008233841508626938,
+      "pred_return_pct": 0.082,
       "decile": 7
     },
     {
       "rank": 332,
-      "ticker": "DOV",
-      "pred_return_5d": 0.0012129272799938917,
-      "pred_return_pct": 0.121,
+      "ticker": "OTIS",
+      "pred_return_5d": 0.0008203268516808748,
+      "pred_return_pct": 0.082,
       "decile": 7
     },
     {
       "rank": 333,
-      "ticker": "MSCI",
-      "pred_return_5d": 0.0012092888355255127,
-      "pred_return_pct": 0.121,
+      "ticker": "WAB",
+      "pred_return_5d": 0.0008194397087208927,
+      "pred_return_pct": 0.082,
       "decile": 7
     },
     {
       "rank": 334,
-      "ticker": "HLT",
-      "pred_return_5d": 0.0012061635497957468,
-      "pred_return_pct": 0.121,
+      "ticker": "SPG",
+      "pred_return_5d": 0.0008186265476979315,
+      "pred_return_pct": 0.082,
       "decile": 7
     },
     {
       "rank": 335,
-      "ticker": "COR",
-      "pred_return_5d": 0.0012010149657726288,
-      "pred_return_pct": 0.12,
+      "ticker": "NWSA",
+      "pred_return_5d": 0.0008159283315762877,
+      "pred_return_pct": 0.082,
       "decile": 7
     },
     {
       "rank": 336,
-      "ticker": "KO",
-      "pred_return_5d": 0.0011927811428904533,
-      "pred_return_pct": 0.119,
+      "ticker": "CNP",
+      "pred_return_5d": 0.0008009664015844464,
+      "pred_return_pct": 0.08,
       "decile": 7
     },
     {
       "rank": 337,
-      "ticker": "HON",
-      "pred_return_5d": 0.0011914665810763836,
-      "pred_return_pct": 0.119,
+      "ticker": "BF.B",
+      "pred_return_5d": 0.0008006478892639279,
+      "pred_return_pct": 0.08,
       "decile": 7
     },
     {
       "rank": 338,
-      "ticker": "PAYX",
-      "pred_return_5d": 0.0011897438671439886,
-      "pred_return_pct": 0.119,
+      "ticker": "MSCI",
+      "pred_return_5d": 0.0007968952413648367,
+      "pred_return_pct": 0.08,
       "decile": 7
     },
     {
       "rank": 339,
-      "ticker": "CPAY",
-      "pred_return_5d": 0.0011842718813568354,
-      "pred_return_pct": 0.118,
+      "ticker": "HD",
+      "pred_return_5d": 0.0007960798684507608,
+      "pred_return_pct": 0.08,
       "decile": 7
     },
     {
       "rank": 340,
-      "ticker": "A",
-      "pred_return_5d": 0.0011822788510471582,
-      "pred_return_pct": 0.118,
+      "ticker": "INVH",
+      "pred_return_5d": 0.0007917992770671844,
+      "pred_return_pct": 0.079,
       "decile": 7
     },
     {
       "rank": 341,
-      "ticker": "ECHO",
-      "pred_return_5d": 0.0011809517163783312,
-      "pred_return_pct": 0.118,
+      "ticker": "PLD",
+      "pred_return_5d": 0.0007869378896430135,
+      "pred_return_pct": 0.079,
       "decile": 7
     },
     {
       "rank": 342,
-      "ticker": "WEC",
-      "pred_return_5d": 0.0011786390095949173,
-      "pred_return_pct": 0.118,
+      "ticker": "HIG",
+      "pred_return_5d": 0.0007794729899615049,
+      "pred_return_pct": 0.078,
       "decile": 7
     },
     {
       "rank": 343,
-      "ticker": "ROL",
-      "pred_return_5d": 0.001174856792204082,
-      "pred_return_pct": 0.117,
+      "ticker": "CFG",
+      "pred_return_5d": 0.0007610028842464089,
+      "pred_return_pct": 0.076,
       "decile": 7
     },
     {
       "rank": 344,
-      "ticker": "DGX",
-      "pred_return_5d": 0.0011659837327897549,
-      "pred_return_pct": 0.117,
+      "ticker": "REG",
+      "pred_return_5d": 0.0007500939536839724,
+      "pred_return_pct": 0.075,
       "decile": 7
     },
     {
       "rank": 345,
-      "ticker": "HBAN",
-      "pred_return_5d": 0.0011636392446234822,
-      "pred_return_pct": 0.116,
+      "ticker": "FTV",
+      "pred_return_5d": 0.0007458000909537077,
+      "pred_return_pct": 0.075,
       "decile": 7
     },
     {
       "rank": 346,
-      "ticker": "TDG",
-      "pred_return_5d": 0.001143087400123477,
-      "pred_return_pct": 0.114,
+      "ticker": "TT",
+      "pred_return_5d": 0.0007439693436026573,
+      "pred_return_pct": 0.074,
       "decile": 7
     },
     {
       "rank": 347,
-      "ticker": "AMGN",
-      "pred_return_5d": 0.0011336931493133307,
-      "pred_return_pct": 0.113,
+      "ticker": "DTE",
+      "pred_return_5d": 0.0007422029157169163,
+      "pred_return_pct": 0.074,
       "decile": 7
     },
     {
       "rank": 348,
-      "ticker": "APH",
-      "pred_return_5d": 0.0011252888944000006,
-      "pred_return_pct": 0.113,
+      "ticker": "SYK",
+      "pred_return_5d": 0.0007347651408053935,
+      "pred_return_pct": 0.073,
       "decile": 7
     },
     {
       "rank": 349,
-      "ticker": "ABT",
-      "pred_return_5d": 0.0011188997887074947,
-      "pred_return_pct": 0.112,
+      "ticker": "SRE",
+      "pred_return_5d": 0.0007315286202356219,
+      "pred_return_pct": 0.073,
       "decile": 7
     },
     {
       "rank": 350,
-      "ticker": "KIM",
-      "pred_return_5d": 0.0011096668895334005,
-      "pred_return_pct": 0.111,
+      "ticker": "TMUS",
+      "pred_return_5d": 0.0007247214671224356,
+      "pred_return_pct": 0.072,
       "decile": 8
     },
     {
       "rank": 351,
-      "ticker": "DLR",
-      "pred_return_5d": 0.001106519135646522,
-      "pred_return_pct": 0.111,
+      "ticker": "DOV",
+      "pred_return_5d": 0.0007159965462051332,
+      "pred_return_pct": 0.072,
       "decile": 8
     },
     {
       "rank": 352,
-      "ticker": "GL",
-      "pred_return_5d": 0.001101538073271513,
-      "pred_return_pct": 0.11,
+      "ticker": "PEG",
+      "pred_return_5d": 0.0006942515028640628,
+      "pred_return_pct": 0.069,
       "decile": 8
     },
     {
       "rank": 353,
-      "ticker": "ITW",
-      "pred_return_5d": 0.001098331529647112,
-      "pred_return_pct": 0.11,
+      "ticker": "BDX",
+      "pred_return_5d": 0.0006923918263055384,
+      "pred_return_pct": 0.069,
       "decile": 8
     },
     {
       "rank": 354,
-      "ticker": "EQIX",
-      "pred_return_5d": 0.0010969990398734808,
-      "pred_return_pct": 0.11,
+      "ticker": "SBAC",
+      "pred_return_5d": 0.0006914969999343157,
+      "pred_return_pct": 0.069,
       "decile": 8
     },
     {
       "rank": 355,
-      "ticker": "STT",
-      "pred_return_5d": 0.0010751769877970219,
-      "pred_return_pct": 0.108,
+      "ticker": "ITW",
+      "pred_return_5d": 0.0006830997881479561,
+      "pred_return_pct": 0.068,
       "decile": 8
     },
     {
       "rank": 356,
-      "ticker": "CRL",
-      "pred_return_5d": 0.0010727285407483578,
-      "pred_return_pct": 0.107,
+      "ticker": "PAYX",
+      "pred_return_5d": 0.000676113530062139,
+      "pred_return_pct": 0.068,
       "decile": 8
     },
     {
       "rank": 357,
-      "ticker": "DVN",
-      "pred_return_5d": 0.001071946695446968,
-      "pred_return_pct": 0.107,
+      "ticker": "CPT",
+      "pred_return_5d": 0.000674680108204484,
+      "pred_return_pct": 0.067,
       "decile": 8
     },
     {
       "rank": 358,
-      "ticker": "CPT",
-      "pred_return_5d": 0.0010576921049505472,
-      "pred_return_pct": 0.106,
+      "ticker": "NSC",
+      "pred_return_5d": 0.0006694150506518781,
+      "pred_return_pct": 0.067,
       "decile": 8
     },
     {
       "rank": 359,
-      "ticker": "HIG",
-      "pred_return_5d": 0.0010302220471203327,
-      "pred_return_pct": 0.103,
+      "ticker": "KVUE",
+      "pred_return_5d": 0.0006642148364335299,
+      "pred_return_pct": 0.066,
       "decile": 8
     },
     {
       "rank": 360,
-      "ticker": "HRL",
-      "pred_return_5d": 0.0010272949002683163,
-      "pred_return_pct": 0.103,
+      "ticker": "PLTR",
+      "pred_return_5d": 0.0006569307879544795,
+      "pred_return_pct": 0.066,
       "decile": 8
     },
     {
       "rank": 361,
-      "ticker": "RMD",
-      "pred_return_5d": 0.0010248611215502024,
-      "pred_return_pct": 0.102,
+      "ticker": "KEYS",
+      "pred_return_5d": 0.0006384261650964618,
+      "pred_return_pct": 0.064,
       "decile": 8
     },
     {
       "rank": 362,
-      "ticker": "IFF",
-      "pred_return_5d": 0.000981949269771576,
-      "pred_return_pct": 0.098,
+      "ticker": "ROL",
+      "pred_return_5d": 0.0006378671387210488,
+      "pred_return_pct": 0.064,
       "decile": 8
     },
     {
       "rank": 363,
-      "ticker": "FTV",
-      "pred_return_5d": 0.000979056814685464,
-      "pred_return_pct": 0.098,
+      "ticker": "DGX",
+      "pred_return_5d": 0.000633108546026051,
+      "pred_return_pct": 0.063,
       "decile": 8
     },
     {
       "rank": 364,
-      "ticker": "LNT",
-      "pred_return_5d": 0.0009736221982166171,
-      "pred_return_pct": 0.097,
+      "ticker": "VICI",
+      "pred_return_5d": 0.000627824803814292,
+      "pred_return_pct": 0.063,
       "decile": 8
     },
     {
       "rank": 365,
-      "ticker": "IQV",
-      "pred_return_5d": 0.0009581031044945121,
-      "pred_return_pct": 0.096,
+      "ticker": "CSX",
+      "pred_return_5d": 0.0006273866165429354,
+      "pred_return_pct": 0.063,
       "decile": 8
     },
     {
       "rank": 366,
-      "ticker": "MSI",
-      "pred_return_5d": 0.0009504493791610003,
-      "pred_return_pct": 0.095,
+      "ticker": "TXN",
+      "pred_return_5d": 0.0006261117523536086,
+      "pred_return_pct": 0.063,
       "decile": 8
     },
     {
       "rank": 367,
-      "ticker": "COF",
-      "pred_return_5d": 0.0009492761455476284,
-      "pred_return_pct": 0.095,
+      "ticker": "COP",
+      "pred_return_5d": 0.0006230649305507541,
+      "pred_return_pct": 0.062,
       "decile": 8
     },
     {
       "rank": 368,
-      "ticker": "BA",
-      "pred_return_5d": 0.0009447711636312306,
-      "pred_return_pct": 0.094,
+      "ticker": "ADI",
+      "pred_return_5d": 0.0006135402945801616,
+      "pred_return_pct": 0.061,
       "decile": 8
     },
     {
       "rank": 369,
-      "ticker": "FTNT",
-      "pred_return_5d": 0.000940435566008091,
-      "pred_return_pct": 0.094,
+      "ticker": "MCD",
+      "pred_return_5d": 0.000613038893789053,
+      "pred_return_pct": 0.061,
       "decile": 8
     },
     {
       "rank": 370,
-      "ticker": "TDY",
-      "pred_return_5d": 0.0009394254302605987,
-      "pred_return_pct": 0.094,
+      "ticker": "KIM",
+      "pred_return_5d": 0.000610402668826282,
+      "pred_return_pct": 0.061,
       "decile": 8
     },
     {
       "rank": 371,
-      "ticker": "EXR",
-      "pred_return_5d": 0.0009378289105370641,
-      "pred_return_pct": 0.094,
+      "ticker": "MDT",
+      "pred_return_5d": 0.0006012619705870748,
+      "pred_return_pct": 0.06,
       "decile": 8
     },
     {
       "rank": 372,
-      "ticker": "EOG",
-      "pred_return_5d": 0.0009371546329930425,
-      "pred_return_pct": 0.094,
+      "ticker": "HLT",
+      "pred_return_5d": 0.0005985535681247711,
+      "pred_return_pct": 0.06,
       "decile": 8
     },
     {
       "rank": 373,
-      "ticker": "GRMN",
-      "pred_return_5d": 0.0009314483031630516,
-      "pred_return_pct": 0.093,
+      "ticker": "MRSH",
+      "pred_return_5d": 0.0005983029841445386,
+      "pred_return_pct": 0.06,
       "decile": 8
     },
     {
       "rank": 374,
-      "ticker": "RSG",
-      "pred_return_5d": 0.0009217985789291561,
-      "pred_return_pct": 0.092,
+      "ticker": "NDSN",
+      "pred_return_5d": 0.0005965374293737113,
+      "pred_return_pct": 0.06,
       "decile": 8
     },
     {
       "rank": 375,
-      "ticker": "CSX",
-      "pred_return_5d": 0.0009183974470943213,
-      "pred_return_pct": 0.092,
+      "ticker": "WY",
+      "pred_return_5d": 0.0005953738000243902,
+      "pred_return_pct": 0.06,
       "decile": 8
     },
     {
       "rank": 376,
-      "ticker": "SRE",
-      "pred_return_5d": 0.000912946299649775,
-      "pred_return_pct": 0.091,
+      "ticker": "FFIV",
+      "pred_return_5d": 0.0005943860742263496,
+      "pred_return_pct": 0.059,
       "decile": 8
     },
     {
       "rank": 377,
-      "ticker": "APTV",
-      "pred_return_5d": 0.0009110035607591271,
-      "pred_return_pct": 0.091,
+      "ticker": "PEP",
+      "pred_return_5d": 0.0005911355838179588,
+      "pred_return_pct": 0.059,
       "decile": 8
     },
     {
       "rank": 378,
-      "ticker": "MAS",
-      "pred_return_5d": 0.0009064745390787721,
-      "pred_return_pct": 0.091,
+      "ticker": "MTB",
+      "pred_return_5d": 0.0005891117034479976,
+      "pred_return_pct": 0.059,
       "decile": 8
     },
     {
       "rank": 379,
-      "ticker": "BALL",
-      "pred_return_5d": 0.0009062678436748683,
-      "pred_return_pct": 0.091,
+      "ticker": "KEY",
+      "pred_return_5d": 0.0005879629170522094,
+      "pred_return_pct": 0.059,
       "decile": 8
     },
     {
       "rank": 380,
-      "ticker": "CHD",
-      "pred_return_5d": 0.0009047962375916541,
-      "pred_return_pct": 0.09,
+      "ticker": "LNT",
+      "pred_return_5d": 0.0005832717288285494,
+      "pred_return_pct": 0.058,
       "decile": 8
     },
     {
       "rank": 381,
-      "ticker": "RL",
-      "pred_return_5d": 0.0008855522028170526,
-      "pred_return_pct": 0.089,
+      "ticker": "NVDA",
+      "pred_return_5d": 0.0005749063566327095,
+      "pred_return_pct": 0.057,
       "decile": 8
     },
     {
       "rank": 382,
-      "ticker": "RVTY",
-      "pred_return_5d": 0.0008753351867198944,
-      "pred_return_pct": 0.088,
+      "ticker": "VZ",
+      "pred_return_5d": 0.0005643022595904768,
+      "pred_return_pct": 0.056,
       "decile": 8
     },
     {
       "rank": 383,
-      "ticker": "RF",
-      "pred_return_5d": 0.0008694124408066273,
-      "pred_return_pct": 0.087,
+      "ticker": "WRB",
+      "pred_return_5d": 0.0005605312762781978,
+      "pred_return_pct": 0.056,
       "decile": 8
     },
     {
       "rank": 384,
-      "ticker": "AVGO",
-      "pred_return_5d": 0.0008672195835970342,
-      "pred_return_pct": 0.087,
+      "ticker": "CSCO",
+      "pred_return_5d": 0.0005536810494959354,
+      "pred_return_pct": 0.055,
       "decile": 8
     },
     {
       "rank": 385,
-      "ticker": "ANET",
-      "pred_return_5d": 0.0008590411162003875,
-      "pred_return_pct": 0.086,
+      "ticker": "EOG",
+      "pred_return_5d": 0.0005524550215341151,
+      "pred_return_pct": 0.055,
       "decile": 8
     },
     {
       "rank": 386,
-      "ticker": "ESS",
-      "pred_return_5d": 0.00084826466627419,
-      "pred_return_pct": 0.085,
+      "ticker": "OKE",
+      "pred_return_5d": 0.0005485716392286122,
+      "pred_return_pct": 0.055,
       "decile": 8
     },
     {
       "rank": 387,
-      "ticker": "MDT",
-      "pred_return_5d": 0.000843052810523659,
-      "pred_return_pct": 0.084,
+      "ticker": "AME",
+      "pred_return_5d": 0.0005466843140311539,
+      "pred_return_pct": 0.055,
       "decile": 8
     },
     {
       "rank": 388,
-      "ticker": "LLY",
-      "pred_return_5d": 0.000827506766654551,
-      "pred_return_pct": 0.083,
+      "ticker": "KR",
+      "pred_return_5d": 0.0005378224304877222,
+      "pred_return_pct": 0.054,
       "decile": 8
     },
     {
       "rank": 389,
-      "ticker": "PPL",
-      "pred_return_5d": 0.0008043005364015698,
-      "pred_return_pct": 0.08,
+      "ticker": "TRMB",
+      "pred_return_5d": 0.0005352094885893166,
+      "pred_return_pct": 0.054,
       "decile": 8
     },
     {
       "rank": 390,
-      "ticker": "MCK",
-      "pred_return_5d": 0.0008011447498574853,
-      "pred_return_pct": 0.08,
+      "ticker": "ECL",
+      "pred_return_5d": 0.0005319066112861037,
+      "pred_return_pct": 0.053,
       "decile": 8
     },
     {
       "rank": 391,
-      "ticker": "KR",
-      "pred_return_5d": 0.0007948436541482806,
-      "pred_return_pct": 0.079,
+      "ticker": "TROW",
+      "pred_return_5d": 0.0005308928084559739,
+      "pred_return_pct": 0.053,
       "decile": 8
     },
     {
       "rank": 392,
-      "ticker": "EXC",
-      "pred_return_5d": 0.0007904283120296896,
-      "pred_return_pct": 0.079,
+      "ticker": "AXP",
+      "pred_return_5d": 0.0005304336664266884,
+      "pred_return_pct": 0.053,
       "decile": 8
     },
     {
       "rank": 393,
-      "ticker": "FRT",
-      "pred_return_5d": 0.0007897128234617412,
-      "pred_return_pct": 0.079,
+      "ticker": "ACGL",
+      "pred_return_5d": 0.0005278330063447356,
+      "pred_return_pct": 0.053,
       "decile": 8
     },
     {
       "rank": 394,
-      "ticker": "CME",
-      "pred_return_5d": 0.0007895260350778699,
-      "pred_return_pct": 0.079,
+      "ticker": "FRT",
+      "pred_return_5d": 0.0005266112275421619,
+      "pred_return_pct": 0.053,
       "decile": 8
     },
     {
       "rank": 395,
-      "ticker": "TFC",
-      "pred_return_5d": 0.0007819729507900774,
-      "pred_return_pct": 0.078,
+      "ticker": "CME",
+      "pred_return_5d": 0.0005248067318461835,
+      "pred_return_pct": 0.052,
       "decile": 8
     },
     {
       "rank": 396,
-      "ticker": "CVX",
-      "pred_return_5d": 0.000777555163949728,
-      "pred_return_pct": 0.078,
+      "ticker": "MAR",
+      "pred_return_5d": 0.0005176033009774983,
+      "pred_return_pct": 0.052,
       "decile": 8
     },
     {
       "rank": 397,
-      "ticker": "KMI",
-      "pred_return_5d": 0.0007713007507845759,
-      "pred_return_pct": 0.077,
+      "ticker": "TMO",
+      "pred_return_5d": 0.0005100191337987781,
+      "pred_return_pct": 0.051,
       "decile": 8
     },
     {
       "rank": 398,
-      "ticker": "CVS",
-      "pred_return_5d": 0.0007660163682885468,
-      "pred_return_pct": 0.077,
+      "ticker": "LH",
+      "pred_return_5d": 0.0005071101477369666,
+      "pred_return_pct": 0.051,
       "decile": 8
     },
     {
       "rank": 399,
-      "ticker": "TRV",
-      "pred_return_5d": 0.000758927664719522,
-      "pred_return_pct": 0.076,
+      "ticker": "CI",
+      "pred_return_5d": 0.0005069604376330972,
+      "pred_return_pct": 0.051,
       "decile": 8
     },
     {
       "rank": 400,
-      "ticker": "CNP",
-      "pred_return_5d": 0.0007585295825265348,
-      "pred_return_pct": 0.076,
+      "ticker": "WAT",
+      "pred_return_5d": 0.0004995224880985916,
+      "pred_return_pct": 0.05,
       "decile": 9
     },
     {
       "rank": 401,
-      "ticker": "ECL",
-      "pred_return_5d": 0.000758144713472575,
-      "pred_return_pct": 0.076,
+      "ticker": "TFC",
+      "pred_return_5d": 0.0004981844685971737,
+      "pred_return_pct": 0.05,
       "decile": 9
     },
     {
       "rank": 402,
-      "ticker": "AIG",
-      "pred_return_5d": 0.0007563756080344319,
-      "pred_return_pct": 0.076,
+      "ticker": "XEL",
+      "pred_return_5d": 0.000492894381750375,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 403,
-      "ticker": "CB",
-      "pred_return_5d": 0.0007547012064605951,
-      "pred_return_pct": 0.075,
+      "ticker": "PGR",
+      "pred_return_5d": 0.0004911059513688087,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 404,
-      "ticker": "FFIV",
-      "pred_return_5d": 0.0007405318319797516,
-      "pred_return_pct": 0.074,
+      "ticker": "PPL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 405,
-      "ticker": "PFE",
-      "pred_return_5d": 0.0007386968936771154,
-      "pred_return_pct": 0.074,
+      "ticker": "ES",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 406,
-      "ticker": "COP",
-      "pred_return_5d": 0.000718913332093507,
-      "pred_return_pct": 0.072,
+      "ticker": "MSFT",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 407,
-      "ticker": "PGR",
-      "pred_return_5d": 0.0007159787346608937,
-      "pred_return_pct": 0.072,
+      "ticker": "MTD",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 408,
-      "ticker": "WMT",
-      "pred_return_5d": 0.0007151109748519957,
-      "pred_return_pct": 0.072,
+      "ticker": "MO",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 409,
-      "ticker": "HAS",
-      "pred_return_5d": 0.0006977641023695469,
-      "pred_return_pct": 0.07,
+      "ticker": "AAPL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 410,
-      "ticker": "DTE",
-      "pred_return_5d": 0.0006938281003385782,
-      "pred_return_pct": 0.069,
+      "ticker": "XOM",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 411,
-      "ticker": "TROW",
-      "pred_return_5d": 0.0006932225078344345,
-      "pred_return_pct": 0.069,
+      "ticker": "XYL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 412,
-      "ticker": "NDSN",
-      "pred_return_5d": 0.0006879887077957392,
-      "pred_return_pct": 0.069,
+      "ticker": "WMT",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 413,
-      "ticker": "D",
-      "pred_return_5d": 0.0006800597184337676,
-      "pred_return_pct": 0.068,
+      "ticker": "ABBV",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 414,
-      "ticker": "NI",
-      "pred_return_5d": 0.0006629025447182357,
-      "pred_return_pct": 0.066,
-      "decile": 9
-    },
-    {
-      "rank": 415,
-      "ticker": "ETR",
-      "pred_return_5d": 0.0006612140568904579,
-      "pred_return_pct": 0.066,
-      "decile": 9
-    },
-    {
-      "rank": 416,
-      "ticker": "HST",
-      "pred_return_5d": 0.000657487369608134,
-      "pred_return_pct": 0.066,
-      "decile": 9
-    },
-    {
-      "rank": 417,
-      "ticker": "MAR",
-      "pred_return_5d": 0.0006571608828380704,
-      "pred_return_pct": 0.066,
-      "decile": 9
-    },
-    {
-      "rank": 418,
-      "ticker": "GOOG",
-      "pred_return_5d": 0.0006474232068285346,
-      "pred_return_pct": 0.065,
-      "decile": 9
-    },
-    {
-      "rank": 419,
-      "ticker": "TRMB",
-      "pred_return_5d": 0.0006462937453761697,
-      "pred_return_pct": 0.065,
-      "decile": 9
-    },
-    {
-      "rank": 420,
-      "ticker": "PLTR",
-      "pred_return_5d": 0.0006397357792593539,
-      "pred_return_pct": 0.064,
-      "decile": 9
-    },
-    {
-      "rank": 421,
-      "ticker": "TXN",
-      "pred_return_5d": 0.0006356310332193971,
-      "pred_return_pct": 0.064,
-      "decile": 9
-    },
-    {
-      "rank": 422,
-      "ticker": "OXY",
-      "pred_return_5d": 0.0006249002180993557,
-      "pred_return_pct": 0.062,
-      "decile": 9
-    },
-    {
-      "rank": 423,
-      "ticker": "OKE",
-      "pred_return_5d": 0.0006192453438416123,
-      "pred_return_pct": 0.062,
-      "decile": 9
-    },
-    {
-      "rank": 424,
-      "ticker": "CTAS",
-      "pred_return_5d": 0.0006120048346929252,
-      "pred_return_pct": 0.061,
-      "decile": 9
-    },
-    {
-      "rank": 425,
-      "ticker": "VRSN",
-      "pred_return_5d": 0.0006112161790952086,
-      "pred_return_pct": 0.061,
-      "decile": 9
-    },
-    {
-      "rank": 426,
-      "ticker": "AIZ",
-      "pred_return_5d": 0.000609392998740077,
-      "pred_return_pct": 0.061,
-      "decile": 9
-    },
-    {
-      "rank": 427,
-      "ticker": "MRSH",
-      "pred_return_5d": 0.0006028141942806542,
-      "pred_return_pct": 0.06,
-      "decile": 9
-    },
-    {
-      "rank": 428,
-      "ticker": "MA",
-      "pred_return_5d": 0.0005958789261057973,
-      "pred_return_pct": 0.06,
-      "decile": 9
-    },
-    {
-      "rank": 429,
-      "ticker": "EME",
-      "pred_return_5d": 0.0005930116749368608,
-      "pred_return_pct": 0.059,
-      "decile": 9
-    },
-    {
-      "rank": 430,
-      "ticker": "TMO",
-      "pred_return_5d": 0.0005850306479260325,
-      "pred_return_pct": 0.059,
-      "decile": 9
-    },
-    {
-      "rank": 431,
-      "ticker": "SO",
-      "pred_return_5d": 0.0005720713525079191,
-      "pred_return_pct": 0.057,
-      "decile": 9
-    },
-    {
-      "rank": 432,
-      "ticker": "IEX",
-      "pred_return_5d": 0.0005705328658223152,
-      "pred_return_pct": 0.057,
-      "decile": 9
-    },
-    {
-      "rank": 433,
-      "ticker": "XEL",
-      "pred_return_5d": 0.0005639562150463462,
-      "pred_return_pct": 0.056,
-      "decile": 9
-    },
-    {
-      "rank": 434,
-      "ticker": "GOOGL",
-      "pred_return_5d": 0.0005633752443827689,
-      "pred_return_pct": 0.056,
-      "decile": 9
-    },
-    {
-      "rank": 435,
-      "ticker": "PEG",
-      "pred_return_5d": 0.0005591167719103396,
-      "pred_return_pct": 0.056,
-      "decile": 9
-    },
-    {
-      "rank": 436,
-      "ticker": "VLTO",
-      "pred_return_5d": 0.000556178973056376,
-      "pred_return_pct": 0.056,
-      "decile": 9
-    },
-    {
-      "rank": 437,
-      "ticker": "HUBB",
-      "pred_return_5d": 0.0005485988222062588,
-      "pred_return_pct": 0.055,
-      "decile": 9
-    },
-    {
-      "rank": 438,
-      "ticker": "AEE",
-      "pred_return_5d": 0.0005463820998556912,
-      "pred_return_pct": 0.055,
-      "decile": 9
-    },
-    {
-      "rank": 439,
-      "ticker": "ES",
-      "pred_return_5d": 0.0005461079999804497,
-      "pred_return_pct": 0.055,
-      "decile": 9
-    },
-    {
-      "rank": 440,
-      "ticker": "UNP",
-      "pred_return_5d": 0.0005386556149460375,
-      "pred_return_pct": 0.054,
-      "decile": 9
-    },
-    {
-      "rank": 441,
-      "ticker": "VTRS",
-      "pred_return_5d": 0.0005376380868256092,
-      "pred_return_pct": 0.054,
-      "decile": 9
-    },
-    {
-      "rank": 442,
-      "ticker": "V",
-      "pred_return_5d": 0.0005202433676458895,
-      "pred_return_pct": 0.052,
-      "decile": 9
-    },
-    {
-      "rank": 443,
-      "ticker": "PM",
-      "pred_return_5d": 0.0005090071936137974,
-      "pred_return_pct": 0.051,
-      "decile": 9
-    },
-    {
-      "rank": 444,
-      "ticker": "L",
-      "pred_return_5d": 0.0005063572316430509,
-      "pred_return_pct": 0.051,
-      "decile": 9
-    },
-    {
-      "rank": 445,
-      "ticker": "TSN",
-      "pred_return_5d": 0.0005038859089836478,
-      "pred_return_pct": 0.05,
-      "decile": 9
-    },
-    {
-      "rank": 446,
-      "ticker": "WM",
-      "pred_return_5d": 0.0005006100400350988,
-      "pred_return_pct": 0.05,
-      "decile": 9
-    },
-    {
-      "rank": 447,
       "ticker": "TECH",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 9
     },
     {
-      "rank": 448,
+      "rank": 415,
+      "ticker": "BRK.B",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 416,
+      "ticker": "TJX",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 417,
+      "ticker": "TEL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 418,
+      "ticker": "TSN",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 419,
+      "ticker": "TRV",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 420,
+      "ticker": "UDR",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 421,
       "ticker": "AMZN",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 9
     },
     {
+      "rank": 422,
+      "ticker": "AEE",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 423,
+      "ticker": "AEP",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 424,
+      "ticker": "AIG",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 425,
+      "ticker": "AMT",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 426,
+      "ticker": "AFL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 427,
+      "ticker": "AES",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 428,
+      "ticker": "V",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 429,
+      "ticker": "VLTO",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 430,
+      "ticker": "UNP",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 431,
+      "ticker": "ULTA",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 432,
+      "ticker": "VRSN",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 433,
+      "ticker": "VTRS",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 434,
+      "ticker": "ESS",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 435,
+      "ticker": "EXE",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 436,
+      "ticker": "SO",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 437,
+      "ticker": "PNW",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 438,
+      "ticker": "PFE",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 439,
+      "ticker": "PM",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 440,
+      "ticker": "DVN",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 441,
+      "ticker": "DUK",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 442,
+      "ticker": "ED",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 443,
+      "ticker": "PG",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 444,
+      "ticker": "O",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 445,
+      "ticker": "OXY",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 446,
+      "ticker": "MDLZ",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 447,
+      "ticker": "MET",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
+      "rank": 448,
+      "ticker": "DHR",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 9
+    },
+    {
       "rank": 449,
-      "ticker": "AME",
+      "ticker": "DIS",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 9
     },
     {
       "rank": 450,
-      "ticker": "BRK.B",
+      "ticker": "EXC",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 451,
-      "ticker": "WAT",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 452,
-      "ticker": "AAPL",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 453,
-      "ticker": "MO",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 454,
-      "ticker": "MET",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 455,
       "ticker": "EQT",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
-      "rank": 456,
-      "ticker": "WRB",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 457,
-      "ticker": "TT",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 458,
-      "ticker": "TRGP",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 459,
-      "ticker": "TJX",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 460,
-      "ticker": "TEL",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 461,
-      "ticker": "MTD",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 462,
-      "ticker": "LIN",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 463,
-      "ticker": "MSFT",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 464,
-      "ticker": "NVDA",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 465,
-      "ticker": "ED",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 466,
-      "ticker": "CTVA",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 467,
-      "ticker": "FE",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 468,
-      "ticker": "ZBRA",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 469,
+      "rank": 452,
       "ticker": "EVRG",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
-      "rank": 470,
-      "ticker": "KEYS",
+      "rank": 453,
+      "ticker": "LIN",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
-      "rank": 471,
-      "ticker": "IR",
+      "rank": 454,
+      "ticker": "NFLX",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
-      "rank": 472,
-      "ticker": "CSCO",
+      "rank": 455,
+      "ticker": "NI",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
-      "rank": 473,
-      "ticker": "COST",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 474,
-      "ticker": "ISRG",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 475,
-      "ticker": "JCI",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 476,
-      "ticker": "DUK",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 477,
-      "ticker": "DHR",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 478,
+      "rank": 456,
       "ticker": "NEE",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
-      "rank": 479,
-      "ticker": "DIS",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 480,
-      "ticker": "PNW",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 481,
-      "ticker": "PG",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 482,
-      "ticker": "PYPL",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 483,
-      "ticker": "PWR",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 484,
-      "ticker": "ADI",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 485,
-      "ticker": "AES",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 486,
-      "ticker": "HCA",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 487,
-      "ticker": "EXE",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 488,
-      "ticker": "ABBV",
-      "pred_return_5d": 0.0004910036805085838,
-      "pred_return_pct": 0.049,
-      "decile": 10
-    },
-    {
-      "rank": 489,
+      "rank": 457,
       "ticker": "EXPD",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
+      "rank": 458,
+      "ticker": "EXR",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 459,
+      "ticker": "FE",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 460,
+      "ticker": "MA",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 461,
+      "ticker": "GOOGL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 462,
+      "ticker": "HAS",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 463,
+      "ticker": "GILD",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 464,
+      "ticker": "GOOG",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 465,
+      "ticker": "LLY",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 466,
+      "ticker": "HCA",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 467,
+      "ticker": "COF",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 468,
+      "ticker": "CB",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 469,
+      "ticker": "JCI",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 470,
+      "ticker": "IR",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 471,
+      "ticker": "ISRG",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 472,
+      "ticker": "ICE",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 473,
+      "ticker": "IEX",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 474,
+      "ticker": "WM",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 475,
+      "ticker": "IFF",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 476,
+      "ticker": "CVS",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 477,
+      "ticker": "D",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 478,
+      "ticker": "CVX",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 479,
+      "ticker": "PYPL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 480,
+      "ticker": "CRL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 481,
+      "ticker": "COST",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 482,
+      "ticker": "CTAS",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 483,
+      "ticker": "HST",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 484,
+      "ticker": "BALL",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 485,
+      "ticker": "PWR",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 486,
+      "ticker": "RF",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 487,
+      "ticker": "RSG",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 488,
+      "ticker": "KO",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
+      "rank": 489,
+      "ticker": "KMI",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
+      "decile": 10
+    },
+    {
       "rank": 490,
-      "ticker": "CMS",
+      "ticker": "RMD",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 491,
-      "ticker": "ATO",
+      "ticker": "L",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 492,
-      "ticker": "AFL",
+      "ticker": "ZBRA",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 493,
-      "ticker": "AEP",
+      "ticker": "ATO",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 494,
-      "ticker": "XOM",
+      "ticker": "CCI",
       "pred_return_5d": 0.0004910036805085838,
       "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 495,
-      "ticker": "MRVL",
-      "pred_return_5d": 0.0003149506519548595,
-      "pred_return_pct": 0.031,
+      "ticker": "CHD",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 496,
-      "ticker": "GEN",
-      "pred_return_5d": -0.001232840120792389,
-      "pred_return_pct": -0.123,
+      "ticker": "CMS",
+      "pred_return_5d": 0.0004910036805085838,
+      "pred_return_pct": 0.049,
       "decile": 10
     },
     {
       "rank": 497,
-      "ticker": "MRNA",
-      "pred_return_5d": -0.0023666408378630877,
-      "pred_return_pct": -0.237,
+      "ticker": "FICO",
+      "pred_return_5d": -0.0004997817450203001,
+      "pred_return_pct": -0.05,
       "decile": 10
     },
     {
       "rank": 498,
-      "ticker": "CIEN",
-      "pred_return_5d": -0.004986495710909367,
-      "pred_return_pct": -0.499,
+      "ticker": "CTVA",
+      "pred_return_5d": -0.002047246787697077,
+      "pred_return_pct": -0.205,
       "decile": 10
     },
     {
       "rank": 499,
-      "ticker": "LITE",
-      "pred_return_5d": -0.006313798949122429,
-      "pred_return_pct": -0.631,
+      "ticker": "MRNA",
+      "pred_return_5d": -0.014347237534821033,
+      "pred_return_pct": -1.435,
       "decile": 10
     }
   ]
