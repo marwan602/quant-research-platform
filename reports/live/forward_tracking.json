@@ -1,20 +1,20 @@
 {
   "deployment_date": "2026-09-10",
-  "days_tracked": 25,
+  "days_tracked": 26,
   "status": "active",
   "signal_metrics": {
-    "mean_rank_ic": 0.0515,
-    "mean_directional_accuracy": 0.4605,
-    "total_forecasts": 12511,
-    "resolved_forecasts": 10016,
+    "mean_rank_ic": 0.0374,
+    "mean_directional_accuracy": 0.4729,
+    "total_forecasts": 13010,
+    "resolved_forecasts": 10515,
     "pending_forecasts": 2495
   },
   "portfolio_metrics": {
-    "model_cumulative_return_pct": 2.26,
-    "benchmark_cumulative_return_pct": -1.08,
-    "net_alpha_pct": 3.34,
-    "realized_sharpe": 2.31,
-    "max_drawdown_pct": 1.28
+    "model_cumulative_return_pct": -3.35,
+    "benchmark_cumulative_return_pct": 0.44,
+    "net_alpha_pct": -3.79,
+    "realized_sharpe": -1.46,
+    "max_drawdown_pct": 5.61
   },
   "equity_curve": [
     {
@@ -56,6 +56,14 @@
       "model_return_pct": 2.26,
       "benchmark_return_pct": -1.08,
       "excess_alpha_pct": 3.34
+    },
+    {
+      "date": "2026-10-08",
+      "model_nav": 0.9665,
+      "benchmark_nav": 1.0044,
+      "model_return_pct": -3.35,
+      "benchmark_return_pct": 0.44,
+      "excess_alpha_pct": -3.79
     }
   ]
 }
