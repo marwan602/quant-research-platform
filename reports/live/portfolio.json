@@ -1,10 +1,14 @@
 {
-  "as_of_date": "2026-11-24",
+  "as_of_date": "2026-11-25",
   "strategy": "Top Decile Long-Only",
   "holdings_count": 49,
   "holdings": [
     {
       "ticker": "LITE",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "SNDK",
       "weight": 0.02041
     },
     {
@@ -20,27 +24,7 @@
       "weight": 0.02041
     },
     {
-      "ticker": "SNDK",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "COIN",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "DELL",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "SMCI",
-      "weight": 0.02041
-    },
-    {
       "ticker": "FLEX",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "MU",
       "weight": 0.02041
     },
     {
@@ -48,15 +32,11 @@
       "weight": 0.02041
     },
     {
+      "ticker": "COIN",
+      "weight": 0.02041
+    },
+    {
       "ticker": "HPE",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "LRCX",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "AMD",
       "weight": 0.02041
     },
     {
@@ -64,11 +44,19 @@
       "weight": 0.02041
     },
     {
-      "ticker": "FIX",
+      "ticker": "SMCI",
       "weight": 0.02041
     },
     {
-      "ticker": "GEV",
+      "ticker": "DELL",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "DDOG",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "LRCX",
       "weight": 0.02041
     },
     {
@@ -80,11 +68,15 @@
       "weight": 0.02041
     },
     {
-      "ticker": "HOOD",
+      "ticker": "AMD",
       "weight": 0.02041
     },
     {
-      "ticker": "NTAP",
+      "ticker": "MU",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "GEV",
       "weight": 0.02041
     },
     {
@@ -92,19 +84,15 @@
       "weight": 0.02041
     },
     {
-      "ticker": "DDOG",
+      "ticker": "FIX",
       "weight": 0.02041
     },
     {
-      "ticker": "RDDT",
+      "ticker": "KEYS",
       "weight": 0.02041
     },
     {
-      "ticker": "ORCL",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "ON",
+      "ticker": "NTAP",
       "weight": 0.02041
     },
     {
@@ -116,7 +104,11 @@
       "weight": 0.02041
     },
     {
-      "ticker": "KEYS",
+      "ticker": "MPC",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "ORCL",
       "weight": 0.02041
     },
     {
@@ -124,19 +116,15 @@
       "weight": 0.02041
     },
     {
-      "ticker": "ANET",
+      "ticker": "PWR",
       "weight": 0.02041
     },
     {
-      "ticker": "KLAC",
+      "ticker": "ON",
       "weight": 0.02041
     },
     {
-      "ticker": "MPC",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "CDNS",
+      "ticker": "HOOD",
       "weight": 0.02041
     },
     {
@@ -148,23 +136,11 @@
       "weight": 0.02041
     },
     {
-      "ticker": "TPL",
+      "ticker": "CDNS",
       "weight": 0.02041
     },
     {
-      "ticker": "VST",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "CAT",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "MPWR",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "PWR",
+      "ticker": "APH",
       "weight": 0.02041
     },
     {
@@ -172,15 +148,7 @@
       "weight": 0.02041
     },
     {
-      "ticker": "GNRC",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "MCHP",
-      "weight": 0.02041
-    },
-    {
-      "ticker": "PANW",
+      "ticker": "FICO",
       "weight": 0.02041
     },
     {
@@ -188,7 +156,19 @@
       "weight": 0.02041
     },
     {
+      "ticker": "KLAC",
+      "weight": 0.02041
+    },
+    {
       "ticker": "CRWD",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "PANW",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "MCHP",
       "weight": 0.02041
     },
     {
@@ -196,110 +176,130 @@
       "weight": 0.02041
     },
     {
-      "ticker": "PLTR",
+      "ticker": "VST",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "TPL",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "ANET",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "SNPS",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "PSX",
+      "weight": 0.02041
+    },
+    {
+      "ticker": "GNRC",
       "weight": 0.02041
     }
   ],
   "long_short_top": [
     "LITE",
+    "SNDK",
     "CIEN",
     "MRVL",
     "TER",
-    "SNDK",
-    "COIN",
-    "DELL",
-    "SMCI",
     "FLEX",
-    "MU",
     "COHR",
+    "COIN",
     "HPE",
-    "LRCX",
-    "AMD",
     "STX",
-    "FIX",
-    "GEV",
+    "SMCI",
+    "DELL",
+    "DDOG",
+    "LRCX",
     "WDC",
     "VRT",
-    "HOOD",
-    "NTAP",
+    "AMD",
+    "MU",
+    "GEV",
     "GLW",
-    "DDOG",
-    "RDDT",
-    "ORCL",
-    "ON",
+    "FIX",
+    "KEYS",
+    "NTAP",
     "Q",
     "AMAT",
-    "KEYS",
-    "INTC",
-    "ANET",
-    "KLAC",
     "MPC",
-    "CDNS",
+    "ORCL",
+    "INTC",
+    "PWR",
+    "ON",
+    "HOOD",
     "VLO",
     "ETN",
-    "TPL",
-    "VST",
-    "CAT",
-    "MPWR",
-    "PWR",
+    "CDNS",
+    "APH",
     "JBL",
-    "GNRC",
-    "MCHP",
-    "PANW",
+    "FICO",
     "CEG",
+    "KLAC",
     "CRWD",
+    "PANW",
+    "MCHP",
     "EME",
-    "PLTR"
+    "VST",
+    "TPL",
+    "ANET",
+    "SNPS",
+    "PSX",
+    "GNRC"
   ],
   "long_short_bottom": [
-    "DPZ",
-    "FE",
-    "PGR",
-    "PNW",
-    "PNR",
-    "CL",
-    "CB",
-    "SPG",
-    "SO",
-    "DGX",
-    "COST",
-    "CPAY",
-    "CPRT",
-    "CRH",
-    "CTAS",
-    "D",
-    "DD",
-    "YUM",
+    "AVY",
+    "ATO",
+    "WMT",
+    "WM",
+    "AON",
+    "TJX",
+    "AIG",
+    "AMGN",
+    "AES",
+    "AFL",
+    "AEE",
+    "ADP",
+    "ACGL",
     "ABBV",
-    "XEL",
-    "TMUS",
-    "BRK.B",
-    "T",
-    "CHD",
-    "CMS",
-    "STE",
-    "RSG",
-    "SNA",
-    "SBUX",
-    "AZO",
-    "AWK",
-    "TECH",
-    "BDX",
-    "TXT",
-    "UDR",
-    "TSN",
-    "INVH",
+    "AVGO",
+    "CRH",
+    "CFG",
+    "KEY",
+    "ETR",
+    "TSLA",
+    "NXPI",
+    "MPWR",
     "RF",
-    "NVDA",
+    "AAPL",
     "WSM",
-    "MRNA",
-    "TFC",
-    "UNH",
-    "ADI",
-    "CCL",
-    "DECK",
-    "IP",
+    "SW",
+    "STT",
+    "UAL",
+    "AMZN",
+    "BLK",
     "NKE",
-    "ROST"
+    "ECHO",
+    "AXON",
+    "WAB",
+    "FCX",
+    "APP",
+    "MS",
+    "URI",
+    "TFC",
+    "XYZ",
+    "IP",
+    "CCL",
+    "MRNA",
+    "NEM",
+    "DECK",
+    "ADI",
+    "NVDA",
+    "TXN",
+    "DE"
   ]
 }
